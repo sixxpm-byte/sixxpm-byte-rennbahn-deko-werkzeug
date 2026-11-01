@@ -1,0 +1,47 @@
+RAUPENBAHN – 50er-Jahre Rock'n'Roll-Edition – zerlegbarer Bausatz
+=================================================================
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+
+Anderer Maßstab / andere Farben / Optionen:
+  raupenbahn.scad im OpenSCAD-Customizer öffnen (Maßstab 1:10 … 1:87 oder eigener),
+  oder:  python3 farb_export.py raupenbahn.scad 32 ausgabe -D 'wagen_anzahl=24'
+  Optionen u. a.: wagen_anzahl (12–24), wellen (2–4), wellen_hoehe_m,
+  wagen_nummern (Nummern auf den Wappen), raupenkopf, Schildtext, alle Farben.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Podest: wird kopfüber gedruckt (Deckplatte unten, Rippen oben).
+  Welliger Umgang: aufrecht, unten offen; das Deck wird zwischen Ringrippen
+  kurz überbrückt (max. 15 mm).
+  Dach und Kuppel: Unterseite unten, innen hohl mit radialen Rippen
+  (Decke wird zwischen den Rippen max. 20 mm überbrückt).
+  Verdecke stehen auf ihrer Stirnseite, der Raupenkopf auf seinem Gesicht
+  (Augen = Farbeinleger in den ersten Schichten).
+  Notenschlüssel liegen mit der Schauseite nach unten.
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+
+MONTAGE
+  1. Podest-Stücke umdrehen, Clips in die Taschen drücken, wieder umdrehen.
+  2. Wellenbahn-Segmente in die Spurrille legen (Clips von unten an den Stoßschwellen).
+     Den welligen Umgang (Segmente mit Clips von unten) außen auf das Podest legen –
+     er schließt an die Außenwand der Bahn an. Er folgt der Raupenwelle, ist aber starr.
+  3. Königszapfen in die Mitte stecken, Rotor aufsetzen (dreht sich).
+  4. Ausleger mit der Querachse in die Mulden des Rotors legen – der Arm liegt
+     außen auf der silbernen Laufschiene. Wagen auf die Zapfen stecken,
+     Sitzbänke einlegen.
+  5. Mittelbau (offener Baldachin): Boden auf die 6 Säulen des Rotors, 12 Arkaden in die Nut,
+     Deckel auf die Wände, Kuppel auf den Zentrierring.
+  6. 16 Zuckerstangen-Säulen durch die Löcher im Umgang ins Podest stecken, Dach-Segmente verclipsen
+     und auf die Säulen setzen.
+  7. Frontblenden in die Nut am Dachrand, Notenschlüssel in die Ecktaschen,
+     Schild RAUPENBAHN mit den Beinen in die zwei Löcher vorne.
+  8. Treppen (folgen der Welle, Seite links/Mitte/rechts), Geländer und Kasse aufstellen.
+     Jedes Geländerstück hat seine eigene Wellenform: zaun_1 … zaun_13 der Reihe nach
+     gegen den Uhrzeigersinn ab der Seite rechts der Treppe einsetzen
+     (Teilnummern siehe Farbliste; gleiche Formen sind zusammengefasst).
+  Verdecke (Raupe) nach Wunsch auf die Wagen setzen oder abnehmen.
+
+BEWEGLICH
+  Rotor von Hand drehen: die Ausleger gleiten über die Wellenschiene,
+  die Wagen heben und senken sich wie beim Vorbild. Der Mittelbau dreht mit.

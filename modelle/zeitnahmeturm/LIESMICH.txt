@@ -1,0 +1,37 @@
+ZEITNAHMETURM (Race Control) – Tower-Kanzel, Zielflaggen-Band, umlaufende Treppe – zerlegbarer Bausatz
+====================================================================================================
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+zeitnahmeturm_anleitung_1-43.pdf / _1-87.pdf = Druck- und Aufbauanleitung je Maßstab
+Standardfarben: Puderblau / Orange mit schwarz-weißem Zielflaggen-Karo.
+
+Anderer Maßstab / andere Farben / Optionen:
+  zeitnahmeturm.scad im OpenSCAD-Customizer öffnen (Maßstab 1:10 … 1:87 oder eigener),
+  oder:  python3 farb_export.py zeitnahmeturm.scad 32 ausgabe -D 'schild_text="START ZIEL"'
+  Optionen u. a.: Turmbreite/-tiefe, Geschosshöhen, Kanzel-Neigung und Fensterfelder,
+  Treppenbreite, Schildtext, Fahne an/aus und Masthöhe, Pult, alle Farben.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Wände, Kanzel-Glaswände, Schild und Fahne liegen flach, Schauseite oben.
+  Fensterglas (C) liegt in den ersten Schichten, darüber Rahmen und Sprossen.
+  Die Kanzel-Glaswände sind an den Ecken auf Gehrung geschnitten (Kanten max. 45°).
+  Decken und Dach liegen oben = oben; Nuten und Taschen sind auf der Unterseite.
+  Treppenläufe liegen auf der Außenwange mit dem Geländer, die Stufen stehen senkrecht.
+  Podeste liegen oben = oben, das Geländer wird mitgedruckt (kurze Brücken).
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+
+MONTAGE
+  1. Bodenplatte hinlegen.
+  2. Technikraum: Front (Stahltür) und Rückwand, dann die Seiten in die Sockelnut stecken.
+  3. Decke 1 auflegen, Etagen-Wände in ihre Nut stecken (Tür links hinten).
+  4. Zielflaggen-Band (Decke 2) auflegen, Pult hinein.
+  5. Kanzel: Glaswände in die schräge Nut (vorne/hinten gleich, rechts mit Glastür nach vorne),
+     Dach auflegen, Schild vorne und Fahne hinten rechts ins Dach stecken.
+  6. Stützen 1–4 in die Bodenplatte (1 rechts hinten, 2 links hinten, 3 links vorne, 4 rechts vorne).
+  7. Treppen und Podeste der Reihe nach (1 rechts, 2 hinten, 3 links, 4 vorne): Treppenlauf mit den
+     Zapfen in die Löcher der Wand bzw. Decke schieben, Podest mit den Zapfen zur Wand und dem
+     Loch auf die Stütze setzen.
+
+ZERLEGBAR
+  Alle Geschosse sind nur gesteckt: Dach, Kanzel und Etagen abheben und hineinschauen.

@@ -1,0 +1,35 @@
+GARTENHAUS mit Veranda – Blockbohlen, Schwedenrot – zerlegbarer Bausatz
+=======================================================================
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+gartenhaus_anleitung_1-43.pdf / _1-87.pdf = Druck- und Aufbauanleitung je Maßstab
+
+Anderer Maßstab / andere Farben / Optionen:
+  gartenhaus.scad im OpenSCAD-Customizer öffnen (Maßstab 1:10 … 1:87 oder eigener),
+  oder:  python3 farb_export.py gartenhaus.scad 32 ausgabe -D 'veranda_tiefe_m=2.0'
+  Optionen u. a.: Breite, Tiefe, Veranda-Tiefe, Dachneigung, Wandhöhe, Fenster an
+  Seiten und Rückwand, Fensterläden, Brüstung, Eingangsbreite, Zubehör, alle Farben.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Wände, Brüstungen, Veranda-Giebel und Seitenbalken liegen flach, Außenseite oben.
+  Fensterglas (C) liegt in den ersten Schichten, darüber Rahmen, Sprossen und Läden (B).
+  Dachhälften liegen mit der Unterseite auf dem Bett: weiße Unterschicht, Traufbrett
+  und Ortgang (B) zuerst, darüber die Pfannen (A).
+  Bodenplatte: graue Terrasse (A), heller Sockel (B) obendrauf.
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+
+MONTAGE
+  1. Bodenplatte hinlegen.
+  2. Front (Fenster und Tür) und die linke Wand mit der Feder in die Sockelnut stecken,
+     dann rechte Wand und Rückwand.
+  3. Tür: oberen Zapfen von unten in das Loch im Sturz schieben, unteren Zapfen in
+     das Loch im Sockel absenken. Die Tür öffnet nach außen.
+  4. Veranda-Giebel vorne mit den Eckpfosten in den Sockel stecken (Taschen nach innen).
+  5. Seitenbalken mit dem Zapfen von hinten in die Taschen der Eckpfosten schieben.
+  6. Brüstungen einsetzen (Seite 2x, vorne links und rechts), der Eingang bleibt frei.
+  7. Dachhälften auflegen – die Nuten greifen über Giebel, Front und Rückwand.
+  8. Bank, Stuhl und Blumenkübel aufstellen.
+
+BEWEGLICH
+  Die Tür dreht sich auf zwei Zapfen. Das Dach ist nur aufgelegt: abnehmen und hineinschauen.
