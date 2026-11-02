@@ -1,0 +1,44 @@
+FREIFALLTURM – Kirmes-Freifallturm – zerlegbarer Bausatz
+=========================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  freifallturm_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+GRÖSSE
+  1:43: ca. 86 cm hoch, Podest 28 × 28 cm, Mast aus 4 Schüssen.
+  1:87: ca. 42 cm hoch, Podest 14 × 14 cm, Mast aus 2 Schüssen.
+
+Maßstab / andere Farben / Optionen:
+  freifallturm.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py freifallturm.scad 87 ausgabe -D 'portal_text="DROP"'
+  Optionen u. a.: Turmhöhe, Sitzanzahl, Portaltext, Höhe des Sitzrings
+  in der Vorschau, alle Farben. Die Datei ist eigenständig (Bibliothek eingebettet).
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für den Stift am Sitzring: 1:43 ca. 68 mm, 1:87 ca. 36 mm.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  1:43: das Podest ist in 4 Teile geteilt und wird mit 20 Clips verbunden.
+  1:87: nichts geteilt.
+  Mast-Schüsse stehen (Rautentasche unten, Zapfen oben); die Gitter-
+  Diagonalen sind mindestens 45° steil, die Endplatten werden überbrückt.
+  Sitzring und Maschinenhaus stehen, Portal und Absperrgitter liegen flach
+  (Schauseite oben). Das Kassenhaus ist oben offen, Schalter und Tür reichen
+  bis unter das Dach.
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse): 1:43 und 1:87 ohne Hinweise.
+
+MONTAGE
+  1. Podest (1:43 umgedreht verclipsen), Treppe vorne anschieben.
+  2. Mast-Schüsse auf den Zapfen in der Podestmitte stecken.
+  3. Sitzring von oben über den Mast schieben, Filament-Stift durch den
+     Kragen stecken.
+  4. Maschinenhaus auf den obersten Zapfen stecken.
+  5. Absperrgitter, Eingangsportal und Kassenhaus aufstellen.
+
+BEWEGLICH
+  Der Sitzring gleitet auf dem Mast. Der Stift im Kragen liegt auf einer
+  Diagonale auf und hält ihn oben (vor dem Fall) oder unten (Einsteigen).

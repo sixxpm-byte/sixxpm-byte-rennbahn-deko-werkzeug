@@ -16,6 +16,7 @@
 //                 seams_at(), split_out(info, stück), n_pieces(), clip_count()
 //      Stecker:   raute_zapfen_x(l, s), raute_tasche(depth, s)
 //      Traverse:  traverse_koerper(L, w, chord, diag, fp)  (4-Punkt-Gitter)
+//                 steil = true: Diagonalen mind. 45° zur Querrichtung (stehend gedruckt stützfrei)
 //      Text:      text_fit(txt, size, max_w)
 // =====================================================================
 
@@ -164,9 +165,10 @@ module raute_tasche_spitz(depth, a) let(d = (a + 2 * spiel) / sqrt(2)) {
 //  4-Punkt-Gittertraverse  (Achse x von 0..L, Querschnitt w um y = z = 0)
 //  fp "A" = Gurte + Endplatten, "B" = Diagonalen + Sprossen, "alle" = beides
 //  Druck: auf einer Seite liegend (Gurte unten/oben, Diagonalen 45°)
+//  steil = true: weniger, steilere Felder – stehend druckbar (ohne Sprossen, die wären schmale Brücken)
 // ---------------------------------------------------------------------
 module bar3(p, q, d) hull() { translate(p) cube(d, center = true); translate(q) cube(d, center = true); }
-module traverse_koerper(L, w, cw, db, te = 1.0, fp = "alle", sprossen = false) {
+module traverse_koerper(L, w, cw, db, te = 1.0, fp = "alle", sprossen = false, steil = false) {
     yc = w / 2 - cw / 2;
     if (inc(fp, "A")) {
         for (sy = [-1, 1], sz = [-1, 1]) translate([0, sy * yc - cw / 2, sz * yc - cw / 2]) cube([L, cw, cw]);
@@ -174,7 +176,7 @@ module traverse_koerper(L, w, cw, db, te = 1.0, fp = "alle", sprossen = false) {
     }
     if (inc(fp, "B")) {
         Li = L - 2 * te;
-        n = max(1, ceil(Li / (0.9 * 2 * yc)));
+        n = steil ? max(1, floor(Li / (2 * yc))) : max(1, ceil(Li / (0.9 * 2 * yc)));
         q = Li / n;
         for (i = [0 : n - 1]) let(x0 = te + i * q, x1 = x0 + q, a = (i % 2 == 0 ? -1 : 1) * yc)
             for (sg = [-1, 1]) {
