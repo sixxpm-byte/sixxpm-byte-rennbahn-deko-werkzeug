@@ -1,7 +1,7 @@
 # Rennbahn-Deko – Werkzeuge
 
 Gemeinsame Bibliothek, Export-, Prüf- und Anleitungs-Werkzeuge für die 3D-druckbaren
-Deko-Bausätze (Sturmkind DR!FT, alle Maßstäbe 1:10 … 1:87). Konventionen: `doku/KONVENTIONEN.md`.
+Deko-Bausätze (Sturmkind DR!FT, neue Modelle in 1:43 und 1:87, ältere zusätzlich 1:10 … 1:64). Konventionen: `doku/KONVENTIONEN.md`.
 
 ## Ordner
 

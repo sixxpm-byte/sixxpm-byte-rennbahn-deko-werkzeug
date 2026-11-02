@@ -3,3 +3,4 @@ numpy
 manifold3d
 reportlab
 pillow
+# Systempaket für werkzeuge/slicen.py: apt-get install -y prusa-slicer

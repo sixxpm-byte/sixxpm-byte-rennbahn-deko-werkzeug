@@ -11,4 +11,5 @@ if (obj == "fahne") fahne_welt();
 if (obj == "pult") pult_welt();
 if (obj == "lauf") lauf_welt(ii);
 if (obj == "podest") podest_welt(ii);
+if (obj == "gelaender") gel_welt(ii);
 if (obj == "stuetze") stuetze_welt(ii);

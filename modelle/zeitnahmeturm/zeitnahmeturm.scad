@@ -24,7 +24,8 @@
 //    pult              Zeitnahme-Pult in der Kanzel
 //    fahne             Fahnenmast mit Zielflagge (Dach hinten rechts)
 //    treppe_1 .. 4     Treppenläufe (Stahl, Geländer außen)
-//    podest_1 .. 4     Eck-Podeste mit Geländer
+//    podest_1 .. 4     Eck-Podeste (mit Löchern für die Geländer-Zapfen)
+//    gelaender_1 .. 4  Podest-Geländer: geschlossene Rahmen, flach liegend gedruckt, gesteckt
 //    stuetze_1 .. 4    Stützen unter den Podesten
 //    verbinder         Clips für alle geteilten Teile
 //
@@ -41,7 +42,7 @@
 //    2. Etagen-Wände in Decke 1, Zielflaggen-Band (Decke 2) auflegen.
 //    3. Kanzel-Glaswände in die schräge Nut, Dach auflegen, Schild stecken.
 //    4. Stützen in die Bodenplatte, Treppen und Podeste mit den Zapfen in
-//       die Löcher der Wände/Decken stecken.
+//       die Löcher der Wände/Decken stecken, Geländer in die Podeste stecken.
 // =====================================================================
 
 /* [Maßstab] */
@@ -50,7 +51,7 @@ massstab = 43; // [10:1/10 RC-Car, 18:1/18 Modellauto, 24:1/24 Slotcar, 28:1/28 
 eigener_massstab = 50;
 
 /* [Ausgabe] */
-teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, bodenplatte:Bodenplatte mit Sockel, eg_wand_vorne:Technikraum vorne (Stahltür), eg_wand_links:Technikraum links, eg_wand_rechts:Technikraum rechts, eg_wand_hinten:Technikraum hinten, decke_1:Decke 1, og_wand_vorne:Etage vorne, og_wand_links:Etage links (Tür), og_wand_rechts:Etage rechts, og_wand_hinten:Etage hinten, decke_2:Zielflaggen-Band (Decke 2), kanzel_front:Kanzel Glaswand vorne/hinten, kanzel_links:Kanzel Glaswand links, kanzel_rechts:Kanzel Glaswand rechts (Tür), dach:Kanzeldach, schild:Schild, pult:Zeitnahme-Pult, fahne:Fahnenmast mit Zielflagge, treppe_1:Treppe 1 (rechts), treppe_2:Treppe 2 (hinten), treppe_3:Treppe 3 (links), treppe_4:Treppe 4 (vorne), podest_1:Podest 1 (rechts hinten), podest_2:Podest 2 (links hinten), podest_3:Podest 3 (links vorne), podest_4:Podest 4 (rechts vorne), stuetze_1:Stütze 1, stuetze_2:Stütze 2, stuetze_3:Stütze 3, stuetze_4:Stütze 4, verbinder:Verbinder-Clips]
+teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, bodenplatte:Bodenplatte mit Sockel, eg_wand_vorne:Technikraum vorne (Stahltür), eg_wand_links:Technikraum links, eg_wand_rechts:Technikraum rechts, eg_wand_hinten:Technikraum hinten, decke_1:Decke 1, og_wand_vorne:Etage vorne, og_wand_links:Etage links (Tür), og_wand_rechts:Etage rechts, og_wand_hinten:Etage hinten, decke_2:Zielflaggen-Band (Decke 2), kanzel_front:Kanzel Glaswand vorne/hinten, kanzel_links:Kanzel Glaswand links, kanzel_rechts:Kanzel Glaswand rechts (Tür), dach:Kanzeldach, schild:Schild, pult:Zeitnahme-Pult, fahne:Fahnenmast mit Zielflagge, treppe_1:Treppe 1 (rechts), treppe_2:Treppe 2 (hinten), treppe_3:Treppe 3 (links), treppe_4:Treppe 4 (vorne), podest_1:Podest 1 (rechts hinten), podest_2:Podest 2 (links hinten), podest_3:Podest 3 (links vorne), podest_4:Podest 4 (rechts vorne), gelaender_1:Geländer Podest 1, gelaender_2:Geländer Podest 2, gelaender_3:Geländer Podest 3, gelaender_4:Geländer Podest 4, stuetze_1:Stütze 1, stuetze_2:Stütze 2, stuetze_3:Stütze 3, stuetze_4:Stütze 4, verbinder:Verbinder-Clips]
 // Geteilte Teile: 0 = alle Stücke, 1..n = einzelnes Stück
 stueck = 0;
 // Mehrfarbige Teile: alle oder einzelne Farbe (A = Grundkörper)
@@ -604,20 +605,56 @@ module decke1(fp = "alle") difference() {
 module stumpf(off, ext = 0) hull() for (z = [z2 - tgc - ext, zr + tgc + ext]) let(d = (z - z2) * tan(ac) + off) translate([-d, -d, z]) cube([W + 2 * d, D + 2 * d, 0.01]);
 module schale(off = 0) difference() { stumpf(off); stumpf(-tc_h - off, 1); }
 // Decke 2 = Zielflaggen-Band
-hs2 = (tb2 - 0) * 0.18; nq = 2; q2 = (tb2 - 2 * hs2) / nq;
+// Sichtbarer Bereich: über der Wandfeder (unten) bis zur Auflage der Kanzel (oben).
+// Streifen (C) und Karo (B) liegen nur dort, sonst würden Nut und Kanzel-Auflage sie zu dünnen Rahmen beschneiden.
+zv0 = z_d2 + g_n; zv1 = z2 - tgc - spiel; hb2 = zv1 - zv0;
+hs2 = hb2 * 0.2; nq = 2; q2 = (hb2 - 2 * hs2) / nq;
+zk0 = zv0 + hs2; zk1 = zv1 - hs2;
 ce = 0.02;                                   // Karo-Felder überlappen leicht (sonst Kanten-Berührung = undicht)
-module karo_ring(x = 0) for (j = [0 : nq - 1]) let(z0 = z_d2 + hs2 + j * q2) {
-    for (i = [0 : floor(W / q2)]) if ((i + j) % 2 == 0) for (y = [-x, D - eb]) translate([i * q2 - ce, y, z0 - ce]) cube([min(q2, W - i * q2) + 2 * ce, eb + x, q2 + 2 * ce]);
-    for (i = [0 : floor(D / q2)]) if ((i + j) % 2 == 1) for (xx = [-x, W - eb]) translate([xx, i * q2 - ce, z0 - ce]) cube([eb + x, min(q2, D - i * q2) + 2 * ce, q2 + 2 * ce]);
+cb = max(0.5, q2 * 0.14);                    // Eckbrücke: verbindet diagonal benachbarte Karo-Felder zu einem Körper
+nkx = max(2, round(W / q2)); qx2 = W / nkx;  // ganze Felder je Seite (keine Splitter an den Ecken)
+nky = max(2, round(D / q2)); qy2 = D / nky;
+cw2 = max(0.8, eb);                          // verdeckte Ecksäule (C) hinter dem Karo: verbindet die beiden Streifen
+module karo_ring(x = 0) intersection() {
+    union() {
+        for (j = [0 : nq - 1]) let(z0 = zk0 + j * q2) {
+            for (i = [0 : nkx - 1]) if ((i + j) % 2 == 0) for (y = [-x, D - eb]) translate([i * qx2 - ce, y, z0 - ce]) cube([qx2 + 2 * ce, eb + x, q2 + 2 * ce]);
+            for (i = [0 : nky - 1]) if ((i + j) % 2 == 1) for (xx = [-x, W - eb]) translate([xx, i * qy2 - ce, z0 - ce]) cube([eb + x, qy2 + 2 * ce, q2 + 2 * ce]);
+        }
+        for (j = [1 : nq - 1]) let(z = zk0 + j * q2) {
+            for (i = [1 : nkx - 1]) for (y = [-x, D - eb]) translate([i * qx2 - cb / 2, y, z - cb / 2]) cube([cb, eb + x, cb]);
+            for (i = [1 : nky - 1]) for (xx = [-x, W - eb]) translate([xx, i * qy2 - cb / 2, z - cb / 2]) cube([eb + x, cb, cb]);
+        }
+    }
+    translate([-x - 1, -x - 1, zk0]) cube([W + 2 * x + 2, D + 2 * x + 2, zk1 - zk0]);
 }
+module eck_saeulen() for (c = [[0, 0, 1, 1], [W, 0, -1, 1], [0, D, 1, -1], [W, D, -1, -1]]) {
+    translate([c[0] + c[2] * (eb - ce) - (c[2] < 0 ? cw2 + ce : 0), c[1] + c[3] * (eb - ce) - (c[3] < 0 ? cw2 + ce : 0), zv0]) cube([cw2 + ce, cw2 + ce, zv1 - zv0]);
+    // in Höhe der Streifen bis an die Außenfläche: breite Verbindung Säule–Streifen
+    for (z = [[zv0, zk0], [zk1, zv1]]) translate([c[0] - (c[2] < 0 ? eb + cw2 : 0), c[1] - (c[3] < 0 ? eb + cw2 : 0), z[0]]) cube([eb + cw2, eb + cw2, z[1] - z[0]]);
+}
+// Zwischen zwei Zapfenlöchern derselben Seite wäre der obere Streifen abgetrennt: dort eine weitere Säule
+function d2_pins(s) = qsort([for (p = PINS) if (p[0] == s && tgt(p[2])[0] == "D" && tgt(p[2])[1] == 2) p[1]]);
+module saeule_sq(s, c, t0, t1) {             // t = Tiefe ab Außenfläche, Höhe 1
+    if (s == "vorne")  translate([c - cw2 / 2, t0, 0]) cube([cw2, t1 - t0, 1]);
+    if (s == "hinten") translate([c - cw2 / 2, D - t1, 0]) cube([cw2, t1 - t0, 1]);
+    if (s == "links")  translate([t0, c - cw2 / 2, 0]) cube([t1 - t0, cw2, 1]);
+    if (s == "rechts") translate([W - t1, c - cw2 / 2, 0]) cube([t1 - t0, cw2, 1]);
+}
+module mitte_saeulen() for (s = SIDES) let(P = d2_pins(s)) for (k = [0 : 1 : len(P) - 2]) let(c = (P[k] + P[k + 1]) / 2) {
+    translate([0, 0, zv0]) scale([1, 1, zv1 - zv0]) saeule_sq(s, c, eb - ce, eb + cw2);
+    for (z = [[zv0, zk0], [zk1, zv1]]) translate([0, 0, z[0]]) scale([1, 1, z[1] - z[0]]) saeule_sq(s, c, 0, eb + cw2);
+}
+module streifen_2() difference() { union() { rand_ring(zv0, zk0 - zv0); rand_ring(zk1, zv1 - zk1); eck_saeulen(); mitte_saeulen(); } karo_ring(); }
 module decke2(fp = "alle") difference() {
     union() {
-        if (inc(fp, "A")) difference() { translate([0, 0, z_d2]) cube([W, D, tb2]); rand_ring(z_d2 - 1, hs2 + 1, 1); rand_ring(z2 - hs2, hs2 + 1, 1); karo_ring(1); }
+        if (inc(fp, "A")) difference() { translate([0, 0, z_d2]) cube([W, D, tb2]); rand_ring(zv0, zk0 - zv0, 1); rand_ring(zk1, zv1 - zk1, 1); eck_saeulen(); mitte_saeulen(); karo_ring(1); }
         if (inc(fp, "B")) karo_ring();
-        if (inc(fp, "C")) { rand_ring(z_d2, hs2); rand_ring(z2 - hs2, hs2); }
+        if (inc(fp, "C")) streifen_2();
     }
     translate([0, 0, z_d2 - 1]) linear_extrude(g_n + 1) nut_2d();
-    intersection() { schale(spiel); translate([-50, -50, z2 - tgc - spiel]) cube([W + 100, D + 100, tgc + spiel + 1]); }
+    // Auflage der Kanzel: außen offen (kein dünner Splitter vor der Glaswand)
+    difference() { translate([-50, -50, z2 - tgc - spiel]) cube([W + 100, D + 100, tgc + spiel + 1]); stumpf(-tc_h - spiel, 1); }
     taschen(2);
 }
 // Dach
@@ -661,17 +698,27 @@ function k_quads(k) = [for (i = [0 : k_n(k) - 1]) each (k_tuer(k, i) ?
 function k_qpts(k, q, m = 0) = let(i = q[0], va = q[1], vb = q[2])
     [[k_u(k, i, va) - m, va - m], [k_u(k, i, va) + k_bw(k, va) + m, va - m], [k_u(k, i, vb) + k_bw(k, vb) + m, vb + m], [k_u(k, i, vb) - m, vb + m]];
 kq = k_vp / 3;
-function k_karo(k) = [for (i = [0 : floor((KL(k) - 2 * k_cp) / kq) - 1], j = [0 : 2]) if ((i + j) % 2 == 0 &&
-        !(k == 1 && k_cp + (i + 1) * kq > k_u(k, 0, 0) - k_mw && k_cp + i * kq < k_u(k, 0, 0) + k_bw(k, 0) + k_mw)) [k_cp + i * kq, j * kq]];
+function k_karo_ij(k) = [for (i = [0 : floor((KL(k) - 2 * k_cp) / kq) - 1], j = [0 : 2]) if ((i + j) % 2 == 0 &&
+        !(k == 1 && k_cp + (i + 1) * kq > k_u(k, 0, 0) - k_mw && k_cp + i * kq < k_u(k, 0, 0) + k_bw(k, 0) + k_mw)) [i, j]];
+function k_karo(k) = [for (c = k_karo_ij(k)) [k_cp + c[0] * kq, c[1] * kq]];
+function has_ij(L, i, j) = len([for (c = L) if (c[0] == i && c[1] == j) 1]) > 0;
+kcb = max(0.5, kq * 0.14);                   // Eckbrücken: Karo-Felder hängen als ein Gitter zusammen
+function k_bruecken(k) = let(L = k_karo_ij(k)) [for (c = L) each concat(
+        has_ij(L, c[0] + 1, c[1] + 1) ? [[k_cp + (c[0] + 1) * kq, (c[1] + 1) * kq]] : [],
+        has_ij(L, c[0] - 1, c[1] + 1) ? [[k_cp + c[0] * kq, (c[1] + 1) * kq]] : [])];
+module k_karo_2d(k, m = 0) {
+    for (c = k_karo(k)) translate([c[0] - ce - m, c[1] - ce - m]) square([kq + 2 * ce + 2 * m, kq + 2 * ce + 2 * m]);
+    for (b = k_bruecken(k)) translate([b[0] - kcb / 2 - m, b[1] - kcb / 2 - m]) square([kcb + 2 * m, kcb + 2 * m]);
+}
 module kanzel_roh(k) multmatrix(MI(k)) intersection() { schale(); translate([0, 0, z2 - tgc - 3]) linear_extrude(Hc + 2 * tgc + 6) polygon(KREG(k)); }
 module kanzel_lokal(k, fp = "alle") {
     if (inc(fp, "A")) difference() {
         kanzel_roh(k);
         for (q = k_quads(k)) translate([0, 0, -1]) linear_extrude(tc + 2) polygon(k_qpts(k, q));
         for (q = k_quads(k)) translate([0, 0, -1]) linear_extrude(tg_l + 1) polygon(k_qpts(k, q, k_mw * 0.35));
-        for (c = k_karo(k)) translate([c[0] - ce, c[1] - ce, tc - 0.6]) cube([kq + 2 * ce, kq + 2 * ce, 1]);
+        translate([0, 0, tc - 0.6]) linear_extrude(1) k_karo_2d(k);
     }
-    if (inc(fp, "B")) for (c = k_karo(k)) translate([c[0] - ce, c[1] - ce, tc - 0.6]) cube([kq + 2 * ce, kq + 2 * ce, 0.59]);
+    if (inc(fp, "B")) translate([0, 0, tc - 0.6]) linear_extrude(0.59) k_karo_2d(k);
     if (inc(fp, "C")) for (q = k_quads(k)) linear_extrude(tg_l) polygon(k_qpts(k, q, k_mw * 0.35));
 }
 module kanzel_welt(k, fp = "alle") multmatrix(MK(k)) kanzel_lokal(k, fp);
@@ -685,15 +732,20 @@ function info_kanzel(k) = let(SX = KL(k) + 2 * (k_vt * sin(ac) + tc + tgc + 1), 
     [SX, SY, xs, ys, [], false, 0, pads(k_bars(k), xs, ys), occ(k_bars(k), 0, 0)];
 
 // ---- Schild auf dem Dach (lokal: x = Breite, y = Höhe, z = Dicke, Schauseite oben) ----
+// Karo oben und unten mit dünnem Rand rundum: die Felder hängen als ein Körper zusammen
+module schild_karo_2d() {
+    nq_s = max(6, round(sch_w / (sch_h * 0.18)));  qq = sch_w / nq_s;  bl = max(0.5, qq * 0.15);
+    for (i = [0 : nq_s - 1], j = [0, 1]) if ((i + j) % 2 == 0) translate([i * qq - ce, j == 0 ? 0 : sch_h - qq]) square([qq + 2 * ce, qq]);
+    difference() { square([sch_w, sch_h]); translate([bl, bl]) square([sch_w - 2 * bl, sch_h - 2 * bl]); }
+}
 module schild_lokal(fp) {
-    nq_s = max(6, round(sch_w / (sch_h * 0.18)));  qq = sch_w / nq_s;
     if (inc(fp, "A")) difference() {
         union() { cube([sch_w, sch_h, sch_t]); for (x = sch_px) translate([x - (W / 2 - sch_w / 2) - sch_pw / 2, -sch_pl, 0]) cube([sch_pw, sch_pl + e, sch_t]); }
-        translate([0, 0, sch_t - 0.6]) for (i = [0 : nq_s - 1], j = [0, 1]) if ((i + j) % 2 == 0) translate([i * qq, j == 0 ? 0 : sch_h - qq, 0]) cube([qq, qq, 1]);
+        translate([0, 0, sch_t - 0.6]) linear_extrude(1) offset(delta = 0.02) schild_karo_2d();
     }
     if (inc(fp, "B")) translate([sch_w / 2, sch_h / 2, sch_t - e]) linear_extrude(max(sc(30), 0.6) + e)
         resize([sch_w * 0.9, 0], auto = [true, true]) text(schild_text, size = (sch_h - 2 * qq_s()) * 0.6, font = schild_font, halign = "center", valign = "center");
-    if (inc(fp, "C")) translate([0, 0, sch_t - 0.6]) for (i = [0 : nq_s - 1], j = [0, 1]) if ((i + j) % 2 == 0) translate([i * qq, j == 0 ? 0 : sch_h - qq, 0]) cube([qq, qq, 0.6]);
+    if (inc(fp, "C")) translate([0, 0, sch_t - 0.6]) linear_extrude(0.6) schild_karo_2d();
 }
 function qq_s() = sch_w / max(6, round(sch_w / (sch_h * 0.18)));
 module schild_welt(fp = "alle") translate([W / 2 - sch_w / 2, sch_y + sch_t, z_top]) rotate([90, 0, 0]) schild_lokal(fp);
@@ -704,8 +756,19 @@ fm_pl = min(t_rf - 0.8, max(M(0.15), 1.6));
 fm_h = min(M(fahne_hoehe_m, 20), usable - fm_pl - 4); fm_w = max(M(0.08), 1.6); fl_w = M(1.1, 10); fl_h = M(0.75, 7); fl_t = max(M(0.03), 1.0);
 fm_x = RX1 - M(0.4, 3); fm_y = RY1 - M(0.4, 3);
 fl_n = 6; fl_m = 4; fl_q = [fl_w / fl_n, fl_h / fl_m];
-module fahne_zellen(x = 0) for (i = [0 : fl_n - 1], j = [0 : fl_m - 1]) if ((i + j) % 2 == 0)
-    translate([fm_w + i * fl_q[0] - ce, fm_h - fl_h + j * fl_q[1] - ce, -x]) cube([fl_q[0] + 2 * ce, fl_q[1] + 2 * ce, fl_t + 2 * x]);
+// Karo der Flagge: an jeder inneren Ecke oben eine schwarze, unten eine weiße Brücke –
+// so hängen die schwarzen und die weißen Felder jeweils als ein Körper zusammen
+fl_cb = max(0.5, min(fl_q[0], fl_q[1]) * 0.14);
+module fahne_ecken(z0, h) for (i = [1 : fl_n - 1], j = [1 : fl_m - 1])
+    translate([fm_w + i * fl_q[0] - fl_cb / 2, fm_h - fl_h + j * fl_q[1] - fl_cb / 2, z0]) cube([fl_cb, fl_cb, h]);
+module fahne_zellen(x = 0) difference() {
+    union() {
+        for (i = [0 : fl_n - 1], j = [0 : fl_m - 1]) if ((i + j) % 2 == 0)
+            translate([fm_w + i * fl_q[0] - ce, fm_h - fl_h + j * fl_q[1] - ce, -x]) cube([fl_q[0] + 2 * ce, fl_q[1] + 2 * ce, fl_t + 2 * x]);
+        fahne_ecken(fl_t / 2, fl_t / 2 + x);
+    }
+    fahne_ecken(-x - 1, fl_t / 2 + x + 1);
+}
 module fahne_lokal(fp = "alle") {
     if (inc(fp, "A")) { cube([fm_w, fm_h, fm_w]); translate([fm_w * 0.2, -fm_pl, 0]) cube([fm_w * 0.6, fm_pl + e, fm_w * 0.6]);
                         translate([fm_w / 2, fm_h, 0]) cylinder(d = fm_w * 1.4, h = fm_w, $fn = 16); }
@@ -767,12 +830,51 @@ pb_sp = max(M(0.15), 2.5);
 function st_pc(i) = [PD[i][2][0] + 0.2 * wp, PD[i][2][1]];     // Mitte des Stützenzapfens
 function pin_box(s, c) = s == "rechts" ? [W - lp, c - hp / 2, W + g_f + 0.05, c + hp / 2] : s == "links" ? [-g_f - 0.05, c - hp / 2, lp, c + hp / 2] :
                          s == "vorne" ? [c - hp / 2, -g_f - 0.05, c + hp / 2, lp] : [c - hp / 2, D - lp, c + hp / 2, D + g_f + 0.05];
-module p_kante(r, zt, k) {
-    x0 = r[0] + br / 2; x1 = r[2] - br / 2; y0 = r[1] + br / 2; y1 = r[3] - br / 2;
-    P = k == "x0" ? [[x0, y0], [x0, y1]] : k == "x1" ? [[x1, y0], [x1, y1]] : k == "y0" ? [[x0, y0], [x1, y0]] : [[x0, y1], [x1, y1]];
-    L = norm(P[1] - P[0]); nb = max(2, ceil(L / pb_sp));
-    for (j = [0 : nb]) let(q = P[0] + (P[1] - P[0]) * j / nb) translate([q[0] - br / 2, q[1] - br / 2, zt - e]) cube([br, br, h_g + e]);
-    hull() for (q = P) translate([q[0] - br / 2, q[1] - br / 2, zt + h_g - br]) cube([br, br, br]);
+// ---- Podest-Geländer: eigene Teile (gelaender_1..4), flach liegend gedruckt.
+//      Je Podestkante ein geschlossener Rahmen (Fußleiste, Knieleiste, Handlauf, Pfosten),
+//      unten Zapfen, die in Löcher im Podest gesteckt werden.
+t_g  = max(br, 1.0);                          // Dicke des Geländers (im Druck: Höhe)
+pz_w = max(br, 1.2);                          // Zapfenbreite
+pz_l = max(1.0, min(tl - 0.9, max(M(0.15), 2.0)));   // Zapfenlänge (Loch bleibt 0,6 mm über der Unterseite)
+g_ro = t_g / 2 + spiel + 0.6;                 // Geländermitte ab Podestkante (Wand neben dem Loch)
+function gp_pt(r, k, a) = let(x0 = r[0] + g_ro, x1 = r[2] - g_ro, y0 = r[1] + g_ro, y1 = r[3] - g_ro)
+    k == "x0" ? (a == 0 ? [x0, y0] : [x0, y1]) : k == "x1" ? (a == 0 ? [x1, y0] : [x1, y1]) :
+    k == "y0" ? (a == 0 ? [x0, y0] : [x1, y0]) : (a == 0 ? [x0, y1] : [x1, y1]);
+// Ecke mit einer früheren Kante: kurz davor enden; mit einer späteren: bündig bis außen; freies Ende: halber Pfosten
+function gp_sh(E, r, m, a, vor) = let(p = gp_pt(r, E[m], a))
+    len([for (n = [0 : len(E) - 1]) if (vor ? n < m : n > m) for (b = [0, 1]) if (norm(p - gp_pt(r, E[n], b)) < 0.01) 1]) > 0;
+function gp_ext(E, r, m, a) = gp_sh(E, r, m, a, true) ? -(t_g / 2 + 0.2) : gp_sh(E, r, m, a, false) ? t_g / 2 : br / 2;
+function gp_roh(i, m) = let(r = PD[i][0], E = PD[i][6], A = gp_pt(r, E[m], 0), B = gp_pt(r, E[m], 1), d = (B - A) / norm(B - A))
+    [A - d * gp_ext(E, r, m, 0), B + d * gp_ext(E, r, m, 1)];
+// Freiraum unter der schrägen Kanzel: Geländer endet außerhalb (Abstand d zur Turmfläche)
+function gp_d(zt) = zt + h_g > z2 - tgc - 1 ? (zt + h_g - z2) * tan(ac) + 0.6 : -1e9;
+function gp_clip(S, d) = let(A = S[0], B = S[1], ax = abs(B[0] - A[0]) > abs(B[1] - A[1]) ? 0 : 1, ot = 1 - ax,
+        lo = -d, hi = (ax == 0 ? W : D) + d, c = A[ot], a = min(A[ax], B[ax]), b = max(A[ax], B[ax]))
+    (d < -1e8 || c <= -d || c >= (ot == 0 ? W : D) + d) ? [A, B] :
+    let(a2 = a < hi && b > hi ? hi : a, b2 = b > lo && a < lo ? lo : b)
+    (a2 >= hi || b2 <= lo) && b2 - a2 > 3 * br ? (ax == 0 ? [[a2, c], [b2, c]] : [[c, a2], [c, b2]]) : undef;
+function gp_teile(S) = let(L = norm(S[1] - S[0]), d = (S[1] - S[0]) / L, n = ceil(L / (usable - 4)))
+    [for (k = [0 : n - 1]) [S[0] + d * (L * k / n + (k > 0 ? 0.1 : 0)), S[0] + d * (L * (k + 1) / n - (k < n - 1 ? 0.1 : 0))]];
+function gel_panels(i) = [for (m = [0 : len(PD[i][6]) - 1]) let(S = gp_clip(gp_roh(i, m), gp_d(PD[i][1]))) if (S != undef) each gp_teile(S)];
+function gp_posts(L) = let(n = max(2, ceil((L - br) / pb_sp))) [for (j = [0 : n]) br / 2 + j * (L - br) / n];
+function gp_okpin(i, P) = norm(P - st_pc(i)) > wp * 0.3 + spiel + max(pz_w, t_g) / 2 + 1.0;
+function gp_pins(i, S) = let(L = norm(S[1] - S[0]), d = (S[1] - S[0]) / L, ok = [for (u = gp_posts(L)) if (gp_okpin(i, S[0] + d * u)) u])
+    len(ok) <= 1 ? ok : concat([ok[0]], len(ok) >= 7 ? [ok[floor(len(ok) / 2)]] : [], [ok[len(ok) - 1]]);
+module gp_2d(L, pins) {
+    for (u = gp_posts(L)) translate([u - br / 2, 0]) square([br, h_g]);
+    for (v = [0, h_g * 0.5, h_g - br]) translate([0, v]) square([L, br]);
+    for (u = pins) translate([u - pz_w / 2, -pz_l]) square([pz_w, pz_l + 0.01]);
+}
+function gp_mat(S, zt) = let(L = norm(S[1] - S[0]), d = (S[1] - S[0]) / L) [[d[0], 0, d[1], S[0][0]], [d[1], 0, -d[0], S[0][1]], [0, 1, 0, zt], [0, 0, 0, 1]];
+module gel_welt(i) for (S = gel_panels(i)) multmatrix(gp_mat(S, PD[i][1])) translate([0, 0, -t_g / 2]) linear_extrude(t_g) gp_2d(norm(S[1] - S[0]), gp_pins(i, S));
+module gel_loecher(i) for (S = gel_panels(i)) for (u = gp_pins(i, S))
+    multmatrix(gp_mat(S, PD[i][1])) translate([u - pz_w / 2 - spiel, -pz_l - 0.3, -t_g / 2 - spiel]) cube([pz_w + 2 * spiel, pz_l + 1.3, t_g + 2 * spiel]);
+gp_h = h_g + pz_l + 3;                        // Platzbedarf je Rahmen im Druck
+function gel_stk(i) = len(gel_panels(i)) * gp_h <= usable ? 1 : len(gel_panels(i));
+module gel_druck(i, stk) {
+    P = gel_panels(i); one = gel_stk(i) == 1;
+    for (m = [0 : len(P) - 1]) if (stk == 0 || (one ? stk == 1 : stk == m + 1))
+        translate([1, (stk == 0 || one ? m * gp_h : 0) + pz_l + 1, 0]) linear_extrude(t_g) gp_2d(norm(P[m][1] - P[m][0]), gp_pins(i, P[m]));
 }
 module podest_welt(i, fp = "alle") difference() { podest_roh(i, fp); stumpf(0.3, 1); }
 module podest_roh(i, fp = "alle") {
@@ -784,8 +886,8 @@ module podest_roh(i, fp = "alle") {
         }
         translate([st_pc(i)[0] - wp * 0.3 - spiel, st_pc(i)[1] - wp * 0.3 - spiel, zt - tl - 1]) cube([wp * 0.6 + 2 * spiel, wp * 0.6 + 2 * spiel, min(tl - 0.6, lz) + 1.3]);
         for (x = [r[0] + max(M(0.1), 1.2) : max(M(0.1), 1.2) : r[2] - 0.5]) translate([x - f_gw / 2, r[1] - 1, zt - gdp]) cube([f_gw, r[3] - r[1] + 2, 1]);
+        gel_loecher(i);
     }
-    if (inc(fp, "B")) for (k = p[6]) p_kante(r, zt, k);
 }
 module podest_druck(i, fp = "alle") let(r = PD[i][0]) translate([-r[0] + lp + g_f + 1, -r[1] + lp + g_f + 1, -(PD[i][1] - tl)]) podest_welt(i, fp);
 function info_podest(i) = let(r = PD[i][0], o = lp + g_f + 1, SX = r[2] - r[0] + 2 * o, SY = r[3] - r[1] + 2 * o)
@@ -848,7 +950,7 @@ module dach_c() { color(fhex(farbe_dach)) dach("A"); color(fhex(farbe_dachrand))
                   if (fahne) { color(fhex(farbe_mast)) fahne_welt("A"); color(fhex(farbe_fahne_1)) fahne_welt("B"); color(fhex(farbe_fahne_2)) fahne_welt("C"); } }
 module treppe_c() {
     for (i = [0 : 3]) { color(fhex(farbe_treppe)) lauf_welt(i, "A"); color(fhex(farbe_gelaender)) lauf_welt(i, "B");
-                        color(fhex(farbe_treppe)) podest_welt(i, "A"); color(fhex(farbe_gelaender)) podest_welt(i, "B");
+                        color(fhex(farbe_treppe)) podest_welt(i, "A"); color(fhex(farbe_gelaender)) gel_welt(i);
                         color(fhex(farbe_stuetzen)) stuetze_welt(i); }
 }
 module turm(ex = 0) {
@@ -878,6 +980,7 @@ echo(str("Zeitnahmeturm 1:", den, " | Turm ", r2(W), " x ", r2(D), " mm, Höhe b
          " mm | Treppen: ", [for (f = FL) str(f_n(f), " Stufen, ", r2(atan((f[4] - f[3]) / f_run(f))), "°")]));
 for (i = [0 : 3]) if (len(f_pins(FL[i])) < 2) echo(str("WARNUNG: Treppe ", i + 1, " hat nur ", len(f_pins(FL[i])), " Zapfen"));
 for (i = [0 : 3]) if (len(p_pins2(PD[i])) < 1) echo(str("WARNUNG: Podest ", i + 1, " ohne Zapfen"));
+for (i = [0 : 3]) for (S = gel_panels(i)) if (len(gp_pins(i, S)) < 2) echo(str("WARNUNG: Geländer ", i + 1, " hat einen Rahmen mit ", len(gp_pins(i, S)), " Zapfen"));
 for (i = INFOS) if (n_pieces(i[1]) > 1)
     echo(str("Teilung: ", i[0], " -> ", n_pieces(i[1]), " Stücke, ", clip_count(i[1]), " Clips je Teil",
              zero_seams(i[1]) > 0 ? str("  WARNUNG: ", zero_seams(i[1]), " Naht/Nähte ohne Clip – dort kleben") : ""));
@@ -899,7 +1002,8 @@ druck("schild", 1, "A", farbe_schild, 1); druck("schild", 1, "B", farbe_schrift,
 if (pult) druck("pult", 1, "alle", farbe_pult, 1);
 if (fahne) { druck("fahne", 1, "A", farbe_mast, 1); druck("fahne", 1, "B", farbe_fahne_1, 1); druck("fahne", 1, "C", farbe_fahne_2, 1); }
 for (i = [1 : 4]) { druck(str("treppe_", i), np_of(str("treppe_", i)), "A", farbe_treppe, 1); druck(str("treppe_", i), np_of(str("treppe_", i)), "B", farbe_gelaender, 1); }
-for (i = [1 : 4]) { druck(str("podest_", i), np_of(str("podest_", i)), "A", farbe_treppe, 1); druck(str("podest_", i), np_of(str("podest_", i)), "B", farbe_gelaender, 1); }
+for (i = [1 : 4]) druck(str("podest_", i), np_of(str("podest_", i)), "alle", farbe_treppe, 1);
+for (i = [1 : 4]) druck(str("gelaender_", i), gel_stk(i - 1), "alle", farbe_gelaender, 1);
 for (i = [1 : 4]) druck(str("stuetze_", i), np_of(str("stuetze_", i)), "alle", farbe_stuetzen, 1);
 if (CLIPS > 0) druck("verbinder", ceil(CLIPS / cpp), "alle", farbe_clips, 1);
 farben_echo();
@@ -921,5 +1025,6 @@ for (w = WALLS) if (teil == wname(w[0], w[1])) split_out(info_wand(w[0], w[1]), 
 for (i = [0 : 3]) {
     if (teil == str("treppe_", i + 1)) split_out(info_lauf(i), stueck) { lauf_druck(i, farbteil); if (inc(farbteil, "A")) linear_extrude(t_st) for (r = info_lauf(i)[7]) rect2(r); }
     if (teil == str("podest_", i + 1)) split_out(info_podest(i), stueck) podest_druck(i, farbteil);
+    if (teil == str("gelaender_", i + 1)) gel_druck(i, stueck);
     if (teil == str("stuetze_", i + 1)) split_out(info_stuetze(i), stueck) { stuetze_druck(i); linear_extrude(wp) for (r = info_stuetze(i)[7]) rect2(r); }
 }

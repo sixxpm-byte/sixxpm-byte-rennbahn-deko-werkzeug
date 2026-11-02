@@ -18,7 +18,8 @@ def model(mst=43):
         if i == "kanzel_front": p["info"] = "vorne und hinten gleich"
         if i == "kanzel_rechts": p["info"] = "mit Glastür"
         if i.startswith("treppe"): p["info"] = "liegt auf der Außenwange"
-        if i.startswith("podest"): p["info"] = "Zapfen zur Wand"
+        if i.startswith("podest"): p["info"] = "Zapfen zur Wand, Löcher fürs Geländer"
+        if i.startswith("gelaender"): p["info"] = "flach liegend, Zapfen ins Podest"
         if i == "fahne": p["info"] = "Mast + Zielflagge, flach"
         if i == "verbinder": p["info"] = f"{n_clips} Clips"
     pc = {p["id"]: p["count"] for p in parts}
@@ -60,6 +61,11 @@ def model(mst=43):
              text=["Treppe 3 links einstecken, Podest 3 links vorne auf Stütze 3 setzen."], render=S(12, VL)),
         dict(title="Treppe 4 und Podest 4", full=True, parts=P("treppe_4", "podest_4"),
              text=["Treppe 4 vorne einstecken, Podest 4 vor der Glastür der Kanzel auf Stütze 4 setzen (Zapfen ins Karo-Band)."], render=S(13)),
+        dict(title="Geländer rechts", parts=P("gelaender_1", "gelaender_4"),
+             text=["Die Geländer von Podest 1 und Podest 4 von oben mit den Zapfen in die Löcher am Podestrand stecken.",
+                   "Jede Podestkante hat einen eigenen Rahmen; an den Ecken stoßen sie aneinander."], render=S(14)),
+        dict(title="Geländer links", parts=P("gelaender_2", "gelaender_3"),
+             text=["Ebenso die Geländer von Podest 2 (links hinten) und Podest 3 (links vorne) einstecken."], render=S(15, VL)),
     ]
     return dict(
         title="Zeitnahmeturm", subtitle="Race Control mit Tower-Kanzel, Zielflaggen-Band und umlaufender Stahltreppe", scale_txt=f"1:{mst}",
@@ -70,7 +76,8 @@ def model(mst=43):
         material=material(),
         druck=druck(["Wände, Kanzel-Glaswände, Schild und Fahne liegen flach (Schauseite oben), Glas in den ersten Schichten",
                      "Treppenläufe liegen auf der Außenwange mit dem Geländer; die Stufen stehen senkrecht, die Innenwange überbrückt kurz",
-                     "Mehrfarbige Teile (Wände, Decken, Kanzel, Dach, Treppen, Podeste) mit AMS/MMU oder einfarbig mit farbteil = alle"]),
+                     "Podest-Geländer liegen flach: geschlossene Rahmen mit Fußleiste, Knieleiste und Handlauf",
+                     "Mehrfarbige Teile (Wände, Decken, Kanzel, Dach, Schild, Fahne, Treppen) mit AMS/MMU oder einfarbig mit farbteil = alle"]),
         system=SYSTEM_CLIP + ["Zerlegbar: Alle Geschosse sind nur gesteckt. Dach, Kanzel und Etagen lassen sich abheben."],
         clip_png=CLIP_PNG,
         massstab_hinweis=hinweis("Zeitnahmeturm", "zeitnahmeturm.scad", "Maße, Kanzel-Neigung, Schildtext, Fahne und alle Farben lassen sich im Customizer ändern.", mst),

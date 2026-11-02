@@ -11,8 +11,9 @@ Reihenfolge in der Quelle:
 1. Kopfkommentar: Titel, TEILE-Liste (`teil = ...` mit Kurzbeschreibung und Stückzahl), BEWEGLICH, MONTAGE (Kurzfassung).
 2. Customizer-Abschnitte, genau so benannt:
    - `/* [Maßstab] */` mit dieser Zeile (unverändert übernehmen):
-     `massstab = 43; // [10:1/10 RC-Car, 18:1/18 Modellauto, 24:1/24 Slotcar, 28:1/28 Mini-RC, 32:1/32 Slotcar, 43:1/43 Drift-RC und Slotcar, 64:1/64 Diecast, 87:1/87 H0, 0:eigener Maßstab]`
-     und `eigener_massstab = 50;`
+     `massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]`
+     und `eigener_massstab = 50;` (bleibt für die Bibliothek stehen, wird im Customizer nicht angeboten)
+   - Neue Modelle gibt es nur noch in **1:43 und 1:87**. Ältere Modelle mit der vollen Maßstabsliste bleiben unverändert.
    - `/* [Ausgabe] */`: `teil = "aufbau"; // [aufbau:…, explosion:…, <teil>:<Name>, …, verbinder:Verbinder-Clips]`, `stueck = 0;`, `farbteil = "alle"; // [alle, A, B, C, D]`
    - `/* [Vorschau] */` (Stellungen beweglicher Teile, `kassenhaus_zeigen`)
    - `/* [<Modell> (Vorbild in Metern)] */`
@@ -28,7 +29,7 @@ Reihenfolge in der Quelle:
 
 - Vorbild in Metern, umgerechnet mit `M(m, min_mm)`; Millimeter-Werte mit `sc(mm, min_mm)`.
 - Mindestmaße: Wände `min_wand` (1,2 mm), Relief `dmr = max(sc(20), 0.3)`, feine Striche mindestens 0,8–1,0 mm.
-- Muss bei 1:10 bis 1:87 laufen. Kontrolle: Echo bei allen Maßstäben, keine `WARNUNG`-Zeilen.
+- Muss bei 1:43 und 1:87 laufen (andere Maßstäbe werden bei neuen Modellen weder erstellt noch geprüft). Kontrolle: Echo bei 1:43 und 1:87, keine `WARNUNG`-Zeilen.
 
 ## 3. Teilung und Clips
 
@@ -71,15 +72,20 @@ INFOS-Einträge, DRUCK-Zeilen und Dispatch genau wie in `modelle/raupenbahn/raup
 
 ## 8. Prüfen
 
-- Echo bei allen Maßstäben (10, 18, 24, 28, 32, 43, 64, 87).
+- Echo bei 1:43 und 1:87.
 - Kollisionen: Szene `kol_<n>.scad` (Parameter `obj`, `d0`, `ii`), `werkzeuge/kol_export.sh`, dann `werkzeuge/kollision.py <ordner> <paare.txt>`. Beispiel: `modelle/raupenbahn/kol_befehl.sh`.
 - Export prüfen: `werkzeuge/pruefen.py ausgabe/<n>/STL_1-43` → Ergebnis „Probleme: 0“.
+- Slicing-Probe (Pflicht vor der Ausgabe): `python3 werkzeuge/slicen.py ausgabe/<n>/STL_1-43` (ebenso 1:87), PrusaSlicer-CLI
+  (`apt-get install -y prusa-slicer`), Profil 0,4-mm-Düse / 0,16 mm Schicht. Meldet STÜTZE (freier Überhang, Brücken zählen nicht),
+  SCHRÄG (Unterseite flacher als 45°), DÜNN (< 85 % gedruckt, Details unter Düsenbreite), LÜCKE (schwebende Teile),
+  AUFLAGE (erste Schicht zu klein / kippt). Ziel „Slicing-Hinweise: 0“; bewusst belassene Hinweise Dirk nennen und begründen.
+  Bericht: `ausgabe/<n>/slicen_STL_1-43.txt`, dazu die geschätzte Druckzeit.
 
 ## 9. Ablauf je Modell (token-sparend)
 
 1. Vorbild klären (Fotos), Entwurf als `_src.scad` mit der Bibliothek.
-2. Echo aller Maßstäbe, ein Kontaktbogen mit 2–4 Vorschauen (`werkzeuge/kontaktbogen.py`), dann **Freigabe durch Dirk** – Änderungswünsche sammeln.
-3. Erst nach der Freigabe: Kollisionsprüfung, `inline.py`, `farb_export.py` (1:43 und 1:87), `pruefen.py`.
+2. Echo bei 1:43 und 1:87, ein Kontaktbogen mit 2–4 Vorschauen (`werkzeuge/kontaktbogen.py`), dann **Freigabe durch Dirk** – Änderungswünsche sammeln.
+3. Erst nach der Freigabe: Kollisionsprüfung, `inline.py`, `farb_export.py` (1:43 und 1:87), `pruefen.py`, `slicen.py`.
 4. Bilder: `<n>_aufbau.png`, `<n>_explosion.png`, ein Detailbild, `<n>_druckteile.png` (Kontaktbogen der STL).
 5. Anleitung: `anleitung/m_<n>.py` + `anleitung/scad/anl_<n>.scad`, dann `python3 anleitung/bauen.py <n>`.
 6. `modelle/<n>/LIESMICH.txt`, dann `python3 werkzeuge/packen.py <n>`.

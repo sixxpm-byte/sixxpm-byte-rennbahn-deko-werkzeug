@@ -12,7 +12,9 @@ module rein_h(s, p, d) pfeil(p + h3(s) * (d + la), p + h3(s) * (d * 0.15), pd_);
 
 module platte_c() { color(fhex(farbe_platz)) bodenplatte("A"); color(fhex(farbe_sockel)) bodenplatte("B"); }
 module lauf_c(i) { color(fhex(farbe_treppe)) lauf_welt(i, "A"); color(fhex(farbe_gelaender)) lauf_welt(i, "B"); }
-module podest_c(i) { color(fhex(farbe_treppe)) podest_welt(i, "A"); color(fhex(farbe_gelaender)) podest_welt(i, "B"); }
+module podest_c(i) color(fhex(farbe_treppe)) podest_welt(i, "A");
+module gel_c(i) color(fhex(farbe_gelaender)) gel_welt(i);
+function gel_schritt(i) = (i == 0 || i == 3) ? 14 : 15;   // 14: Geländer 1 + 4 (rechts), 15: Geländer 2 + 3 (links)
 module dach_nur() { color(fhex(farbe_dach)) dach("A"); color(fhex(farbe_dachrand)) dach("B"); }
 module schild_c() { color(fhex(farbe_schild)) schild_welt("A"); color(fhex(farbe_schrift)) schild_welt("B"); color(fhex(farbe_karo)) schild_welt("C"); }
 module fahne_c() { color(fhex(farbe_mast)) fahne_welt("A"); color(fhex(farbe_fahne_1)) fahne_welt("B"); color(fhex(farbe_fahne_2)) fahne_welt("C"); }
@@ -46,5 +48,7 @@ if (detail == 1) {
         if (schritt >= n) translate(h3(FL[i][0]) * X(n, ad)) lauf_c(i);
         if (schritt >= n) translate(h3(PD[i][3]) * X(n, ad)) podest_c(i);
         if (schritt == n) { rein_h(FL[i][0], fmid(i) + [0, 0, h_g], ad); rein_h(PD[i][3], pmid(i) + [0, 0, h_g], ad); }
+        if (schritt >= gel_schritt(i)) translate([0, 0, X(gel_schritt(i), ad)]) gel_c(i);
+        if (schritt == gel_schritt(i)) for (S = gel_panels(i)) let(m = (S[0] + S[1]) / 2) ab([m[0], m[1], PD[i][1] + h_g], ad);
     }
 }

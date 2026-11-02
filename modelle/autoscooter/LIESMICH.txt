@@ -1,0 +1,39 @@
+AUTOSCOOTER – Kompakt-Autoscooter mit Prunkfront, 12 Wagen, Kasse, Automaten, Wohnwagen und Packwagen
+=========================================================================================================
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+autoscooter_anleitung_1-43.pdf / _1-87.pdf = Druck- und Aufbauanleitung je Maßstab
+Maßstäbe: 1:43 (Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+In 1:87 sind Podest, Dach und Prunkfront einteilig (keine Clips).
+
+Andere Farben / Optionen:
+  autoscooter.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py autoscooter.scad 43 ausgabe -D 'front_text="BOXAUTOS"'
+  Optionen u. a.: Breite/Tiefe, lichte Höhe, Wagenzahl (6–20), Schriftzüge, alle Farben.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Podest und Dach liegen oben = oben; die Clip-Taschen sind auf der Unterseite.
+  Banden, Prunkfront und Kassenwände liegen flach, Schauseite oben.
+  Säulen stehen: mit Brim (Rand) drucken, sie sind hoch und schmal.
+  Wohnwagen und Packwagen liegen auf der Seite, der Box-Automat auf dem Rücken,
+  die Glashaube des Greifautomaten kopfüber, die Deichsel kopfüber (Zapfen oben).
+  Mehrfarbige Teile mit AMS/MMU. Jede Farbe ist ein zusammenhängender Körper:
+  Lichter hängen an Leitungen oder Stegen, die Bandenfelder an verdeckten Leisten.
+  Glashaube gern in transparentem Filament.
+
+MONTAGE
+  1. Podest umgedreht verclipsen (1:43), umdrehen, Treppen vorne ansetzen.
+  2. Banden mit den Zapfen in die Schlitze um die Fahrfläche stecken.
+  3. Säulen in die Vierkantlöcher stecken.
+  4. Filament-Stangen (1,75 mm) in die Wagen stecken, Wagen auf die Fahrfläche.
+  5. Kasse: Wände in die Bodennut, Dach auf, Schild in den Schlitz vorne im Dach.
+     Greifautomat: Haube hinter dem Bedienpult aufsetzen. Kasse, Greif- und Box-Automat
+     auf den Holz-Umgang stellen.
+  6. Dach (1:43 umgedreht verclipsen) mit den Löchern auf die 10 Säulenzapfen setzen.
+  7. Prunkfront (1:43 verclipsen) mit den Zapfen in die Schlitze vorne im Dach stecken.
+  8. Deichsel in den Wohnwagen schieben, Wohnwagen an den Packwagen koppeln.
+
+BEWEGLICH
+  Die Wagen stehen lose und lassen sich beliebig verteilen.
+  Der Wohnwagen lässt sich mit der Deichsel an den Packwagen koppeln.

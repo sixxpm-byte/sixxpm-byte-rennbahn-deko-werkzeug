@@ -18,7 +18,11 @@ DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
   Die Kanzel-Glaswände sind an den Ecken auf Gehrung geschnitten (Kanten max. 45°).
   Decken und Dach liegen oben = oben; Nuten und Taschen sind auf der Unterseite.
   Treppenläufe liegen auf der Außenwange mit dem Geländer, die Stufen stehen senkrecht.
-  Podeste liegen oben = oben, das Geländer wird mitgedruckt (kurze Brücken).
+  Podeste liegen oben = oben (einfarbig), mit Löchern für die Geländer-Zapfen.
+  Podest-Geländer (gelaender_1–4) liegen flach: je Podestkante ein geschlossener Rahmen
+  mit Fußleiste, Knieleiste, Handlauf und Zapfen unten.
+  Karo und Streifen von Decke 2, Kanzel, Schild und Flagge sind je Farbe ein zusammen-
+  hängender Körper (Karo-Felder über kleine Eckbrücken verbunden).
   Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
 
 MONTAGE
@@ -32,6 +36,7 @@ MONTAGE
   7. Treppen und Podeste der Reihe nach (1 rechts, 2 hinten, 3 links, 4 vorne): Treppenlauf mit den
      Zapfen in die Löcher der Wand bzw. Decke schieben, Podest mit den Zapfen zur Wand und dem
      Loch auf die Stütze setzen.
+  8. Geländer von oben mit den Zapfen in die Löcher am Podestrand stecken.
 
 ZERLEGBAR
   Alle Geschosse sind nur gesteckt: Dach, Kanzel und Etagen abheben und hineinschauen.

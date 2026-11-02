@@ -30,8 +30,9 @@ SYSTEM_CLIP = ["Alle Bausätze der Rennbahn-Deko-Reihe nutzen dieselben Schwalbe
                "Teile, die größer als das Druckbett sind, werden automatisch geteilt. An den Nähten sitzen auf der Unterseite Taschen.",
                "Teile umdrehen, Clip in die Tasche über der Naht drücken – fertig. Die Clips passen auch an Leitplanken, Reifenstapel & Co."]
 
-def hinweis(name, datei, extra="", mst=43):
-    return (f"Diese Anleitung zeigt den Maßstab 1:{mst}. Für andere Maßstäbe (1:10 … 1:87) in {datei} den Maßstab wählen – "
+# bereich: Maßstäbe, die das Modell anbietet (neue Modelle: "1:43 und 1:87")
+def hinweis(name, datei, extra="", mst=43, bereich="1:10 … 1:87"):
+    return (f"Diese Anleitung zeigt den Maßstab 1:{mst}. Für andere Maßstäbe ({bereich}) in {datei} den Maßstab wählen – "
             f"die Konsole bzw. farb_export.py nennt dann die passenden Stückzahlen, die Bauschritte bleiben gleich. {extra}")
 
 def R(scad, cam, defs=(), size=(1600, 1100)):
