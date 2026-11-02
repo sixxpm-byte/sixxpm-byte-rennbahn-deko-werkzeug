@@ -1,6 +1,6 @@
 // =====================================================================
 //  TURNTABLES (DJ / VINYL EDITION)  –  zerlegbarer Deko-Bausatz
-//  Neuaufbau im Stil der Rennbahn-Deko-Reihe: alle gängigen Maßstäbe,
+//  Neuaufbau im Stil der Rennbahn-Deko-Reihe: Maßstäbe 1:43 und 1:87,
 //  FDM-optimiert (stützfrei), Teile über dem Druckbett werden automatisch
 //  geteilt (Clips), Stecksystem kompatibel zu rennbahn_deko.scad,
 //  Farben je Bauteil (Vorschau, Dateinamen, 3MF über farb_export.py)
@@ -50,7 +50,7 @@
 
 /* [Maßstab] */
 // Maßstab 1/x
-massstab = 87; // [10:1/10 RC-Car, 18:1/18 Modellauto, 24:1/24 Slotcar, 28:1/28 Mini-RC, 32:1/32 Slotcar, 43:1/43 Drift-RC und Slotcar, 64:1/64 Diecast, 87:1/87 H0, 0:eigener Maßstab]
+massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
@@ -184,7 +184,7 @@ dmr  = max(sc(20), 0.4);                         // Relief
 // ---- Podest ----
 deck_split = 2 * R_di / tc > usable;
 t_d  = max(sc(150), 2.4, deck_split ? clipd + 0.8 : 0);
-t_bl = max(sc(60), 1.4); i_bl = max(sc(30), 0.6);
+t_bl = max(sc(60), 1.4); i_bl = max(sc(30), 1.1);   // i_bl - spiel = Lippe neben der Nut: mind. 2 Druckbahnen
 g_bl = min(t_d - 0.8, max(sc(60), 1.2));
 h_sk = H_p - t_d + g_bl - 0.2;
 d_st = sc(500, 3);                               // Stufentiefe
@@ -198,7 +198,7 @@ d_j  = max(sc(400), 5);
 c_j  = 0.35 * d_j;
 r_lb = max(sc(1000), d_j / 2 + 4);
 r_hb = r_lb + max(sc(200), 2);
-L_ba = R_w + i_bl - 0.4;                         // Arme bis an die Innenblenden
+L_ba = R_w + i_bl - 2 * dmr - 0.4;               // Arme bis kurz vor das Relief der Innenblenden
 
 // ---- Plattenteller ----
 disc_split = 2 * R_s > usable;
@@ -266,7 +266,7 @@ L_z  = min(2 * (r_z - t_z) * tan(ad / 2) - 4, sc(2600));
 r_mx = (R_w + r_ms - t_ms) / 2; D_mx = (r_ms - t_ms - R_w) * 0.7; W_mx = 2 * (r_mx - D_mx / 2) * tan(ad / 2) * 0.8;
 t_mx = max(sc(80), 1.2); p_mx = min(0.8, t_d - clipd);
 r_pl = max(sc(300), 3.5);
-r_ta = R_w + r_pl + max(sc(150), 1.5);
+r_ta = R_w + r_pl + max(sc(150), i_bl + t_bl + spiel + 0.6);   // Säulenfuß neben der Nut der Innenblende
 h_pl = max(sc(900), 8);
 L_arm = 0.38 * R_s;
 t_arm = max(sc(200), 2.0);
@@ -704,8 +704,10 @@ module kopfhoerer_voll(fp) {   // Ursprung = Mitte der oberen Kugel
     module gelenke() for (sg = [-1, 1]) translate([sg * (hp_r - b_r * 0.2), 0, cup_r * 0.85]) rotate([90, 0, 0]) cylinder(r = b_r * 1.3, h = 2 * b_r * 1.3, center = true, $fn = 16);
     module stiel() translate([-p_t / 2 - spiel, -p_t / 2 - spiel, hp_r - 1.5 * b_r - 1]) cube([p_t + 2 * spiel, p_t + 2 * spiel, d_hb + 1]);
     if (inc(fp, "A")) {
-        difference() { buegel(); schalen(); polster(); gelenke(); stiel(); for (sg = [-1, 1]) translate([sg * x_in, 0, 0]) rotate([0, sg * 90, 0]) cylinder(r = cup_r, h = pad_t, $fn = 32); }
-        for (sg = [-1, 1]) translate([sg * x_in, 0, 0]) rotate([0, sg * 90, 0]) cylinder(r = cup_r, h = pad_t, $fn = 32);
+        difference() {
+            union() { buegel(); for (sg = [-1, 1]) translate([sg * x_in, 0, 0]) rotate([0, sg * 90, 0]) cylinder(r = cup_r, h = pad_t, $fn = 32); }
+            schalen(); polster(); gelenke(); stiel(); zier();
+        }
     }
     if (inc(fp, "B")) difference() { schalen(); zier(); gelenke(); }
     if (inc(fp, "C")) { zier(); difference() { polster(); stiel(); } }
@@ -758,10 +760,14 @@ module kreuz_druck(fp) translate([arm_r + r_e, arm_r + r_e, 0]) kreuz(fp);
 module g_fuss(o = 0) offset(r = 0.3 * g_w - o) square([g_l - 0.6 * g_w, g_w - 0.6 * g_w], center = true);
 module gondel(fp) {
     h_tub = 0.72 * g_hh; xs = -g_l / 2 + 0.26 * g_l; xb = -g_l / 2 + 0.55 * g_l;
-    module lautsprecher() for (sg = [-1, 1]) translate([g_l / 2 * 1.02 - 0.5, sg * g_w * 0.2, h_tub * 0.48]) rotate([0, 90, 0]) {
-        difference() { cylinder(r = g_w * 0.15, h = 1.0, $fn = 24); translate([0, 0, 0.6]) cylinder(r = g_w * 0.11, h = 1, $fn = 24); }
-        cylinder(r = g_w * 0.04, h = 1.0, $fn = 12);
+    // Lautsprecher (B): Umriss oben und unten 45° spitz (stützfrei, keine flachen Grenzflächen zu A), Mittelknopf
+    module raute(r) hull() { circle(r = r); translate([r * sqrt(2) - 0.01, 0]) square(0.02, center = true); translate([-r * sqrt(2) + 0.01, 0]) square(0.02, center = true); }
+    module ls_lage() for (sg = [-1, 1]) translate([g_l / 2 * 1.02 - 0.5, sg * g_w * 0.2, h_tub * 0.48]) rotate([0, 90, 0]) children();
+    module lautsprecher() ls_lage() {
+        difference() { linear_extrude(1.0) raute(g_w * 0.15, $fn = 24); translate([0, 0, 0.6]) linear_extrude(1) raute(g_w * 0.11, $fn = 24); }
+        linear_extrude(1.0) raute(g_w * 0.04, $fn = 12);
     }
+    module ls_aussparung() ls_lage() linear_extrude(g_l) raute(g_w * 0.15, $fn = 24);
     if (inc(fp, "A")) difference() {
         union() {
             linear_extrude(h_tub, scale = 1.04) g_fuss();
@@ -771,7 +777,7 @@ module gondel(fp) {
         intersection() { translate([0, 0, t_gf]) linear_extrude(g_hh) g_fuss(t_gw); translate([xs + t_gw, -g_w, t_gf + 0.35 * h_tub]) cube([g_l, 2 * g_w, g_hh]); }
         intersection() { translate([0, 0, t_gf]) linear_extrude(g_hh) g_fuss(t_gw); translate([xb, -g_w, t_gf]) cube([g_l, 2 * g_w, g_hh]); }
         translate([0, 0, -e]) cylinder(d = d_gj + 2 * cl, h = h_gj + 0.3, $fn = 24);
-        lautsprecher();
+        ls_aussparung();
     }
     if (inc(fp, "B")) lautsprecher();
 }
@@ -848,7 +854,7 @@ module stuetze_2d() {   // x = radial nach außen ab Paneel-Rückseite, y = hoch
     translate([0, 0]) square([d_br - 1, w]);
     hull() { translate([w / 2, z1 * 0.85]) circle(d = w * 0.8); translate([d_br - 1.5, w / 2]) circle(d = w * 0.8); }
     translate([-min(t_rp - 1, clipd + 0.4) + 0.2, H_rw * 0.18 + spiel]) square([min(t_rp - 1, clipd + 0.4) - 0.2 + e, tl_br]);   // Zapfen ins Paneel
-    translate([d_br * 0.55 - tl_br / 2, -(t_d - 0.6)]) square([tl_br, t_d - 0.6 + e]);                                          // Zapfen ins Deck
+    translate([d_br * 0.55 - tl_br / 2, -(t_d - g_bl - 0.2)]) square([tl_br, t_d - g_bl - 0.2 + e]);                          // Zapfen ins Deck (endet über der Blende in der Nut)
 }
 module stuetze_welt(k) side_frame(k, r_rw + t_rp) translate([0, t_br / 2, H_p]) rotate([90, 0, 0]) linear_extrude(t_br) stuetze_2d();
 module markise_2d() {
@@ -896,7 +902,7 @@ module lichtmast(fp) {   // x quer, y hoch, z Dicke (Front oben)
         translate([-w_ms * 0.4, -(t_d - 0.6)]) square([w_ms * 0.8, t_d - 0.6 + e]);
     }
     module schwarz() { translate([0, zv]) difference() { circle(r = rv, $fn = 48); circle(r = rv * 0.12, $fn = 16); } translate([-mast_h * 0.14, hm]) square([mast_h * 0.28, mast_h * 0.18]); }
-    if (inc(fp, "A")) linear_extrude(t_ms) difference() { truss(); schwarz(); }
+    if (inc(fp, "A")) linear_extrude(t_ms) difference() { truss(); schwarz(); translate([0, zv]) circle(r = rv, $fn = 48); }
     if (inc(fp, "B")) {
         linear_extrude(t_ms) schwarz();
         for (sg = [-1, 1]) translate([sg * mast_h * 0.07, hm + mast_h * 0.09, t_ms - e]) cylinder(r = mast_h * 0.055, h = dmr * 2 + e, $fn = 24);   // Strahler
@@ -915,7 +921,7 @@ module zaun(fp) {   // x Länge zentriert, y hoch, z Dicke
         for (sg = [-1, 1]) translate([sg * (L_z / 2 - st_z / 2) - st_z * 0.4, -(t_d - 0.6)]) square([st_z * 0.8, t_d - 0.6 + e]);
     }
     module scheiben() for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) difference() { circle(r = rd, $fn = 32); circle(r = rd * 0.22, $fn = 16); }
-    if (inc(fp, "A")) linear_extrude(t_z) difference() { rahmen(); scheiben(); }
+    if (inc(fp, "A")) linear_extrude(t_z) difference() { rahmen(); for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) circle(r = rd, $fn = 32); }
     if (inc(fp, "B")) linear_extrude(t_z) scheiben();
     if (inc(fp, "C")) for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2, t_z - e]) difference() { cylinder(r = rd * 0.45, h = dmr * 2 + e, $fn = 24); translate([0, 0, -1]) cylinder(r = rd * 0.22, h = 5, $fn = 16); }
 }
@@ -929,7 +935,9 @@ module mischpult(fp) {   // x = radial (Tiefe), y = quer; liegt in der Podesttas
         for (i = [0 : nch - 1]) translate([-D_mx * 0.35, -W_mx / 2 + (i + 0.5) * pc - sl / 2, t_mx - dmr]) cube([D_mx * 0.55, sl, dmr + 1]);
     }
     if (inc(fp, "B")) for (i = [0 : nch - 1]) translate([-D_mx * 0.35 + D_mx * 0.55 * ((i * 37) % 10) / 12, -W_mx / 2 + (i + 0.5) * pc - pc * 0.3, t_mx - e]) cube([D_mx * 0.1, pc * 0.6, max(sc(120), 1.2) + e]);
-    if (inc(fp, "C")) for (i = [0 : nch - 1], j = [0 : 2]) translate([D_mx * 0.3 + j * D_mx * 0.06, -W_mx / 2 + (i + 0.5) * pc, t_mx - e]) cylinder(d = min(pc * 0.25, D_mx * 0.05), h = dmr * 2 + e, $fn = 10);
+    dk = max(min(pc * 0.25, D_mx * 0.05), 0.8); sk = dk + 0.3;                         // Regler druckbar (>= 2 Düsenbreiten)
+    nk = max(1, min(3, floor((D_mx * 0.2 - dk / 2) / sk) + 1));
+    if (inc(fp, "C")) for (i = [0 : nch - 1], j = [0 : nk - 1]) translate([D_mx * 0.3 + j * sk, -W_mx / 2 + (i + 0.5) * pc, t_mx - e]) cylinder(d = dk, h = dmr * 2 + e, $fn = 12);
 }
 module mischpult_welt(k) side_frame(k, r_mx) translate([0, 0, H_p - p_mx]) {
     color(fhex(farbe_vinyl)) mischpult("A"); color(fhex(farbe_chrom)) mischpult("B"); color(fhex(farbe_label_1)) mischpult("C");

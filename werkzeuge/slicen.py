@@ -26,6 +26,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 
 import numpy as np
@@ -53,6 +54,7 @@ def teil_of(fn):
 
 
 def slice_mesh(mesh, name):
+    name = f"{name}_{uuid.uuid4().hex[:8]}"   # eindeutig: dieselbe Datei kann in mehreren Gruppen vorkommen (parallel)
     stl = os.path.join(tmp, name + ".stl")
     gc = os.path.join(tmp, name + ".gcode")
     mesh.export(stl)
@@ -155,17 +157,39 @@ for f in files:
     gesehen.add(key)
     gruppen.setdefault(teil_of(f), []).append(f)
 # Geteilte Teile (podest_1, podest_2 …): farb_export.py fasst gleiche Farbteile zusammen (z. B. podest_1_B für beide
-# Stücke). Fehlt einem Stück ein Farbteil, das ein Geschwister-Stück hat, wird es mit gesliced – sonst wirken Inlay-Nuten leer.
+# Stücke). Fehlt einem Stück ein Farbteil, wird es vom Geschwister-Stück mit gleichem Umriss ausgeliehen – sonst wirken
+# Inlay-Nuten leer. Stücke mit anderem Umriss (Teller-Mitte gegen Ringstück) bekommen nichts.
 def farbteil(f):
     m = re.search(r"_([A-E])$", f[:-4].split("__")[0]); return m.group(1) if m else ""
-for teil, fl in gruppen.items():
+_bb = {}
+def bb2(f):
+    if f not in _bb: _bb[f] = trimesh.load(os.path.join(a.ordner, f)).bounds[:, :2]
+    return _bb[f]
+def bb_ges(fl): b = [bb2(f) for f in fl]; return np.array([np.min([x[0] for x in b], 0), np.max([x[1] for x in b], 0)])
+def flaeche(b): return float(np.prod(b[1] - b[0]))
+def stueck_a(fl): return next((f for f in fl if farbteil(f) == "A"), None)
+geschw = {}
+for teil in gruppen:
     m = re.match(r"^(.+)_(\d+)$", teil)
-    if not m: continue
-    da = {farbteil(f) for f in fl}
-    for t2, fl2 in gruppen.items():
-        if t2 != teil and re.match(r"^%s_\d+$" % re.escape(m.group(1)), t2):
-            for f2 in fl2:
-                if farbteil(f2) not in da and farbteil(f2) != "":
+    if m: geschw.setdefault(m.group(1), []).append(teil)
+for basis, teile in geschw.items():
+    for teil in teile:                                   # 1) fehlender Grundkörper A
+        fl = gruppen[teil]
+        if stueck_a(fl) or not fl: continue
+        bx = bb_ges(fl)
+        for t2 in teile:
+            ya = stueck_a(gruppen[t2]) if t2 != teil else None
+            if ya and np.all(bx[0] >= bb2(ya)[0] - 0.5) and np.all(bx[1] <= bb2(ya)[1] + 0.5) and flaeche(bb2(ya)) <= 1.6 * flaeche(bx):
+                fl.append(ya); break
+    for teil in teile:                                   # 2) fehlende Farbteile B…E von Stücken mit gleichem Umriss
+        fl = gruppen[teil]; xa = stueck_a(fl)
+        if not xa: continue
+        da = {farbteil(f) for f in fl}
+        for t2 in teile:
+            ya = stueck_a(gruppen[t2]) if t2 != teil else None
+            if not ya or np.abs(bb2(xa) - bb2(ya)).max() > 0.5: continue
+            for f2 in gruppen[t2]:
+                if farbteil(f2) not in da and farbteil(f2) not in ("", "A"):
                     fl.append(f2); da.add(farbteil(f2))
 with ThreadPoolExecutor(max_workers=a.jobs) as ex:
     res = list(ex.map(lambda kv: pruefe(*kv), sorted(gruppen.items())))

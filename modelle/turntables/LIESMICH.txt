@@ -1,0 +1,44 @@
+TURNTABLES – DJ / Vinyl Edition – zerlegbarer Bausatz
+=====================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  turntables_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+Maßstab / andere Farben / Optionen:
+  turntables.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py turntables.scad 87 ausgabe -D 'farbe_licht="pink"'
+  Optionen u. a.: Neigung des Plattentellers, Schildtexte (TURN / TABLES,
+  Kasse), Kassen-Stil (Flightcase oder Holzbude), Türseite, alle Farben.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für den Tonarm-Stift: 1:43 ca. 11 mm, 1:87 ca. 8 mm.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  1:43: Deck (4 Teile), Plattenteller (5 Teile) und Bodenkreuz (5 Teile) sind
+  geteilt und werden mit den Clips verbunden; die Clip-Taschen auf der
+  Unterseite überbrückt der Drucker (keine Stützen einschalten).
+  1:87: nichts geteilt.
+  Deck oben = oben; die Lippen neben den Blenden-Nuten sind 1 mm breit.
+  Kugeln stehen auf ihrer 45°-Fase, Kopfhörer-Hälften liegen flach,
+  Rückwand-Paneele, Masten, Zäune und Schild liegen flach (Schauseite oben).
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+
+MONTAGE
+  1. Bodenkreuz (1:43 zusammenclipsen), Innen- und Außenblenden in die Nuten
+     unter dem Deck, Deck auf das Bodenkreuz setzen.
+  2. Treppenblöcke vorne an das Podest schieben.
+  3. Plattenteller (1:43 geclipst) auf die schräge Achse, Kreuze auf die
+     Zapfen, Gondeln auf die Kreuzzapfen.
+  4. Kugelturm stecken, Kopfhörer-Hälften kleben und aufsetzen, Turm auf das
+     Achsende drücken (Abflachung = Kopfhörer schaut nach vorn).
+  5. Rückwand-Paneele 1–7 in die Nuten, Stützen dahinter, Markisen in die
+     Schlitze, Schild auf Paneel 6.
+  6. Lichtmasten, Zäune, Mischpulte und Tonarm einstecken, Kasse aufbauen.
+
+BEWEGLICH
+  Der Plattenteller dreht sich auf der schrägen Achse, jedes Gondelkreuz auf
+  seinem Zapfen und jede Gondel einzeln. Der Tonarm schwenkt – über dem
+  Teller stößt er an die Gondeln, also in Ruhestellung lassen.
