@@ -42,7 +42,8 @@
 //
 //  DRUCK: alle Teile werden druckfertig ausgerichtet ausgegeben.
 //    Fachwerke flach, Drehbühne aufrecht, alle Löcher senkrecht
-//    oder als Tropfen. Geteilte Teile: stueck = 1..n.
+//    oder als Tropfen. Lange, schmale Teile liegen diagonal, wenn sie
+//    so ungeteilt aufs Bett passen. Geteilte Teile: stueck = 1..n.
 // =====================================================================
 
 /* [Maßstab] */
@@ -77,6 +78,15 @@ haus_hoehe_m = 3.2;
 wippwinkel = [15, 30, 45, 60, 72];
 schienen_laenge_m = 14.0;
 
+/* [Farben] */
+farbe_stahl   = "rot";       // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_hell    = "weiss";     // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_dunkel  = "anthrazit"; // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_schiene = "grau";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_zapfen  = "silber";    // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_haken   = "gelb";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_clips   = "grau";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+
 /* [Druck & Passung] */
 druckbett = 220;
 rand = 5;
@@ -108,6 +118,12 @@ deck  = 0.8;
 clipd = ch + spiel + deck;
 clipw = cw1 + 2 * (spiel + min_wand);        // Mindestbreite für eine Clip-Tasche
 hole_d = stift_d + 2 * stift_spiel;
+FARBEN = [["rot", "#c62828"], ["gelb", "#f9c80e"], ["blau", "#1e5bb8"], ["gruen", "#2e9d4f"], ["weiss", "#f4f4f4"],
+          ["schwarz", "#222222"], ["grau", "#8a8f94"], ["silber", "#c0c4c8"], ["gold", "#d4a017"], ["orange", "#ef7d1a"],
+          ["lila", "#7b3fa0"], ["rosa", "#f27fb2"], ["tuerkis", "#1fb5b0"], ["braun", "#7a4b2a"], ["holz", "#c19a6b"], ["creme", "#f3e3c3"],
+          ["anthrazit", "#3a3f45"], ["cyan", "#12b5e8"], ["pink", "#e43d8f"], ["violett", "#8e3fc2"], ["neongruen", "#2ad957"],
+          ["hellblau", "#5aa2dc"], ["dunkelgruen", "#1f6b3a"]];
+function fhex(n) = let(f = [for (p = FARBEN) if (p[0] == n) p[1]]) len(f) > 0 ? f[0] : n;
 
 // =====================================================================
 //  Maße
@@ -149,7 +165,8 @@ Ht   = sc(turm_hoehe_m * 1000, 20);
 z_p  = tbs + Ht;
 x_t0 = x_p - sc(3000);                       // hinterer Turmfuß
 tr   = max(sc(250), 2.4);                    // Zahnstange Dicke
-rack_split = sc(ausleger_m * 1000) * 0.62 + sc(350) > usable;   // grobe Abschätzung
+rack_est   = sc(ausleger_m * 1000) * 0.62 + sc(350);              // grobe Abschätzung der Länge
+rack_split = rack_est > usable && !diag_ok(rack_est, sc(350) + sc(80) + 2);   // diagonal aufs Bett, wenn es passt
 rw   = max(sc(350), hole_d + 2.4, rack_split ? clipw + 0.6 : 0);   // Zahnstange Breite
 lt   = max(sc(150), 1.5);                    // Lagerlasche
 y_r  = yT + tt / 2 + cl + tr / 2;            // Ebene der Zahnstange
@@ -165,7 +182,6 @@ rbp  = hole_d / 2 + max(sc(150), 1.6);       // Lagerauge
 
 // ---- Ausleger (lokal: s entlang, n quer) ----
 L_j = sc(ausleger_m * 1000, 60);
-jib_split = L_j + max(sc(1400), 8) > usable;
 h_m = max(sc(1400), 8);
 h_f = h_m * 0.8;
 h_h = max(sc(700), 5);
@@ -178,6 +194,10 @@ function hj(q) = q <= 0 ? h_f : q < s1 ? h_f + (h_m - h_f) * q / s1 : q <= s2 ? 
 sJ  = L_j * 0.38;
 rj  = hole_d / 2 + max(sc(120), 1.4);
 nJ  = -hj(sJ) / 2 - rj * 0.4;                // Zahnstangen-Anlenkpunkt
+j_ymin = min(-h_f / 2, nJ - rj, -fe) - 0.5;
+j_ymax = max(h_f / 2, h_m / 2, fe) + 0.5;
+jib_SX = L_j + h_h / 2 + fe + 1; jib_SY = j_ymax - j_ymin;
+jib_split = jib_SX > usable && !diag_ok(jib_SX, jib_SY);   // knapp zu lang: diagonal statt mit einem Clip geteilt
 
 // ---- Wippwerk (Zahnstange) ----
 // Zahnstangenbock vor/unter dem Drehpunkt -> gleichmäßige Lochabstände
@@ -209,6 +229,9 @@ rail_top = bh + rail_h;
 // =====================================================================
 //  Hilfen
 // =====================================================================
+// Lange, schmale Teile: diagonal aufs Bett legen statt teilen
+function diag_ok(SX, SY) = (SX + SY) / sqrt(2) <= usable;
+module diag_druck(SX, SY) if (SX > usable && diag_ok(SX, SY)) translate([SY / sqrt(2), 0, 0]) rotate([0, 0, 45]) children(); else children();
 module bar(p, q, w) hull() { translate(p) circle(d = w, $fn = 12); translate(q) circle(d = w, $fn = 12); }
 module box3(x0, y0, z0, x1, y1, z1) translate([x0, y0, z0]) cube([x1 - x0, y1 - y0, z1 - z0]);
 module teardrop(r) { hull() { circle(r = r); translate([r * sqrt(2) - 0.01, 0]) square(0.02, center = true); } }
@@ -384,11 +407,18 @@ module fahrwerk() {
         union() {
             for (sy = [-1, 1]) box3(-fw_l / 2, sy > 0 ? fw_ww / 2 - e : -fw_b2, 0, fw_l / 2, sy > 0 ? fw_b2 : -fw_ww / 2 + e, hbg);
             box3(-fw_l / 2, -fw_b2, fw_z0, fw_l / 2, fw_b2, hbg);
-            for (sx = [-1, 1]) translate([sx * fw_l / 4, 0, fw_wr]) rotate([90, 0, 0]) cylinder(r = fw_wr, h = fw_ww + 2 * e, center = true);
+            // Räder: unten 45° zulaufend und flach auf z = 0 (sonst hängt die untere Radhälfte frei)
+            for (sx = [-1, 1]) translate([sx * fw_l / 4, 0, fw_wr]) rotate([90, 0, 0]) linear_extrude(fw_ww + 2 * e, center = true)
+                intersection() { rotate(-90) teardrop(fw_wr); translate([-fw_wr, -fw_wr]) square([2 * fw_wr, 2 * fw_wr]); }
         }
         box3(-lx * 0.3 - spiel, -ly / 2 - spiel, hbg - tn - 0.2, lx * 0.3 + spiel, ly / 2 + spiel, hbg + 1);
         // Bogenausschnitt zwischen den Rädern (Optik)
-        for (sy = [-1, 1]) translate([0, sy * fw_b2, 0]) scale([fw_l / 4 - fw_wr * 0.6, 1, fw_z0 * 0.7]) rotate([90, 0, 0]) cylinder(r = 1, h = 2 * (fw_b2 - fw_ww / 2 - 0.8), center = true, $fn = 32);
+        // oben 45° zugespitzt (Ellipse + Tangenten), stützfrei
+        for (sy = [-1, 1]) let(ba = fw_l / 4 - fw_wr * 0.6, bb = fw_z0 * 0.7) translate([0, sy * fw_b2, 0]) rotate([90, 0, 0])
+            linear_extrude(2 * (fw_b2 - fw_ww / 2 - 0.8), center = true) hull() {
+                scale([ba, bb]) circle(r = 1, $fn = 32);
+                translate([0, sqrt(ba * ba + bb * bb)]) square(0.02, center = true);
+            }
     }
 }
 
@@ -411,7 +441,10 @@ module drehbuehne() {
         union() {
             box3(xb0, -W_h / 2, 0, xb1, W_h / 2, tbs);                                  // Grundplatte
             box3(x_h0, -W_h / 2 + sc(150, 0.8), tbs - e, x_h1, W_h / 2 - sc(150, 0.8), tbs + H_h);   // Maschinenhaus
-            box3(x_h0 - sc(100, 0.5), -W_h / 2 + sc(100, 0.5), tbs + H_h - e, x_h1 + sc(100, 0.5), W_h / 2 - sc(100, 0.5), tbs + H_h + max(sc(120), 0.8)); // Dachrand
+            hull() {   // Dachrand, unten 45° angefast (stützfrei)
+                box3(x_h0, -W_h / 2 + sc(150, 0.8), tbs + H_h - sc(100, 0.5), x_h1, W_h / 2 - sc(150, 0.8), tbs + H_h - sc(100, 0.5) + e);
+                box3(x_h0 - sc(100, 0.5), -W_h / 2 + sc(100, 0.5), tbs + H_h, x_h1 + sc(100, 0.5), W_h / 2 - sc(100, 0.5), tbs + H_h + max(sc(120), 0.8));
+            }
             box3(xb0, -W_h * 0.45, tbs - e, x_h0 + e, W_h * 0.45, tbs + cw_h);          // Gegengewicht
             // Führerhaus mit schräger Front
             box3(x_t0 - lw_t / 2, cab_y0, 0, x_p + sc(300), cab_y1, tbs);              // Bühne unter dem Führerhaus
@@ -526,10 +559,8 @@ module ausleger_2d() {
         translate([L_j + h_h * 0.15, 0]) circle(d = max(sc(60), 1.0));   // Seilloch
     }
 }
-j_ymin = min(-h_f / 2, nJ - rj, -fe) - 0.5;
-j_ymax = max(h_f / 2, h_m / 2, fe) + 0.5;
 module ausleger_lokal() translate([0, w_j / 2, 0]) rotate([90, 0, 0]) linear_extrude(w_j) ausleger_2d();
-module ausleger_druck() linear_extrude(w_j) translate([fe + 0.5, -j_ymin]) ausleger_2d();
+module ausleger_druck() diag_druck(jib_SX, jib_SY) linear_extrude(w_j) translate([fe + 0.5, -j_ymin]) ausleger_2d();
 function info_ausleger() = let(SX = L_j + h_h / 2 + fe + 1, SY = j_ymax - j_ymin, ox = fe + 0.5, oy = -j_ymin,
     S = [for (q = j_seams_s) [q - spw / 2 + ox, -hj(q) / 2 + oy, q + spw / 2 + ox, hj(q) / 2 + oy]],
     kp = [[sJ - rj * 2 + ox, -1, sJ + rj * 2 + ox, SY + 1]])
@@ -550,10 +581,10 @@ module wippstange_2d() {
         for (d = DI) translate([d, 0]) circle(d = hole_d);
     }
 }
-module wippstange_druck() linear_extrude(tr) translate([rw / 2, rw / 2]) wippstange_2d();
+module wippstange_druck() diag_druck(rack_len + rw / 2, rw + tooth) linear_extrude(tr) translate([rw / 2, rw / 2]) wippstange_2d();
 function info_wippstange() = let(SX = rack_len + rw / 2, SY = rw + tooth,
     kp = concat([[rw / 2 - hole_d, -1, rw / 2 + hole_d, SY + 1]], [for (d = DI) [d + rw / 2 - hole_d / 2 - 1, -1, d + rw / 2 + hole_d / 2 + 1, SY + 1]]))
-    [SX, SY, seams(SX), [], kp, false, 0, []];
+    [SX, SY, SX > usable && !diag_ok(SX, SY) ? seams(SX) : [], [], kp, false, 0, []];
 
 // =====================================================================
 //  HAKEN, ZAPFEN, SCHIENE
@@ -582,9 +613,9 @@ module schiene_seg(L) {
         union() {
             box3(0, -beam_w / 2, 0, L, beam_w / 2, bh);
             translate([0, 0, bh - e]) rotate([90, 0, 90]) linear_extrude(L)
-                polygon([[-rail_w * 0.9, 0], [rail_w * 0.9, 0], [rail_w * 0.25, rail_h * 0.25], [rail_w * 0.25, rail_h * 0.65],
+                polygon([[-rail_w * 0.9, 0], [rail_w * 0.9, 0], [rail_w * 0.25, rail_h * 0.25], [rail_w * 0.25, rail_h * 0.7 - rail_w * 0.25],
                          [rail_w / 2, rail_h * 0.7], [rail_w / 2, rail_h], [-rail_w / 2, rail_h], [-rail_w / 2, rail_h * 0.7],
-                         [-rail_w * 0.25, rail_h * 0.65], [-rail_w * 0.25, rail_h * 0.25]]);
+                         [-rail_w * 0.25, rail_h * 0.7 - rail_w * 0.25], [-rail_w * 0.25, rail_h * 0.25]]);   // Kopf unten 45°
         }
         rb_slot();
         translate([L, 0, 0]) rotate([0, 0, 180]) rb_slot();
@@ -597,7 +628,7 @@ SCHS = SCHL / SCHN;
 // =====================================================================
 //  Zusammenbau
 // =====================================================================
-C_STAHL = "#c0392b"; C_HELL = "#ecf0f1"; C_DUNKEL = "#34495e"; C_BETON = "#9e9e9e"; C_SCHIENE = "#6d6d6d";
+C_STAHL = fhex(farbe_stahl); C_HELL = fhex(farbe_hell); C_DUNKEL = fhex(farbe_dunkel); C_BETON = fhex(farbe_schiene); C_SCHIENE = fhex(farbe_schiene);
 stufe = max(1, min(len(wippwinkel), vorschau_stufe));
 TH = wippwinkel[stufe - 1];
 
@@ -615,7 +646,7 @@ module oberwagen(th, ex = 0) {
         tip = [x_p + (L_j + h_h * 0.15) * cos(th), z_p + (L_j + h_h * 0.15) * sin(th)];
         zh = z_os + 0 + (tip[1]) * haken_hoehe;
         color("#222") translate([tip[0], 0, zh + hk_h * 0.45]) cylinder(d = 0.3, h = tip[1] - zh - hk_h * 0.45);
-        color("#f1c40f") translate([tip[0], hk_t / 2, zh]) rotate([90, 0, 0]) linear_extrude(hk_t) haken_2d();
+        color(fhex(farbe_haken)) translate([tip[0], hk_t / 2, zh]) rotate([90, 0, 0]) linear_extrude(hk_t) haken_2d();
     }
 }
 module portal(ex = 0) {
@@ -623,7 +654,7 @@ module portal(ex = 0) {
     color(C_STAHL) { seite_welt(-1); translate([0, 2 * ex, 0]) seite_welt(1); }
     color(C_STAHL) for (sx = [-1, 1]) translate([0, 0, ex]) quer_welt(sx);
     color(C_HELL) translate([0, 0, 2 * ex]) plattform_welt();
-    color("#888") translate([0, 0, z_os - l_pin + tbs * 0.7 + 3 * ex]) zapfen();
+    color(fhex(farbe_zapfen)) translate([0, 0, z_os - l_pin + tbs * 0.7 + 3 * ex]) zapfen();
 }
 module kran(th, rot, ex = 0) {
     translate([0, 0, rail_top]) {
@@ -655,6 +686,24 @@ for (i = INFOS) if (n_pieces(i[1]) > 1)
              zero_seams(i[1]) > 0 ? str("  WARNUNG: ", zero_seams(i[1]), " Naht/Nähte ohne Clip – dort kleben") : ""));
 echo(str("Verbinder-Clips für geteilte Teile: ", CLIPS, " (+ ", 2 * max(0, SCHN - 1), " für die Schienenstöße)"));
 
+// Druckliste für farb_export.py / Anleitung: DRUCK|teil|stücke|farbteil|farbe|menge
+module druck(t, n, fp, f, m) if (m > 0) echo(str("DRUCK|", t, "|", n, "|", fp, "|", f, "|", m));
+NCL = max(CLIPS + 2 * max(0, SCHN - 1), 4);
+druck("schiene", 1, "alle", farbe_schiene, 2 * SCHN);
+druck("fahrwerk", 1, "alle", farbe_dunkel, 4);
+druck("portal_seite", n_pieces(info_seite()), "alle", farbe_stahl, 2);
+druck("portal_quer", n_pieces(info_quer()), "alle", farbe_stahl, 2);
+druck("plattform", n_pieces(info_plattform()), "alle", farbe_hell, 1);
+druck("zapfen", 1, "alle", farbe_zapfen, 1);
+druck("drehbuehne", n_pieces(info_drehbuehne()), "alle", farbe_hell, 1);
+druck("turm", n_pieces(info_turm()), "alle", farbe_stahl, 2);
+druck("traverse", 1, "alle", farbe_dunkel, 1);
+druck("ausleger", n_pieces(info_ausleger()), "alle", farbe_stahl, 1);
+druck("wippstange", n_pieces(info_wippstange()), "alle", farbe_dunkel, 2);
+druck("hakenflasche", 1, "alle", farbe_haken, 1);
+if (NCL > 0) druck("verbinder", 1, "alle", farbe_clips, 1);
+for (f = FARBEN) echo(str("FARBE|", f[0], "|", f[1]));
+
 if (teil == "aufbau") kran(TH, drehung);
 else if (teil == "explosion") kran(TH, 0, max(sc(1500), 10));
 else if (teil == "portal_seite") split_out(info_seite(), stueck) seite_druck();
@@ -670,7 +719,7 @@ else if (teil == "hakenflasche") haken_druck();
 else if (teil == "zapfen") zapfen();
 else if (teil == "schiene") schiene_seg(SCHS);
 else if (teil == "verbinder") {
-    n = max(CLIPS + 2 * max(0, SCHN - 1), 4);
+    n = NCL;
     nx = ceil(sqrt(n));
     for (i = [0 : n - 1]) translate([(i % nx) * (cL + 3), floor(i / nx) * (cw1 + 3), 0]) clip();
 }

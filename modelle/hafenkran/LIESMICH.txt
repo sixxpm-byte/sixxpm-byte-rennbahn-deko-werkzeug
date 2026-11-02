@@ -1,0 +1,49 @@
+HAFENKRAN – Portal-Wippdrehkran – zerlegbarer Bausatz
+=====================================================
+Geprüft und exportiert in 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil__farbe.stl,
+  geteilte Teile teil_1__farbe.stl, teil_2__farbe.stl …).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben
+  hafenkran_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+Anderer Maßstab / andere Farben / Optionen:
+  hafenkran.scad im OpenSCAD-Customizer öffnen,
+  oder:  python3 farb_export.py hafenkran.scad 87 ausgabe -D 'farbe_stahl="blau"'
+  Optionen u. a.: Spurweite, Radstand, Portalhöhe, Auslegerlänge, Turmhöhe,
+  Wippwinkel der Raststufen (wippwinkel), Schienenlänge, alle Farben.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm als Stifte (Längen nennt die Anleitung bzw. die Konsole):
+    1:43  Auslegerlager ca. 44 mm, Zahnstange ca. 56 mm, 2 × Lager ca. 15 mm
+    1:87  Auslegerlager ca. 22 mm, Zahnstange ca. 29 mm, 2 × Lager ca. 8 mm
+  Nähfaden für den Haken.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Fachwerke (Portalrahmen, Querträger, Turm, Ausleger) und Zahnstangen flach.
+  Lange, schmale Teile liegen diagonal auf dem Bett und bleiben so ungeteilt:
+    1:43 die Zahnstangen, 1:87 zusätzlich der Ausleger.
+  Geteilt mit Clips: 1:43 Drehbühne (2 Teile) und Ausleger (3 Teile);
+    in 1:87 ist nichts geteilt (Clips nur für die Rennbahn-Taschen der Schienen).
+  Drehbühne aufrecht; der Dachrand des Maschinenhauses ist unten angefast.
+  Fahrwerke stehen auf den Rädern (Räder unten 45° zulaufend, flache Lauffläche).
+  Kranschiene liegt flach, der Schienenkopf ist unten 45° angefast.
+  Löcher liegen senkrecht oder sind als Tropfen geformt.
+
+MONTAGE
+  1. Kranschienen hinlegen (1:43: je zwei Segmente mit einem Clip verbinden).
+  2. Fahrwerke auf die Schienen, Seitenrahmen in die Fahrwerke.
+  3. Querträger mit ihren Zapfen durch die Seitenrahmen stecken.
+  4. Plattform aufsetzen (Laschen greifen in die Löcher).
+  5. Zapfen von unten fest in die Drehbühne drücken, Drehbühne mit Zapfen
+     in die Plattform setzen.
+  6. Turmseiten in die Drehbühne stecken, Traverse einschieben.
+  7. Ausleger mit Stift am Turm lagern, Zahnstangen mit Stift am Ausleger
+     einhängen und mit je einem Stift im Lager fixieren.
+  8. Faden durch das Loch im Auslegerkopf, Haken anknoten.
+
+BEWEGLICH
+  Oberwagen dreht auf dem Königszapfen, der Ausleger kippt am Turm.
+  Wippwinkel in 5 Stufen: Stift ins gewünschte Loch der Zahnstange stecken –
+  die Lochabstände sind genau für die Winkel in „wippwinkel“ berechnet.
