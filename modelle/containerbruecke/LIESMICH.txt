@@ -1,0 +1,52 @@
+CONTAINERBRÜCKE – Ship-to-Shore-Kran – zerlegbarer Bausatz
+==========================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben
+  containerbruecke_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+GRÖSSE
+  1:43: ca. 130 cm lang (Ausleger hoch ca. 127 cm), Mast ca. 94 cm hoch,
+        Spur 37 cm – ein 1:43-40-Fuß-Container passt zwischen die Konsolen.
+  1:87: ca. 64 cm lang, Mast ca. 46 cm hoch, Spur 18 cm.
+
+Maßstab / andere Farben / Optionen:
+  containerbruecke.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py containerbruecke.scad 87 ausgabe -D 'farbe_portal="rot"'
+  Optionen u. a.: Position der Katze, Höhe des Spreaders, Ausleger hoch,
+  Druckbettgröße (bestimmt die Teilung), alle Farben.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm: 2 × Auslegergelenk und 2 × Raststift
+  (1:43 je ca. 20 mm, 1:87 je ca. 10 mm), Nähfaden für Spreader und Abspannung.
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  1:43: Portalrahmen, Träger, Ausleger, Riegel, Katze, Spreader und
+  Maschinenhaus sind geteilt (an jeder Naht eine Stoßplatte mit Clip-Tasche),
+  zusammen 119 Clips + 6 für die Schienenstöße.
+  1:87: nur Portalrahmen, Träger und Ausleger geteilt (16 Clips + 2).
+  Fachwerke liegen flach, Fahrwerk-Räder und Schienenkopf sind unten 45°
+  angeschrägt, Katzendeckel und Maschinenhausdach unten 45° angefast.
+  Der Spreader-Rahmen druckt kopfüber (Twistlocks oben), das Kopfstück
+  separat und wird mit 2 Zapfen in die Mittelstrebe gesteckt.
+  In 1:87 hat der Spreader keine Twistlocks (unter 0,8 mm druckt die Düse
+  sie nicht) – er liegt flach auf dem Container.
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse): 1:43 und 1:87 ohne Hinweise.
+  Katze und Maschinenhaus sind massive Körper – mit normaler Füllung
+  (10–15 %) drucken, das spart viel Filament und Zeit.
+
+MONTAGE
+  1. Kranschienen (Segmente unten verclipsen), Fahrwerke daraufsetzen.
+  2. Portalrahmen (1:43 / 1:87 verclipsen) in die Fahrwerke stecken.
+  3. Je zwei Konsolen mit dem Zapfen durch jeden Rahmen, Mastriegel
+     durch die Mastspitzen.
+  4. Brückenträger in die Kerben der Konsolen, Endriegel durchstecken.
+  5. Ausleger mit Filamentstift an die Träger hängen, Spitzenriegel stecken.
+  6. Maschinenhaus auf den Rückausleger, Katze auf die Träger, Kabine
+     unter die Katze, Kopfstück in den Spreader, Spreader an 4 Fäden hängen.
+
+BEWEGLICH
+  Die Katze gleitet bis zur Auslegerspitze, der Spreader hängt an Fäden,
+  der Ausleger klappt hoch (Raststift sichert ihn), die Fahrwerke rollen.

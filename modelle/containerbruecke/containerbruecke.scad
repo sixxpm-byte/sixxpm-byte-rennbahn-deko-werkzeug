@@ -1,6 +1,6 @@
 // =====================================================================
 //  CONTAINERBRÜCKE  –  Ship-to-Shore-Kran als zerlegbarer Bausatz
-//  parametrisch, alle gängigen Maßstäbe, FDM-optimiert (stützfrei),
+//  Maßstäbe 1:43 und 1:87, FDM-optimiert (stützfrei),
 //  Teile über dem Druckbett werden automatisch geteilt (Clips)
 //  Stecksystem kompatibel zu rennbahn_deko.scad
 //  OpenSCAD >= 2021.01
@@ -16,7 +16,8 @@
 //    spitzenriegel    Verbindung der Auslegerspitzen             1x
 //    katze            Laufkatze (fährt auf den Trägern)          1x
 //    kabine           Fahrerkabine unter der Katze               1x
-//    spreader         Spreader, passt auf container_40ft.scad    1x
+//    spreader         Spreader-Rahmen, passt auf container_40ft  1x
+//    spreader_kopf    Kopfstück des Spreaders (2 Zapfen)          1x
 //    maschinenhaus    Maschinenhaus auf dem Rückausleger         1x
 //    fahrwerk         Fahrwerk je Bein                           4x
 //    schiene          Kranschiene (Rennbahn-Clips an den Enden)  2x
@@ -47,11 +48,11 @@
 
 /* [Maßstab] */
 // Maßstab 1/x
-massstab = 87; // [10:1/10 RC-Car, 18:1/18 Modellauto, 24:1/24 Slotcar, 28:1/28 Mini-RC, 32:1/32 Slotcar, 43:1/43 Drift-RC und Slotcar, 64:1/64 Diecast, 87:1/87 H0, 0:eigener Maßstab]
+massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
-teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, portalrahmen:Portalrahmen, konsole:Trägerkonsole, traeger_links:Brückenträger links, traeger_rechts:Brückenträger rechts, ausleger_links:Ausleger links, ausleger_rechts:Ausleger rechts, mastriegel:Mastriegel, endriegel:Endriegel, spitzenriegel:Spitzenriegel, katze:Laufkatze, kabine:Kabine, spreader:Spreader, maschinenhaus:Maschinenhaus, fahrwerk:Fahrwerk, schiene:Kranschiene, verbinder:Verbinder-Clips]
+teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, portalrahmen:Portalrahmen, konsole:Trägerkonsole, traeger_links:Brückenträger links, traeger_rechts:Brückenträger rechts, ausleger_links:Ausleger links, ausleger_rechts:Ausleger rechts, mastriegel:Mastriegel, endriegel:Endriegel, spitzenriegel:Spitzenriegel, katze:Laufkatze, kabine:Kabine, spreader:Spreader-Rahmen, spreader_kopf:Spreader-Kopfstück, maschinenhaus:Maschinenhaus, fahrwerk:Fahrwerk, schiene:Kranschiene, verbinder:Verbinder-Clips]
 // Geteilte Teile: 0 = alle Stücke, 1..n = einzelnes Stück
 stueck = 0;
 
@@ -82,6 +83,15 @@ portalriegel_m = 11.0;
 hochklappwinkel = 80; // [45:85]
 schienen_laenge_m = 30.0;
 
+/* [Farben] */
+farbe_portal    = "blau";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_traeger   = "weiss";     // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_katze     = "gelb";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_dunkel    = "anthrazit"; // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_schiene   = "grau";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_container = "rot";       // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_clips     = "grau";      // [rot, gelb, blau, hellblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+
 /* [Druck & Passung] */
 druckbett = 220;
 rand = 5;
@@ -108,6 +118,12 @@ function conn_tab(d) =
     d <= 12 ? [20, 7, 12, 4] : d <= 20 ? [16, 6, 10, 3.2] : d <= 26 ? [14, 5, 9, 3] :
     d <= 36 ? [12, 4.5, 8, 2.5] : d <= 50 ? [10, 4, 7, 2] : [8, 3.2, 5.6, 1.6];
 CT = conn_tab(den);
+FARBEN = [["rot", "#c62828"], ["gelb", "#f9c80e"], ["blau", "#1e5bb8"], ["gruen", "#2e9d4f"], ["weiss", "#f4f4f4"],
+          ["schwarz", "#222222"], ["grau", "#8a8f94"], ["silber", "#c0c4c8"], ["gold", "#d4a017"], ["orange", "#ef7d1a"],
+          ["lila", "#7b3fa0"], ["rosa", "#f27fb2"], ["tuerkis", "#1fb5b0"], ["braun", "#7a4b2a"], ["holz", "#c19a6b"], ["creme", "#f3e3c3"],
+          ["anthrazit", "#3a3f45"], ["cyan", "#12b5e8"], ["pink", "#e43d8f"], ["violett", "#8e3fc2"], ["neongruen", "#2ad957"],
+          ["hellblau", "#5aa2dc"], ["dunkelgruen", "#1f6b3a"]];
+function fhex(n) = let(f = [for (p = FARBEN) if (p[0] == n) p[1]]) len(f) > 0 ? f[0] : n;
 cL = CT[0]; cw0 = CT[1]; cw1 = CT[2]; ch = CT[3];
 deck  = 0.8;
 clipd = ch + spiel + deck;
@@ -199,6 +215,7 @@ rail_top = bh + rail_h;
 //  Hilfen
 // =====================================================================
 module bar(p, q, w) hull() { translate(p) circle(d = w, $fn = 12); translate(q) circle(d = w, $fn = 12); }
+module teardrop(r) { hull() { circle(r = r); translate([r * sqrt(2) - 0.01, 0]) square(0.02, center = true); } }
 module sbar(p, q, w) hull() { translate(p) square(w, center = true); translate(q) square(w, center = true); }
 module box3(x0, y0, z0, x1, y1, z1) translate([x0, y0, z0]) cube([x1 - x0, y1 - y0, z1 - z0]);
 module rect2(r) translate([r[0], r[1]]) square([r[2] - r[0], r[3] - r[1]]);
@@ -315,7 +332,7 @@ PA = [y_a, z_a];
 z_mid = (z_pr + h_pr / 2 + z_k - h_t) / 2;   // Zwischenriegel
 w_mid = max(cdg * 1.5, sc(700));
 PR_M = [   // Hauptstäbe [p, q, w]
-    [[-G / 2, hbg], [-G / 2, z_k], ls], [[G / 2, hbg], [G / 2, z_k], ls],
+    [[-G / 2, hbg + ls / 2], [-G / 2, z_k], ls], [[G / 2, hbg + ls / 2], [G / 2, z_k], ls],   // Bein endet auf dem Fahrwerk (nur der Zapfen taucht ein)
     [[-G / 2, z_k - h_t / 2], [G / 2, z_k - h_t / 2], h_t],
     [[-G / 2, z_pr + h_pr / 2 - cdg / 2], [G / 2, z_pr + h_pr / 2 - cdg / 2], cdg],
     [[-G / 2, z_pr - h_pr / 2 + cdg / 2], [G / 2, z_pr - h_pr / 2 + cdg / 2], cdg],
@@ -521,7 +538,10 @@ module katze() {   // lokal: Mitte, z = 0 Unterkante (liegt um dch tiefer als di
         union() {
             box3(-k_x, -L_k / 2, 0, k_x, L_k / 2, tkb);
             box3(-k_x * 0.7, -L_k * 0.42, tkb - e, k_x * 0.7, L_k * 0.3, tkb + h_mk);           // Hubwerk
-            box3(-k_x * 0.75, -L_k * 0.45, tkb + h_mk - e, k_x * 0.75, L_k * 0.33, tkb + h_mk + max(sc(150), 0.8));
+            hull() {   // Deckel, unten 45° angefast (stand bis 9 mm frei über)
+                box3(-k_x * 0.7, -L_k * 0.42, tkb + h_mk - k_x * 0.05, k_x * 0.7, L_k * 0.3, tkb + h_mk - k_x * 0.05 + e);
+                box3(-k_x * 0.75, -L_k * 0.45, tkb + h_mk, k_x * 0.75, L_k * 0.33, tkb + h_mk + max(sc(150), 0.8));
+            }
             for (sx = [-1, 1], sy = [-1, 1]) translate([sx * (Bx / 2), sy * L_k * 0.35, tkb]) rotate([0, 90, 0])
                 cylinder(r = min(tkb * 0.45, sc(450, 1)), h = t_g * 0.8, center = true);       // Laufrad-Andeutung
         }
@@ -555,25 +575,43 @@ module spreader_2d() {
         for (sx = [-1, 1], sy = [-1, 1]) translate([sx * xs_r, sy * min(ys_r, sp_W / 2 - sp_b / 2)]) circle(d = th_d);
     }
 }
-module spreader() {   // lokal: Unterseite z = 0, Twistlocks nach unten (z < 0)
-    linear_extrude(sp_t) spreader_2d();
-    // Twistlocks: passen in die Eckbeschläge von container_40ft.scad (Lochtiefe max(sc(25), 0.4))
-    tl_h = max(sc(25), 0.4) - 0.05;
-    for (sx = [-1, 1], sy = [-1, 1]) translate([sx * cast_x, sy * cast_y, -tl_h])
-        scale([max(sc(110), 0.9), max(sc(50), 0.6), 1]) cylinder(d = 1, h = tl_h + e, $fn = 24);
-    box3(-sp_L * 0.08, -sp_W * 0.35, sp_t - e, sp_L * 0.08, sp_W * 0.35, sp_t + max(sc(500), 1.5));   // Kopfstück
+// Kopfstück: eigenes Teil, 2 Vierkantzapfen in die Mittelstrebe (neben Naht und Clip-Taschen)
+sk_h = max(sc(500), 1.5);                    // Höhe Kopfstück
+sk_p = max(sc(150), 2.5);                    // Zapfen-Querschnitt
+sk_x = sp_b * 1.5 * 0.68;                    // Zapfen-Abstand von der Mitte (Mittelstrebe ist ±1,5 sp_b breit)
+sk_l = sp_t - 1;                             // Zapfenlänge
+module spreader_kopf() {   // lokal: Unterseite z = 0 (liegt auf dem Rahmen), Zapfen nach unten
+    box3(-sp_L * 0.08, -sp_W * 0.35, 0, sp_L * 0.08, sp_W * 0.35, sk_h);
+    for (sx = [-1, 1]) translate([sx * sk_x - sk_p / 2, -sk_p / 2, -sk_l]) {
+        cube([sk_p, sk_p, sk_l + e]);
+    }
 }
+module sk_loecher() for (sx = [-1, 1]) translate([sx * sk_x - sk_p / 2 - spiel, -sk_p / 2 - spiel, -1]) cube([sk_p + 2 * spiel, sk_p + 2 * spiel, sp_t + 2]);
+module spreader_rahmen() {   // lokal: Unterseite z = 0, Twistlocks nach unten (z < 0)
+    difference() { linear_extrude(sp_t) spreader_2d(); sk_loecher(); }
+    // Twistlocks: passen in die Eckbeschläge von container_40ft.scad (Lochtiefe max(sc(25), 0.4)).
+    // Schmaler als 0,8 mm (1:87) druckt die Düse sie nicht – dann entfallen sie, der Spreader liegt flach auf.
+    tl_h = max(sc(25), 0.4) - 0.05;
+    if (sc(50) >= 0.8) for (sx = [-1, 1], sy = [-1, 1]) translate([sx * cast_x, sy * cast_y, -tl_h])
+        scale([max(sc(110), 0.9), max(sc(50), 0.6), 1]) cylinder(d = 1, h = tl_h + e, $fn = 24);
+}
+module spreader() { spreader_rahmen(); translate([0, 0, sp_t]) spreader_kopf(); }   // Zusammenbau
 function info_spreader() = let(SX = sp_L, SY = sp_W,
     S = [for (v = SP_XS) [v - spw / 2, 0, v + spw / 2, sp_W]],
-    kp = [for (sx = [-1, 1], sy = [-1, 1]) [sx * xs_r + sp_L / 2 - 2, sy * min(ys_r, sp_W / 2 - sp_b / 2) + sp_W / 2 - 2, sx * xs_r + sp_L / 2 + 2, sy * min(ys_r, sp_W / 2 - sp_b / 2) + sp_W / 2 + 2]])
+    kp = concat([for (sx = [-1, 1], sy = [-1, 1]) [sx * xs_r + sp_L / 2 - 2, sy * min(ys_r, sp_W / 2 - sp_b / 2) + sp_W / 2 - 2, sx * xs_r + sp_L / 2 + 2, sy * min(ys_r, sp_W / 2 - sp_b / 2) + sp_W / 2 + 2]],
+                [for (sx = [-1, 1]) [sx * sk_x + sp_L / 2 - sk_p / 2 - 1.5, sp_W / 2 - sk_p / 2 - 1.5, sx * sk_x + sp_L / 2 + sk_p / 2 + 1.5, sp_W / 2 + sk_p / 2 + 1.5]]))
     [SX, SY, SP_XS, [], kp, false, 0, S];
-module spreader_druck() translate([sp_L / 2, sp_W / 2, sp_t + max(sc(500), 1.5)]) rotate([180, 0, 0]) spreader();
+module spreader_druck() translate([sp_L / 2, sp_W / 2, sp_t]) rotate([180, 0, 0]) spreader_rahmen();   // kopfüber: Twistlocks oben
+module spreader_kopf_druck() translate([sp_L * 0.08, sp_W * 0.35, sk_h]) rotate([180, 0, 0]) spreader_kopf();   // Oberseite unten, Zapfen oben
 module maschinenhaus() {   // lokal: Unterkante z = 0 (sitzt auf der Trägeroberkante, Kanäle dch)
     difference() {
         union() {
             box3(-k_x, 0, 0, k_x, mh_len, dch + max(sc(400), 1.6));
             box3(-k_x * 0.95, mh_len * 0.05, dch, k_x * 0.95, mh_len * 0.95, dch + mh_h);
-            box3(-k_x, mh_len * 0.02, dch + mh_h - e, k_x, mh_len * 0.98, dch + mh_h + max(sc(150), 0.8));
+            hull() {   // Dach, unten 45° angefast (stand bis 9 mm frei über)
+                box3(-k_x * 0.95, mh_len * 0.05, dch + mh_h - k_x * 0.05, k_x * 0.95, mh_len * 0.95, dch + mh_h - k_x * 0.05 + e);
+                box3(-k_x, mh_len * 0.02, dch + mh_h, k_x, mh_len * 0.98, dch + mh_h + max(sc(150), 0.8));
+            }
         }
         for (sx = [-1, 1]) box3(sx * Bx / 2 - t_g / 2 - cl, -1, -1, sx * Bx / 2 + t_g / 2 + cl, mh_len + 1, dch);
         wv = max(sc(30), 0.4);
@@ -593,7 +631,9 @@ module fahrwerk() {   // lokal: Mitte unter dem Bein, Rad-Aufstand z = 0, Schien
         union() {
             for (sy = [-1, 1]) box3(-fw_l / 2, sy > 0 ? fw_ww / 2 - e : -fw_b2, 0, fw_l / 2, sy > 0 ? fw_b2 : -fw_ww / 2 + e, hbg);
             box3(-fw_l / 2, -fw_b2, fw_z0, fw_l / 2, fw_b2, hbg);
-            for (i = [0 : nwh - 1]) translate([-fw_l / 2 + (i + 0.5) * fw_l / nwh, 0, fw_wr]) rotate([90, 0, 0]) cylinder(r = fw_wr, h = fw_ww + 2 * e, center = true);
+            // Räder: unten 45° zulaufend und flach auf z = 0 (sonst hängt die untere Radhälfte frei)
+            for (i = [0 : nwh - 1]) translate([-fw_l / 2 + (i + 0.5) * fw_l / nwh, 0, fw_wr]) rotate([90, 0, 0]) linear_extrude(fw_ww + 2 * e, center = true)
+                intersection() { rotate(-90) teardrop(fw_wr); translate([-fw_wr, -fw_wr]) square([2 * fw_wr, 2 * fw_wr]); }
         }
         box3(-t_s / 2 - spiel, -ls * 0.3 - spiel, hbg - tn - 0.2, t_s / 2 + spiel, ls * 0.3 + spiel, hbg + 1);
     }
@@ -603,9 +643,9 @@ module schiene_seg(L) {
         union() {
             box3(0, -beam_w / 2, 0, L, beam_w / 2, bh);
             translate([0, 0, bh - e]) rotate([90, 0, 90]) linear_extrude(L)
-                polygon([[-rail_w * 0.9, 0], [rail_w * 0.9, 0], [rail_w * 0.25, rail_h * 0.25], [rail_w * 0.25, rail_h * 0.65],
+                polygon([[-rail_w * 0.9, 0], [rail_w * 0.9, 0], [rail_w * 0.25, rail_h * 0.25], [rail_w * 0.25, rail_h * 0.7 - rail_w * 0.25],
                          [rail_w / 2, rail_h * 0.7], [rail_w / 2, rail_h], [-rail_w / 2, rail_h], [-rail_w / 2, rail_h * 0.7],
-                         [-rail_w * 0.25, rail_h * 0.65], [-rail_w * 0.25, rail_h * 0.25]]);
+                         [-rail_w * 0.25, rail_h * 0.7 - rail_w * 0.25], [-rail_w * 0.25, rail_h * 0.25]]);   // Kopf unten 45°
         }
         rb_slot();
         translate([L, 0, 0]) rotate([0, 0, 180]) rb_slot();
@@ -618,7 +658,7 @@ SCHS = SCHL / SCHN;
 // =====================================================================
 //  Zusammenbau
 // =====================================================================
-C_BLAU = "#1f5fa8"; C_WEISS = "#ecf0f1"; C_DUNKEL = "#2c3e50"; C_BETON = "#9e9e9e"; C_CONT = "#c0392b";
+C_BLAU = fhex(farbe_portal); C_WEISS = fhex(farbe_traeger); C_DUNKEL = fhex(farbe_dunkel); C_BETON = fhex(farbe_schiene); C_CONT = fhex(farbe_container);
 A_UP = ausleger_hoch ? TH_UP : 0;
 yk = y_kmin + (y_kmax - y_kmin) * min(1, max(0, katze_pos));
 module bruecke(ex = 0) {
@@ -634,8 +674,8 @@ module bruecke(ex = 0) {
             color(C_WEISS) translate([0, y_b, zg1 - dch + ex]) maschinenhaus();
             if (ex == 0) {
                 // Katze, Kabine, Spreader, Container
-                color("#f1c40f") translate([0, yk, zg1 - dch]) katze();
-                color("#f1c40f") translate([0, yk + cab_y0, zg1 - dch]) kabine();
+                color(fhex(farbe_katze)) translate([0, yk, zg1 - dch]) katze();
+                color(fhex(farbe_katze)) translate([0, yk + cab_y0, zg1 - dch]) kabine();
                 z_sp = sc(2896) + 1 + (zg0 - sc(300) - sp_t - max(sc(500), 1.5) - sc(2896) - 2) * min(1, max(0, spreader_hoehe));
                 color(C_DUNKEL) translate([0, yk, z_sp]) spreader();
                 color("#222") for (sx = [-1, 1], sy = [-1, 1]) translate([sx * xs_r, yk + sy * ys_r, z_sp + sp_t]) cylinder(d = 0.25, h = zg1 - dch - z_sp - sp_t);
@@ -670,6 +710,28 @@ for (i = INFOS) if (n_pieces(i[1]) > 1)
              zero_seams(i[1]) > 0 ? str("  WARNUNG: ", zero_seams(i[1]), " Naht/Nähte ohne Clip – dort kleben") : ""));
 echo(str("Verbinder-Clips für geteilte Teile: ", CLIPS, " (+ ", 2 * max(0, SCHN - 1), " für die Schienenstöße)"));
 
+// Druckliste für farb_export.py / Anleitung: DRUCK|teil|stücke|farbteil|farbe|menge
+module druck(t, n, fp, f, m) if (m > 0) echo(str("DRUCK|", t, "|", n, "|", fp, "|", f, "|", m));
+NCL = max(CLIPS + 2 * max(0, SCHN - 1), 4);
+druck("schiene", 1, "alle", farbe_schiene, 2 * SCHN);
+druck("fahrwerk", 1, "alle", farbe_dunkel, 4);
+druck("portalrahmen", n_pieces(info_portalrahmen()), "alle", farbe_portal, 2);
+druck("konsole", 1, "alle", farbe_portal, 4);
+druck("mastriegel", n_pieces(riegel_info(P + t_s, h_m)), "alle", farbe_portal, 1);
+druck("traeger_links", n_pieces(info_traeger()), "alle", farbe_traeger, 1);
+druck("traeger_rechts", n_pieces(info_traeger()), "alle", farbe_traeger, 1);
+druck("endriegel", n_pieces(riegel_info(Bx + t_g, hgd * 0.6)), "alle", farbe_traeger, 1);
+druck("ausleger_links", n_pieces(info_ausleger()), "alle", farbe_traeger, 1);
+druck("ausleger_rechts", n_pieces(info_ausleger()), "alle", farbe_traeger, 1);
+druck("spitzenriegel", n_pieces(riegel_info(Bx + t_g, h_tip * 0.8)), "alle", farbe_traeger, 1);
+druck("maschinenhaus", n_pieces(info_maschinenhaus()), "alle", farbe_traeger, 1);
+druck("katze", n_pieces(info_katze()), "alle", farbe_katze, 1);
+druck("kabine", 1, "alle", farbe_katze, 1);
+druck("spreader", n_pieces(info_spreader()), "alle", farbe_dunkel, 1);
+druck("spreader_kopf", 1, "alle", farbe_dunkel, 1);
+druck("verbinder", 1, "alle", farbe_clips, 1);
+for (f = FARBEN) echo(str("FARBE|", f[0], "|", f[1]));
+
 if (teil == "aufbau") bruecke();
 else if (teil == "explosion") bruecke(max(sc(3000), 15));
 else if (teil == "portalrahmen") split_out(info_portalrahmen(), stueck) portalrahmen_druck();
@@ -684,11 +746,12 @@ else if (teil == "spitzenriegel") split_out(riegel_info(Bx + t_g, h_tip * 0.8), 
 else if (teil == "katze") split_out(info_katze(), stueck) translate([k_x, L_k / 2, 0]) katze();
 else if (teil == "kabine") translate([0, 0, cab_h]) kabine();
 else if (teil == "spreader") split_out(info_spreader(), stueck) spreader_druck();
+else if (teil == "spreader_kopf") spreader_kopf_druck();
 else if (teil == "maschinenhaus") split_out(info_maschinenhaus(), stueck) translate([k_x, 0, 0]) maschinenhaus();
 else if (teil == "fahrwerk") fahrwerk();
 else if (teil == "schiene") schiene_seg(SCHS);
 else if (teil == "verbinder") {
-    n = max(CLIPS + 2 * max(0, SCHN - 1), 4);
+    n = NCL;
     nx = ceil(sqrt(n));
     for (i = [0 : n - 1]) translate([(i % nx) * (cL + 3), floor(i / nx) * (cw1 + 3), 0]) clip();
 }
