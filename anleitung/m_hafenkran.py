@@ -63,6 +63,6 @@ def model(mst=43):
                      "Lange, schmale Teile (Zahnstangen" + (", Ausleger" if pcs.get("ausleger", 1) == 1 else "") + ") liegen diagonal auf dem Bett – so bleiben sie ungeteilt und stabil"]),
         system=SYSTEM_CLIP + ["Beweglich: Der Oberwagen dreht auf dem Königszapfen, der Ausleger kippt am Turm, der Wippwinkel wird über die Zahnstangen eingerastet."],
         clip_png=CLIP_PNG,
-        massstab_hinweis=hinweis("Hafenkran", "hafenkran.scad", "", mst, bereich="1:43 und 1:87 – die Datei bietet weitere Maßstäbe, geprüft sind diese beiden"),
+        massstab_hinweis=hinweis("Hafenkran", "hafenkran.scad", "", mst, bereich="1:43 und 1:87"),
         final=["Wippwinkel ändern: Stifte aus dem Lager ziehen, Ausleger kippen, Stift ins nächste Loch – die Lochabstände passen genau zu den Winkeln in „wippwinkel“.",
                "Oberwagen drehen und das Portal auf den Schienen fahren lassen."])

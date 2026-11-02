@@ -1,6 +1,6 @@
 HAFENKRAN – Portal-Wippdrehkran – zerlegbarer Bausatz
 =====================================================
-Geprüft und exportiert in 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
 
 STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil__farbe.stl,
   geteilte Teile teil_1__farbe.stl, teil_2__farbe.stl …).
@@ -8,8 +8,8 @@ STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil__farbe.stl,
   *_farbig.3mf    = alle Teile mit Farben
   hafenkran_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
 
-Anderer Maßstab / andere Farben / Optionen:
-  hafenkran.scad im OpenSCAD-Customizer öffnen,
+Maßstab / andere Farben / Optionen:
+  hafenkran.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
   oder:  python3 farb_export.py hafenkran.scad 87 ausgabe -D 'farbe_stahl="blau"'
   Optionen u. a.: Spurweite, Radstand, Portalhöhe, Auslegerlänge, Turmhöhe,
   Wippwinkel der Raststufen (wippwinkel), Schienenlänge, alle Farben.

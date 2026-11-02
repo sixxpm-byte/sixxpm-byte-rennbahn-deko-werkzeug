@@ -1,6 +1,6 @@
 // =====================================================================
 //  HAFENKRAN  –  Portal-Wippdrehkran als zerlegbarer Bausatz
-//  parametrisch, alle gängigen Maßstäbe, FDM-optimiert (stützfrei),
+//  Maßstäbe 1:43 und 1:87, FDM-optimiert (stützfrei),
 //  Teile über dem Druckbett werden automatisch geteilt (Clips)
 //  Stecksystem kompatibel zu rennbahn_deko.scad
 //  OpenSCAD >= 2021.01
@@ -48,7 +48,7 @@
 
 /* [Maßstab] */
 // Maßstab 1/x
-massstab = 87; // [10:1/10 RC-Car, 18:1/18 Modellauto, 24:1/24 Slotcar, 28:1/28 Mini-RC, 32:1/32 Slotcar, 43:1/43 Drift-RC und Slotcar, 64:1/64 Diecast, 87:1/87 H0, 0:eigener Maßstab]
+massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
