@@ -34,7 +34,7 @@ def stl(scad, defs):
             print("STL FEHLT", scad, defs, r.stderr[-400:]); return None
     return f
 
-def thumb(items, size=(700, 560), cam="0,0,0,55,0,25,0"):
+def thumb(items, size=(1100, 880), cam="0,0,0,55,0,25,0"):
     """items = [(stlpfad, farbe)] -> PNG (alle Teile zusammen, Druckorientierung)"""
     items = [i for i in items if i[0]]
     key = h(json.dumps(items) + cam + str(size))
@@ -46,7 +46,9 @@ def thumb(items, size=(700, 560), cam="0,0,0,55,0,25,0"):
               "--viewall", "--autocenter", f"--camera={cam}", sc])
     return png if os.path.exists(png) else None
 
+AUTO_ZOOM = 2.0   # --viewall lässt viel Rand: doppelt so groß rendern, crop() schneidet zu -> scharfe Bilder in der PDF
 def render(scad, defs, cam, size=(1500, 1100), autoview=False):
+    if autoview: size = (min(3200, int(size[0] * AUTO_ZOOM)), min(3200, int(size[1] * AUTO_ZOOM)))
     key = h(scad + "|".join(defs) + str(cam) + str(size) + str(autoview) + str(os.path.getmtime(scad)))
     png = os.path.join(W, "r_" + key + ".png")
     if not os.path.exists(png):
@@ -69,6 +71,7 @@ def crop(png, pad=24):
     if bb:
         bb = (max(0, bb[0] - pad), max(0, bb[1] - pad), min(im.size[0], bb[2] + pad), min(im.size[1], bb[3] + pad))
         im = im.crop(bb)
+    if max(im.size) > 2000: im.thumbnail((2000, 2000), Image.LANCZOS)   # reicht für A4 quer, hält die PDF klein
     im.save(out)
     return out
 

@@ -574,7 +574,7 @@ module bodenkreuz_welt() {
             // Lagerbock bis zur schrägen Tellerebene
             intersection() {
                 cylinder(r = r_lb, h = z_cb + r_lb, $fn = 48);
-                achse_rahmen() translate([-50 * r_lb, -50 * r_lb, -100 * r_lb]) cube([100 * r_lb, 100 * r_lb, 100 * r_lb]);
+                achse_rahmen() let(m = z_cb + 2 * r_lb + 2) translate([-m, -m, -m]) cube([2 * m, 2 * m, m]);   // Halbraum unter der Tellerebene (klein halten: sonst wird --viewall winzig)
             }
             achse_rahmen() translate([0, 0, -1]) achse_d(z_tb + l_ts - 0.3 + 1);
         }
