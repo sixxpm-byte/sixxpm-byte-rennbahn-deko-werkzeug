@@ -154,6 +154,19 @@ for f in files:
         continue
     gesehen.add(key)
     gruppen.setdefault(teil_of(f), []).append(f)
+# Geteilte Teile (podest_1, podest_2 …): farb_export.py fasst gleiche Farbteile zusammen (z. B. podest_1_B für beide
+# Stücke). Fehlt einem Stück ein Farbteil, das ein Geschwister-Stück hat, wird es mit gesliced – sonst wirken Inlay-Nuten leer.
+def farbteil(f):
+    m = re.search(r"_([A-E])$", f[:-4].split("__")[0]); return m.group(1) if m else ""
+for teil, fl in gruppen.items():
+    m = re.match(r"^(.+)_(\d+)$", teil)
+    if not m: continue
+    da = {farbteil(f) for f in fl}
+    for t2, fl2 in gruppen.items():
+        if t2 != teil and re.match(r"^%s_\d+$" % re.escape(m.group(1)), t2):
+            for f2 in fl2:
+                if farbteil(f2) not in da and farbteil(f2) != "":
+                    fl.append(f2); da.add(farbteil(f2))
 with ThreadPoolExecutor(max_workers=a.jobs) as ex:
     res = list(ex.map(lambda kv: pruefe(*kv), sorted(gruppen.items())))
 out, n, tz = [], 0, 0

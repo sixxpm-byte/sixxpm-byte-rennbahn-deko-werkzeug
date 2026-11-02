@@ -289,7 +289,7 @@ h_lm = sc(4600, 45);
 t_lm = max(sc(150), 2.4);
 w_fs = max(sc(50), 1.0);
 h_lf = max(sc(300), 4);
-f_w  = sc(900, 12);
+f_w  = max(sc(900, 12), cL + 2 * min_wand + w_lp + 4 * spiel);   // Wand zwischen Rennbahn-Tasche und Mastschlitz
 h_tab = h_lf - 1.0;
 y_b0 = h_lm - h_lb;
 dm   = max(sc(20), 0.4);
@@ -351,10 +351,21 @@ function rclip_r() = let(r0 = R_i + mw + 0.5, r1 = R_t - mw - 0.5) r1 - r0 >= 2 
 RCLIPS = ring_split ? [for (a = SR, r = rclip_r()) concat(pol(r, a), [a + 90])] : [];
 L_wo = 2 * R_wo * tan(ad / 2);
 
-module ring_licht() {   // Farbe B: bündige Inlays
+z_lo = (H_s + H_w) / 2;                         // Lichterreihe außen am Laufsteg
+w_lo = max(sc(40), 0.6);                         // Leitung der Lichterreihe
+w_cn = max(sc(40), 0.8);                         // verdeckter Steg innen -> außen
+CNK  = [for (k = [0 : N_d - 1]) if (len([for (q = SEAM_K) if (q == k) 1]) == 0) k];
+module ring_licht() {   // Farbe B: bündige Inlays, ein zusammenhängender Körper je Podest-Stück
     translate([0, 0, z_led]) linear_extrude(w_led) difference() { poly(R_i + d_inl); poly(R_i - e); }
-    for (k = [0 : N_d - 1], t = [-1, 0, 1]) side_frame(k, R_wo) translate([-d_inl, t * L_wo / 3, (H_s + H_w) / 2])
-        rotate([0, 90, 0]) cylinder(d = d_dot, h = d_inl + e, $fn = 12);
+    // Leitung außen und Lichter als Rauten (45°-Flanken, stützfrei)
+    translate([0, 0, z_lo - w_lo / 2]) linear_extrude(w_lo) difference() { poly(R_wo + e); poly(R_wo - d_inl); }
+    for (k = [0 : N_d - 1], t = [-1, 0, 1]) side_frame(k, R_wo) translate([-d_inl / 2 + e / 2, t * L_wo / 3, z_lo])
+        rotate([45, 0, 0]) cube([d_inl + e, d_dot * 0.85, d_dot * 0.85], center = true);
+    // verdeckte Stege im Laufsteg: Lichtband innen -> Leitung außen (waagerecht + senkrecht)
+    for (k = CNK) side_frame(k, R_i) {
+        translate([d_inl / 2, -w_cn / 2, z_led]) cube([R_wo - R_i - d_inl - d_inl / 2 + e, w_cn, w_led]);
+        translate([R_wo - R_i - d_inl - w_cn, -w_cn / 2, z_led]) cube([w_cn + d_inl / 2, w_cn, z_lo + w_lo / 2 - z_led]);
+    }
 }
 module podest_welt(fp = "alle") {
     wl = max(sc(25), 0.4);
@@ -439,8 +450,9 @@ module wange_2d(oben) intersection() {
 }
 module wangen(oben) for (k = [0 : N_a - 1]) rotate(k * aa) for (sg = [-1, 1])
     translate([0, sg * (gap_f / 2 + t_ch / 2), 0]) rotate([90, 0, 0]) linear_extrude(t_ch, center = true) wange_2d(oben);
+// Stiftlager als Tropfen (Spitze oben): in kopf_oben liegt die Rinne auf dem Druckbett -> stützfrei
 module stiftlager() for (k = [0 : N_a - 1]) rotate(k * aa) translate([r_piv, 0, z_piv]) rotate([90, 0, 0])
-    cylinder(d = stift_d + lager_spiel, h = w_f + 2, center = true, $fn = 24);
+    linear_extrude(w_f + 2, center = true) rotate(90) teardrop((stift_d + lager_spiel) / 2, $fn = 24);
 module kopf_unten() difference() {
     union() {
         translate([0, 0, z_sh]) linear_extrude(z_piv - z_sh) oct(r_hk);
@@ -512,12 +524,14 @@ module jet_nase() translate([Lj * 0.40, -Lj, -1]) cube([Lj, 2 * Lj, 2 * Hj]);
 module jet_cockpit() {
     translate([-Lj * 0.02, 0, z_cf]) linear_extrude(2 * Hj) offset(r = Wj * 0.12) square([Lj * 0.30 - Wj * 0.24, Wj * 0.56 - Wj * 0.24], center = true);
 }
-module jet_scheibe() difference() {   // Windschutzscheibe (B)
+// Windschutzscheibe (B) als eingelassener Block: ebener Boden, senkrechte Flanken
+// (liegt nicht schräg auf dem Rumpf -> keine flachen Unterseiten), wird aus A ausgeschnitten
+module jet_scheibe() difference() {
     intersection() {
         scale([1, 1, 1.12]) jet_rumpf();
-        translate([Lj * 0.13, -Wj, Hj * 0.5]) cube([Lj * 0.06, 2 * Wj, Hj]);
+        translate([Lj * 0.12, -Wj, Hj * 0.5]) cube([Lj * 0.07, 2 * Wj, Hj]);
     }
-    jet_rumpf();
+    jet_cockpit();   // Rückseite = Cockpitwand (keine deckungsgleichen Flächen mit A)
 }
 module jet_duese() difference() {     // Düse (B)
     intersection() {
@@ -540,6 +554,8 @@ module jet(fp) {
         }
         jet_cockpit();
         jet_nase();
+        jet_scheibe();
+        jet_duese();     // Düse sitzt auf Leitwerk und Finne: dort A aussparen (keine Überlappung)
         translate([-(w_arm / 2 + spiel), -(p_w / 2 + spiel), -e]) cube([w_arm + 2 * spiel, p_w + 2 * spiel, p_h + 0.4 + e]);
     }
     if (inc(fp, "A")) intersection() {   // Rückenlehne zwischen den Sitzen
@@ -567,16 +583,24 @@ module krone_zier() {   // Farbe B
     }
     linear_extrude(t_kf) difference() { oct(r_kr + d_c); oct(r_kr - e); }
 }
+// Fenster bleiben unter dem Gesims (sonst hängt das Gesims frei über dem Fensterbogen);
+// Breite so, dass der Spitzbogen in die Höhe passt
+k_side = 2 * r_kr * tan(22.5);
+k_hc   = max(sc(60), 1.0, max(sc(40), 0.6) * 1.6);
+z_kge  = t_kf + h_kr - g_d - 0.3 - k_hc;          // Unterkante Gesims
+k_hw0  = h_kr * 0.62;
+z_kw0  = t_kf + min(h_kr * 0.16, max(0.8, z_kge - 0.8 - t_kf - k_hw0));
+k_hw   = min(k_hw0, z_kge - 0.8 - z_kw0);
+k_ww   = min(k_side * 0.42, k_hw / 1.21);
 module krone(fp) {
-    side = 2 * r_kr * tan(22.5);
     if (inc(fp, "A")) difference() {
         union() {
             linear_extrude(t_kf) oct(r_kr);
             linear_extrude(t_kf + h_kr) difference() { oct(r_kr); oct(r_kr - t_kw); }
         }
         translate([0, 0, -1]) linear_extrude(t_kf + 2) offset(delta = spiel) square(p_k, center = true);
-        for (k = [0 : 7]) rotate(k * 45) translate([r_kr - t_kw - 1, 0, t_kf + h_kr * 0.16]) rotate([90, 0, 90])
-            linear_extrude(t_kw + 2) spitzbogen(side * 0.42, h_kr * 0.62);
+        for (k = [0 : 7]) rotate(k * 45) translate([r_kr - t_kw - 1, 0, z_kw0]) rotate([90, 0, 90])
+            linear_extrude(t_kw + 2) spitzbogen(k_ww, k_hw);
         krone_zier();
     }
     if (inc(fp, "B")) krone_zier();
@@ -588,35 +612,56 @@ module dach_koerper() union() {
         translate([0, 0, t_de + h_d - e]) linear_extrude(e) oct(r_ap);
     }
 }
-module dach_rippen() {
-    w = max(sc(60), 1.0);
-    for (k = [0 : 15]) let(a = k * 22.5, f = k % 2 == 1 ? 1 / cos(22.5) : 1)
-        hull() {
-            translate(concat(pol((r_d - w_rim) * f, a), [t_de])) cube(w, center = true);
-            translate(concat(pol(r_ap * f, a), [t_de + h_d])) cube(w, center = true);
-        }
-    for (k = [0 : 7], t = [-1, 0, 1]) rotate(k * 45) translate([r_d - w_rim / 2, t * (r_d - w_rim / 2) * tan(22.5) * 0.6, t_de - e])
+// Farbe B: Strahlenrippen als eingelassene Stege (senkrechte Flanken, ebener Boden auf dem Rand,
+// oben w/2 über der Dachfläche), Randleitung verbindet Rippen und Lampen zu einem Körper
+w_dr = max(sc(60), 1.0);                         // Rippenbreite
+r_dl = r_d - w_rim / 2;                          // Lampen- und Leitungslinie auf dem Rand
+module dach_rippen_2d() for (k = [0 : 15]) let(a = k * 22.5, f = k % 2 == 1 ? 1 / cos(22.5) : 1)
+    hull() { translate(pol(r_dl * f, a)) square(w_dr, center = true); translate(pol(r_ap * f, a)) square(w_dr, center = true); }
+module dach_rippen() intersection() {
+    translate([0, 0, t_de]) linear_extrude(h_d + w_dr) dach_rippen_2d();
+    translate([0, 0, w_dr / 2]) dach_koerper();
+}
+module dach_lampen() {
+    for (k = [0 : 7], t = [-1, 0, 1]) rotate(k * 45) translate([r_dl, t * r_dl * tan(22.5) * 0.6, t_de - e])
         cylinder(d = max(sc(100), 1.0), h = dmr * 2 + e, $fn = 12);
+    translate([0, 0, t_de - e]) linear_extrude(dmr + e) difference() { oct(r_dl + max(sc(30), 0.6) / 2); oct(r_dl - max(sc(30), 0.6) / 2); }
 }
 module dach(fp) {
     if (inc(fp, "A")) difference() {
         dach_koerper();
         translate([0, 0, -e]) linear_extrude(g_d + e) difference() { oct(r_kr + spiel); oct(r_kr - t_kw - spiel); }
         translate([0, 0, t_de + h_d - sock_u]) cylinder(d = d_stem + 2 * spiel, h = sock_u + 1, $fn = 24);
+        dach_rippen();
     }
-    if (inc(fp, "B")) difference() { dach_rippen(); dach_koerper(); }
+    if (inc(fp, "B")) { dach_rippen(); dach_lampen(); }
 }
 module ufo_oben_koerper() {
     cylinder(r = r_u, h = h_ub, $fn = 64);
     translate([0, 0, h_ub - e]) cylinder(r1 = r_u, r2 = r_u * 0.48, h = h_uc + e, $fn = 64);
 }
+// UFO-Lichter (B): eingelassene Stifte mit ebenem Boden, eine Leitung im Kreis verbindet sie
+h_ufl = max(dmr * 1.5, 0.6);                     // Lichter stehen so weit vor
+w_ufl = max(sc(30), 0.6);                        // Leitung
+module ufo_licht_2d(r, n, a0) {
+    for (i = [0 : n - 1]) rotate(a0 + i * 360 / n) translate([r, 0]) circle(d = r_u * 0.12, $fn = 12);
+}
+module ufo_leitung_2d(r) difference() { circle(r = r + w_ufl / 2, $fn = 64); circle(r = r - w_ufl / 2, $fn = 64); }
+module ufo_oben_licht() {
+    intersection() { linear_extrude(h_ub + h_uc + h_ufl) ufo_licht_2d(r_u * 0.72, 12, 0); translate([0, 0, h_ufl]) ufo_oben_koerper(); }
+    intersection() { linear_extrude(h_ub + h_uc + h_ufl) ufo_leitung_2d(r_u * 0.72); translate([0, 0, h_ufl / 2]) ufo_oben_koerper(); }
+}
+module ufo_unten_licht() {
+    intersection() { translate([0, 0, -h_ul - h_ufl]) linear_extrude(h_ul + h_ufl) ufo_licht_2d(r_u * 0.7, 8, 22.5); translate([0, 0, -h_ufl]) ufo_unten_koerper(); }
+    intersection() { translate([0, 0, -h_ul - h_ufl]) linear_extrude(h_ul + h_ufl) ufo_leitung_2d(r_u * 0.7); translate([0, 0, -h_ufl / 2]) ufo_unten_koerper(); }
+}
 module ufo_oben(fp) {   // z = 0 Randebene, nach oben gedruckt
-    if (inc(fp, "A")) difference() { ufo_oben_koerper(); translate([0, 0, -e]) cylinder(d = stift_d + 0.1, h = d_up + e, $fn = 16); }
-    if (inc(fp, "B")) difference() {
-        for (i = [0 : 11]) let(r = r_u * 0.72, z = h_ub + h_uc * (r_u - r) / (r_u * 0.52)) rotate(i * 30) translate([r, 0, z - 0.3])
-            cylinder(d = r_u * 0.12, h = 0.3 + max(dmr * 1.5, 0.6), $fn = 12);
+    if (inc(fp, "A")) difference() {
         ufo_oben_koerper();
+        if (d_up >= 2) translate([0, 0, -e]) cylinder(d = stift_d + 0.1, h = d_up + e, $fn = 16);
+        ufo_oben_licht();
     }
+    if (inc(fp, "B")) ufo_oben_licht();
     if (inc(fp, "C")) intersection() {
         translate([0, 0, h_ub + h_uc - e]) sphere(r = r_u * 0.42, $fn = 48);
         translate([-r_u, -r_u, h_ub + h_uc - e]) cube([2 * r_u, 2 * r_u, r_u]);
@@ -627,12 +672,12 @@ module ufo_unten_koerper() {
     translate([0, 0, -h_ul - L_stem]) cylinder(d = d_stem, h = L_stem + e, $fn = 24);
 }
 module ufo_unten(fp) {   // z = 0 Randebene, Körper nach unten (umgedreht drucken)
-    if (inc(fp, "A")) difference() { ufo_unten_koerper(); translate([0, 0, -d_up]) cylinder(d = stift_d + 0.1, h = d_up + 1, $fn = 16); }
-    if (inc(fp, "B")) difference() {
-        for (i = [0 : 7]) let(r = r_u * 0.7, z = -h_ul * (r_u - r) / (r_u * 0.58)) rotate(i * 45 + 22.5) translate([r, 0, z - max(dmr * 1.5, 0.6)])
-            cylinder(d = r_u * 0.12, h = max(dmr * 1.5, 0.6) + 0.3, $fn = 12);
+    if (inc(fp, "A")) difference() {
         ufo_unten_koerper();
+        if (d_up >= 2) translate([0, 0, -d_up]) cylinder(d = stift_d + 0.1, h = d_up + 1, $fn = 16);
+        ufo_unten_licht();
     }
+    if (inc(fp, "B")) ufo_unten_licht();
 }
 
 // =====================================================================
@@ -642,16 +687,17 @@ module mast(fp) {   // z = 0 Zapfenunterseite
     pitch = max(d_p * 4, 6);
     tw_ = -360 * h_pole / pitch;
     sl = max(8, ceil(h_pole / 0.4));
+    d_mk = d_p * 0.3;   // Kern klein: Farbstreifen B/C radial >= 0,8 mm (sonst fallen sie beim Slicen weg)
     module sekt(i) intersection() { circle(d = d_p, $fn = 24); polygon([[0, 0], pol(d_p, i * 120), pol(d_p, i * 120 + 60), pol(d_p, i * 120 + 120)]); }
     if (inc(fp, "A")) {
         cylinder(d = d_p, h = h_pg + e, $fn = 24);
-        translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) union() { circle(d = d_p * 0.6, $fn = 24); sekt(0); }
+        translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) union() { circle(d = d_mk, $fn = 24); sekt(0); }
     }
-    if (inc(fp, "B")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(1); circle(d = d_p * 0.6, $fn = 24); }
-    if (inc(fp, "C")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(2); circle(d = d_p * 0.6, $fn = 24); }
+    if (inc(fp, "B")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(1); circle(d = d_mk, $fn = 24); }
+    if (inc(fp, "C")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(2); circle(d = d_mk, $fn = 24); }
     if (inc(fp, "D")) translate([0, 0, h_pg + h_pole - e]) {
         cylinder(d1 = d_p, d2 = d_bulb, h = (d_bulb - d_p) / 2 + e, $fn = 24);
-        translate([0, 0, (d_bulb - d_p) / 2]) { cylinder(d = d_bulb, h = d_bulb * 0.3, $fn = 24); translate([0, 0, d_bulb * 0.3]) intersection() { sphere(d = d_bulb, $fn = 24); translate([-d_bulb, -d_bulb, 0]) cube(2 * d_bulb); } }
+        translate([0, 0, (d_bulb - d_p) / 2]) { cylinder(d = d_bulb, h = d_bulb * 0.3, $fn = 24); translate([0, 0, d_bulb * 0.3 - e]) intersection() { sphere(d = d_bulb, $fn = 24); translate([-d_bulb, -d_bulb, 0]) cube(2 * d_bulb); } }
     }
 }
 module gelaender_2d() {
@@ -678,15 +724,16 @@ module lm_umriss() {
 module leuchtmast(fp) {
     bd = max(sc(90), 1.2); db = max(sc(80), 0.9);
     if (inc(fp, "A")) linear_extrude(t_lm) lm_umriss();
+    // Birnen ringsum, eine Leitung durch alle Birnen bildet den Rahmen (ein Körper, lässt der Schrift Platz)
+    xc = w_lb / 2 - bd; yb = y_b0 + bd; yt = y_b0 + h_lb - bd;
+    function gbl(t, sg) = [sg * w_lb / 2 * (1 - t), y_b0 + h_lb + w_lb * 0.4 * t - bd * 0.6];
+    nb = max(4, floor(h_lb / max(sc(220), 2.5)));
+    BIRNEN = concat([for (sg = [-1, 1], i = [0 : nb]) [sg * xc, yb + i * (yt - yb) / nb]],
+                    [for (sg = [-1, 1], t = [0.25, 0.5, 0.75]) gbl(t, sg)]);
+    LEIT = concat([[-xc, yb], [-xc, yt]], [for (t = [0.25, 0.5, 0.75]) gbl(t, -1)], [for (t = [0.75, 0.5, 0.25]) gbl(t, 1)], [[xc, yt], [xc, yb]]);
     if (inc(fp, "B")) translate([0, 0, t_lm - e]) {
-        nb = max(4, floor(h_lb / max(sc(220), 2.5)));
-        for (sg = [-1, 1], i = [0 : nb]) translate([sg * (w_lb / 2 - bd), y_b0 + bd + i * (h_lb - 2 * bd) / nb]) cylinder(d = db, h = dm * 2 + e, $fn = 12);
-        for (t = [0.25, 0.5, 0.75]) translate([-w_lb / 2 * (1 - t) + 0, y_b0 + h_lb + w_lb * 0.4 * t - bd * 0.6]) cylinder(d = db, h = dm * 2 + e, $fn = 12);
-        for (t = [0.25, 0.75]) translate([w_lb / 2 * (1 - t), y_b0 + h_lb + w_lb * 0.4 * t - bd * 0.6]) cylinder(d = db, h = dm * 2 + e, $fn = 12);
-        linear_extrude(dm + e) difference() {   // Rahmenlinie
-            translate([-w_lb / 2 + bd * 2, y_b0 + bd * 2]) square([w_lb - bd * 4, h_lb - bd * 4]);
-            translate([-w_lb / 2 + bd * 2 + max(sc(30), 0.5), y_b0 + bd * 2 + max(sc(30), 0.5)]) square([w_lb - bd * 4 - 2 * max(sc(30), 0.5), h_lb - bd * 4 - 2 * max(sc(30), 0.5)]);
-        }
+        for (p = BIRNEN) translate(p) cylinder(d = db, h = dm * 2 + e, $fn = 12);
+        linear_extrude(dm + e) for (i = [0 : len(LEIT) - 1]) bar(LEIT[i], LEIT[(i + 1) % len(LEIT)], max(sc(30), 0.5));
     }
     if (inc(fp, "C")) translate([0, y_b0 + h_lb / 2, t_lm - e]) linear_extrude(dm * 2 + e)
         rotate(90) resize([h_lb * 0.78, w_lb * 0.48]) text(leuchtschild_text, size = w_lb * 0.5, font = schild_schrift, halign = "center", valign = "center");
@@ -877,6 +924,7 @@ H_ges = z_ur + h_ub + h_uc + r_u * 0.42;
 echo(str("Babyflug 1:", den, " | Podest Ø ", r2(2 * R_t / tc), " mm | Gesamthöhe ", r2(H_ges), " mm | Achse ", r2(z_piv - z_fl),
          " mm über Boden | Arm ", r2(L_arm), " mm | Jet ", r2(Lj), " x ", r2(Sp), " mm"));
 echo(str("Podest: ", len(RP), " Stück(e) | Kunstrasen-Boden Ø ", r2(2 * R_i / tc), " mm (1 Stück)"));
+if (CLIPS > 0) echo(str("Verbinder-Clips gesamt: ", CLIPS, " (", CLIPS / len(RP), " je Naht)"));
 echo(str("Stifte Ø ", stift_d, ": 8x Armlager (", r2(L_pin), " mm)", d_up >= 2 ? str(", 1x UFO (", r2(2 * d_up - 0.4), " mm)") : " | UFO-Hälften kleben (zu flach für einen Stift)"));
 echo(str("Jet waagerecht bei ", th_n, "°, Neigung ±", r2((arm_max - arm_min) / 2), "° | Ruhestellung: Flügelspitze ",
          r2(z_piv + mz(arm_min) - Sp / 2 * sin(abs(phi_min)) - z_fl), " mm über Boden"));
@@ -886,7 +934,7 @@ if (chord_min - Lj < 1.5) echo("WARNUNG: Jets benachbarter Arme kommen sich in F
 for (th = [arm_min : 2.5 : arm_max]) let(ph = th - th_n, rt = mr(th) + Sp / 2 * cos(ph), zt = z_piv + mz(th) - Sp / 2 * abs(sin(ph)))
     if ((rt > R_i - 0.3 && zt < H_w + 0.5) || (rt > r_g - d_p && zt < H_w + h_pole + d_bulb))
         echo(str("WARNUNG: Flügel streift bei ", th, "° den Laufsteg, einen Mast oder das Geländer."));
-if (z_piv > z_piv0 + 0.5) echo(str("Hinweis: Achse wegen Mindesthöhe der Säule ", r2(z_piv - z_piv0), " mm höher; Arme lassen sich bis zum Boden absenken."));
+if (z_piv > z_piv0 + 0.5) echo(str("Hinweis: Achse wegen Mindesthöhe der Säule ", r2(z_piv - z_piv0), " mm höher; in Ruhestellung bleibt die Flügelspitze entsprechend über dem Boden."));
 
 druck("podest", len(RP), "A", farbe_podest, 1); druck("podest", len(RP), "B", farbe_licht, 1);
 druck("boden", 1, "alle", farbe_rasen, 1);

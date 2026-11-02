@@ -1,0 +1,54 @@
+BABYFLUG – Kinder-Flugkarussell mit 8 Jets, UFO und Kassenwagen – zerlegbarer Bausatz
+====================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  babyflug_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+Andere Farben / Optionen:
+  babyflug.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py babyflug.scad 87 ausgabe -D 'farbe_dach="blau"'
+  Optionen u. a.: Armbereich (arm_min / arm_max), Eingangsseite, Text des
+  Leuchtschilds und des Kassenschilds, Passung der Armbohrung, alle Farben.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm als Achsstifte: 1:43 8 × 9,2 mm + 1 × 5,6 mm (UFO),
+                                   1:87 8 × 8,1 mm (UFO-Hälften kleben).
+
+DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
+  Podest-Ring: 1:43 zwei Hälften (diagonal aufs Bett, Clips an den Nähten),
+  1:87 einteilig. Die Lichter (Lichtband innen, Lichterreihe außen) sind
+  bündige Einleger und über verdeckte Stege zu einem Körper verbunden.
+  Arme flach gedruckt – die Stiftbohrung wird exakt rund.
+  Drehkopf oben steht auf den Lagerschalen (Tropfenform, stützfrei).
+  Jets, Pavillon und Dach stehen aufrecht; Rippen des Dachs und die
+  Windschutzscheibe der Jets sind eingelassen (ebener Boden, stützfrei).
+  UFO-Unterteil und Kassen-Fahrgestell kopfüber; Geländer, Wände und
+  Leuchtschild liegen flach.
+  Ringelmasten stehen beim Druck: mit Brim (Rand) drucken, sonst kippen sie
+  (in 1:43 45 mm hoch auf kleiner Auflage).
+  Mehrfarbige Teile mit AMS/MMU – jede Lichtfarbe ist ein zusammenhängender
+  Körper (Lampen hängen an Leitungen). Schrift, Sterne und kleine Zierteile
+  (Jet-Nase, Flügelstreifen) sind einzelne Inseln derselben Farbe.
+
+MONTAGE
+  1. (1:43) Podest-Hälften umdrehen, Clips in die Taschen drücken, umdrehen.
+  2. Kunstrasen-Boden auf den Tisch, Ring von oben darübersetzen
+     (die 8 Laschen des Bodens greifen unter den Ring).
+  3. Säule auf den Zapfen in der Bodenmitte, Drehkopf unten auf die Achse.
+  4. Je einen Stift durch jeden Arm schieben (beidseitig gleich weit),
+     Arme in die Lagerschalen legen, Drehkopf oben aufsetzen.
+  5. Jets auf die Zapfen der Arme, Pavillon auf den Schlüssel, Dach auf den
+     Pavillon, UFO-Hälften verbinden und in die Dachspitze stecken.
+  6. 16 Masten in die Löcher, 15 Geländer in die Schlitze (eine Seite bleibt
+     als Eingang offen).
+  7. Leuchtschild in den Fuß stecken. Kassenwagen: Fahrgestell, Treppe links,
+     vier Wände in die Nut, Dach, Schild.
+
+BEWEGLICH
+  Der ganze Oberbau dreht sich auf der Achse der Mittelsäule. Jeder Arm
+  schwenkt stramm auf seinem Stift und hält jede Stellung zwischen
+  Ruhestellung und Flughöhe. Das UFO dreht sich frei auf seinem Stiel.
+  Clip-Taschen am Podestrand und am Leuchtschild-Fuß koppeln an die Rennbahn.
