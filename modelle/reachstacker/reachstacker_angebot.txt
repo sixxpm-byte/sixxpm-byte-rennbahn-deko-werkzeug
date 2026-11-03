@@ -6,7 +6,7 @@ Zerlegbarer Reach Stacker mit ausziehbarem Ausleger, drehbarem Spreader und Cont
 Take-apart reach stacker with telescopic boom, rotating spreader and 20′/40′ container kit – multicolour printable in 1:43 and 1:87 (H0), ideal harbour decoration for Carrera and Sturmkind DR!FT tracks.
 
 BESCHREIBUNG
-Bring Hafenatmosphäre an deine Rennbahn: Dieser Container-Greifstapler (Reach Stacker der 46-t-Klasse) ist ein vollständiger 3D-Druck-Bausatz für FDM-Drucker mit 0,4-mm-Düse – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+Bring Hafenatmosphäre an deine Rennbahn: Dieser Container-Greifstapler (Reach Stacker der 46-t-Klasse) ist ein vollständiger 3D-Druck-Bausatz – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
 
 Ausstattung
 • Fahrgestell mit gewölbtem Gegengewicht, frei liegenden Hinterrädern und Zwillingsreifen vorne
@@ -15,22 +15,18 @@ Ausstattung
 • Spreader pendelt immer waagerecht, ist drehbar und von 20 auf 40 Fuß ausziehbar
 • Container-Bausatz 20′ und 40′ (Boden, Dach, Seitenwände mit Sicken, Stirnwand, Türseite)
 • Statt filigraner Twistlocks greifen vier Zapfen in die Eckbeschläge – der Container sieht verriegelt aus und hält sicher
-• Räder drehen sich, Hubzylinder und Aufhängung mit Filament-Bolzen (1,75 mm)
+• Räder drehen sich, Hubzylinder und Aufhängung sind mit Filament-Bolzen gelagert
 
 Größe
 • 1:43: Fahrgestell ca. 20 × 10 cm, Höhe ca. 18 cm, Container 14 cm (20′) / 28 cm (40′)
 • 1:87: Fahrgestell ca. 10 × 5 cm, Höhe ca. 9 cm, Container 7 cm / 14 cm
 
-Druck
-• Alle Teile liegen druckfertig ausgerichtet bei, je Maßstab als STL und als mehrfarbige 3MF (AMS/MMU) mit Farbliste
-• Stützmaterial nur beim Fahrgestell unter dem Gegengewicht, alle anderen Teile drucken stützfrei
-• Passt auf ein Druckbett ab 220 × 220 mm; der 40-Fuß-Container wird in 1:43 geteilt und mit Clips verbunden
-• Bebilderte Druck- und Aufbauanleitung (PDF) für 1:43 und 1:87
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien für 1:43 und 1:87, Farblisten, LIESMICH und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
 
-Lieferumfang: STL- und 3MF-Dateien (1:43 und 1:87), Farblisten, LIESMICH, zwei PDF-Anleitungen. Die OpenSCAD-Quelldatei ist nicht enthalten.
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Reach Stackers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
 
 --- English ---
-Bring harbour atmosphere to your race track: this container handler (reach stacker of the 46-tonne class) is a complete 3D printing kit for FDM printers with a 0.4 mm nozzle – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+Bring harbour atmosphere to your race track: this container handler (reach stacker of the 46-tonne class) is a complete 3D printing kit – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
 
 Features
 • Chassis with curved counterweight, exposed rear wheels and twin front tyres
@@ -39,23 +35,37 @@ Features
 • Spreader always hangs level, rotates and extends from 20 to 40 feet
 • Container kit 20′ and 40′ (floor, roof, corrugated side walls, front wall, door end)
 • Instead of delicate twistlocks, four pegs engage the corner castings – the container looks locked and holds securely
-• Rotating wheels, lift cylinders and hanger with filament pins (1.75 mm)
+• Rotating wheels; lift cylinders and hanger pivot on filament pins
 
 Size
 • 1:43: chassis approx. 20 × 10 cm, height approx. 18 cm, container 14 cm (20′) / 28 cm (40′)
 • 1:87: chassis approx. 10 × 5 cm, height approx. 9 cm, container 7 cm / 14 cm
 
-Printing
-• All parts are oriented ready to print, as STL and as multicolour 3MF (AMS/MMU) with colour list for each scale
-• Supports only on the chassis under the counterweight, all other parts print without supports
-• Fits a 220 × 220 mm print bed; in 1:43 the 40-foot container is split and joined with clips
-• Illustrated printing and assembly instructions (PDF) for 1:43 and 1:87
+Included: STL and multicolour 3MF files for 1:43 and 1:87, colour lists, readme and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
 
-Included: STL and 3MF files (1:43 and 1:87), colour lists, readme, two PDF instructions. The OpenSCAD source file is not included.
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a reach stacker, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
 
-DISCLAIMER
-Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Reach Stackers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
-Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a reach stacker, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
+• Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig
+• Stützmaterial NUR beim Fahrgestell: unter den Flügeln des Gegengewichts über den Hinterrädern („Stützen nur vom Druckbett“). Alle anderen Teile drucken ohne Stützen
+• Mehrfarbige Teile mit AMS/MMU aus der 3MF drucken – oder einfarbig, die STL sind je Farbe getrennt
+• 1:43: der 40-Fuß-Container ist geteilt; Boden und Dach mit den beiliegenden Clips verbinden
+• Für die Lager 4 Stücke Filament 1,75 mm als Bolzen zuschneiden (Längen in der Anleitung)
+• Container sitzt zu fest oder zu locker? Im Customizer zapfen_spiel anpassen und das Dach neu drucken
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung): ca. 65 h für 1:43, ca. 13 h für 1:87 – mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
+• Print every part exactly as oriented in the files – the orientation is ready to print
+• Supports ONLY for the chassis: under the counterweight wings above the rear wheels ("supports on build plate only"). All other parts print without supports
+• Print multicolour parts from the 3MF with AMS/MMU – or in one colour, the STL files are split by colour
+• 1:43: the 40-foot container is split; join floor and roof with the included clips
+• Cut 4 pieces of 1.75 mm filament as pivot pins (lengths in the instructions)
+• Container too tight or too loose? Adjust zapfen_spiel in the Customizer and reprint the roof
+• Print time (slicer estimate at 100 % infill): approx. 65 h for 1:43, approx. 13 h for 1:87 – much less with 15 % infill
 
 TAGS
 ReachStacker,Containerstapler,Seecontainer,Container,Hafen,Containerterminal,Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,H0,Massstab143,Modellbau,3DDruck,Mehrfarbig

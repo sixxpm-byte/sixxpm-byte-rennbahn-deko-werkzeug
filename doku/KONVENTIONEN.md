@@ -106,8 +106,8 @@ Datei `modelle/<n>/<n>_angebot.txt`, Abschnitte in dieser Reihenfolge, Überschr
 
 - `TITEL` – eine Zeile; **Carrera** (GO!!!/Hybrid) und **Sturmkind DR!FT** in den ersten 60 Zeichen, dann Maßstäbe 1:43/1:87, Kurzbezeichnung, „/“ und englischer Titel.
 - `KURZBESCHREIBUNG` – 1–3 Sätze Deutsch, darunter Englisch.
-- `BESCHREIBUNG` – ausführlich: Einleitung, Ausstattung (beweglich, Bausatz), Größe je Maßstab, Druck (Ausrichtung, geplante Stützen, 3MF/AMS, Druckbett, Teilung), Lieferumfang (ohne SCAD-Quelle); danach `--- English ---` und dasselbe auf Englisch.
-- `DISCLAIMER` – Deutsch und Englisch: Marken gehören ihren Inhabern, keine Verbindung zu den Markeninhabern (Namen nur für Maßstab/Einsatzzweck), freie Nachbildung ohne Herstellerlizenz, Kleinteile (nicht für Kinder unter 3), Lizenz nur privat – kein Weiterverkauf/keine Weitergabe der Dateien, kein Verkauf gedruckter Teile.
+- `BESCHREIBUNG` – ausführlich: Einleitung, Ausstattung (beweglich, Bausatz), Größe je Maßstab, Lieferumfang (ohne SCAD-Quelle) und am Ende der **Disclaimer**: Marken gehören ihren Inhabern, keine Verbindung zu den Markeninhabern (Namen nur für Maßstab/Einsatzzweck), freie Nachbildung ohne Herstellerlizenz, Kleinteile (nicht für Kinder unter 3), Lizenz nur privat – kein Weiterverkauf/keine Weitergabe der Dateien, kein Verkauf gedruckter Teile. Danach `--- English ---` und dasselbe auf Englisch (mit Disclaimer).
+- `DRUCKANWEISUNG` – eigener Absatz: Drucker/Düse/Druckbett, Material, Schicht, Füllung, Wände, Ausrichtung, geplante Stützen (wo genau), Mehrfarbig/3MF, Teilung und Clips, Bolzen/Zubehör, Passungs-Parameter, Druckzeit; danach `--- English ---` und Englisch.
 - `TAGS` – genau 20, durch Kommas ohne Leerzeichen getrennt, je Tag nur A–Z/a–z/0–9 (keine Leer-, Sonderzeichen oder Umlaute: `Massstab143`, `SturmkindDRIFT`, `3DDruck`); Marken als Tags erlaubt (Carrera, CarreraGO, CarreraHybrid, Sturmkind, SturmkindDRIFT).
 
 Vorlage: `modelle/reachstacker/reachstacker_angebot.txt`. Prüfen: `python3 werkzeuge/angebot_pruefen.py modelle/<n>/<n>_angebot.txt` → „Angebot-Hinweise: 0“.

@@ -6,13 +6,15 @@
 Aufbau der Datei (Abschnitte in dieser Reihenfolge, Überschrift allein in einer Zeile):
   TITEL             eine Zeile; „Carrera“ und „Sturmkind“ in den ersten 60 Zeichen
   KURZBESCHREIBUNG  1–3 Sätze (Deutsch, darunter Englisch)
-  BESCHREIBUNG      ausführlich (Deutsch, dann „--- English ---“ und Englisch)
-  DISCLAIMER        Markenhinweis (keine Verbindung zu den Markeninhabern), Vorbild, Lizenz, Kleinteile
-  TAGS              genau 20 Tags, durch Kommas getrennt, nur Buchstaben A–Z/a–z und Ziffern
+  BESCHREIBUNG      ausführlich, endet je Sprache mit dem Disclaimer (Markenhinweis, keine Verbindung
+                    zu den Markeninhabern, freie Nachbildung, Kleinteile, Lizenz); Deutsch, dann
+                    „--- English ---“ und Englisch
+  DRUCKANWEISUNG    Druckhinweise (Düse, Schicht, Füllung, Ausrichtung, Stützen, Mehrfarbig), DE und EN
+  TAGS              genau 20 Tags, durch Kommas ohne Leerzeichen, nur Buchstaben A–Z/a–z und Ziffern
 Ergebnis: „Angebot-Hinweise: n“ (Ziel 0).
 """
 import re, sys
-ABSCHNITTE = ["TITEL", "KURZBESCHREIBUNG", "BESCHREIBUNG", "DISCLAIMER", "TAGS"]
+ABSCHNITTE = ["TITEL", "KURZBESCHREIBUNG", "BESCHREIBUNG", "DRUCKANWEISUNG", "TAGS"]
 txt = open(sys.argv[1], encoding="utf-8").read().split("\n")
 teile, akt = {}, None
 for z in txt:
@@ -29,9 +31,17 @@ for marke in ["Carrera", "Sturmkind"]:
     if marke.lower() not in titel[:60].lower(): fehler.append(f"„{marke}“ nicht in den ersten 60 Zeichen des Titels")
 beschr = "\n".join(teile.get("BESCHREIBUNG", []))
 if "--- English ---" not in beschr: fehler.append("BESCHREIBUNG ohne englischen Teil („--- English ---“)")
-disc = "\n".join(teile.get("DISCLAIMER", [])).lower()
-for wort, was in [("marke", "Markenhinweis"), ("verbindung", "keine Verbindung zu Markeninhabern"), ("lizenz", "Lizenz")]:
-    if wort not in disc: fehler.append(f"DISCLAIMER ohne {was}")
+de, _, en = beschr.partition("--- English ---")
+for teil, sprache, woerter in [(de, "DE", [("marke", "Markenhinweis"), ("verbindung", "keine Verbindung zu Markeninhabern"), ("lizenz", "Lizenz"), ("kinder", "Kleinteile-Hinweis")]),
+                               (en, "EN", [("trademark", "Markenhinweis"), ("connection", "keine Verbindung"), ("licen", "Lizenz"), ("children", "Kleinteile-Hinweis")])]:
+    for wort, was in woerter:
+        if wort not in teil.lower(): fehler.append(f"BESCHREIBUNG ({sprache}) ohne Disclaimer-Teil: {was}")
+druck = "\n".join(teile.get("DRUCKANWEISUNG", []))
+if "--- English ---" not in druck: fehler.append("DRUCKANWEISUNG ohne englischen Teil („--- English ---“)")
+for wort, was in [("düse", "Düse"), ("stütz", "Stützen"), ("füllung", "Füllung")]:
+    if wort not in druck.lower(): fehler.append(f"DRUCKANWEISUNG ohne Angabe zu {was}")
+tagzeile = "".join(teile.get("TAGS", [])).strip()
+if " " in tagzeile: fehler.append("Leerzeichen in der Tag-Zeile")
 tags = [t for t in "".join(teile.get("TAGS", [])).strip().split(",") if t != ""]
 if len(tags) != 20: fehler.append(f"{len(tags)} Tags statt 20")
 for t in tags:
