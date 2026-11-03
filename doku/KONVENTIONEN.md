@@ -95,6 +95,19 @@ INFOS-Einträge, DRUCK-Zeilen und Dispatch genau wie in `modelle/raupenbahn/raup
 4. Bilder: `<n>_aufbau.png`, `<n>_explosion.png`, ein Detailbild, `<n>_druckteile.png` (Kontaktbogen der STL).
 5. Anleitung: `anleitung/m_<n>.py` + `anleitung/scad/anl_<n>.scad`, dann `python3 anleitung/bauen.py <n>`.
 6. `modelle/<n>/LIESMICH.txt`, dann `python3 werkzeuge/packen.py <n>`.
-7. Optional: Cults3D-Angebot (eigener Skill).
+7. Angebotstext `modelle/<n>/<n>_angebot.txt` (Abschnitt 10), prüfen mit `python3 werkzeuge/angebot_pruefen.py`.
+8. Optional: Cults3D-Angebot (eigener Skill).
 
 Sparregeln: Kontrollbilder als Kontaktbogen statt einzeln. Bei Änderungen nur betroffene Teile neu exportieren (`--nur`). Lange Läufe im Hintergrund mit einem einzigen Warte-Befehl abwarten. Ein Modell pro Sitzung.
+
+## 10. Angebotstext (Pflicht je Modell)
+
+Datei `modelle/<n>/<n>_angebot.txt`, Abschnitte in dieser Reihenfolge, Überschrift allein in einer Zeile:
+
+- `TITEL` – eine Zeile; **Carrera** (GO!!!/Hybrid) und **Sturmkind DR!FT** in den ersten 60 Zeichen, dann Maßstäbe 1:43/1:87, Kurzbezeichnung, „/“ und englischer Titel.
+- `KURZBESCHREIBUNG` – 1–3 Sätze Deutsch, darunter Englisch.
+- `BESCHREIBUNG` – ausführlich: Einleitung, Ausstattung (beweglich, Bausatz), Größe je Maßstab, Druck (Ausrichtung, geplante Stützen, 3MF/AMS, Druckbett, Teilung), Lieferumfang (ohne SCAD-Quelle); danach `--- English ---` und dasselbe auf Englisch.
+- `DISCLAIMER` – Deutsch und Englisch: Marken gehören ihren Inhabern, keine Verbindung zu den Markeninhabern (Namen nur für Maßstab/Einsatzzweck), freie Nachbildung ohne Herstellerlizenz, Kleinteile (nicht für Kinder unter 3), Lizenz nur privat – kein Weiterverkauf/keine Weitergabe der Dateien, kein Verkauf gedruckter Teile.
+- `TAGS` – genau 20, durch Kommas ohne Leerzeichen getrennt, je Tag nur A–Z/a–z/0–9 (keine Leer-, Sonderzeichen oder Umlaute: `Massstab143`, `SturmkindDRIFT`, `3DDruck`); Marken als Tags erlaubt (Carrera, CarreraGO, CarreraHybrid, Sturmkind, SturmkindDRIFT).
+
+Vorlage: `modelle/reachstacker/reachstacker_angebot.txt`. Prüfen: `python3 werkzeuge/angebot_pruefen.py modelle/<n>/<n>_angebot.txt` → „Angebot-Hinweise: 0“.
