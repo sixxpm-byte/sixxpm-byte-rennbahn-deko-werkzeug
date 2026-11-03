@@ -19,9 +19,10 @@ def material(extra=()):
             *extra,
             "Optional: ein Tropfen Sekundenkleber für dauerhafte Verbindungen"]
 
-def druck(extra=()):
+# stuetzen: Text zu geplanten Stützen (neue Regel: stützfrei, wo möglich; Stützen nur, wo sinnvoll)
+def druck(extra=(), stuetzen=None):
     return ["Schichthöhe 0,2 mm (feine Teile 0,12–0,16 mm), Düse 0,4 mm",
-            "KEINE Stützstrukturen – alle Teile sind so ausgerichtet, dass sie stützfrei drucken",
+            stuetzen or "KEINE Stützstrukturen – alle Teile sind so ausgerichtet, dass sie stützfrei drucken",
             "Füllung 15 %, 3 Wandlinien; Brücken-Einstellungen des Slicers aktiv lassen",
             "Teile genau so auf das Bett legen, wie sie exportiert wurden (siehe Bilder der Druckliste)",
             *extra]

@@ -1,0 +1,66 @@
+REACH STACKER – Container-Greifstapler mit Container-Bausatz – zerlegbarer Bausatz
+==================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Vorbild: Reach Stacker der 46-t-Klasse (Radstand 6,20 m, Breite 4,20 m,
+Zwillingsreifen vorne, Spreader 20 bis 40 Fuß).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  reachstacker_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+
+GRÖSSE
+  1:43: Fahrgestell ca. 20 × 10 cm, Höhe mit Ausleger (20°) ca. 18 cm,
+        Container 20' 14 cm, 40' 28 cm lang.
+  1:87: Fahrgestell ca. 10 × 5 cm, Höhe ca. 9 cm, Container 7 / 14 cm lang.
+
+Maßstab / andere Farben / Optionen:
+  reachstacker.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py reachstacker.scad 87 ausgabe -D 'farbe_container="blau"'
+  Optionen u. a.: Ausleger-Winkel (starr, 0–59°), Hub des Innenrohrs,
+  Container High Cube (container_hoehe_m = 2.896), Sitz der Container-
+  Zapfen (zapfen_spiel), alle Farben. Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 4 Bolzen (Längen zeigt auch die Konsole):
+  1:43: Lager ca. 34 mm, Zylinder unten und oben je ca. 32 mm, Kopf ca. 18 mm.
+  1:87: Lager ca. 17 mm, Zylinder unten und oben je ca. 16 mm, Kopf ca. 8 mm.
+
+DRUCK – Ausrichtung ist druckfertig
+  STÜTZEN nur beim Fahrgestell: die Flügel des Gegengewichts über den
+  Hinterrädern hängen frei – Stützen nur vom Druckbett einschalten.
+  Alle anderen Teile drucken ohne Stützen:
+  - Fahrgestell, Kabine, Innenrohr, Aufhängung, Spreader-Rahmen aufrecht
+  - Grundrohr, Teleskoparme (Zapfen oben), Container-Boden und -Dach kopfüber
+  - Räder liegend (Außenseite oben), Zylinder liegend, Geländer flach
+  - Kotflügel mit Treppe liegen auf der Außenseite (Bogen und Stufen sind
+    reine Profile)
+  - Container-Seitenwände Innenseite unten, Stirnwand und Türseite Außenseite unten
+  1:43: der 40-Fuß-Container ist geteilt (Boden und Dach je 2 Teile mit Clips,
+        Seitenwände zweiteilig Stoß an Stoß). 1:87: nichts geteilt.
+  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  1 Hinweis – die geplanten Stützen unter dem Gegengewicht; alle anderen Teile
+  ohne Hinweise. Druckzeit bei 100 % Füllung ca. 65 h (1:43) bzw. 13 h (1:87),
+  mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Räder auf die Rautenzapfen schieben, Kotflügel mit Treppe seitlich in
+     die Front stecken, Geländer ins Podest, Kabine aufsetzen.
+  2. Grundrohr mit Bolzen in die Lagerböcke, Innenrohr einschieben.
+  3. Hubzylinder unten und oben mit je einem Bolzen anbauen.
+  4. Aufhängung mit dem Kopfbolzen anbauen, Spreader auf den Drehzapfen,
+     Teleskoparme in die Kanäle schieben.
+  5. Container: Stirnwand und Türseite in die Quernuten des Bodens,
+     Seitenwände in die Längsnuten, Dach aufsetzen.
+  6. Spreader aufsetzen – die vier Zapfen greifen in die oberen Eckbeschläge.
+
+BEWEGLICH
+  Innenrohr ausziehbar, Ausleger starr im gewählten Winkel. Die Aufhängung
+  pendelt – der Spreader hängt immer waagerecht und dreht sich. Teleskoparme
+  von 20 auf 40 Fuß ausziehbar. Räder drehen sich.
+
+CONTAINER-BEFESTIGUNG
+  Statt Twistlocks (zu fein für FDM) sitzen unter den Kopfträgern vier kurze,
+  angespitzte Zapfen. Sie stecken stramm in den Bohrungen der oberen
+  Eckbeschläge; der Spreader liegt flach auf – der Container wirkt verriegelt.

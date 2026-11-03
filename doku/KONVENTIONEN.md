@@ -49,9 +49,14 @@ Reihenfolge in der Quelle:
 - Export: `python3 werkzeuge/farb_export.py modelle/<n>/<n>.scad 43 ausgabe/<n>/STL_1-43` (ebenso 87). Erzeugt STL je Teil/Farbe, `Farbliste.txt` und eine farbige 3MF.
 - Nur geänderte Teile neu rechnen: `--nur teil1,teil2` (den Rest liefert der Zwischenspeicher).
 
-## 5. Druckregeln (stützfrei)
+## 5. Druckregeln (stützfrei, wo möglich)
 
-- Keine Überhänge über 45°. Brücken höchstens 15–20 mm, und zwar zwischen Rippen, die quer zur Brücke stehen.
+- Grundsatz: Teile wo möglich ohne Stützmaterial planen. Wo es sinnvoll ist – für Funktion,
+  Design oder einen besseren/einfacheren Druck – darf mit Stützmaterial geplant werden.
+  Stützen werden **nicht** ins Modell eingebaut (der Slicer erzeugt sie). Solche Stellen im
+  Kopfkommentar (DRUCK), in LIESMICH und Anleitung nennen; die Slicing-Probe meldet sie als
+  STÜTZE – das ist dann erwartet und wird Dirk mit Begründung genannt.
+- Keine Überhänge über 45° (ohne geplante Stütze). Brücken höchstens 15–20 mm, und zwar zwischen Rippen, die quer zur Brücke stehen.
 - Große Körper hohl: unten offen mit Rippen (Podest kopfüber, Dach/Umgang aufrecht), Decke parallel zur Oberfläche.
 - Zapfen nur nach oben. Auf der Bettseite gibt es nur Löcher, Taschen und Rillen. Zapfenkanten 45° fasen.
 - Schauseiten mit Schrift oder Gesicht nach unten drucken (Farbeinleger in den ersten Schichten).
@@ -78,7 +83,8 @@ INFOS-Einträge, DRUCK-Zeilen und Dispatch genau wie in `modelle/raupenbahn/raup
 - Slicing-Probe (Pflicht vor der Ausgabe): `python3 werkzeuge/slicen.py ausgabe/<n>/STL_1-43` (ebenso 1:87), PrusaSlicer-CLI
   (`apt-get install -y prusa-slicer`), Profil 0,4-mm-Düse / 0,16 mm Schicht. Meldet STÜTZE (freier Überhang, Brücken zählen nicht),
   SCHRÄG (Unterseite flacher als 45°), DÜNN (< 85 % gedruckt, Details unter Düsenbreite), LÜCKE (schwebende Teile),
-  AUFLAGE (erste Schicht zu klein / kippt). Ziel „Slicing-Hinweise: 0“; bewusst belassene Hinweise Dirk nennen und begründen.
+  AUFLAGE (erste Schicht zu klein / kippt). Ziel „Slicing-Hinweise: 0“; bewusst belassene Hinweise (auch geplante
+  Stützen) Dirk nennen und begründen.
   Bericht: `ausgabe/<n>/slicen_STL_1-43.txt`, dazu die geschätzte Druckzeit.
 
 ## 9. Ablauf je Modell (token-sparend)

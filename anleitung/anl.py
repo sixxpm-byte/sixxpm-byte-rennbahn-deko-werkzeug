@@ -163,7 +163,7 @@ class Doc:
         c.setFont("SB", 13); c.drawRightString(PW - 30, 70, "Druck- und Aufbauanleitung")
         c.setFont("S", 11.5)
         c.drawRightString(PW - 30, 50, f"Maßstab {m['scale_txt']}  ·  {m['n_prints']} Druckteile")
-        c.drawRightString(PW - 30, 33, "FDM, ohne Stützmaterial")
+        c.drawRightString(PW - 30, 33, m.get("cover_note", "FDM, ohne Stützmaterial"))
         c.showPage(); self.page += 1
 
     def vorbereitung(self):

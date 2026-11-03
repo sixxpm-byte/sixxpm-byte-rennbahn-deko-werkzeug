@@ -227,6 +227,7 @@ function near(p, L, d) = len([for (q = L) if (norm([p[0] - q[0], p[1] - q[1]]) <
 // ---- Ausgabe-Hilfen ----
 module druck(t, n, fp, f, m) if (m > 0) echo(str("DRUCK|", t, "|", n, "|", fp, "|", f, "|", m));
 module farben_echo() for (f = FARBEN) echo(str("FARBE|", f[0], "|", f[1]));
+module mass_echo(x, y, z) echo(str("MASS|", r2(x), "|", r2(y), "|", r2(z)));
 // Clip-Platten: n Clips, stk = 0 alle Platten, sonst Platte stk
 module verbinder_platten(n, stk) {
     px = floor((usable + 3) / (cL + 3)); py = floor((usable + 3) / (cw1 + 3));
