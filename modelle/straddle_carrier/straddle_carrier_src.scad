@@ -15,6 +15,10 @@
 //    mitteltraeger     Mittelträger, trägt den Spreader am Drehzapfen          1x
 //    spreader_rahmen   Spreader-Mittelteil mit zwei Kanälen und Drehzapfen     1x
 //    spreader_arm      Teleskoparm mit Kopfträger, Magnettasche(n), Koni       2x
+//    c20_... / c40_... Container-Bausatz 20 bzw. 40 Fuß (lib/deko_container.scad):
+//      boden, dach (mit Magnettaschen von innen), seite 2x, stirn, tuer
+//      (40 Fuß bei 1:43: Boden/Dach mit Clips geteilt, Seitenwände zweiteilig)
+//    verbinder         Clips für geteilte Container-Teile (nur wenn nötig)
 //    rad               Rad mit Profil und Felge                                4x
 //    kabine            Fahrerkabine (Rahmen + Glas)                            1x
 //    motor             Motormodul mit Lüftergitter                             1x
@@ -23,9 +27,9 @@
 //    * Räder drehen sich auf den Achszapfen.
 //    * Beide Teleskoparme ziehen den Spreader von 20 Fuß auf 40 Fuß aus.
 //    * Der Spreader steckt mit dem Drehzapfen stramm im Mittelträger (abnehmbar).
-//    * Container-Halterung: Magnete in Taschen unter den Kopfträgern (Gegenstück:
-//      Stahlscheibe oder Magnet auf dem Containerdach); Koni zentrieren in den
-//      Eckbeschlägen (ISO-Lochabstand).
+//    * Container-Halterung: Magnete in Taschen unter den Kopfträgern, Gegenstück
+//      (Magnet oder Stahlscheibe) unsichtbar von innen im Containerdach; Koni
+//      zentrieren in den Eckbeschlägen (ISO-Lochabstand).
 //  STARR
 //    Die Hubhöhe (hubhoehe_m = Unterkante Spreader) legt die Länge der Innenbeine
 //    fest.  Für eine andere Hubhöhe nur die vier Innenbeine neu drucken.
@@ -33,7 +37,8 @@
 //    Alle Teile stützfrei: Fahrwerk und Oberrahmen auf der Innenseite liegend
 //    (Beinschächte mit gefastem Dach, kurze Brücke), Quer- und Mittelträger auf der Rückseite,
 //    Spreader-Rahmen aufrecht, Arme kopfüber, Innenbeine auf der Außenseite,
-//    Räder auf der Innenseite, Kabine und Motor aufrecht.
+//    Räder auf der Innenseite, Kabine und Motor aufrecht.  Container: Boden und
+//    Dach kopfüber, Seitenwände innen unten, Stirn- und Türseite außen unten.
 //  MONTAGE (Kurzfassung)
 //    1. Räder auf die Achszapfen, Kabine und Motor an das linke Fahrwerk stecken.
 //    2. Innenbeine in die Beinfüße stecken (Stange zur Fahrzeugmitte).
@@ -48,7 +53,7 @@ massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
-teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, fahrwerk_links:Fahrwerk links, fahrwerk_rechts:Fahrwerk rechts, oberrahmen:Oberrahmen (2x), innenbein:Innenbein mit Stange (4x), quertraeger:Querträger (2x), mitteltraeger:Mittelträger, spreader_rahmen:Spreader-Rahmen, spreader_arm:Spreader-Teleskoparm (2x), rad:Rad (4x), kabine:Fahrerkabine, motor:Motormodul]
+teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, fahrwerk_links:Fahrwerk links, fahrwerk_rechts:Fahrwerk rechts, oberrahmen:Oberrahmen (2x), innenbein:Innenbein mit Stange (4x), quertraeger:Querträger (2x), mitteltraeger:Mittelträger, spreader_rahmen:Spreader-Rahmen, spreader_arm:Spreader-Teleskoparm (2x), rad:Rad (4x), kabine:Fahrerkabine, motor:Motormodul, c20_boden:Container 20' Boden, c20_dach:Container 20' Dach, c20_seite:Container 20' Seitenwand (2x), c20_stirn:Container 20' Stirnwand, c20_tuer:Container 20' Türseite, c40_boden:Container 40' Boden, c40_dach:Container 40' Dach, c40_seite:Container 40' Seitenwand (2x), c40_stirn:Container 40' Stirnwand, c40_tuer:Container 40' Türseite, verbinder:Verbinder-Clips (Container)]
 stueck = 0;
 farbteil = "alle"; // [alle, A, B]
 
@@ -93,6 +98,8 @@ magnet_h = 2;
 magnet_spiel = 0.1;
 // Magnete je Kopfträger
 magnet_anzahl = 1; // [1, 2]
+// Dachhaut über dem Container-Magnet in mm (Magnet sitzt unsichtbar von innen im Dach)
+magnet_haut = 0.6;
 // Zentrierzapfen (Koni) unter den Kopfträgern
 koni = true;
 
@@ -114,6 +121,8 @@ farbe_reifen    = "schwarz";   // [rot, gelb, blau, hellblau, puderblau, gruen, 
 farbe_felge     = "grau";      // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
 farbe_glas      = "puderblau"; // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
 farbe_gitter    = "anthrazit"; // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_beschlag  = "anthrazit"; // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
+farbe_clips     = "grau";      // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
 farbe_container = "rot";       // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen]
 
 /* [Druck & Passung] */
@@ -122,7 +131,7 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
-verbinder_anzahl = 0;
+verbinder_anzahl = 4;
 // Luft je Seite in den Teleskopkanälen
 tele_spiel = 0.2;
 // Luft je Seite: Koni und Drehzapfen (klein = stramm)
@@ -161,15 +170,14 @@ l_rz = s_r + h_hub - 0.4;
 c_rz = max(M(0.04), 0.4);                 // Fase an Zapfenspitzen
 
 // Spreader (Welt: Mitte x = y = 0)
-d_tw = max(M(0.12), 1.8);                 // Koni
-h_tw = max(M(0.15), 2.0);
-in_x = max(M((container_20_m - 5.853) / 2), d_tw / 2 + zapfen_spiel + 1.1);
-in_y = max(M((container_breite_m - 2.259) / 2), d_tw / 2 + zapfen_spiel + 1.1);
-L_c20 = M(container_20_m); L_c40 = M(container_40_m);
-W_ct = M(container_breite_m); H_ct = M(container_hoehe_m);
 d_mt = magnet_d + 2 * magnet_spiel;       // Magnettasche
 h_mt = magnet_h + 0.1;
-eb_x = max(M(0.35), magnete ? d_mt + 2 * min_wand : 0);   // Kopfträger-Breite (x)
+// Container-Bausatz (Koni d_tw/h_tw, Lochabstand in_x/in_y, Maße L_c20 … aus der Bibliothek)
+ct_mag = magnete; ct_mag_d = d_mt; ct_mag_h = h_mt; ct_mag_n = magnet_anzahl; ct_mag_haut = magnet_haut;
+include <../../lib/deko_container.scad>
+eb_x = M(0.35);                           // Kopfträger: Breite außen der Koni-Mitte
+d_xm = ct_mag_x - in_x;                   // Magnet liegt um d_xm weiter innen als die Koni
+k_in = max(eb_x / 2, magnete ? d_xm + d_mt / 2 + min_wand : 0);   // Kopfträger innen der Koni-Mitte
 h_kt = max(M(0.55), magnete ? h_mt + min_wand + 0.4 : 0);
 x_kt = L_c20 / 2 - in_x;                  // Kopfträger-Mitte (20 Fuß)
 E40  = (L_c40 - L_c20) / 2;
@@ -179,13 +187,13 @@ t_s  = max(M(0.07), min_wand);
 w_ch = M(0.42); h_ch = M(0.42);           // Kanal je Arm
 W_sr = 2 * w_ch + 3 * t_s;
 g_sr = max(M(0.05), 0.6);
-L_sr = 2 * (x_kt - eb_x / 2 - g_sr);
+L_sr = 2 * (x_kt - k_in - g_sr);
 Z_hub = M(hubhoehe_m);
 z_bt = Z_hub + h_kt;                      // Oberkante Arm-Balken = Kopfträger
 z_r1 = z_bt + tele_spiel + t_s;           // Oberkante Spreader-Rahmen
 z_r0 = z_r1 - h_ch - 2 * t_s;
 y_ch = t_s / 2 + w_ch / 2;
-L_ab = min(E40 + M(1.0), x_kt - eb_x / 2 + L_sr / 2 - M(0.15));
+L_ab = min(E40 + M(1.0), x_kt - k_in + L_sr / 2 - M(0.15));
 d_dz = max(M(0.25), 3.0);                 // Drehzapfen
 h_dz = max(M(0.25), 2.5);
 g_dz = 0.3;
@@ -369,13 +377,13 @@ module spreader_rahmen_welt() {
 }
 // Arm vorne (+x, Kanal +y) bei 20 Fuß; Arm hinten = 180° gedreht
 module spreader_arm_welt(fp) {
-    xk = x_kt - eb_x / 2;
+    xk = x_kt - k_in;
     if (inc(fp, "B")) box([xk - L_ab, y_ch - w_ch / 2 + tele_spiel, z_r0 + t_s + tele_spiel], [xk, y_ch + w_ch / 2 - tele_spiel, z_bt]);
     if (inc(fp, "A")) {
         difference() {
             box([xk, -W_kt / 2, Z_hub], [x_kt + eb_x / 2, W_kt / 2, z_bt]);
             // Magnettaschen (von unten; im Druck oben offen)
-            if (magnete) for (y = Y_MG) translate([x_kt, y, Z_hub - 1]) cylinder(d = d_mt, h = h_mt + 1, $fn = 48);
+            if (magnete) for (y = Y_MG) translate([x_kt - d_xm, y, Z_hub - 1]) cylinder(d = d_mt, h = h_mt + 1, $fn = 48);
         }
         if (koni) for (sy = [-1, 1]) translate([x_kt, sy * (W_ct / 2 - in_y), Z_hub + 0.01]) mirror([0, 0, 1]) zapfen_rund(d_tw, h_tw + 0.01, c_rz);
     }
@@ -460,13 +468,8 @@ module motor_druck(fp) translate([0, 0, -K_Z0]) motor_welt(fp);
 // =====================================================================
 //  Container (nur Vorschau)
 // =====================================================================
-module container_vorschau(Lc) translate([0, 0, Z_hub - H_ct]) {
-    vorschau_farbe(farbe_container) difference() {
-        translate([-Lc / 2, -W_ct / 2, 0]) cube([Lc, W_ct, H_ct]);
-        for (k = [1 : floor(Lc / M(0.3)) - 1], sy = [-1, 1]) translate([-Lc / 2 + k * M(0.3) - M(0.06), sy * W_ct / 2 - M(0.03), M(0.2)]) cube([M(0.12), M(0.06), H_ct - M(0.4)]);
-    }
-    vorschau_farbe("anthrazit") for (sx = [-1, 1], sy = [-1, 1], z = [0, H_ct - M(0.12)]) translate([sx * Lc / 2 - (sx > 0 ? M(0.18) : 0), sy * W_ct / 2 - (sy > 0 ? M(0.16) : 0), z]) cube([M(0.18), M(0.16), M(0.12)]);
-}
+// Container (lokal aus der Bibliothek) unter den Spreader setzen
+module container_welt(Lc, ex = 0) translate([-Lc / 2, -W_ct / 2, Z_hub - H_ct]) ct_welt(Lc, ex);
 
 // =====================================================================
 //  Zusammenbau
@@ -489,7 +492,7 @@ module straddle_carrier(ex = 0) {
     translate([0, 0, 1.2 * ex]) {
         vorschau_farbe(farbe_spreader) spreader_rahmen_welt();
         for (r = [0, 180]) rotate([0, 0, r]) translate([spreader_auszug * E40 + 0.6 * ex, 0, -0.4 * ex]) { vorschau_farbe(farbe_kopf) spreader_arm_welt("A"); vorschau_farbe(farbe_spreader) spreader_arm_welt("B"); }
-        if (container_zeigen) translate([0, 0, -1.4 * ex]) container_vorschau(spreader_auszug > 0.5 ? L_c40 : L_c20);
+        if (container_zeigen) translate([0, 0, -1.4 * ex]) container_welt(spreader_auszug > 0.5 ? L_c40 : L_c20, 0.4 * ex);
     }
 }
 
@@ -504,12 +507,15 @@ echo(str("Straddle Carrier 1:", den, " | ", r2(F_X), " x ", r2(2 * (y_a + s_r + 
 echo(str("Lichte Weite ", zm(2 * y_i), " m (Container ", container_breite_m, " m) | Hubhöhe ", hubhoehe_m, " m, Container-Unterkante ", zm(Z_hub - H_ct),
          " m | Innenbein ", r2(L_ib), " mm, davon sichtbar ", r2(Z_ob0 - Z_f1), " mm (", zm(Z_ob0 - Z_f1), " m)"));
 echo(str("Spreader-Rahmen ", r2(L_sr), " x ", r2(W_sr), " x ", r2(z_r1 - z_r0), " mm | Arm-Balken ", r2(L_ab), " mm | 20'/40': ", r2(2 * x_kt + eb_x), " / ", r2(2 * (x_kt + E40) + eb_x),
-         " mm | Kopfträger ", r2(eb_x), " x ", r2(W_kt), " x ", r2(h_kt), " mm"));
-echo(str("Container-Halterung: ", magnete ? str(magnet_anzahl, " Magnet(e) je Kopfträger, Tasche Ø ", r2(d_mt), " x ", r2(h_mt), " mm (Magnet ", magnet_d, " x ", magnet_h,
-         "), Abstand zur Mitte ", r2(x_kt), " mm 20' / ", r2(x_kt + E40), " mm 40'") : "keine Magnete", koni ? str(" | Koni Ø ", r2(d_tw), " x ", r2(h_tw), " mm") : " | ohne Koni"));
+         " mm | Kopfträger ", r2(k_in + eb_x / 2), " x ", r2(W_kt), " x ", r2(h_kt), " mm"));
+echo(str("Container-Halterung: ", magnete ? str(magnet_anzahl, " Magnet(e) je Kopfträger und Containerende, Tasche Ø ", r2(d_mt), " x ", r2(h_mt), " mm (Magnet ", magnet_d, " x ", magnet_h,
+         "), im Containerdach von innen, ", r2(ct_mag_x), " mm ab Stirnseite, Dachhaut ", r2(magnet_haut), " mm") : "keine Magnete", koni ? str(" | Koni Ø ", r2(d_tw), " x ", r2(h_tw), " mm") : " | ohne Koni",
+         " | Kopfträger ", r2(k_in + eb_x / 2), " mm breit"));
+echo(str("Container 20'/40': ", r2(L_c20), " / ", r2(L_c40), " x ", r2(W_ct), " x ", r2(H_ct), " mm | 40' Boden/Dach ", n_pieces(info_boden(L_c40)), " Stück(e), Seitenwand ",
+         n_pieces(info_seite(L_c40)), " Stück(e), ", CLIPS, " Clips", len(ct_xs(L_c40)) > 0 && zero_seams(info_boden(L_c40)) + zero_seams(info_dach(L_c40)) > 0 ? "  WARNUNG: Naht ohne Clip" : ""));
 echo(str("Mindestmaße: Wand ", r2(t_s), " | Innenbein ", r2(b_ib), " x ", r2(t_ib), ", Stange ", r2(d_r), " | Feder ", r2(h_tg), " x ", r2(w_tg), " | Räder Ø ", r2(2 * R_w), " x ", r2(B_w), ", Zapfen Ø ", r2(d_rz), " mm"));
 if (max(F_X, F_ZO, 2 * XL + BU) > usable) echo("WARNUNG: Rahmenteil größer als das Druckbett");
-if (max(L_ib, 2 * x_kt + eb_x, L_ab + eb_x) > usable) echo("WARNUNG: Innenbein oder Spreader-Teil größer als das Druckbett");
+if (max(L_ib, 2 * x_kt + eb_x, L_ab + k_in + eb_x / 2) > usable) echo("WARNUNG: Innenbein oder Spreader-Teil größer als das Druckbett");
 if (Z_ob0 - Z_f1 < M(0.2)) echo("WARNUNG: Innenbein kaum sichtbar – hubhoehe_m vergrößern oder oberbein_laenge_m verkleinern");
 if (Z_ob0 < Z_f1 + 0.01) echo("WARNUNG: Oberbein reicht bis aufs Fahrwerk – oberbein_laenge_m verkleinern");
 if (2 * y_i < W_ct + M(0.2)) echo("WARNUNG: Container passt nicht zwischen die Beine – breite_m vergrößern");
@@ -518,8 +524,9 @@ if (Z_hub - H_ct < M(0.1)) echo("WARNUNG: Container schleift am Boden – hubhoe
 if (L_ab < E40 + M(0.5)) echo("WARNUNG: Teleskoparm bei 40 Fuß zu kurz im Kanal");
 if (MO_X1 + M(0.1) > K_X0) echo("WARNUNG: Motor und Kabine berühren sich – Längen verkleinern");
 if (magnete && h_mt + min_wand > h_kt) echo("WARNUNG: Magnettasche zu tief für den Kopfträger");
-if (magnete && magnet_anzahl == 2 && W_kt / 4 < d_mt / 2 + d_tw / 2 + 1) echo("WARNUNG: Magnettaschen zu nah an den Koni");
-if (magnete && magnet_anzahl == 1 && koni && W_ct / 2 - in_y - d_tw / 2 < d_mt / 2 + 0.8) echo("WARNUNG: Magnettasche zu nah an den Koni");
+if (magnete && koni && len([for (y = Y_MG, sy = [-1, 1]) if (norm([d_xm, sy * (W_ct / 2 - in_y) - y]) < d_mt / 2 + d_tw / 2 + 0.8) 1]) > 0) echo("WARNUNG: Magnettasche zu nah an den Koni");
+if (magnete && magnet_anzahl == 2 && W_ct / 4 < d_mt / 2 + min_wand + cd + t_cw + spiel) echo("WARNUNG: Magnettaschen im Containerdach zu nah an den Seitenwänden");
+if (magnete && magnet_haut < 0.4) echo("WARNUNG: Dachhaut über dem Container-Magnet unter 0,4 mm – reißt beim Druck");
 mass_echo(F_X, 2 * (y_a + s_r + B_w), H);
 
 druck("fahrwerk_links", 1, "alle", farbe_gelb, 1); druck("fahrwerk_rechts", 1, "alle", farbe_gelb, 1);
@@ -532,6 +539,14 @@ druck("spreader_arm", 1, "A", farbe_kopf, 2); druck("spreader_arm", 1, "B", farb
 druck("rad", 1, "A", farbe_reifen, 4); druck("rad", 1, "B", farbe_felge, 4);
 druck("kabine", 1, "A", farbe_gelb, 1); druck("kabine", 1, "B", farbe_glas, 1);
 druck("motor", 1, "A", farbe_gelb, 1); druck("motor", 1, "B", farbe_gitter, 1);
+for (c = [[20, L_c20], [40, L_c40]]) let(n = str("c", c[0], "_"), Lc = c[1]) {
+    druck(str(n, "boden"), n_pieces(info_boden(Lc)), "alle", farbe_beschlag, 1);
+    druck(str(n, "dach"), n_pieces(info_dach(Lc)), "A", farbe_container, 1); druck(str(n, "dach"), n_pieces(info_dach(Lc)), "B", farbe_beschlag, 1);
+    druck(str(n, "seite"), n_pieces(info_seite(Lc)), "alle", farbe_container, 2);
+    druck(str(n, "stirn"), 1, "A", farbe_container, 1); druck(str(n, "stirn"), 1, "B", farbe_beschlag, 1);
+    druck(str(n, "tuer"), 1, "A", farbe_container, 1); druck(str(n, "tuer"), 1, "B", farbe_beschlag, 1);
+}
+if (CLIPS > 0) druck("verbinder", 1, "alle", farbe_clips, 1);
 farben_echo();
 
 if (teil == "aufbau") straddle_carrier();
@@ -547,3 +562,6 @@ else if (teil == "spreader_arm") spreader_arm_druck(farbteil);
 else if (teil == "rad") rad(farbteil);
 else if (teil == "kabine") kabine_druck(farbteil);
 else if (teil == "motor") motor_druck(farbteil);
+else if (starts(teil, "c20_")) ct_druck(L_c20, chr([for (i = [4 : len(teil) - 1]) ord(teil[i])]), farbteil, stueck);
+else if (starts(teil, "c40_")) ct_druck(L_c40, chr([for (i = [4 : len(teil) - 1]) ord(teil[i])]), farbteil, stueck);
+else if (teil == "verbinder") verbinder_platten(max(CLIPS, 4), stueck);

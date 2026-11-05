@@ -1,9 +1,9 @@
 TITEL
-Straddle Carrier für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Portalhubwagen mit Teleskopbeinen / Straddle carrier with telescopic legs
+Straddle Carrier für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Portalhubwagen mit Containern / Straddle carrier with containers
 
 KURZBESCHREIBUNG
-Zerlegbarer Straddle Carrier mit Teleskopbeinen, ausziehbarem Spreader 20′/40′ und versteckter Magnet-Halterung für Container – mehrfarbig und stützfrei druckbar in 1:43 und 1:87 (H0), passend als Hafen-Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen.
-Take-apart straddle carrier with telescopic legs, extendable 20′/40′ spreader and hidden magnetic container holder – multicolour and support-free printable in 1:43 and 1:87 (H0), ideal harbour decoration for Carrera and Sturmkind DR!FT tracks.
+Zerlegbarer Straddle Carrier mit Teleskopbeinen, ausziehbarem Spreader 20′/40′, versteckter Magnet-Halterung und Containern 20′ und 40′ – mehrfarbig und stützfrei druckbar in 1:43 und 1:87 (H0), passend als Hafen-Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Take-apart straddle carrier with telescopic legs, extendable 20′/40′ spreader, hidden magnetic holder and 20′ and 40′ containers – multicolour and support-free printable in 1:43 and 1:87 (H0), ideal harbour decoration for Carrera and Sturmkind DR!FT tracks.
 
 BESCHREIBUNG
 Bring Hafenbetrieb an deine Rennbahn: Dieser Portalhubwagen (Shuttle Carrier) fährt über den Container, nimmt ihn mit dem Spreader auf und trägt ihn zwischen seinen Beinen – als vollständiger 3D-Druck-Bausatz in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
@@ -13,15 +13,17 @@ Ausstattung
 • Teleskopbeine wie beim Vorbild: schwarze Innenbeine mit silbernen Kolbenstangen gleiten in die gelben Oberbeine
 • Oberrahmen mit Schrägstreben, Querträgern und weißer Leuchtenleiste
 • Spreader von 20 auf 40 Fuß ausziehbar, am Drehzapfen abnehmbar
-• Versteckte Container-Halterung: Magnete in den Kopfträgern halten den Container, Zentrierzapfen finden die Eckbeschläge – im Customizer einstellbar (Größe, Anzahl, Passung, an/aus)
+• Versteckte Container-Halterung: Magnete in den Kopfträgern und unsichtbar im Containerdach halten den Container, Zentrierzapfen finden die Eckbeschläge – im Customizer einstellbar (Größe, Anzahl, Passung, an/aus)
+• Container-Bausatz 20 Fuß und 40 Fuß nach ISO-Maßen: Boden mit Eckbeschlägen, Dach, Seitenwände mit Trapezsicken, Stirnwand und Türseite mit Verriegelungsstangen – gesteckt, der 40-Fuß-Container in 1:43 mit Clips
 • Hubhöhe frei wählbar – dafür werden nur die vier Innenbeine neu gedruckt
 • Alle Teile stützfrei, alle Verbindungen gesteckt, Räder drehen sich
 
 Größe
 • 1:43: ca. 18,6 × 12,1 cm, Höhe ca. 14,7 cm, Spreader 14 cm (20′) / 29 cm (40′)
 • 1:87: ca. 9,2 × 6,0 cm, Höhe ca. 7,4 cm, Spreader 7 cm (20′) / 14 cm (40′)
+• Container 1:43: 14,1 cm (20′) bzw. 28,4 cm (40′) lang; 1:87: 7,0 cm bzw. 14,0 cm
 
-Lieferumfang: STL- und mehrfarbige 3MF-Dateien für 1:43 und 1:87, Farblisten, LIESMICH und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten. Container und Magnete gehören nicht zum Lieferumfang.
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien für Straddle Carrier und Container (20′ und 40′) in 1:43 und 1:87, Farblisten, LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten. Magnete gehören nicht zum Lieferumfang.
 
 Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Straddle Carriers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile und Magnete, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
 
@@ -33,15 +35,17 @@ Features
 • Telescopic legs like the real machine: black inner legs with silver piston rods slide into the yellow upper legs
 • Upper frame with diagonal braces, cross beams and white light bar
 • Spreader extends from 20 to 40 feet and detaches at its pivot pin
-• Hidden container holder: magnets in the end beams hold the container, locating pins find the corner castings – adjustable in the Customizer (size, number, fit, on/off)
+• Hidden container holder: magnets in the end beams and invisibly inside the container roof hold the container, locating pins find the corner castings – adjustable in the Customizer (size, number, fit, on/off)
+• Container kit 20 ft and 40 ft to ISO dimensions: floor with corner castings, roof, corrugated side walls, front wall and door end with locking bars – plugged together, the 40 ft container in 1:43 with clips
 • Lift height selectable – only the four inner legs are reprinted
 • All parts print without supports, all joints plug together, wheels rotate
 
 Size
 • 1:43: approx. 18.6 × 12.1 cm, height approx. 14.7 cm, spreader 14 cm (20′) / 29 cm (40′)
 • 1:87: approx. 9.2 × 6.0 cm, height approx. 7.4 cm, spreader 7 cm (20′) / 14 cm (40′)
+• Containers 1:43: 14.1 cm (20′) or 28.4 cm (40′) long; 1:87: 7.0 cm or 14.0 cm
 
-Included: STL and multicolour 3MF files for 1:43 and 1:87, colour lists, readme and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included. Container and magnets are not included.
+Included: STL and multicolour 3MF files for the straddle carrier and containers (20′ and 40′) in 1:43 and 1:87, colour lists, readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included. Magnets are not included.
 
 Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a straddle carrier, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts and magnets, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
 
@@ -49,23 +53,23 @@ DRUCKANWEISUNG
 • Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
 • Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
 • Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig
-• Kein Stützmaterial nötig: Fahrwerk und Oberrahmen liegen auf der Innenseite, die Beinschächte haben ein gefastes Dach mit kurzer Brücke, die Spreader-Kanäle sind kurze Brücken
+• Kein Stützmaterial nötig: Fahrwerk und Oberrahmen liegen auf der Innenseite, die Beinschächte haben ein gefastes Dach mit kurzer Brücke, die Spreader-Kanäle sind kurze Brücken; Containerboden und -dach drucken kopfüber, die Wände flach
 • Mehrfarbige Teile mit AMS/MMU aus der 3MF drucken – oder einfarbig, die STL sind je Farbe getrennt
-• Keine Teilung, keine Clips, keine Bolzen – alles wird gesteckt
-• Magnete (Standard Ø 5 × 2 mm) in die Taschen der Kopfträger kleben; Gegenstück (Stahlscheibe oder Magnet) aufs Containerdach, Abstände stehen in der Anleitung
+• Teilung nur beim 40-Fuß-Container in 1:43: Boden und Dach aus je 2 Teilen mit 6 Clips, Seitenwände zweiteilig; sonst alles ungeteilt und gesteckt, keine Bolzen
+• Magnete (Standard Ø 5 × 2 mm) in die Taschen der Kopfträger und von innen in die Taschen des Containerdachs kleben (oder Stahlscheiben); Polung vor dem Aushärten prüfen
 • Passung: spiel (Innenbeine, Federn), tele_spiel (Teleskoparme), zapfen_spiel (Koni, Drehzapfen) und magnet_spiel im Customizer anpassen
-• Druckzeit (Slicer-Schätzung bei 100 % Füllung): ca. 24 h für 1:43, ca. 4 h für 1:87 – mit 15 % Füllung deutlich weniger
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung): 1:43 Fahrzeug ca. 37 h, Container 20′ ca. 10 h, 40′ ca. 20 h; 1:87 Fahrzeug ca. 6 h, Container 20′ ca. 2 h, 40′ ca. 4 h – mit 15 % Füllung deutlich weniger
 
 --- English ---
 • Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
 • Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
 • Print every part exactly as oriented in the files – the orientation is ready to print
-• No supports needed: chassis and upper frames lie on their inner side, the leg sockets have a chamfered roof with a short bridge, the spreader channels are short bridges
+• No supports needed: chassis and upper frames lie on their inner side, the leg sockets have a chamfered roof with a short bridge, the spreader channels are short bridges; container floor and roof print upside down, the walls flat
 • Print multicolour parts from the 3MF with AMS/MMU – or in one colour, the STL files are split by colour
-• No splitting, no clips, no pins – everything plugs together
-• Glue the magnets (default Ø 5 × 2 mm) into the end beam pockets; put the counterpart (steel disc or magnet) on the container roof, distances are given in the instructions
+• Splitting only for the 40 ft container in 1:43: floor and roof in 2 pieces each with 6 clips, side walls in two parts; everything else is one piece and plugs together, no pins
+• Glue the magnets (default Ø 5 × 2 mm) into the end beam pockets and from the inside into the container roof pockets (or use steel discs); check polarity before the glue sets
 • Fit: adjust spiel (inner legs, tongues), tele_spiel (telescopic arms), zapfen_spiel (locating pins, pivot) and magnet_spiel in the Customizer
-• Print time (slicer estimate at 100 % infill): approx. 24 h for 1:43, approx. 4 h for 1:87 – much less with 15 % infill
+• Print time (slicer estimate at 100 % infill): 1:43 vehicle approx. 37 h, container 20′ approx. 10 h, 40′ approx. 20 h; 1:87 vehicle approx. 6 h, container 20′ approx. 2 h, 40′ approx. 4 h – much less with 15 % infill
 
 TAGS
 StraddleCarrier,Portalhubwagen,Portalstapler,Container,Seecontainer,Hafen,Containerterminal,Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,H0,Massstab143,3DDruck,Mehrfarbig

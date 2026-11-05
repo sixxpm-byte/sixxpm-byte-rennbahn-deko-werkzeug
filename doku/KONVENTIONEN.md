@@ -21,7 +21,7 @@ Reihenfolge in der Quelle:
    - `/* [Farben] */`: je Bauteil `farbe_xxx = "rot"; // [<Farbliste wie in raupenbahn_src.scad>]`
    - `/* [Druck & Passung] */`: `rennbahn_taschen = true; druckbett = 220; rand = 5; min_wand = 1.2; spiel = 0.15; verbinder_anzahl = 0;`
 3. `include <../../lib/deko_grundlagen.scad>`, danach die Maße des Modells.
-4. optional `include <../../lib/deko_kasse.scad>` (nach den Maßen).
+4. optional `include <../../lib/deko_kasse.scad>` (nach den Maßen); optional `include <../../lib/deko_container.scad>` für einen Container-Bausatz 20/40 Fuß (vorher Container-Maße, `zapfen_spiel`, `farbe_container`, `farbe_beschlag` und `ct_mag…` festlegen – siehe Kopf der Datei).
 5. `include <../../lib/deko_hilfen.scad>`, optional `include <../../lib/deko_ornamente.scad>`.
 6. Module der Bauteile, Zusammenbau `<modell>(ex)`, Info und Ausgabe (INFOS, Echo-Zeilen, `druck(...)`, `farben_echo();`, Dispatch nach `teil`).
 

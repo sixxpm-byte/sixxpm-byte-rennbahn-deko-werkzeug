@@ -1,4 +1,4 @@
-# alle Paare (Straddle Carrier, 20-Fuß-Container am Spreader; arm40_* = Arme in 40-Fuß-Stellung)
+# alle Paare; Stellung 20 Fuß (arm0/arm1 + container) und 40 Fuß (arm40_* + container40) nicht gemischt
 fw_l fw_r
 fw_l ob_l
 fw_l ob_r
@@ -21,6 +21,7 @@ fw_l arm40_1
 fw_l kabine
 fw_l motor
 fw_l container
+fw_l container40
 fw_r ob_l
 fw_r ob_r
 fw_r rad0
@@ -42,6 +43,7 @@ fw_r arm40_1
 fw_r kabine
 fw_r motor
 fw_r container
+fw_r container40
 ob_l ob_r
 ob_l rad0
 ob_l rad1
@@ -62,6 +64,7 @@ ob_l arm40_1
 ob_l kabine
 ob_l motor
 ob_l container
+ob_l container40
 ob_r rad0
 ob_r rad1
 ob_r rad2
@@ -81,6 +84,7 @@ ob_r arm40_1
 ob_r kabine
 ob_r motor
 ob_r container
+ob_r container40
 rad0 rad1
 rad0 rad2
 rad0 rad3
@@ -99,6 +103,7 @@ rad0 arm40_1
 rad0 kabine
 rad0 motor
 rad0 container
+rad0 container40
 rad1 rad2
 rad1 rad3
 rad1 ib0
@@ -116,6 +121,7 @@ rad1 arm40_1
 rad1 kabine
 rad1 motor
 rad1 container
+rad1 container40
 rad2 rad3
 rad2 ib0
 rad2 ib1
@@ -132,6 +138,7 @@ rad2 arm40_1
 rad2 kabine
 rad2 motor
 rad2 container
+rad2 container40
 rad3 ib0
 rad3 ib1
 rad3 ib2
@@ -147,6 +154,7 @@ rad3 arm40_1
 rad3 kabine
 rad3 motor
 rad3 container
+rad3 container40
 ib0 ib1
 ib0 ib2
 ib0 ib3
@@ -161,6 +169,7 @@ ib0 arm40_1
 ib0 kabine
 ib0 motor
 ib0 container
+ib0 container40
 ib1 ib2
 ib1 ib3
 ib1 qt0
@@ -174,6 +183,7 @@ ib1 arm40_1
 ib1 kabine
 ib1 motor
 ib1 container
+ib1 container40
 ib2 ib3
 ib2 qt0
 ib2 qt1
@@ -186,6 +196,7 @@ ib2 arm40_1
 ib2 kabine
 ib2 motor
 ib2 container
+ib2 container40
 ib3 qt0
 ib3 qt1
 ib3 mt
@@ -197,6 +208,7 @@ ib3 arm40_1
 ib3 kabine
 ib3 motor
 ib3 container
+ib3 container40
 qt0 qt1
 qt0 mt
 qt0 rahmen
@@ -207,6 +219,7 @@ qt0 arm40_1
 qt0 kabine
 qt0 motor
 qt0 container
+qt0 container40
 qt1 mt
 qt1 rahmen
 qt1 arm0
@@ -216,6 +229,7 @@ qt1 arm40_1
 qt1 kabine
 qt1 motor
 qt1 container
+qt1 container40
 mt rahmen
 mt arm0
 mt arm1
@@ -224,6 +238,7 @@ mt arm40_1
 mt kabine
 mt motor
 mt container
+mt container40
 rahmen arm0
 rahmen arm1
 rahmen arm40_0
@@ -231,6 +246,7 @@ rahmen arm40_1
 rahmen kabine
 rahmen motor
 rahmen container
+rahmen container40
 arm0 arm1
 arm0 kabine
 arm0 motor
@@ -241,8 +257,12 @@ arm1 container
 arm40_0 arm40_1
 arm40_0 kabine
 arm40_0 motor
+arm40_0 container40
 arm40_1 kabine
 arm40_1 motor
+arm40_1 container40
 kabine motor
 kabine container
+kabine container40
 motor container
+motor container40
