@@ -90,11 +90,12 @@ INFOS-Einträge, DRUCK-Zeilen und Dispatch genau wie in `modelle/raupenbahn/raup
 ## 9. Ablauf je Modell (token-sparend)
 
 1. Vorbild klären (Fotos), Entwurf als `_src.scad` mit der Bibliothek.
-2. Echo bei 1:43 und 1:87, ein Kontaktbogen mit 2–4 Vorschauen (`werkzeuge/kontaktbogen.py`), dann **Freigabe durch Dirk** – Änderungswünsche sammeln.
+2. Echo bei 1:43 und 1:87, ein Kontaktbogen mit 2–4 Vorschauen (`werkzeuge/kontaktbogen.py`), dann **Freigabe durch Dirk** – Änderungswünsche sammeln. Den zuletzt gezeigten (freigegebenen) Bogen als `ausgabe/<n>/bilder/<n>_kontrolle_vorschau.png` ablegen.
 3. Erst nach der Freigabe: Kollisionsprüfung, `inline.py`, `farb_export.py` (1:43 und 1:87), `pruefen.py`, `slicen.py`.
-4. Bilder: `<n>_aufbau.png`, `<n>_explosion.png`, ein Detailbild, `<n>_druckteile.png` (Kontaktbogen der STL).
+4. Bilder nach `ausgabe/<n>/bilder/`: `<n>_aufbau.png`, `<n>_explosion.png`, ein Detailbild, `<n>_druckteile.png` (Kontaktbogen der STL).
+   Kontrollbilder ebenfalls dorthin: `<n>_kontrolle_vorschau.png` (Schritt 2) und nach dem Anleitungsbau `<n>_kontrolle_anleitung_1-43.png` / `_1-87.png` (`kontaktbogen.py --pdf`).
 5. Anleitung: `anleitung/m_<n>.py` + `anleitung/scad/anl_<n>.scad`, dann `python3 anleitung/bauen.py <n>`.
-6. `modelle/<n>/LIESMICH.txt`, dann `python3 werkzeuge/packen.py <n>`.
+6. `modelle/<n>/LIESMICH.txt`, dann `python3 werkzeuge/packen.py <n>` – das Zip enthält auch `bilder/` (alle PNG aus `ausgabe/<n>/bilder/`); in LIESMICH eine Zeile dazu.
 7. Angebotstext `modelle/<n>/<n>_angebot.txt` (Abschnitt 10), prüfen mit `python3 werkzeuge/angebot_pruefen.py`.
 8. Optional: Cults3D-Angebot (eigener Skill).
 

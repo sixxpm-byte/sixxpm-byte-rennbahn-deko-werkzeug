@@ -8,6 +8,8 @@ STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__far
   Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
   *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
   straddle_carrier_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, Explosion, Magnet-Detail), Druckteile
+                    und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
 
 GRÖSSE
   1:43: ca. 18,6 × 12,1 cm, Höhe ca. 14,7 cm, Spreader 20' 14 cm, 40' 29 cm.
