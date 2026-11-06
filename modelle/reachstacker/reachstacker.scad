@@ -297,7 +297,7 @@ r_dz  = max(M(0.15), 1.6);                // Drehzapfen Spreader
 h_dz  = max(M(0.3), 3);
 
 // Container-Bausatz aus der Bibliothek (ohne Magnettaschen)
-ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6;
+ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = true;
 // =====================================================================
 //  deko_container.scad – Container-Bausatz 20/40 Fuß (ISO) für die Rennbahn-Deko-Reihe
 //  Teile: boden, dach (A Dachblech, B Obergurte + Eckbeschläge), seite 2x, stirn, tuer;
@@ -308,7 +308,10 @@ ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6;
 //    container_20_m, container_40_m, container_breite_m, container_hoehe_m, zapfen_spiel,
 //    farbe_container, farbe_beschlag,
 //    ct_mag (Magnettaschen im Dach an/aus), ct_mag_d, ct_mag_h (Tasche in mm),
-//    ct_mag_n (1 = mittig, 2 = bei 1/4 und 3/4 der Breite), ct_mag_haut (Dachhaut über dem Magnet)
+//    ct_mag_n (1 = mittig, 2 = bei 1/4 und 3/4 der Breite), ct_mag_haut (Dachhaut über dem Magnet),
+//    ct_zweifarbig (true: Dach, Stirn und Tür mit Farbteil B = Dachrahmen/Eckpfosten/Obergurte in
+//    farbe_beschlag – nur für Mehrfarbdruck in einem Durchgang, B ist nicht gesteckt;
+//    false: diese Teile einfarbig, dann druck(..., "alle", farbe_container, ...))
 //  Die Magnettaschen sitzen von innen im Dachblech, ct_mag_x von jeder Stirnseite.
 // =====================================================================
 // Container (lokal: x längs ab Stirnwand, y quer, z = 0 Unterkante)
@@ -404,13 +407,15 @@ module ct_dach(Lc, fp, xs = []) {
     if (inc(fp, "A")) difference() {
         union() {
             translate([rb, rb, H_ct - tr]) cube([Lc - 2 * rb, W_ct - 2 * rb, tr]);
+            if (!ct_zweifarbig) ct_dach_b(Lc);
             for (sx = xs) translate([sx - spw / 2 - 1, y_cs - 1, H_ct - tr - rib_h]) cube([spw + 2, W_ct - 2 * y_cs + 2, rib_h + 0.01]);
             if (ct_mag && ct_mag_z0 < H_ct - tr) for (p = ct_mag_pos(Lc)) translate([p[0], p[1], ct_mag_z0]) cylinder(d = ct_mag_d + 2 * min_wand, h = H_ct - tr - ct_mag_z0 + 0.01, $fn = 48);
         }
-        ct_dach_b(Lc, 0.02); loecher();
+        if (ct_zweifarbig) ct_dach_b(Lc, 0.02);
+        loecher();
         if (ct_mag) for (p = ct_mag_pos(Lc)) translate([p[0], p[1], ct_mag_z0 - 1]) cylinder(d = ct_mag_d, h = ct_mag_h + 1, $fn = 48);
     }
-    if (inc(fp, "B")) difference() { ct_dach_b(Lc); loecher(); }
+    if (ct_zweifarbig && inc(fp, "B")) difference() { ct_dach_b(Lc); loecher(); }
 }
 // ---- Seitenwand (y = 0; die zweite ist um 180° gedreht) ----
 module ct_seite(Lc) {
@@ -449,8 +454,11 @@ module ct_tuer_a(Lc) difference() {
     translate([Lc + 0.01 - 0.3, W_ct / 2 - 0.2, z_f + 0.5]) cube([0.3, 0.4, z_e1 - z_f - 1]);   // Fuge zwischen den Flügeln
 }
 module ct_stirn(Lc, fp, tuer = false) {
-    if (inc(fp, "A")) difference() { if (tuer) ct_tuer_a(Lc); else ct_stirn_a(); ct_end_b(Lc, tuer, 0.02); }
-    if (inc(fp, "B")) ct_end_b(Lc, tuer);
+    if (!ct_zweifarbig) { if (inc(fp, "A")) { if (tuer) ct_tuer_a(Lc); else ct_stirn_a(); ct_end_b(Lc, tuer); } }
+    else {
+        if (inc(fp, "A")) difference() { if (tuer) ct_tuer_a(Lc); else ct_stirn_a(); ct_end_b(Lc, tuer, 0.02); }
+        if (inc(fp, "B")) ct_end_b(Lc, tuer);
+    }
 }
 // ---- Druck ----
 module ct_druck(Lc, nm, fp, stk) {

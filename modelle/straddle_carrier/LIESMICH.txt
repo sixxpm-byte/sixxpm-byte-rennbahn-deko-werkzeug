@@ -8,10 +8,14 @@ Mit Container-Bausatz 20 Fuß und 40 Fuß (ISO-Maße), mit Magnettaschen im Dach
 STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
   Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
   *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Alle Farbteile werden gesteckt (Felge, Glaskern, Lüftergitter, Leuchten-
+  leiste, Kolbenstange, Teleskoparm/Kopfträger) – du kannst also auch ohne
+  AMS jede STL einzeln in ihrer Farbe drucken.
   straddle_carrier_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
   c20_… / c40_…   = Container 20 bzw. 40 Fuß: Boden, Dach, Seitenwand (2x),
                     Stirnwand, Türseite; verbinder = Clips (nur 1:43, für 40 Fuß)
-  bilder/         = Ansichten (Aufbau, hinten, Explosion, Magnet-Details, Container), Druckteile
+  bilder/         = Ansichten (Aufbau, hinten, Explosion, Kopfträger-Steckung,
+                    Containerdach mit Magneten, Container), Druckteile
                     und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
 
 GRÖSSE
@@ -24,7 +28,11 @@ Maßstab / andere Farben / Optionen:
   oder:  python3 farb_export.py straddle_carrier.scad 87 ausgabe -D 'farbe_gelb="orange"'
   Optionen u. a.: Hubhöhe (hubhoehe_m, starr – ändert nur die Innenbeine),
   Container High Cube (container_hoehe_m = 2.896), Passung (spiel, tele_spiel,
-  zapfen_spiel), alle Farben. Die Datei ist eigenständig.
+  zapfen_spiel, einsatz_spiel), alle Farben. Die Datei ist eigenständig.
+  Containerdach, Stirnwand und Türseite sind einfarbig (rot). Mit
+  container_zweifarbig = true bekommen sie wieder graue Eckbeschläge und
+  Riegel – diese Farbteile sind dann eingelegt und halten nur, wenn beide
+  Farben in einem Druck (AMS/MMU) entstehen.
 
 CONTAINER-HALTERUNG (Customizer-Abschnitt „Container-Halterung")
   Unter jedem Kopfträger sitzt eine Tasche für einen Neodym-Magnet.
@@ -42,6 +50,10 @@ CONTAINER-HALTERUNG (Customizer-Abschnitt „Container-Halterung")
   (ISO-Lochabstand, passt auch zum Container-Bausatz des Reach Stackers –
   dessen Dach hat aber keine Magnettaschen).
 
+  Die Magnete heben das Dach an. Soll der Container am Spreader hängen,
+  Seitenwände, Stirnseiten und Dach mit etwas Kleber am Boden fixieren –
+  gesteckt allein bleibt der Boden sonst stehen.
+
 DAZU BRAUCHST DU
   Neodym-Magnete (Standard Ø 5 × 2 mm): 2 für den Spreader und 2 je Container
   (oder Stahlscheiben gleicher Größe), Sekundenkleber. Sonst kein Zubehör.
@@ -49,29 +61,37 @@ DAZU BRAUCHST DU
 DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
   - Fahrwerk und Oberrahmen liegen auf der Innenseite (Zapfen oben); die
     Schächte für die Innenbeine haben ein gefastes Dach (kurze Brücke)
-  - Innenbeine liegen auf der gefasten Außenseite, Kolbenstange am Bett
-  - Querträger auf der Rückseite, Mittelträger auf der Seite
-  - Spreader-Rahmen aufrecht (Kanäle als Brücken), Teleskoparme kopfüber
-    (Magnettasche und Koni oben)
-  - Räder liegend (Außenseite oben), Kabine und Motormodul aufrecht
+  - Innenbein und Kolbenstange liegend (Fase unten), je 4
+  - Querträger auf der Rückseite, Leuchtenleiste flach, Mittelträger auf der Seite
+  - Spreader-Rahmen aufrecht (Kanäle als Brücken), Teleskoparme kopfüber,
+    Kopfträger kopfüber (Magnettasche und Koni oben)
+  - Reifen liegend (Innenrand unten), Felge flach
+  - Kabine aufrecht (unten offen), Glaskern als Block, Motormodul aufrecht,
+    Lüftergitter flach (Stäbe oben)
   - Container: Boden und Dach kopfüber (Magnettaschen oben offen), Seitenwände
     innen unten, Stirnwand und Türseite außen unten
   Geteilt wird nur der 40-Fuß-Container in 1:43: Boden und Dach aus je 2 Teilen
   mit 6 Clips, Seitenwände zweiteilig. In 1:87 ist nichts geteilt.
-  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Farbteile mit AMS/MMU gemeinsam aus der 3MF – oder einfarbig jede STL
+  einzeln, sie werden gesteckt.
   Slicing-Probe (PrusaSlicer, 0,4 mm Düse): 1:43 und 1:87 je 0 Hinweise.
   Druckzeit bei 100 % Füllung (alle Stücke):
-    1:43: Fahrzeug ca. 37 h, Container 20' ca. 10 h, 40' ca. 20 h
-    1:87: Fahrzeug ca. 6 h, Container 20' ca. 2 h, 40' ca. 4 h
+    1:43: Fahrzeug ca. 38 h, Container 20' ca. 10 h, 40' ca. 20 h
+    1:87: Fahrzeug ca. 7 h, Container 20' ca. 2 h, 40' ca. 4 h
   Mit 15 % Füllung deutlich weniger.
 
 MONTAGE
-  1. Räder auf die Achszapfen der beiden Fahrwerke schieben.
-  2. Kabine (vorne) und Motormodul außen ans linke Fahrwerk stecken.
-  3. Vier Innenbeine in die Beinfüße stecken, Kolbenstange zur Fahrzeugmitte.
-  4. Querträger (Leuchten außen) und Mittelträger mit den Federn zwischen die
-     beiden Oberrahmen stecken.
-  5. Magnete in die Kopfträger kleben, Teleskoparme in den Spreader schieben,
+  1. Felgen von außen in die Reifen drücken; Räder mit dem Innenrand zum
+     Rahmen auf die Achszapfen der beiden Fahrwerke schieben.
+  2. Glaskern von unten in die Kabine schieben, Lüftergitter in die Tasche
+     des Motors drücken. Kabine (vorne) und Motor außen ans linke Fahrwerk
+     stecken – die Zapfen halten auch den Glaskern.
+  3. Je ein Innenbein und eine Kolbenstange zusammen in jeden Beinfuß
+     stecken, Stange zur Fahrzeugmitte.
+  4. Leuchtenleisten in die Querträger drücken. Querträger (Leuchten außen)
+     und Mittelträger mit den Federn zwischen die beiden Oberrahmen stecken.
+  5. Magnete in die Kopfträger kleben, Teleskoparme mit dem Schwalbenschwanz
+     von oben in die Kopfträger drücken, Arme in den Spreader schieben,
      Spreader mit dem Drehzapfen von unten in den Mittelträger stecken.
   6. Oberteil mit den Oberbein-Schächten über die Innenbeine schieben.
   7. Container: Magnete von innen ins Dach kleben; 40 Fuß in 1:43 erst Boden

@@ -26,9 +26,9 @@ def model(mst=43):
     D = [f"massstab={mst}"]
     v = werte(echo(scad, mst))
     andere = 87 if mst == 43 else 43
-    names = {"fahrwerk_links": "Fahrwerk links", "fahrwerk_rechts": "Fahrwerk rechts", "rad": "Rad", "kabine": "Fahrerkabine", "motor": "Motormodul",
+    names = {"fahrwerk_links": "Fahrwerk links", "fahrwerk_rechts": "Fahrwerk rechts", "rad": "Rad (Reifen + Felge)", "kabine": "Kabine + Glaskern", "motor": "Motormodul",
              "innenbein": "Innenbein mit Stange", "oberrahmen": "Oberrahmen", "quertraeger": "Querträger", "mitteltraeger": "Mittelträger",
-             "spreader_rahmen": "Spreader-Rahmen", "spreader_arm": "Teleskoparm",
+             "spreader_rahmen": "Spreader-Rahmen", "spreader_arm": "Teleskoparm", "kopftraeger": "Kopfträger", "motor_gitter": "Lüftergitter",
              "c20_boden": "Container 20′ Boden", "c20_dach": "Container 20′ Dach", "c20_seite": "Container 20′ Seitenwand",
              "c20_stirn": "Container 20′ Stirnwand", "c20_tuer": "Container 20′ Türseite",
              "c40_boden": "Container 40′ Boden", "c40_dach": "Container 40′ Dach", "c40_seite": "Container 40′ Seitenwand",
@@ -37,9 +37,10 @@ def model(mst=43):
     order = list(names)
     parts.sort(key=lambda p: order.index(p["id"]) if p["id"] in order else 99)
     lage = {"fahrwerk_links": "liegt auf der Innenseite, Zapfen oben", "fahrwerk_rechts": "liegt auf der Innenseite, Zapfen oben",
-            "rad": "liegend, Außenseite oben", "kabine": "aufrecht", "motor": "aufrecht", "innenbein": "liegt auf der Außenseite (Fase unten)",
+            "rad": "liegend, Innenrand unten", "kabine": "aufrecht, unten offen", "motor": "aufrecht", "motor_gitter": "flach, Stäbe oben",
+            "innenbein": "Bein und Stange liegend, Fase unten",
             "oberrahmen": "liegt auf der Innenseite", "quertraeger": "liegt auf der Rückseite", "mitteltraeger": "liegt auf der Seite",
-            "spreader_rahmen": "aufrecht, Drehzapfen oben", "spreader_arm": "kopfüber, Magnettasche oben"}
+            "spreader_rahmen": "aufrecht, Drehzapfen oben", "spreader_arm": "kopfüber", "kopftraeger": "kopfüber, Magnettasche oben"}
     for c in ("c20", "c40"):
         lage.update({f"{c}_boden": "kopfüber", f"{c}_dach": "kopfüber, Magnettaschen oben", f"{c}_seite": "Innenseite unten",
                      f"{c}_stirn": "Außenseite unten", f"{c}_tuer": "Außenseite unten"})
@@ -55,22 +56,23 @@ def model(mst=43):
     cm = v["ct_mag"]
     geteilt = v["clips"] > 0
     mg = v["magnet"]
-    st_mag = ([f"Magnet Ø {mg[2]} × {mg[3]} mm in jede Kopfträger-Tasche kleben (Polung beachten).",
-               "Arme in die Kanäle schieben, Spreader von unten in den Mittelträger stecken."]
-              if mg else ["Arme in die Kanäle schieben.", "Spreader von unten in den Mittelträger stecken."])
+    st_mag = [(f"Magnet Ø {mg[2]} × {mg[3]} mm in jeden Kopfträger kleben; " if mg else "") + "Arm von oben in die Aufnahme des Kopfträgers drücken.",
+              "Arme in die Kanäle schieben, Spreader von unten in den Mittelträger stecken."]
     steps = [
         dict(title="Räder", parts=P("fahrwerk_links", "fahrwerk_rechts", "rad"),
-             text=["Die Räder mit der Innenseite auf die Achszapfen der beiden Fahrwerke schieben – sie drehen sich."], render=S(1)),
-        dict(title="Kabine und Motor", parts=P("kabine", "motor"),
-             text=["Kabine (vorne) und Motormodul (hinten) außen auf die Zapfen am linken Fahrwerk stecken."], render=S(2, VL)),
+             text=["Felge von außen in den Reifen drücken, bis sie auf dem Innenrand sitzt.",
+                   "Räder (Innenrand zum Rahmen) auf die Achszapfen schieben."], render=S(1)),
+        dict(title="Kabine und Motor", parts=P("kabine", "motor", "motor_gitter"),
+             text=["Glaskern von unten in die Kabine, Gitter in den Motor drücken.",
+                   "Kabine (vorne) und Motor auf die Zapfen am linken Fahrwerk stecken."], render=S(2, VL)),
         dict(title="Innenbeine", parts=P("innenbein"),
-             text=["Die vier Innenbeine in die Beinfüße stecken.", "Die silberne Kolbenstange zeigt jeweils zur Fahrzeugmitte."], render=S(3)),
+             text=["Je ein Innenbein und eine Kolbenstange nebeneinander in den Beinfuß stecken.", "Die silberne Stange zeigt jeweils zur Fahrzeugmitte."], render=S(3)),
         dict(title="Oberrahmen", parts=P("oberrahmen", "quertraeger", "mitteltraeger"),
-             text=["Querträger (Leuchten außen) und Mittelträger mit den Federn in die Taschen eines Oberrahmens stecken.",
+             text=["Leuchtenleisten in die Querträger drücken, Querträger (Leuchten außen) und Mittelträger in einen Oberrahmen stecken.",
                    "Den zweiten Oberrahmen von der anderen Seite aufsetzen."], render=S(4)),
-        dict(title="Spreader", parts=P("spreader_rahmen", "spreader_arm"), text=st_mag, render=S(5),
-             inset=dict(scad=A, cam="0,0,0,55,0,25,0", defs=dd + ["detail=1"], size=(1000, 800), auto=True) if mg else None,
-             inset_txt="Magnet in die Tasche" if mg else None),
+        dict(title="Spreader", parts=P("spreader_rahmen", "spreader_arm", "kopftraeger"), text=st_mag, render=S(5),
+             inset=dict(scad=A, cam="0,0,0,30,0,60,0", defs=dd + ["detail=1"], size=(1000, 800), auto=True),
+             inset_txt="Arm von oben einsetzen"),
         dict(title="Oberteil aufsetzen", parts=[],
              text=["Das Oberteil mit den Schächten der Oberbeine über die vier Innenbeine schieben, bis es aufliegt."], render=S(6)),
     ]
@@ -97,11 +99,13 @@ def model(mst=43):
         if s.get("inset") is None: s.pop("inset", None); s.pop("inset_txt", None)
     sys_txt = [(f"In 1:{mst} wird nur der 40-Fuß-Container geteilt: Boden und Dach aus je {v['c40']} Teilen mit {v['clips']} Clips, Seitenwände zweiteilig."
                 if geteilt else f"In 1:{mst} passen alle Teile ungeteilt aufs Druckbett – Clips brauchst du nicht."),
-               "Alle Verbindungen sind gesteckt: Achs- und Kabinenzapfen, Federn der Träger in Taschen, Innenbeine in Schächten, Containerwände in Nuten.",
+               "Alles ist gesteckt – auch die Farbteile: Felge, Glaskern, Lüftergitter, Leuchtenleiste und Kolbenstange sitzen in Taschen oder Schächten, der Teleskoparm hängt mit einem Schwalbenschwanz im Kopfträger. Einfarbig druckst du jede STL einzeln.",
+               "Containerdach, Stirnwand und Türseite sind einfarbig; mit container_zweifarbig = true bekommen sie graue Beschläge (dann nur mit AMS/MMU druckbar).",
                f"Die Hubhöhe ({v['hub']} m) steckt in der Länge der Innenbeine – für eine andere Höhe nur die vier Innenbeine neu drucken."]
     if mg and cm:
         sys_txt.append(f"Container-Halterung: je ein Magnet Ø {mg[2]} × {mg[3]} mm im Kopfträger und – unsichtbar unter {k(cm[1])} mm Dachhaut – "
-                       f"im Containerdach, {k(cm[0])} mm von jeder Stirnseite. Statt der Container-Magnete gehen auch Stahlscheiben.")
+                       f"im Containerdach, {k(cm[0])} mm von jeder Stirnseite. Statt der Container-Magnete gehen auch Stahlscheiben. "
+                       "Die Magnete heben das Dach – soll der Container am Spreader hängen, Wände und Dach am Boden festkleben.")
     mat = [f"Länge in 1:{mst} ca. {v['laenge'] / 10:.0f} cm, Höhe ca. {v['hoehe'] / 10:.0f} cm; Container 20′ und 40′ im Bausatz"]
     if mg: mat.insert(0, f"Neodym-Magnete Ø {mg[2]} × {mg[3]} mm: 2 für den Spreader und 2 je Container (oder Stahlscheiben), Sekundenkleber")
     extra = f"In 1:{andere} sind die Bauschritte gleich; Magnetgröße und -taschen stellst du im Customizer ein (Abschnitt Container-Halterung)."
@@ -113,8 +117,8 @@ def model(mst=43):
                        dict(scad=scad, cam="0,0,0,62,0,325,0", defs=D + ['teil="explosion"', "container_zeigen=false"], size=(1400, 1000), auto=True)],
         material=material(mat),
         druck=druck(["Alle Teile genau in der exportierten Lage drucken (siehe Druckliste)",
-                     "Mehrfarbige Teile (Innenbeine, Querträger, Teleskoparme, Räder, Kabine, Motor, Containerdach und Stirnseiten) mit AMS/MMU – oder einfarbig mit farbteil = alle",
-                     "Sitzen Innenbeine oder Drehzapfen zu stramm: spiel bzw. zapfen_spiel im Customizer vergrößern"],
+                     "Farbteile mit AMS/MMU gemeinsam aus der 3MF drucken – oder einfarbig jede STL einzeln, sie werden gesteckt",
+                     "Passung im Customizer: spiel (Innenbeine, Federn), zapfen_spiel (Schwalbenschwanz, Koni, Drehzapfen), einsatz_spiel (Felge, Glaskern, Gitter, Leuchtenleiste)"],
                     stuetzen="Alle Teile drucken stützfrei. Die Schächte in Fahrwerk und Oberrahmen haben ein gefastes Dach mit kurzer Brücke."),
         system=sys_txt,
         clip_png=CLIP_PNG,

@@ -257,7 +257,7 @@ r_dz  = max(M(0.15), 1.6);                // Drehzapfen Spreader
 h_dz  = max(M(0.3), 3);
 
 // Container-Bausatz aus der Bibliothek (ohne Magnettaschen)
-ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6;
+ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = true;
 include <../../lib/deko_container.scad>
 
 // Spreader (Welt, Ursprung Rahmenmitte Oberkante)

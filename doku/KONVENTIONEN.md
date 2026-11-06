@@ -21,7 +21,7 @@ Reihenfolge in der Quelle:
    - `/* [Farben] */`: je Bauteil `farbe_xxx = "rot"; // [<Farbliste wie in raupenbahn_src.scad>]`
    - `/* [Druck & Passung] */`: `rennbahn_taschen = true; druckbett = 220; rand = 5; min_wand = 1.2; spiel = 0.15; verbinder_anzahl = 0;`
 3. `include <../../lib/deko_grundlagen.scad>`, danach die Maße des Modells.
-4. optional `include <../../lib/deko_kasse.scad>` (nach den Maßen); optional `include <../../lib/deko_container.scad>` für einen Container-Bausatz 20/40 Fuß (vorher Container-Maße, `zapfen_spiel`, `farbe_container`, `farbe_beschlag` und `ct_mag…` festlegen – siehe Kopf der Datei).
+4. optional `include <../../lib/deko_kasse.scad>` (nach den Maßen); optional `include <../../lib/deko_container.scad>` für einen Container-Bausatz 20/40 Fuß (vorher Container-Maße, `zapfen_spiel`, `farbe_container`, `farbe_beschlag` und `ct_mag…` festlegen; `ct_zweifarbig = true` für eingelegte graue Beschläge an Dach und Stirnseiten – siehe Kopf der Datei).
 5. `include <../../lib/deko_hilfen.scad>`, optional `include <../../lib/deko_ornamente.scad>`.
 6. Module der Bauteile, Zusammenbau `<modell>(ex)`, Info und Ausgabe (INFOS, Echo-Zeilen, `druck(...)`, `farben_echo();`, Dispatch nach `teil`).
 
@@ -44,6 +44,7 @@ Reihenfolge in der Quelle:
 ## 4. Farben und Export
 
 - Mehrfarbige Teile: `farbteil` A (Grundkörper), B, C, D (E). Farbbereiche dürfen sich **nicht** überlappen (Relief auf A, oder A ausschneiden).
+- Farbteile **stecken**, wo es geht: Jedes Farbteil, das ein eigenes Bauteil ist (Felge, Glas, Gitter, Leuchtenleiste, Stange, Arm), muss auch einzeln gedruckt halten – Tasche in A mit `einsatz_spiel` (Standard 0,05 mm, Presssitz), Einschub von der offenen Seite, Rastrand/Innenrand oder Schwalbenschwanz (`zapfen_spiel`). Dann wird es ein eigenes Teil (`farbteil = "alle"`) oder liegt als B so, dass es sich nach dem Druck herausnehmen und stecken lässt. Nur dünne Inlays (Schrift, Streifen, Beschläge) dürfen auf einen gemeinsamen AMS-Druck angewiesen sein – das in LIESMICH und Angebot nennen (Beispiel: `ct_zweifarbig` in `lib/deko_container.scad`, Standard einfarbig).
 - Je Teil und Farbe eine Echo-Zeile: `druck(teil, stücke, farbteil, farbe, menge);`, danach `farben_echo();`.
   - Verschiedene Stücke desselben Teils (z. B. Geländer jeder Seite) als `stücke = n, menge = 1`. `farb_export.py` fasst gleiche Geometrie automatisch zusammen.
 - Export: `python3 werkzeuge/farb_export.py modelle/<n>/<n>.scad 43 ausgabe/<n>/STL_1-43` (ebenso 87). Erzeugt STL je Teil/Farbe, `Farbliste.txt` und eine farbige 3MF.
