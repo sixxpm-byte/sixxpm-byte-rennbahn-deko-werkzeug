@@ -41,3 +41,10 @@ portal gondel100
 kasse gondel0
 kasse gondel50
 kasse gondel100
+# Steckteile
+gA gB
+gA gC
+gB gC
+kA kB
+kA kC
+kB kC

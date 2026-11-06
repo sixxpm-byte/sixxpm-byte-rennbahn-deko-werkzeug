@@ -28,15 +28,20 @@ DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
   Sitzring und Maschinenhaus stehen, Portal und Absperrgitter liegen flach
   (Schauseite oben). Das Kassenhaus ist oben offen, Schalter und Tür reichen
   bis unter das Dach.
-  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Farben: Sitzkranz (alle Sitze auf einem Band), Dach und Wimpel werden
+  gesteckt und lassen sich einzeln in ihrer Farbe drucken (Passung:
+  einsatz_spiel, Standard 0,05 mm). Mastgitter, Schulterbügel, Lichtband,
+  Lichterkranz, Schrift und Birnen sind Farbzonen/Inlays: mit AMS/MMU –
+  oder die 3MF einfarbig drucken.
   Slicing-Probe (PrusaSlicer, 0,4 mm Düse): 1:43 und 1:87 ohne Hinweise.
 
 MONTAGE
   1. Podest (1:43 umgedreht verclipsen), Treppe vorne anschieben.
   2. Mast-Schüsse auf den Zapfen in der Podestmitte stecken.
-  3. Sitzring von oben über den Mast schieben, Filament-Stift durch den
-     Kragen stecken.
-  4. Maschinenhaus auf den obersten Zapfen stecken.
+  3. Sitzkranz in die Nut des Sitzrings drücken, Ring von oben über den
+     Mast schieben, Filament-Stift durch den Kragen stecken.
+  4. Dach und Wimpel von oben über den Fahnenmast schieben, Maschinenhaus
+     auf den obersten Zapfen stecken.
   5. Absperrgitter, Eingangsportal und Kassenhaus aufstellen.
 
 BEWEGLICH

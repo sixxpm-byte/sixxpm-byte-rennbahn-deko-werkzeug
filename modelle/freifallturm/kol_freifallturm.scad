@@ -10,3 +10,6 @@ if (obj == "kopf") kopf_welt("alle");
 if (obj == "zaun") for (k = ZAUN_K) zaun_welt(k);
 if (obj == "portal") portal_welt("alle");
 if (obj == "kasse") translate([X_KA, Y_KA, H_p]) { kasse(); translate([-B_ka / 2 - max(sc(250), 2), -T_ka / 2 - max(sc(250), 2), H_ka]) kasse_dach(); }
+// Farbteile einzeln (Steckteile): ii = 0 A, 1 B, 2 C
+if (obj == "gp") gondel(["A", "B", "C"][ii]);
+if (obj == "kp") kopf(["A", "B", "C"][ii]);

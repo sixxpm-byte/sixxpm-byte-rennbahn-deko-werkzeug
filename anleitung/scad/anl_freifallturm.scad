@@ -10,8 +10,9 @@ module ab(p, h, l = ad * 0.8) pfeil([p[0], p[1], p[2] + h + l + 2], [p[0], p[1],
 // ---- Baugruppen mit Farben (render(): sonst färbt die Vorschau Inlays falsch) ----
 module podest_c() { color(fhex(farbe_podest)) render() podest_welt("A"); color(fhex(farbe_linie)) render() podest_welt("B"); }
 module mast_c(i, up = 0) { color(fhex(farbe_gurt)) render() mast_welt(i, "A", up); color(fhex(farbe_gitter)) render() mast_welt(i, "B", up); }
-module gondel_c() { color(fhex(farbe_ring)) render() gondel("A"); color(fhex(farbe_sitz)) render() gondel("B"); color(fhex(farbe_buegel)) render() gondel("C"); }
-module kopf_c(up = 0) { color(fhex(farbe_kopf)) render() kopf_welt("A", up); color(fhex(farbe_licht)) render() kopf_welt("B", up); color(fhex(farbe_kopf_dach)) render() kopf_welt("C", up); }
+// Im eigenen Schritt schweben die gesteckten Farbteile (Sitzkranz, Dach, Wimpel) etwas über ihrem Sitz
+module gondel_c() { color(fhex(farbe_ring)) render() gondel("A"); translate([0, 0, X(4, ad * 0.35)]) { color(fhex(farbe_sitz)) render() gondel("B"); color(fhex(farbe_buegel)) render() gondel("C"); } }
+module kopf_c(up = 0) { color(fhex(farbe_kopf)) render() kopf_welt("A", up); color(fhex(farbe_licht)) render() kopf_welt("B", up); color(fhex(farbe_kopf_dach)) render() kopf_welt("C", up + X(5, ad * 0.25)); }
 module portal_c(up = 0) { color(fhex(farbe_portal)) render() portal_welt("A", up); color(fhex(farbe_schrift)) render() portal_welt("B", up); color(fhex(farbe_birnen)) render() portal_welt("C", up); }
 module stift_c() color("#e8e2d0") translate([0, 0, z_pin]) rotate([0, 90, 0]) cylinder(d = stift_d, h = bo + 2 * t_k + 4, center = true, $fn = 16);
 u_ka = max(sc(250), 2);

@@ -9,8 +9,10 @@
 //    podest        Podest mit Sicherheitsring und Mastzapfen (geteilt, Clips)
 //    treppe        Treppe vorne                                         1x
 //    mast          Gittermast-Schuss (Gurte + Diagonalen, 2-farbig)      n x
-//    gondel        Sitzring mit Sitzen und Schulterbügeln (verschiebbar) 1x
-//    kopf          Maschinenhaus mit Lichtband, Dach und Fahne           1x
+//    gondel        Sitzring (A) + Sitzkranz (B, alle Sitze auf einem Band,
+//                  in die Ringnut gedrückt) + Schulterbügel (C)          1x
+//    kopf          Maschinenhaus (A, mit Fahnenmast) + Wimpel mit Hülse (B,
+//                  über den Mast geschoben) + Dach (C, über den Mast)   1x
 //    portal        Eingangsportal mit Schriftzug (flach gedruckt)        1x
 //    zaun          Absperrgitter (achteckig, vorne offen)                7x
 //    kasse / kasse_dach   Kassenhäuschen                                 1x
@@ -19,6 +21,10 @@
 //  STECKSYSTEM
 //    Mast-Schüsse, Podest und Maschinenhaus stecken mit Rautenzapfen
 //    ineinander (Rauten-Querschnitt = stützfrei in jeder Lage).
+//  FARBTEILE
+//    Sitzkranz, Dach und Wimpel sind gesteckt (einzeln druckbar). Schulterbügel
+//    (filigran), Lichtband, Lichterkranz, Mastgitter, Schrift und Birnen sind
+//    Farbzonen/Inlays: mit AMS/MMU – oder die 3MF einfarbig drucken.
 //  BEWEGLICH
 //    Der Sitzring gleitet auf dem Mast. Ein Filament-Stift (Ø stift_d) durch
 //    die Bohrung im Kragen liegt auf einer Diagonale auf und hält ihn in
@@ -80,6 +86,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Sitzkranz, Dach, Wimpel; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 stift_d = 1.75;
 // Luft zwischen Mast und Sitzring (je Seite)
 ring_spiel = 0.4;
@@ -119,6 +127,8 @@ d_s  = sc(420, 4);                             // Sitztiefe
 h_sp = sc(380, 3.5);                           // Sitzhöhe über Ring
 d_bg = max(sc(70), 0.9);                       // Bügel
 r_b  = R_r - t_b - d_s - 0.3;                  // Lehne innen
+b_kz = max(sc(250), t_b + 1.6);                // Sitzkranz: Bandbreite (radial, ab r_b - 0.4)
+h_kz = max(sc(60), 0.8); g_kz = max(sc(50), 0.6);   // Band über / in der Ringnut
 z_pin = h_k * 0.55;                            // Stiftbohrung im Kragen
 
 // Maschinenhaus
@@ -237,6 +247,8 @@ module gondel(fp = "alle") {
         }
         translate([-bo / 2, -bo / 2, -1]) cube([bo, bo, h_k + 2]);
         translate([0, 0, z_pin]) rotate([90, 0, 90]) linear_extrude(bo + 2 * t_k + 2, center = true) rotate(90) tropfen((stift_d + 0.15) / 2);   // Spitze oben: stützfrei
+        // Nut für den Sitzkranz
+        translate([0, 0, t_r - g_kz]) difference() { cylinder(r = r_b - 0.4 + b_kz + einsatz_spiel, h = g_kz + 1, $fn = 4 * N); translate([0, 0, -1]) cylinder(r = r_b - 0.4 - einsatz_spiel, h = g_kz + 3, $fn = 4 * N); }
         // Lichterkranz (Einleger in der Ringunterseite)
         for (i = [0 : 2 * N - 1]) rotate(i * 180 / N + 90 / N) translate([R_r - max(sc(180), 1.4), 0, -1]) cylinder(d = max(sc(140), 1.0), h = 1 + d_in, $fn = 12);
     }
@@ -251,7 +263,11 @@ module gondel(fp = "alle") {
         bar3([xp, y, zt], [x0 + t_b / 2, y, zt + (xp - x0 - t_b / 2)], d_bg);
     }
     if (inc(fp, "A")) ring_koerper();
-    if (inc(fp, "B")) for (i = [0 : N - 1]) rotate(i * 360 / N) translate([0, 0, t_r - e]) sitz();
+    // Sitzkranz: alle Sitze auf einem Band, das stramm in der Ringnut sitzt
+    if (inc(fp, "B")) {
+        for (i = [0 : N - 1]) rotate(i * 360 / N) translate([0, 0, t_r - e]) sitz();
+        translate([0, 0, t_r - g_kz]) difference() { cylinder(r = r_b - 0.4 + b_kz, h = g_kz + h_kz, $fn = 4 * N); translate([0, 0, -1]) cylinder(r = r_b - 0.4, h = g_kz + h_kz + 2, $fn = 4 * N); }
+    }
     if (inc(fp, "C")) {
         for (i = [0 : N - 1]) rotate(i * 360 / N) translate([0, 0, t_r - e]) difference() { buegel(); sitz(); }
         for (i = [0 : 2 * N - 1]) rotate(i * 180 / N + 90 / N) translate([R_r - max(sc(180), 1.4), 0, 0]) cylinder(d = max(sc(140), 1.0), h = d_in, $fn = 12);
@@ -263,12 +279,19 @@ z_g1 = H_p + L_m - h_k - sc(800, 6);                                   // oberst
 // =====================================================================
 //  MASCHINENHAUS  (Unterseite z = 0, Tasche unten)
 // =====================================================================
+d_fm = max(sc(120), 1.6);                                              // Fahnenmast oben (im Wimpel)
+w_hl = max(sc(40), 0.6);                                               // Wandstärke der Wimpel-Hülse
+d_fs = d_fm + 2 * einsatz_spiel + 2 * w_hl;                            // Fahnenmast unten (Schulter für die Hülse)
+h_wp = sc(700, 4.5);                                                   // Wimpelhöhe
 module kopf(fp = "alle") {
     hb = h_kh * 0.18;                                                  // Lichtband
+    z_w0 = h_kh + h_kd + h_fm - h_wp;
+    r_dt = max(w_kh * 0.12, (d_fs / 2 + einsatz_spiel + 0.8) * sqrt(2));   // Dachspitze (Platz für das Mastloch)
     if (inc(fp, "A")) difference() {
         union() {
             translate([-w_kh / 2, -w_kh / 2, 0]) cube([w_kh, w_kh, h_kh]);
-            translate([0, 0, h_kh + h_kd - e]) cylinder(d = max(sc(120), 1.6), h = h_fm, $fn = 12);
+            translate([0, 0, h_kh - e]) cylinder(d = d_fs, h = z_w0 - h_kh + e, $fn = 16);        // Mast geht durchs Dach
+            translate([0, 0, z_w0 - e]) cylinder(d = d_fm, h = h_wp + e, $fn = 12);
         }
         translate([0, 0, -1]) raute_tasche_spitz(d_p + 1, a_p);
         translate([0, 0, h_kh * 0.6]) lichtband(1);
@@ -276,10 +299,16 @@ module kopf(fp = "alle") {
     module lichtband(x = 0) linear_extrude(hb) difference() { square(w_kh + 2 * x, center = true); square(w_kh - 2 * d_in, center = true); }
     if (inc(fp, "B")) {
         translate([0, 0, h_kh * 0.6]) lichtband();
-        let(hf = sc(700, 4.5), tf = 2 * max(sc(30), 0.6)) translate([max(sc(60), 0.8) - e, tf / 2, h_kh + h_kd + h_fm - hf]) rotate([90, 0, 0])
-            linear_extrude(tf) polygon([[0, 0], [0, hf], [hf * 0.95, hf]]);        // Wimpel (Unterkante 45° -> stützfrei)
+        // Wimpel mit Hülse: von oben über den dünnen Mast geschoben, sitzt auf der Schulter
+        translate([0, 0, z_w0]) difference() { cylinder(d = d_fs, h = h_wp, $fn = 16); translate([0, 0, -1]) cylinder(d = d_fm + 2 * einsatz_spiel, h = h_wp + 2, $fn = 12); }
+        let(tf = 2 * max(sc(30), 0.6)) translate([d_fs / 2 - 0.2, tf / 2, z_w0]) rotate([90, 0, 0])
+            linear_extrude(tf) polygon([[0, 0], [0, h_wp], [h_wp * 0.95, h_wp]]);        // Wimpel (Unterkante 45° -> stützfrei)
     }
-    if (inc(fp, "C")) translate([0, 0, h_kh - e]) rotate(45) cylinder(r1 = w_kh / 2 * sqrt(2) + 0.5, r2 = w_kh * 0.12, h = h_kd, $fn = 4);
+    // Dach: über den Mast geschoben, liegt auf dem Maschinenhaus
+    if (inc(fp, "C")) translate([0, 0, h_kh]) difference() {
+        rotate(45) cylinder(r1 = w_kh / 2 * sqrt(2) + 0.5, r2 = r_dt, h = h_kd, $fn = 4);
+        translate([0, 0, -1]) cylinder(d = d_fs + 2 * einsatz_spiel, h = h_kd + 2, $fn = 16);
+    }
 }
 module kopf_welt(fp, up = 0) translate([0, 0, H_p + L_m + up]) kopf(fp);
 
@@ -374,6 +403,7 @@ CLIPS = clip_count(INFO_P);
 echo(str("Freifallturm 1:", den, " | Höhe ", r2(H_p + L_m + h_kh + h_kd + h_fm), " mm | Podest ", r2(P), " mm | Mast ", r2(w), " mm, ",
          n_sek, " Schüsse à ", r2(L_sek), " mm | Sitzring Ø ", r2(2 * R_r), " mm"));
 echo(str("Filament-Stift Ø ", stift_d, ": 1 x ", r2(bo + 2 * t_k + 4), " mm (Sitzring)"));
+echo(str("Steckteile: Sitzkranz ", r2(b_kz), " x ", r2(g_kz + h_kz), " mm (", r2(g_kz), " in der Nut) | Fahnenmast Ø ", r2(d_fs), " / ", r2(d_fm), " mm | Einsatz-Spiel ", einsatz_spiel, " mm"));
 if (n_pieces(INFO_P) > 1) echo(str("Teilung Podest: ", n_pieces(INFO_P), " Stücke, ", CLIPS, " Clips",
     zero_seams(INFO_P) > 0 ? str("  WARNUNG: ", zero_seams(INFO_P), " Naht/Nähte ohne Clip") : ""));
 if (L_sek + d_p > usable) echo("WARNUNG: Mast-Schuss länger als das Druckbett");

@@ -22,7 +22,7 @@ def model(mst=43):
     v = werte(echo(scad, mst))
     andere = 87 if mst == 43 else 43
     va = werte(echo(scad, andere))
-    names = {"podest": "Podest", "treppe": "Treppe", "mast": "Mast-Schuss", "gondel": "Sitzring", "kopf": "Maschinenhaus",
+    names = {"podest": "Podest", "treppe": "Treppe", "mast": "Mast-Schuss", "gondel": "Sitzring + Sitzkranz", "kopf": "Maschinenhaus + Dach + Wimpel",
              "zaun": "Absperrgitter", "portal": "Eingangsportal", "kasse": "Kassenhaus", "kasse_dach": "Kassenhaus Dach", "verbinder": "Clips"}
     parts, _ = druck_parts(scad, D, names)
     order = list(names)
@@ -56,11 +56,12 @@ def model(mst=43):
                    "Der unterste Schuss steckt auf dem Zapfen in der Podestmitte."],
              render=S(3, VT, (1000, 1500))),
         dict(title="Sitzring", parts=P("gondel"),
-             text=["Den Sitzring von oben über den Mast schieben, die Sitze schauen nach außen.",
+             text=["Sitzkranz in die Nut des Sitzrings drücken, Ring über den Mast schieben.",
                    f"Filament-Stift Ø 1,75 mm ({v['stift']} mm) durch den Kragen stecken – er liegt auf einer Diagonale auf und hält den Ring."],
              render=S(4, VT, (1000, 1500)),
              inset=dict(scad=A, cam="0,0,0,65,0,30,0", defs=dd + ["detail=2"], size=(1000, 800), auto=True), inset_txt="Stift durch den Kragen"),
-        dict(title="Maschinenhaus", parts=P("kopf"), text=["Das Maschinenhaus mit der Tasche unten auf den obersten Mastzapfen stecken."],
+        dict(title="Maschinenhaus", parts=P("kopf"), text=["Dach und dann den Wimpel von oben über den Fahnenmast schieben.",
+                   "Das Maschinenhaus mit der Tasche unten auf den obersten Mastzapfen stecken."],
              render=S(5, VT, (1000, 1500))),
         dict(title="Absperrgitter", full=True, parts=P("zaun"),
              text=[f"Die {pc.get('zaun', 7)} Gitter mit ihren Zapfen in die Schlitze rund um den Turm stecken.",
@@ -87,7 +88,8 @@ def model(mst=43):
                            f"Höhe in 1:{mst} ca. {v['hoehe'] / 10:.0f} cm – Platz nach oben einplanen"]),
         druck=druck(["Mast-Schüsse stehen beim Druck (Tasche unten, Zapfen oben) – die Gitter-Diagonalen sind mindestens 45° steil",
                      "Portal und Gitter liegen flach, Sitzring und Maschinenhaus stehen aufrecht",
-                     "Mehrfarbige Teile (Podest, Mast, Sitzring, Maschinenhaus, Portal) mit AMS/MMU – oder einfarbig mit farbteil = alle"]),
+                     "Gesteckt und einzeln druckbar: Sitzkranz, Dach und Wimpel (Passung: einsatz_spiel im Customizer)",
+                     "Farbzonen und Inlays (Mastgitter, Schulterbügel, Lichtband, Schrift, Birnen) mit AMS/MMU – oder die 3MF einfarbig drucken"]),
         system=(SYSTEM_CLIP if geteilt else SYSTEM_CLIP[:1] + ["Das Podest ist in diesem Maßstab einteilig – Clips brauchst du nur für die Rennbahn-Taschen."]) +
                ["Mast, Podest und Maschinenhaus stecken mit Rautenzapfen ineinander – die Raute druckt in jeder Lage stützfrei.",
                 "Beweglich: Der Sitzring gleitet auf dem Mast. Der Stift im Kragen hält ihn oben (vor dem Fall) oder unten (Einsteigen)."],
