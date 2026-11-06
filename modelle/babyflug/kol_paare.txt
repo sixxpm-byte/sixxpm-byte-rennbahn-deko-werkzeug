@@ -169,3 +169,9 @@ masten kasse
 gelaender leuchtmast
 gelaender kasse
 leuchtmast kasse
+# Steck-Farbteile (Mast A/B/C sind Farbzonen eines Körpers)
+fp_jtA fp_jtB
+fp_uoA fp_uoC
+fp_msA fp_msD
+fp_msB fp_msD
+fp_msC fp_msD

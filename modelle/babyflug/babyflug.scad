@@ -24,6 +24,11 @@
 //    kasse_*         Kassenwagen (Fahrgestell, 4 Wände, Dach, Schild, Treppe)
 //    verbinder       Clips für den geteilten Podest-Ring
 //
+//  FARBTEILE
+//    Gesteckt (einzeln druckbar): Windschutzscheibe und Düse der Jets, Kuppel
+//    des UFOs, Leuchte auf jedem Ringelmast (Hülse über das Mastende).
+//    Farbzonen/Inlays (mit AMS/MMU, sonst die 3MF einfarbig): Mast-Spirale,
+//    Jet-Nase, Finnenspitze und Streifen, Krone, Dachrippen, Lichter, Kasse.
 //  BEWEGLICH
 //    * Der ganze Oberbau (Drehkopf, Arme, Jets, Pavillon, Dach, UFO) dreht
 //      sich auf der Achse der Mittelsäule.
@@ -136,6 +141,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Scheibe, Düse, Kuppel, Mastleuchte; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 stift_d = 1.75;
 stift_spiel = 0.2;
 // Armbohrung: 0 = sehr stramm, 0.05 = hält jede Stellung, 0.15 = leichtgängig
@@ -232,6 +239,7 @@ ring_split = 2 * R_t / tc > usable;
 d_p    = max(sc(140), 2.4);
 h_pole = sc(1500, 12);
 d_bulb = max(sc(220), d_p + 0.8);
+w_ls = max(sc(40), 0.6); l_ls = max(d_p, 2);    // Hülse der Mastleuchte
 r_g    = R_wo - max(sc(180), d_p / 2 + 1.0);     // Mast-/Geländerlinie (Inkreis)
 h_ph   = min(H_w - 1.2, max(sc(250), 3));        // Lochtiefe
 h_pg   = h_ph - 0.3;                             // Zapfenlänge
@@ -604,6 +612,9 @@ function near(p, L, d) = len([for (q = L) if (norm([p[0] - q[0], p[1] - q[1]]) <
 // ---- Ausgabe-Hilfen ----
 module druck(t, n, fp, f, m) if (m > 0) echo(str("DRUCK|", t, "|", n, "|", fp, "|", f, "|", m));
 module farben_echo() for (f = FARBEN) echo(str("FARBE|", f[0], "|", f[1]));
+module mass_echo(x, y, z) echo(str("MASS|", r2(x), "|", r2(y), "|", r2(z)));
+// Vorschau: Farbe aus FARBEN, render() damit OpenCSG mehrfarbige Teile richtig zeigt
+module vorschau_farbe(f) color(fhex(f)) render(convexity = 6) children();
 // Clip-Platten: n Clips, stk = 0 alle Platten, sonst Platte stk
 module verbinder_platten(n, stk) {
     px = floor((usable + 3) / (cL + 3)); py = floor((usable + 3) / (cw1 + 3));
@@ -780,10 +791,10 @@ module arm() linear_extrude(w_arm) arm_2d();
 // =====================================================================
 //  JET-GONDEL  (x = Länge/Nase, y = Flügel, z = hoch; Auflage im Ursprung)
 // =====================================================================
-module jet_rumpf() intersection() {
+module jet_rumpf(o = 0) intersection() {   // o: Halbachsen größer (Luft für die aufgesteckte Düse)
     hull() {
-        translate([Lj * 0.06, 0, 0]) scale([Lj * 0.41, Wj / 2, Hj]) sphere(1, $fn = 40);
-        translate([-Lj * 0.36, 0, 0]) scale([Lj * 0.14, Wj * 0.26, Hj * 0.62]) sphere(1, $fn = 32);
+        translate([Lj * 0.06, 0, 0]) scale([Lj * 0.41 + o, Wj / 2 + o, Hj + o]) sphere(1, $fn = 40);
+        translate([-Lj * 0.36, 0, 0]) scale([Lj * 0.14 + o, Wj * 0.26 + o, Hj * 0.62 + o]) sphere(1, $fn = 32);
     }
     translate([-Lj, -Wj, 0]) cube([2 * Lj, 2 * Wj, 2 * Hj]);
 }
@@ -803,19 +814,20 @@ module jet_cockpit() {
 }
 // Windschutzscheibe (B) als eingelassener Block: ebener Boden, senkrechte Flanken
 // (liegt nicht schräg auf dem Rumpf -> keine flachen Unterseiten), wird aus A ausgeschnitten
-module jet_scheibe() difference() {
+// o: Presssitz – die Scheibe ist vorn/hinten um o schmaler als ihr Schlitz in A
+module jet_scheibe(o = 0) difference() {
     intersection() {
         scale([1, 1, 1.12]) jet_rumpf();
-        translate([Lj * 0.12, -Wj, Hj * 0.5]) cube([Lj * 0.07, 2 * Wj, Hj]);
+        translate([Lj * 0.12 + o, -Wj, Hj * 0.5]) cube([Lj * 0.07 - 2 * o, 2 * Wj, Hj]);
     }
     jet_cockpit();   // Rückseite = Cockpitwand (keine deckungsgleichen Flächen mit A)
 }
-module jet_duese() difference() {     // Düse (B)
+module jet_duese() difference() {     // Düse (B): Kappe, wird hinten auf das Rumpfende gesteckt
     intersection() {
         translate([-Lj * 0.53, 0, 0]) rotate([0, 90, 0]) cylinder(r = Hj * 0.42, h = Lj * 0.1, $fn = 32);
         translate([-Lj, -Wj, 0]) cube([2 * Lj, 2 * Wj, Hj]);
     }
-    jet_rumpf();
+    jet_rumpf(einsatz_spiel);
 }
 module jet_streifen() intersection() {   // Flügelstreifen (C)
     translate([0, 0, t_w - e]) linear_extrude(dmr * 2 + e) jet_fluegel_2d();
@@ -839,7 +851,7 @@ module jet(fp) {
         jet_cockpit();
         translate([-Lj * 0.02 - max(sc(60), 1.0) / 2, -Wj, z_cf - e]) cube([max(sc(60), 1.0), 2 * Wj, (Hj - z_cf) * 0.55 + e]);
     }
-    if (inc(fp, "B")) { jet_scheibe(); jet_duese(); }
+    if (inc(fp, "B")) { jet_scheibe(einsatz_spiel); jet_duese(); }
     if (inc(fp, "C")) {
         intersection() { jet_rumpf(); jet_nase(); }
         jet_finne(true);
@@ -932,16 +944,21 @@ module ufo_unten_licht() {
     intersection() { translate([0, 0, -h_ul - h_ufl]) linear_extrude(h_ul + h_ufl) ufo_licht_2d(r_u * 0.7, 8, 22.5); translate([0, 0, -h_ufl]) ufo_unten_koerper(); }
     intersection() { translate([0, 0, -h_ul - h_ufl]) linear_extrude(h_ul + h_ufl) ufo_leitung_2d(r_u * 0.7); translate([0, 0, -h_ufl / 2]) ufo_unten_koerper(); }
 }
+d_kp = max(r_u * 0.16, 1.6); l_kp = r_u * 0.42 * 0.5;   // Kuppel-Zapfen
 module ufo_oben(fp) {   // z = 0 Randebene, nach oben gedruckt
     if (inc(fp, "A")) difference() {
-        ufo_oben_koerper();
+        union() { ufo_oben_koerper(); translate([0, 0, h_ub + h_uc - e]) cylinder(d = d_kp, h = l_kp + e, $fn = 24); }
         if (d_up >= 2) translate([0, 0, -e]) cylinder(d = stift_d + 0.1, h = d_up + e, $fn = 16);
         ufo_oben_licht();
     }
     if (inc(fp, "B")) ufo_oben_licht();
-    if (inc(fp, "C")) intersection() {
-        translate([0, 0, h_ub + h_uc - e]) sphere(r = r_u * 0.42, $fn = 48);
-        translate([-r_u, -r_u, h_ub + h_uc - e]) cube([2 * r_u, 2 * r_u, r_u]);
+    // Kuppel: steckt mit einer Bohrung auf dem Zapfen oben am UFO
+    if (inc(fp, "C")) difference() {
+        intersection() {
+            translate([0, 0, h_ub + h_uc]) sphere(r = r_u * 0.42, $fn = 48);
+            translate([-r_u, -r_u, h_ub + h_uc]) cube([2 * r_u, 2 * r_u, r_u]);
+        }
+        translate([0, 0, h_ub + h_uc - 1]) cylinder(d = d_kp + 2 * einsatz_spiel, h = l_kp + 1.3, $fn = 24);
     }
 }
 module ufo_unten_koerper() {
@@ -966,15 +983,22 @@ module mast(fp) {   // z = 0 Zapfenunterseite
     sl = max(8, ceil(h_pole / 0.4));
     d_mk = d_p * 0.3;   // Kern klein: Farbstreifen B/C radial >= 0,8 mm (sonst fallen sie beim Slicen weg)
     module sekt(i) intersection() { circle(d = d_p, $fn = 24); polygon([[0, 0], pol(d_p, i * 120), pol(d_p, i * 120 + 60), pol(d_p, i * 120 + 120)]); }
+    hs = h_pole - l_ls;   // Spirale endet unter der Leuchte; oben ein dünner Kopf für die Hülse
+    tws = tw_ * hs / h_pole;
     if (inc(fp, "A")) {
         cylinder(d = d_p, h = h_pg + e, $fn = 24);
-        translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) union() { circle(d = d_mk, $fn = 24); sekt(0); }
+        translate([0, 0, h_pg]) linear_extrude(hs, twist = tws, slices = sl) union() { circle(d = d_mk, $fn = 24); sekt(0); }
+        translate([0, 0, h_pg + hs - e]) cylinder(d = d_p - 2 * (einsatz_spiel + w_ls), h = l_ls + e, $fn = 24);
     }
-    if (inc(fp, "B")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(1); circle(d = d_mk, $fn = 24); }
-    if (inc(fp, "C")) translate([0, 0, h_pg]) linear_extrude(h_pole, twist = tw_, slices = sl) difference() { sekt(2); circle(d = d_mk, $fn = 24); }
-    if (inc(fp, "D")) translate([0, 0, h_pg + h_pole - e]) {
-        cylinder(d1 = d_p, d2 = d_bulb, h = (d_bulb - d_p) / 2 + e, $fn = 24);
-        translate([0, 0, (d_bulb - d_p) / 2]) { cylinder(d = d_bulb, h = d_bulb * 0.3, $fn = 24); translate([0, 0, d_bulb * 0.3 - e]) intersection() { sphere(d = d_bulb, $fn = 24); translate([-d_bulb, -d_bulb, 0]) cube(2 * d_bulb); } }
+    if (inc(fp, "B")) translate([0, 0, h_pg]) linear_extrude(hs, twist = tws, slices = sl) difference() { sekt(1); circle(d = d_mk, $fn = 24); }
+    if (inc(fp, "C")) translate([0, 0, h_pg]) linear_extrude(hs, twist = tws, slices = sl) difference() { sekt(2); circle(d = d_mk, $fn = 24); }
+    // Leuchte: Hülse (außen = Mast) wird über den dünnen Mastkopf geschoben und sitzt auf der Spirale
+    if (inc(fp, "D")) let(dh = d_p, db = max(d_bulb, dh + 0.4)) translate([0, 0, h_pg + h_pole - l_ls]) {
+        difference() { cylinder(d = dh, h = l_ls + e, $fn = 24); translate([0, 0, -1]) cylinder(d = d_p - 2 * w_ls, h = l_ls + 1, $fn = 24); }
+        translate([0, 0, l_ls]) {
+            cylinder(d1 = dh, d2 = db, h = (db - dh) / 2 + e, $fn = 24);
+            translate([0, 0, (db - dh) / 2]) { cylinder(d = db, h = db * 0.3, $fn = 24); translate([0, 0, db * 0.3 - e]) intersection() { sphere(d = db, $fn = 24); translate([-db, -db, 0]) cube(2 * db); } }
+        }
     }
 }
 module gelaender_2d() {

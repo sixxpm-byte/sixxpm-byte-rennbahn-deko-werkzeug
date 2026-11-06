@@ -17,3 +17,8 @@ if (obj == "masten") for (j = [0 : N_d - 1]) rotate(vtx(j)) translate([r_g / tc,
 if (obj == "gelaender") for (k = GK) side_frame(k, r_g) translate([0, 0, H_w]) rotate([90, 0, 90]) translate([0, 0, -t_g / 2]) gelaender();
 if (obj == "leuchtmast") leuchtmast_welt();
 if (obj == "kasse") rotate(A_KASSE) translate([R_t + sc(400, 3) + D_k + m_k, -W_k / 2, 0]) rotate(90) kassenwagen();
+// Steck-Farbteile einzeln (lokal): d0 = Baugruppe, ii = Farbteil
+FPS = ["A", "B", "C", "D"];
+if (obj == "fp" && d0 == 0) jet(FPS[ii]);
+if (obj == "fp" && d0 == 1) ufo_oben(FPS[ii]);
+if (obj == "fp" && d0 == 2) mast(FPS[ii]);

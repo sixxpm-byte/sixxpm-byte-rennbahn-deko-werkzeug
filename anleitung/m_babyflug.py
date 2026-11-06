@@ -24,8 +24,8 @@ def model(mst=43):
     andere = 87 if mst == 43 else 43
     va = werte(echo(scad, andere))
     names = {"podest": "Podest-Ring", "boden": "Kunstrasen-Boden", "saeule": "Mittelsäule", "kopf_unten": "Drehkopf unten",
-             "kopf_oben": "Drehkopf oben", "krone": "Pavillon", "dach": "Dach", "ufo_unten": "UFO unten", "ufo_oben": "UFO oben",
-             "arm": "Arm", "jet": "Jet-Gondel", "mast": "Ringelmast", "gelaender": "Geländer", "leuchtmast": "Leuchtschild",
+             "kopf_oben": "Drehkopf oben", "krone": "Pavillon", "dach": "Dach", "ufo_unten": "UFO unten", "ufo_oben": "UFO oben + Kuppel",
+             "arm": "Arm", "jet": "Jet-Gondel + Scheibe/Düse", "mast": "Ringelmast + Leuchte", "gelaender": "Geländer", "leuchtmast": "Leuchtschild",
              "leuchtmast_fuss": "Leuchtschild-Fuß", "kasse_boden": "Kasse Fahrgestell", "kasse_treppe": "Kasse Treppe",
              "kasse_wand_vorne": "Kasse Wand vorne", "kasse_wand_hinten": "Kasse Wand hinten", "kasse_wand_links": "Kasse Wand links",
              "kasse_wand_rechts": "Kasse Wand rechts", "kasse_dach": "Kasse Dach", "kasse_schild": "Kasse Schild", "verbinder": "Clips"}
@@ -74,15 +74,15 @@ def model(mst=43):
              text=["Den oberen Drehkopf mit den Lagerschalen nach unten aufsetzen – Achse und Stifte richten ihn aus.",
                    "Ab jetzt halten die Arme jede Stellung: einfach von Hand heben oder senken."], render=S(6)),
         dict(title="Jets aufstecken", parts=P("jet"),
-             text=["Jeden Jet mit der Tasche im Boden auf den Zapfen am Armende stecken, die Nase zeigt gegen den Uhrzeigersinn.",
+             text=["Scheibe und Düse in jeden Jet drücken, Jet mit der Tasche auf den Zapfen am Armende stecken (Nase gegen den Uhrzeigersinn).",
                    f"Farben abwechselnd: {farben}."], render=S(7)),
         dict(title="Pavillon", parts=P("krone"), text=["Den Pavillon mit dem Vierkantloch im Boden auf den Schlüssel am Hals des Drehkopfs setzen."], render=S(8)),
         dict(title="Dach", parts=P("dach"), text=["Das Dach mit der Nut auf der Unterseite auf die Pavillonwände setzen."], render=S(9)),
         dict(title="UFO", parts=P("ufo_unten", "ufo_oben"),
-             text=([f"Die beiden UFO-Hälften mit einem Filament-Stück ({v['ufo']} mm) verbinden, bei Bedarf mit einem Tropfen Kleber."] if v["ufo"]
+             text=([f"UFO-Hälften mit einem Filament-Stück ({v['ufo']} mm) verbinden, bei Bedarf kleben."] if v["ufo"]
                    else ["Die beiden UFO-Hälften aufeinanderkleben (in diesem Maßstab zu flach für einen Stift)."]) +
-                  ["Den Stiel in die Dachspitze stecken – das UFO dreht sich frei."], render=S(10)),
-        dict(title="Ringelmasten", parts=P("mast"), text=["Die 16 Masten mit dem Zapfen in die Löcher an den Ecken des Laufstegs stecken."], render=S(11)),
+                  ["Kuppel aufdrücken, Stiel in die Dachspitze stecken – das UFO dreht sich."], render=S(10)),
+        dict(title="Ringelmasten", parts=P("mast"), text=["Leuchten auf die Mastenden schieben.", "Die 16 Masten mit dem Zapfen in die Löcher an den Ecken des Laufstegs stecken."], render=S(11)),
         dict(title="Geländer", full=True, parts=P("gelaender"),
              text=[f"Die {pc.get('gelaender', 15)} Geländer mit ihren zwei Zapfen in die Schlitze zwischen den Masten stecken.",
                    "Eine Seite bleibt offen: das ist der Eingang (blauer Pfeil). Daneben steht später der Kassenwagen."], render=S(12)),
@@ -119,7 +119,8 @@ def model(mst=43):
         druck=druck(["Fahrgestell der Kasse und UFO-Unterteil kopfüber; Arme, Geländer, Wände und Leuchtschild liegen flach; Jets, Pavillon und Dach stehen aufrecht",
                      "Die Arme flach drucken: so wird die Stiftbohrung exakt rund – sie muss stramm auf dem Filament sitzen",
                      "Die Ringelmasten stehen beim Druck: mit Brim (Rand) drucken, damit die hohen, dünnen Masten nicht kippen",
-                     "Mehrfarbige Teile mit AMS/MMU – Lichter hängen an Leitungen, jede Lichtfarbe ist ein zusammenhängender Körper"]),
+                     "Gesteckt und einzeln druckbar: Scheibe und Düse der Jets, UFO-Kuppel, Mastleuchten – Passung: einsatz_spiel",
+                     "Farbzonen und Inlays (Mast-Spirale, Jet-Nase, Finne, Streifen, Krone, Dachrippen, Lichter, Kasse) mit AMS/MMU – oder die 3MF einfarbig drucken"]),
         system=(SYSTEM_CLIP if geteilt else SYSTEM_CLIP[:1] + ["Der Podest-Ring ist in diesem Maßstab einteilig – Clips brauchst du nur für die Rennbahn-Taschen."]) +
                ["Beweglich: Der ganze Oberbau dreht sich auf der Achse der Mittelsäule. Jeder Arm schwenkt auf einem Filament-Stift – die Jets heben und senken sich und bleiben in jeder Stellung stehen.",
                 "Rennbahn-Taschen am Podestrand und am Fuß des Leuchtschilds koppeln das Karussell an die Strecke."],

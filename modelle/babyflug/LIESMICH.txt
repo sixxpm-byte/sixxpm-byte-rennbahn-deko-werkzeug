@@ -29,9 +29,13 @@ DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
   Leuchtschild liegen flach.
   Ringelmasten stehen beim Druck: mit Brim (Rand) drucken, sonst kippen sie
   (in 1:43 45 mm hoch auf kleiner Auflage).
-  Mehrfarbige Teile mit AMS/MMU – jede Lichtfarbe ist ein zusammenhängender
-  Körper (Lampen hängen an Leitungen). Schrift, Sterne und kleine Zierteile
-  (Jet-Nase, Flügelstreifen) sind einzelne Inseln derselben Farbe.
+  Gesteckt und einzeln in ihrer Farbe druckbar: Windschutzscheibe und Düse
+  der Jets, UFO-Kuppel (auf einem Zapfen), Mastleuchten (Hülse über das
+  Mastende) – Passung: einsatz_spiel, Standard 0,05 mm.
+  Mast-Spirale, Jet-Nase, Finnenspitze, Streifen, Krone, Dachrippen, Lichter
+  und Kasse sind Farbzonen/Inlays: mit AMS/MMU – oder die 3MF einfarbig
+  drucken. Jede Lichtfarbe ist ein zusammenhängender Körper (Lampen hängen
+  an Leitungen); Schrift, Sterne und kleine Zierteile sind Inseln.
 
 MONTAGE
   1. (1:43) Podest-Hälften umdrehen, Clips in die Taschen drücken, umdrehen.
@@ -40,8 +44,9 @@ MONTAGE
   3. Säule auf den Zapfen in der Bodenmitte, Drehkopf unten auf die Achse.
   4. Je einen Stift durch jeden Arm schieben (beidseitig gleich weit),
      Arme in die Lagerschalen legen, Drehkopf oben aufsetzen.
-  5. Jets auf die Zapfen der Arme, Pavillon auf den Schlüssel, Dach auf den
-     Pavillon, UFO-Hälften verbinden und in die Dachspitze stecken.
+  5. Scheibe und Düse in die Jets drücken, Jets auf die Zapfen der Arme, Pavillon auf den Schlüssel, Dach auf den
+     Pavillon, UFO-Kuppel aufdrücken, UFO-Hälften verbinden und in die
+     Dachspitze stecken. Leuchten auf die Mastenden schieben.
   6. 16 Masten in die Löcher, 15 Geländer in die Schlitze (eine Seite bleibt
      als Eingang offen).
   7. Leuchtschild in den Fuß stecken. Kassenwagen: Fahrgestell, Treppe links,
