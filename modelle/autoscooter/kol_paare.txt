@@ -948,3 +948,10 @@ greifer_h boxer
 wohnwagen deichsel
 wohnwagen packwagen
 deichsel packwagen
+# Steck-Farbteile
+fp_wgA fp_wgB
+fp_wgA fp_wgC
+fp_wgB fp_wgC
+fp_ghA fp_ghB
+fp_wwA fp_wwD
+fp_pwA fp_pwD

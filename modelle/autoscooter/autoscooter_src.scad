@@ -22,6 +22,12 @@
 //    packwagen       LKW mit Kofferaufbau (zieht den Wohnwagen)
 //    verbinder       Clips für alle geteilten Teile
 //
+//  FARBTEILE
+//    Gesteckt (einzeln druckbar): Rammschutz-Ring und Sitz-Einsatz der Wagen,
+//    Glas-Rohr der Greifer-Haube, Radsätze von Wohn- und Packwagen.
+//    Inlays/filigran (mit AMS/MMU, sonst die 3MF einfarbig): Holz-Umgang,
+//    Banden, Lichter, Prunkfront, Kasse, Fenster, Streifen, Greifer, Preise,
+//    Joystick, Boxball (zu klein zum Stecken: der Arm trägt ihn im Druck).
 //  BEWEGLICH
 //    * Die Wagen stehen lose auf der Fahrfläche und lassen sich beliebig
 //      verteilen. Die Stromstange ist ein Stück Filament (1,75 mm).
@@ -112,6 +118,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Rammschutz, Sitz, Glas, Radsätze; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 stift_d = 1.75;
 verbinder_anzahl = 0;
 
@@ -478,7 +486,7 @@ module wagen_koerper() {
     // Stangenhalter hinten
     translate([-L_c * 0.36, 0, 0]) cylinder(d = d_tw, h = h_tw, $fn = 24);
 }
-module wagen_cockpit() translate([-L_c * 0.06, 0, h_b + max(sc(150), 1.2)]) linear_extrude(h_body * 2) rrect(L_c * 0.42, W_c * 0.62, W_c * 0.15);
+module wagen_cockpit(o = 0) translate([-L_c * 0.06, 0, h_b + max(sc(150), 1.2)]) linear_extrude(h_body * 2) rrect(L_c * 0.42 - 2 * o, W_c * 0.62 - 2 * o, W_c * 0.15 - o);
 module wagen(fp = "alle") {
     r = W_c * 0.3;
     if (inc(fp, "A")) difference() {
@@ -488,16 +496,16 @@ module wagen(fp = "alle") {
         // Scheinwerfer-Mulde
         translate([L_c * 0.30, 0, h_body * 0.75]) rotate([0, 90, 0]) linear_extrude(L_c) rotate(180) teardrop(h_body * 0.125);   // Spitze nach oben
     }
-    if (inc(fp, "B")) difference() {   // Gummi-Rammschutz
+    if (inc(fp, "B")) difference() {   // Gummi-Rammschutz: Ring, von unten über den Wagen gedrückt
         linear_extrude(h_b) rrect(L_c, W_c, r + o_b);
-        translate([0, 0, -1]) linear_extrude(h_b + 2) rrect(L_c - 2 * o_b + 0.01, W_c - 2 * o_b + 0.01, r);
+        translate([0, 0, -1]) linear_extrude(h_b + 2) rrect(L_c - 2 * o_b + 2 * einsatz_spiel, W_c - 2 * o_b + 2 * einsatz_spiel, r + einsatz_spiel);
     }
-    if (inc(fp, "C")) {   // Sitz + Lenkrad
+    if (inc(fp, "C")) {   // Sitz + Lenkrad: Einsatz, stramm ins Cockpit gedrückt
         intersection() {
-            wagen_cockpit();
+            wagen_cockpit(einsatz_spiel);
             translate([-L_c * 0.27, -W_c, h_b]) cube([L_c * 0.12, 2 * W_c, h_body * 0.75 - h_b + sc(150)]);
         }
-        intersection() { wagen_cockpit(); translate([-L_c * 0.27, -W_c, h_b]) cube([L_c * 0.42, 2 * W_c, sc(150, 1.2) + max(sc(150), 1.2) + 0.01]); }   // Boden bis unter das Lenkrad
+        intersection() { wagen_cockpit(einsatz_spiel); translate([-L_c * 0.27, -W_c, h_b]) cube([L_c * 0.42, 2 * W_c, sc(150, 1.2) + max(sc(150), 1.2) + 0.01]); }   // Boden bis unter das Lenkrad
         translate([L_c * 0.1, 0, h_b + max(sc(150), 1.2) - e]) {
             cylinder(d = max(sc(60), 1.0), h = h_body * 0.55, $fn = 12);
             translate([0, 0, h_body * 0.55 - e]) cylinder(d1 = max(sc(60), 1.0), d2 = max(sc(320), 3), h = (max(sc(320), 3) - max(sc(60), 1.0)) / 2, $fn = 24);
@@ -637,17 +645,19 @@ module greifer_unten(fp = "alle") {
     if (inc(fp, "C")) preise();
 }
 module greifer_haube(fp = "alle") {   // Welt: z = 0 auf dem Unterschrank; gedruckt kopfüber
+    // Rahmen: Deckel mit vier Eckpfosten innen; das Glas-Rohr wird von unten darübergeschoben
     module rahmen() {
-        for (x = [0, g_w - w_gp], y = [0, g_dh - w_gp]) translate([x, y, 0]) cube([w_gp, w_gp, g_h2]);
-        translate([0, 0, g_h2 - e]) cube([g_w, g_dh, g_h3 + e]);
-        difference() { cube([g_w, g_dh, max(sc(60), 1.0)]); translate([w_gp, w_gp, -1]) cube([g_w - 2 * w_gp, g_dh - 2 * w_gp, 5]); }
+        pz = h_lip + 0.3;   // Pfosten enden über der Lippe des Unterschranks
+        for (x = [t_gl + einsatz_spiel, g_w - t_gl - einsatz_spiel - w_gp], y = [t_gl + einsatz_spiel, g_dh - t_gl - einsatz_spiel - w_gp])
+            translate([x, y, pz]) cube([w_gp, w_gp, g_h2 - pz + e]);
+        translate([0, 0, g_h2]) cube([g_w, g_dh, g_h3]);
     }
     module glas() difference() {
         cube([g_w, g_dh, g_h2]);
         translate([t_gl, t_gl, -1]) cube([g_w - 2 * t_gl, g_dh - 2 * t_gl, g_h2 + 2]);
     }
     if (inc(fp, "A")) rahmen();
-    if (inc(fp, "B")) difference() { glas(); rahmen(); }
+    if (inc(fp, "B")) glas();
     if (inc(fp, "C")) translate([g_w * 0.55, g_dh * 0.55, g_h2 * 0.45]) {   // Greifer
         cylinder(d = max(sc(30), 0.8), h = g_h2 * 0.55 + e, $fn = 10);
         translate([0, 0, -g_w * 0.12]) cylinder(d1 = g_w * 0.24, d2 = max(sc(30), 0.8), h = g_w * 0.12 + e, $fn = 16);   // Greifer öffnet nach unten
@@ -696,6 +706,9 @@ module fase_box(L, B, z0, z1) hull() {   // Querschnitt mit Fasen an den Längsk
     translate([0, ch_w, z0]) cube([L, B - 2 * ch_w, z1 - z0]);
     translate([0, 0, z0 + ch_w]) cube([L, B, z1 - z0 - 2 * ch_w]);
 }
+// Radsatz-Feder: läuft quer über die ganze Breite (liegt beim Druck auf dem Bett) und steckt in einer Nut der Schürze
+function h_rf(r) = max(r * 0.5, 2); function w_rf(r) = max(r * 0.6, 2);
+module radsatz_feder(x, B, z0, r, o, ext) translate([x - w_rf(r) / 2 + o, ext, z0 - e]) cube([w_rf(r) - 2 * o, B - 2 * ext, h_rf(r) - o + e]);
 module raeder(xs, r, B, zmax) for (x = xs) intersection() {
     translate([x, 0, r]) rotate([-90, 0, 0]) cylinder(r = r, h = B, $fn = 40);
     translate([x - r - 1, -1, -1]) cube([2 * r + 2, B + 2, zmax + 1]);
@@ -727,13 +740,17 @@ module wohnwagen(fp = "alle") {
         // Fenster vorne
         translate([L_ww - d_inl, B_ww * 0.2, sc(1600)]) cube([d_inl + 1, B_ww * 0.6, sc(800)]);
         for (x = xs) translate([x - r_wh - 1, -1, -1]) cube([2 * r_wh + 2, B_ww + 2, z_sk + e]);
+        for (x = xs) radsatz_feder(x, B_ww, z_sk - 1, r_wh, 0, -1);   // Nut für den Radsatz
     }
     if (inc(fp, "B")) {
         intersection() { koerper(); inlay(d_inl) ww_fenster_2d(); }
         intersection() { koerper(); translate([L_ww - d_inl, B_ww * 0.2, sc(1600)]) cube([d_inl + 1, B_ww * 0.6, sc(800)]); }
     }
     if (inc(fp, "C")) intersection() { koerper(); inlay(d_inl) translate([0, sc(1150)]) square([L_ww, max(sc(120), 1.0)]); }
-    if (inc(fp, "D")) intersection() { koerper(); for (x = xs) translate([x - r_wh - 1, -1, -1]) cube([2 * r_wh + 2, B_ww + 2, z_sk + e]); }
+    if (inc(fp, "D")) for (x = xs) {
+        intersection() { koerper(); translate([x - r_wh - 1, -1, -1]) cube([2 * r_wh + 2, B_ww + 2, z_sk + e]); }
+        radsatz_feder(x, B_ww, z_sk - 1, r_wh, einsatz_spiel, 0);
+    }
 }
 module wohnwagen_druck(fp) translate([0, H_ww, 0]) rotate([90, 0, 0]) wohnwagen(fp);
 
@@ -789,10 +806,14 @@ module packwagen(fp = "alle") {
         // Kofferfugen
         for (x = [x_box / 4 : x_box / 4 : x_box - 1]) for (side = [0, 1]) translate([x, side == 0 ? -e : B_lk - dmr, sc(1000)]) cube([max(sc(25), 0.4), dmr + e, H_box - sc(1000) - 1]);
         for (x = xs) translate([x - r_lk - 1, -1, -1]) cube([2 * r_lk + 2, B_lk + 2, z_lks + e]);
+        for (x = xs) radsatz_feder(x, B_lk, z_lks - 1, r_lk, 0, -1);   // Nut für den Radsatz
     }
     if (inc(fp, "B")) intersection() { koerper(); union() { inlay(d_inl) fenster_s(); front_glas(); } }
     if (inc(fp, "C")) intersection() { koerper(); union() { inlay(d_inl) streifen_s(); schrift_beide(); lampen(); } }
-    if (inc(fp, "D")) intersection() { koerper(); for (x = xs) translate([x - r_lk - 1, -1, -1]) cube([2 * r_lk + 2, B_lk + 2, z_lks + e]); }
+    if (inc(fp, "D")) for (x = xs) {
+        intersection() { koerper(); translate([x - r_lk - 1, -1, -1]) cube([2 * r_lk + 2, B_lk + 2, z_lks + e]); }
+        radsatz_feder(x, B_lk, z_lks - 1, r_lk, einsatz_spiel, 0);
+    }
 }
 module packwagen_druck(fp) translate([-x_cpl, H_box, 0]) rotate([90, 0, 0]) packwagen(fp);
 

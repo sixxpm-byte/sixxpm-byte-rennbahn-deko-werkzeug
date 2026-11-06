@@ -18,3 +18,10 @@ if (obj == "boxer") translate([BXX, BXY, H_p]) boxer();
 if (obj == "wohnwagen") wohnwagen();
 if (obj == "deichsel") translate([L_ww, B_ww / 2, z_db]) deichsel();
 if (obj == "packwagen") translate([L_ww + L_db - sc(150, 1.5) - x_cpl / 2, B_ww / 2 - B_lk / 2, 0]) packwagen();
+// Steck-Farbteile einzeln (lokal): d0 = Baugruppe, ii = Farbteil
+FPS = ["A", "B", "C", "D"];
+if (obj == "fp" && d0 == 0) wagen(FPS[ii]);
+if (obj == "fp" && d0 == 1) greifer_haube(FPS[ii]);
+if (obj == "fp" && d0 == 2) boxer(FPS[ii]);
+if (obj == "fp" && d0 == 3) wohnwagen(FPS[ii]);
+if (obj == "fp" && d0 == 4) packwagen(FPS[ii]);

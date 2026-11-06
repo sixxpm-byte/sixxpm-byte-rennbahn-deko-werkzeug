@@ -12,11 +12,11 @@ def model(mst=43):
     n_st, l_st = (int(ms.group(1)), round(float(ms.group(2)))) if ms else (12, 0)
     names = {"podest": "Podest", "treppe": "Treppe", "bande_seite": "Bande Seite", "bande_hinten": "Bande hinten",
              "bande_vorne_aussen": "Bande vorne außen", "bande_vorne_mitte": "Bande vorne Mitte", "saeule": "Säule", "dach": "Dach",
-             "prunkfront": "Prunkfront", "wagen": "Wagen", "kasse_boden": "Kasse Boden", "kasse_wand_vorne": "Kasse Wand vorne",
+             "prunkfront": "Prunkfront", "wagen": "Wagen + Rammschutz + Sitz", "kasse_boden": "Kasse Boden", "kasse_wand_vorne": "Kasse Wand vorne",
              "kasse_wand_hinten": "Kasse Wand hinten", "kasse_wand_links": "Kasse Wand links", "kasse_wand_rechts": "Kasse Wand rechts",
              "kasse_dach": "Kasse Dach", "kasse_schild": "Kasse Schild", "greifer_unten": "Greifautomat Schrank",
-             "greifer_haube": "Greifautomat Haube", "boxer": "Box-Automat", "wohnwagen": "Wohnwagen", "deichsel": "Deichsel",
-             "packwagen": "Packwagen", "verbinder": "Clips"}
+             "greifer_haube": "Greifautomat Haube + Glas", "boxer": "Box-Automat", "wohnwagen": "Wohnwagen + Radsätze", "deichsel": "Deichsel",
+             "packwagen": "Packwagen + Radsätze", "verbinder": "Clips"}
     parts, _ = druck_parts(scad, D, names)
     for p in parts:
         i = p["id"]
@@ -59,7 +59,7 @@ def model(mst=43):
         dict(title="Säulen", parts=P("saeule"),
              text=["Die 10 Säulen mit dem unteren Vierkantzapfen in die Löcher am Podestrand stecken: 4 vorne, 4 hinten, je 1 seitlich."], render=S(4)),
         dict(title="Wagen mit Stromstangen", full=True, parts=P("wagen"),
-             text=[f"In den Halter hinten an jedem Wagen ein Filament-Stück (1,75 mm, {l_st} mm lang) als Stromstange stecken.",
+             text=[f"Rammschutz von unten über den Wagen, Sitz ins Cockpit drücken; Stange ({l_st} mm Filament) in den Halter.",
                    "Die Wagen frei auf der Fahrfläche verteilen – jetzt, solange das Dach noch nicht drauf ist."],
              render=S(5), inset=dict(scad=A, cam="0,0,0,65,0,30,0", defs=dd + ["detail=2"], size=(1000, 800), auto=True), inset_txt="Stange in den Halter"),
         dict(title="Kasse: Boden und Wände", parts=P("kasse_boden", "kasse_wand_vorne", "kasse_wand_hinten", "kasse_wand_links", "kasse_wand_rechts"),
@@ -68,7 +68,7 @@ def model(mst=43):
              text=["Das Dach aufsetzen – es hält die Wände zusammen.", "Das Schild CHIPS mit den Zapfen in die Schlitze vorne im Dach stecken."],
              render=S(7, "0,0,0,62,0,30,0", size=(1100, 1300))),
         dict(title="Greifautomat", parts=P("greifer_unten", "greifer_haube"),
-             text=["Die Glashaube von oben auf den Rand hinter dem Bedienpult setzen."], render=S(8, "0,0,0,62,0,30,0", size=(1100, 1300))),
+             text=["Das Glas-Rohr von unten über die Pfosten der Haube schieben.", "Die Haube von oben auf den Rand hinter dem Bedienpult setzen."], render=S(8, "0,0,0,62,0,30,0", size=(1100, 1300))),
         dict(title="Kasse und Automaten aufstellen", parts=P("boxer"),
              text=["Der Box-Automat ist ein einzelnes Teil.", "Kasse mittig, Greifautomat links und Box-Automat rechts auf den Holz-Umgang stellen."],
              render=S(9)),
@@ -84,7 +84,7 @@ def model(mst=43):
              text=([f"Die {pcs['prunkfront']} Teile der Prunkfront umgedreht verclipsen."] if pcs.get("prunkfront", 1) > 1 else []) +
                   ["Die Prunkfront mit ihren Zapfen in die Schlitze vorne im Dach stecken – Schauseite nach vorn."], render=S(12, "0,0,0,72,0,15,0")),
         dict(title="Wohnwagen und Deichsel", parts=P("wohnwagen", "deichsel"),
-             text=["Die Deichsel mit der Lasche vorne unter den Wohnwagen in den Schlitz schieben – der Zapfen an der Spitze zeigt nach unten."],
+             text=["Radsätze mit der Feder in die Nuten unter Wohn- und Packwagen drücken.", "Die Deichsel mit der Lasche vorne unter den Wohnwagen in den Schlitz schieben, Zapfen nach unten."],
              render=S(13, VS)),
         dict(title="Packwagen ankuppeln", parts=P("packwagen"),
              text=["Den Wohnwagen so absetzen, dass der Zapfen der Deichsel in das Loch der Kupplung hinten am Packwagen greift."], render=S(14, VS)),
@@ -99,7 +99,8 @@ def model(mst=43):
                            "Optional: transparentes Filament für die Glashaube des Greifautomaten"]),
         druck=druck(["Säulen stehen beim Druck: mit Brim (Rand) drucken, damit sie nicht kippen",
                      "Wohnwagen und Packwagen liegen auf der Seite, der Box-Automat auf dem Rücken, die Glashaube kopfüber; Banden, Prunkfront und Wände liegen flach",
-                     "Mehrfarbige Teile mit AMS/MMU – jede Farbe ist ein zusammenhängender Körper (Lichter hängen an Leitungen, Bandenfelder an verdeckten Leisten)"]),
+                     "Gesteckt und einzeln druckbar: Rammschutz und Sitz der Wagen, Glas der Haube, Radsätze – Passung: einsatz_spiel",
+                     "Inlays (Holz-Umgang, Banden, Lichter, Prunkfront, Kasse, Fenster, Streifen, Greifer, Preise, Joystick, Boxball) mit AMS/MMU – oder die 3MF einfarbig drucken"]),
         system=SYSTEM_CLIP + ["Alles ist gesteckt: Banden, Säulen, Dach und Prunkfront halten mit Zapfen in Schlitzen und Löchern.",
                               "Beweglich: Die Wagen stehen lose auf der Fahrfläche. Der Wohnwagen lässt sich mit der Deichsel an den Packwagen koppeln."],
         clip_png=CLIP_PNG,
