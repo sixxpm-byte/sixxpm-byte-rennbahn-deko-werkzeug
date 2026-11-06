@@ -8,7 +8,7 @@ la = ad * 0.8;                       // Pfeillänge
 pd_ = max(M(0.07), 1.2);             // Pfeildicke
 module ab(p, h) pfeil([p[0], p[1], p[2] + h + la + 2], [p[0], p[1], p[2] + h + 2], pd_);   // Pfeil nach unten über dem gehobenen Teil
 
-module platte_c() { color(fhex(farbe_platten)) bodenplatte("A"); color(fhex(farbe_sockel)) bodenplatte("B"); }
+module platte_c() { color(fhex(farbe_platten)) bodenplatte("A"); translate([0, 0, schritt == 1 ? max(M(0.6), 6) : 0]) color(fhex(farbe_sockel)) bodenplatte("B"); }   // Schritt 1: Sockel schwebt über der Mulde
 module wand_c(k) { color(fhex(farbe_wand)) wand_welt(k, "A"); color(fhex(farbe_holzwerk)) wand_welt(k, "B"); color(fhex(farbe_glas)) wand_welt(k, "C"); }
 module tuer_c() { color(fhex(farbe_holzwerk)) tuer_welt("A"); color(fhex(farbe_griff)) tuer_welt("B"); }
 module dach_c(h) { color(fhex(farbe_dach)) dach_welt(h, "A"); color(fhex(farbe_holzwerk)) dach_welt(h, "B"); }

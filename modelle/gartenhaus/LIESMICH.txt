@@ -16,11 +16,16 @@ DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
   Fensterglas (C) liegt in den ersten Schichten, darüber Rahmen, Sprossen und Läden (B).
   Dachhälften liegen mit der Unterseite auf dem Bett: weiße Unterschicht, Traufbrett
   und Ortgang (B) zuerst, darüber die Pfannen (A).
-  Bodenplatte: graue Terrasse (A), heller Sockel (B) obendrauf.
-  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Bodenplatte: graue Terrasse (A), heller Sockel (B) steckt in ihrer Mulde.
+  Gesteckt und einzeln in ihrer Farbe druckbar: Sockel, Fensterglas (von
+  innen in den Falz der Wand gedrückt), Pflanze im Kübel (Passung:
+  einsatz_spiel, Standard 0,05 mm). Fensterrahmen, Läden, Sprossen,
+  Türgriff, Dachkanten und Blüten sind Inlays: mit AMS/MMU – oder die 3MF
+  einfarbig drucken.
 
 MONTAGE
-  1. Bodenplatte hinlegen.
+  1. Bodenplatte hinlegen, Sockel in die Mulde drücken; Fensterglas von
+     innen in die Wände drücken.
   2. Front (Fenster und Tür) und die linke Wand mit der Feder in die Sockelnut stecken,
      dann rechte Wand und Rückwand.
   3. Tür: oberen Zapfen von unten in das Loch im Sturz schieben, unteren Zapfen in

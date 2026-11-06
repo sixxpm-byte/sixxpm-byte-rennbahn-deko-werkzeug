@@ -11,9 +11,9 @@ def model(mst=43):
     parts, _ = druck_parts(scad, D)
     for p in parts:
         i = p["id"]
-        if i == "bodenplatte": p["info"] = "Terrasse grau, Sockel hell (2 Farben)"
+        if i == "bodenplatte": p["info"] = "Terrasse grau + Sockel hell (gesteckt)"
         if i == "wand_vorne": p["info"] = "Front: Fenster + Türöffnung"
-        if i.startswith("wand_") and i != "wand_vorne": p["info"] = "Glas = erste Schichten"
+        if i.startswith("wand_") and i != "wand_vorne": p["info"] = "Glas = erste Schichten, steckt im Falz"
         if i == "tuer": p["info"] = "Zapfen oben und unten"
         if i == "rahmen_giebel": p["info"] = "Veranda-Giebel, flach gedruckt"
         if i.startswith("pfette"): p["info"] = "Zapfen vorne"
@@ -31,7 +31,7 @@ def model(mst=43):
         return dict(scad=A, cam=cam, defs=dd + [f"schritt={n}"] + list(extra), size=(1100, 900), auto=True)
     steps = [
         dict(title="Bodenplatte", parts=P("bodenplatte", "verbinder"),
-             text=["Die Bodenplatte hinlegen: graue Terrasse, darauf der helle Sockel mit den Nuten für die Wände.",
+             text=["Den hellen Sockel in die Mulde der grauen Terrasse drücken – er trägt die Nuten für die Wände.",
                    "Die Taschen an den Rändern passen zum Stecksystem der Rennbahn-Deko."],
              render=S(1)),
         dict(title="Front und linke Wand", full=True, parts=P("wand_vorne", "wand_links"),
@@ -74,7 +74,8 @@ def model(mst=43):
         material=material(),
         druck=druck(["Wände, Brüstungen, Giebel und Balken liegen flach (Außenseite oben); Fensterglas in den ersten Schichten",
                      "Dachhälften mit der Unterseite auf dem Bett: weiße Unterschicht und Kanten zuerst, darüber die Pfannen",
-                     "Mehrfarbige Teile (Wände, Dach, Bodenplatte, Kübel) mit AMS/MMU oder einfarbig mit farbteil = alle"]),
+                     "Gesteckt und einzeln druckbar: Sockel, Fensterglas (von innen in den Falz), Pflanze im Kübel – Passung: einsatz_spiel",
+                     "Inlays (Fensterrahmen, Läden, Sprossen, Türgriff, Dachkanten, Blüten) mit AMS/MMU – oder die 3MF einfarbig drucken"]),
         system=SYSTEM_CLIP + ["Beweglich: Die Tür dreht sich auf zwei Zapfen und öffnet nach außen. Das Dach ist nur aufgelegt."],
         clip_png=CLIP_PNG,
         massstab_hinweis=hinweis("Gartenhaus", "gartenhaus.scad", "Maße, Fenster, Brüstung und alle Farben lassen sich im Customizer ändern.", mst),

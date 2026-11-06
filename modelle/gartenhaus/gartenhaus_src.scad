@@ -24,6 +24,11 @@
 //    bank / stuhl / kuebel      Gartenbank, Gartenstuhl, Blumenkübel (3x)
 //    verbinder         Clips für alle geteilten Teile
 //
+//  FARBTEILE
+//    Fensterglas (von innen in den Falz gedrückt) und Sockel (in die Mulde der
+//    Bodenplatte gedrückt) sind gesteckt, die Pflanze steckt im Kübel – einzeln
+//    druckbar. Fensterrahmen, Läden, Sprossen, Türgriff, Dachkanten und Blüten
+//    sind Inlays: mit AMS/MMU – oder die 3MF einfarbig drucken.
 //  BEWEGLICH
 //    * Die Tür dreht sich auf zwei Zapfen (Sockel unten, Sturz oben).
 //    * Das Dach ist nur aufgelegt (Nuten auf den Giebeln): abnehmen und
@@ -108,6 +113,8 @@ rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
 verbinder_anzahl = 0;
+// Luft je Seite für eingepresste Farbteile (Fensterglas, Sockel; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 
 include <../../lib/deko_grundlagen.scad>
 
@@ -242,7 +249,8 @@ module wand_B_fp(k) offset(delta = 0.02) union() {
     }
     if (k == "vorne") rect2([du0 - fr, -1, du1 + fr, dh + fr]);
 }
-module wand_C(k) for (uc = FEN(k)) linear_extrude(tg_l) rect2([uc - fb / 2 - fr * 0.5, v_s - fr * 0.5, uc + fb / 2 + fr * 0.5, v_s + fh + fr * 0.5]);
+// Glas: liegt im Falz auf der Innenseite (Druckbett), o = Presssitz-Spiel
+module wand_C(k, o = 0) for (uc = FEN(k)) linear_extrude(tg_l) offset(delta = -o) rect2([uc - fb / 2 - fr * 0.5, v_s - fr * 0.5, uc + fb / 2 + fr * 0.5, v_s + fh + fr * 0.5]);
 module wand_A(k) difference() {
     union() {
         linear_extrude(t_w, convexity = 4) polygon(WPOLY(k));
@@ -262,7 +270,7 @@ module wand_A(k) difference() {
 module wand_lokal(k, fp = "alle") {
     if (inc(fp, "A")) wand_A(k);
     if (!is_br(k) && inc(fp, "B")) wand_B(k);
-    if (!is_br(k) && inc(fp, "C")) wand_C(k);
+    if (!is_br(k) && inc(fp, "C")) wand_C(k, einsatz_spiel);
 }
 module wand_welt(k, fp = "alle") {
     if (k == "vorne")       translate([0, P + t_w, z_f]) rotate([90, 0, 0]) wand_lokal(k, fp);
@@ -407,14 +415,16 @@ module platte_A() difference() {
         }
         square([B, D]);
     }
+    translate([0, 0, t_bp - g_sk]) cube([B, D, g_sk + 1]);   // Mulde für den Sockel
     if (rennbahn_taschen) {
         translate([-m_l, D / 2, 0]) rb_slot();
         translate([B + m_r, D / 2, 0]) rotate(180) rb_slot();
         for (x = FX) translate([x, -m_v, 0]) rotate(90) rb_slot();
     }
 }
+g_sk = min(max(sc(40), 0.6), t_bp - 1.2);           // Sockel steckt so tief in der Bodenplatte
 module sockel_B() difference() {
-    translate([0, 0, t_bp]) cube([B, D, h_s]);
+    translate([einsatz_spiel, einsatz_spiel, t_bp - g_sk]) cube([B - 2 * einsatz_spiel, D - 2 * einsatz_spiel, h_s + g_sk]);
     translate([0, 0, z_f - g_n]) linear_extrude(g_n + 1) difference() {
         offset(delta = spiel) for (k = concat(WK, BK)) rect2(WFP(k));
         translate([du0 + spiel, P - 1]) square([du1 - du0 - 2 * spiel, t_w + 2]);
@@ -465,6 +475,8 @@ echo(str("Gartenhaus 1:", den, " | Haus ", r2(B), " x ", r2(D), " mm (Veranda ",
 for (i = INFOS) if (n_pieces(i[1]) > 1)
     echo(str("Teilung: ", i[0], " -> ", n_pieces(i[1]), " Stücke, ", clip_count(i[1]), " Clips je Teil",
              zero_seams(i[1]) > 0 ? str("  WARNUNG: ", zero_seams(i[1]), " Naht/Nähte ohne Clip – dort kleben") : ""));
+echo(str("Steckteile: Sockel ", r2(g_sk), " mm tief in der Bodenplatte | Fensterglas ", tg_l, " mm im Falz | Einsatz-Spiel ", einsatz_spiel, " mm"));
+if (g_sk < 0.5) echo("WARNUNG: Sockel-Mulde zu flach");
 if (CLIPS > 0) echo(str("Verbinder-Clips gesamt: ", CLIPS, CLIPS > cpp ? str(" -> ", ceil(CLIPS / cpp), " Clip-Platten") : ""));
 
 druck("bodenplatte", np_of("bodenplatte"), "A", farbe_platten, 1); druck("bodenplatte", np_of("bodenplatte"), "B", farbe_sockel, 1);
