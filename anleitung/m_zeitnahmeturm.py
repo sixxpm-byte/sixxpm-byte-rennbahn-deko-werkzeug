@@ -14,7 +14,7 @@ def model(mst=43):
         if i == "bodenplatte": p["info"] = "Platz und Sockel (2 Farben)"
         if i.startswith("eg_wand") or i.startswith("og_wand"): p["info"] = "flach, Außenseite oben"
         if i == "decke_2": p["info"] = "Karo-Band, 3 Farben"
-        if i.startswith("kanzel"): p["info"] = "Glas = erste Schichten"
+        if i.startswith("kanzel"): p["info"] = "Glas = erste Schichten, steckt im Falz"
         if i == "kanzel_front": p["info"] = "vorne und hinten gleich"
         if i == "kanzel_rechts": p["info"] = "mit Glastür"
         if i.startswith("treppe"): p["info"] = "liegt auf der Außenwange"
@@ -77,7 +77,8 @@ def model(mst=43):
         druck=druck(["Wände, Kanzel-Glaswände, Schild und Fahne liegen flach (Schauseite oben), Glas in den ersten Schichten",
                      "Treppenläufe liegen auf der Außenwange mit dem Geländer; die Stufen stehen senkrecht, die Innenwange überbrückt kurz",
                      "Podest-Geländer liegen flach: geschlossene Rahmen mit Fußleiste, Knieleiste und Handlauf",
-                     "Mehrfarbige Teile (Wände, Decken, Kanzel, Dach, Schild, Fahne, Treppen) mit AMS/MMU oder einfarbig mit farbteil = alle"]),
+                     "Gesteckt und einzeln druckbar: Fensterglas (Wände und Kanzel, von innen in den Falz) und Treppengeländer (Pfosten in der Wange) – Passung: einsatz_spiel",
+                     "Inlays (Fensterrahmen, Karo, Streifen, Dachrand, Schild, Fahne) mit AMS/MMU – oder die 3MF einfarbig drucken"]),
         system=SYSTEM_CLIP + ["Zerlegbar: Alle Geschosse sind nur gesteckt. Dach, Kanzel und Etagen lassen sich abheben."],
         clip_png=CLIP_PNG,
         massstab_hinweis=hinweis("Zeitnahmeturm", "zeitnahmeturm.scad", "Maße, Kanzel-Neigung, Schildtext, Fahne und alle Farben lassen sich im Customizer ändern.", mst),

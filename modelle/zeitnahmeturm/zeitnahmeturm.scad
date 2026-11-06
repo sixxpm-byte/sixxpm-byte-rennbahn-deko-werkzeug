@@ -33,6 +33,11 @@
 //  Podest an der Zeitnahme-Tür (links hinten), links und vorne weiter bis zum
 //  Podest vor der Glastür der Kanzel (rechts vorne).
 //
+//  FARBTEILE
+//    Gesteckt (einzeln druckbar): Fensterglas der Wände und der Kanzel (von innen
+//    in den Falz gedrückt), Treppengeländer (Pfosten stecken in der Wange).
+//    Inlays (mit AMS/MMU, sonst die 3MF einfarbig): Fensterrahmen, Karo,
+//    Streifen, Dachrand, Schild, Fahne.
 //  BEWEGLICH / ZERLEGBAR
 //    * Alle Geschosse sind nur gesteckt: Dach, Kanzel, Etagen abheben und
 //      hineinschauen.
@@ -117,6 +122,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Fensterglas, Treppengeländer; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 verbinder_anzahl = 0;
 
 // =====================================================================
@@ -443,6 +450,9 @@ function near(p, L, d) = len([for (q = L) if (norm([p[0] - q[0], p[1] - q[1]]) <
 // ---- Ausgabe-Hilfen ----
 module druck(t, n, fp, f, m) if (m > 0) echo(str("DRUCK|", t, "|", n, "|", fp, "|", f, "|", m));
 module farben_echo() for (f = FARBEN) echo(str("FARBE|", f[0], "|", f[1]));
+module mass_echo(x, y, z) echo(str("MASS|", r2(x), "|", r2(y), "|", r2(z)));
+// Vorschau: Farbe aus FARBEN, render() damit OpenCSG mehrfarbige Teile richtig zeigt
+module vorschau_farbe(f) color(fhex(f)) render(convexity = 6) children();
 // Clip-Platten: n Clips, stk = 0 alle Platten, sonst Platte stk
 module verbinder_platten(n, stk) {
     px = floor((usable + 3) / (cL + 3)); py = floor((usable + 3) / (cw1 + 3));
@@ -545,7 +555,8 @@ module wand_B_fp(e, s) offset(delta = 0.02) for (o = OPN(e, s)) let(u0 = o[1], v
     if (o[0] == "T") rect2([u0 - fr, v0, u1 + fr, v1 + fr]);
     if (o[0] == "L") rect2([u0, v0, u1, v1]);
 }
-module wand_C(e, s) for (o = OPN(e, s)) if (o[0] == "F") linear_extrude(tg_l) rect2([o[1] - fr * 0.5, o[2] - fr * 0.5, o[3] + fr * 0.5, o[4] + fr * 0.5]);
+// Glas: liegt im Falz auf der Innenseite (Druckbett), o = Presssitz-Spiel
+module wand_C(e, s, o = 0) for (p = OPN(e, s)) if (p[0] == "F") linear_extrude(tg_l) offset(delta = -o) rect2([p[1] - fr * 0.5, p[2] - fr * 0.5, p[3] + fr * 0.5, p[4] + fr * 0.5]);
 function wpins(e, s) = [for (p = PINS) if (p[0] == s && tgt(p[2])[0] == "W" && tgt(p[2])[1] == e) [u_of(s, p[1]), p[2] - wz(e)]];
 module wand_A(e, s) difference() {
     translate([0, -tg, 0]) cube([wl(s), wh(e) + 2 * tg, t_w]);
@@ -559,7 +570,7 @@ module wand_A(e, s) difference() {
 module wand_lokal(e, s, fp = "alle") {
     if (inc(fp, "A")) wand_A(e, s);
     if (inc(fp, "B")) wand_B(e, s);
-    if (inc(fp, "C")) wand_C(e, s);
+    if (inc(fp, "C")) wand_C(e, s, einsatz_spiel);
 }
 module wand_welt(e, s, fp = "alle") translate([0, 0, wz(e)]) {
     if (s == "vorne")       translate([0, t_w, 0]) rotate([90, 0, 0]) wand_lokal(e, s, fp);
@@ -719,7 +730,7 @@ module kanzel_lokal(k, fp = "alle") {
         translate([0, 0, tc - 0.6]) linear_extrude(1) k_karo_2d(k);
     }
     if (inc(fp, "B")) translate([0, 0, tc - 0.6]) linear_extrude(0.59) k_karo_2d(k);
-    if (inc(fp, "C")) for (q = k_quads(k)) linear_extrude(tg_l) polygon(k_qpts(k, q, k_mw * 0.35));
+    if (inc(fp, "C")) for (q = k_quads(k)) linear_extrude(tg_l) offset(delta = -einsatz_spiel) polygon(k_qpts(k, q, k_mw * 0.35));   // Glas im Falz, gepresst
 }
 module kanzel_welt(k, fp = "alle") multmatrix(MK(k)) kanzel_lokal(k, fp);
 function k_off(k) = [k_vt * sin(ac) + tc + tgc + 1, tgc / cos(ac) + tc + 1];
@@ -812,7 +823,7 @@ module lauf_roh(i, fp = "alle") {
         }
         translate([0, 0, -1]) linear_extrude(t_st + 1.01, convexity = 8) offset(delta = 0.01) gel_2d();
     }
-    if (inc(fp, "B")) linear_extrude(t_st, convexity = 8) gel_2d();
+    if (inc(fp, "B")) linear_extrude(t_st, convexity = 8) offset(delta = -einsatz_spiel) gel_2d();   // Geländer steckt mit den Pfosten in der Wange
 }
 function lauf_m(i) = let(f = FL[i], s = f[0], h = hv(s), d = sign(f[2] - f[1]), dir = (s == "rechts" || s == "links") ? [0, d] : [d, 0], qe = wpt(s, f[2], g_f + sw))
     [[-dir[0], 0, -h[0], qe[0]], [-dir[1], 0, -h[1], qe[1]], [0, 1, 0, 0], [0, 0, 0, 1]];
