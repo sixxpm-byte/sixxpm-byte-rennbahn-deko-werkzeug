@@ -14,9 +14,9 @@ Ausstattung
 • Oberrahmen mit Schrägstreben, Querträgern und weißer Leuchtenleiste
 • Spreader von 20 auf 40 Fuß ausziehbar, am Drehzapfen abnehmbar
 • Versteckte Container-Halterung: Magnete in den Kopfträgern und unsichtbar im Containerdach halten den Container, Zentrierzapfen finden die Eckbeschläge – im Customizer einstellbar (Größe, Anzahl, Passung, an/aus)
-• Container-Bausatz 20 Fuß und 40 Fuß nach ISO-Maßen: Boden mit Eckbeschlägen, Dach, Seitenwände mit Trapezsicken, Stirnwand und Türseite mit Verriegelungsstangen – gesteckt, der 40-Fuß-Container in 1:43 mit Clips
+• Container-Bausatz 20 Fuß und 40 Fuß nach ISO-Maßen: grauer Boden und graue Rahmen mit Eckpfosten und Eckbeschlägen, rote Seitenwände mit Trapezsicken, Stirnwand, Türen mit Verriegelungsstangen und Dach – komplett gesteckt und ohne Kleber fest (Rauten-Zapfen im Presssitz), so trägt der Spreader den ganzen Container; der 40-Fuß-Container in 1:43 mit Clips
 • Hubhöhe frei wählbar – dafür werden nur die vier Innenbeine neu gedruckt
-• Alle Teile stützfrei, alle Verbindungen gesteckt – auch die Farbteile (Felgen, Glas, Lüftergitter, Leuchten, Kolbenstangen), daher auch ohne AMS einfarbig Teil für Teil druckbar; Räder drehen sich
+• Alle Teile stützfrei, alle Verbindungen gesteckt – auch die Farbteile (Felgen, Glas, Lüftergitter, Leuchten, Kolbenstangen, Container-Rahmen und -Wände), daher auch ohne AMS einfarbig Teil für Teil druckbar; Räder drehen sich
 
 Größe
 • 1:43: ca. 18,6 × 12,1 cm, Höhe ca. 14,7 cm, Spreader 14 cm (20′) / 29 cm (40′)
@@ -36,9 +36,9 @@ Features
 • Upper frame with diagonal braces, cross beams and white light bar
 • Spreader extends from 20 to 40 feet and detaches at its pivot pin
 • Hidden container holder: magnets in the end beams and invisibly inside the container roof hold the container, locating pins find the corner castings – adjustable in the Customizer (size, number, fit, on/off)
-• Container kit 20 ft and 40 ft to ISO dimensions: floor with corner castings, roof, corrugated side walls, front wall and door end with locking bars – plugged together, the 40 ft container in 1:43 with clips
+• Container kit 20 ft and 40 ft to ISO dimensions: grey floor and grey end frames with corner posts and castings, red corrugated side walls, front wall, doors with locking bars and roof – fully plugged and firm without glue (press-fit diamond pins), so the spreader lifts the whole container; the 40 ft container in 1:43 with clips
 • Lift height selectable – only the four inner legs are reprinted
-• All parts print without supports, all joints plug together – including the colour parts (rims, glazing, grille, lights, piston rods), so you can also print part by part in single colours without an AMS; wheels rotate
+• All parts print without supports, all joints plug together – including the colour parts (rims, glazing, grille, lights, piston rods, container frames and walls), so you can also print part by part in single colours without an AMS; wheels rotate
 
 Size
 • 1:43: approx. 18.6 × 12.1 cm, height approx. 14.7 cm, spreader 14 cm (20′) / 29 cm (40′)
@@ -53,22 +53,22 @@ DRUCKANWEISUNG
 • Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
 • Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
 • Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig
-• Kein Stützmaterial nötig: Fahrwerk und Oberrahmen liegen auf der Innenseite, die Beinschächte haben ein gefastes Dach mit kurzer Brücke, die Spreader-Kanäle sind kurze Brücken; Containerboden und -dach drucken kopfüber, die Wände flach
-• Mehrfarbig: Farbteile mit AMS/MMU gemeinsam aus der 3MF drucken – oder einfarbig jede STL einzeln, alle Farbteile werden gesteckt. Containerdach und Stirnseiten sind einfarbig (Option container_zweifarbig für graue Beschläge, dann nur mit AMS/MMU)
+• Kein Stützmaterial nötig: Fahrwerk und Oberrahmen liegen auf der Innenseite, die Beinschächte haben ein gefastes Dach mit kurzer Brücke, die Spreader-Kanäle sind kurze Brücken; Containerboden druckt aufrecht (Bodenplatte als Brücke), das Dach kopfüber, Rahmen und Wände flach
+• Mehrfarbig: Farbteile mit AMS/MMU gemeinsam aus der 3MF drucken – oder einfarbig jede STL einzeln, alle Farbteile werden gesteckt.
 • Teilung nur beim 40-Fuß-Container in 1:43: Boden und Dach aus je 2 Teilen mit 6 Clips, Seitenwände zweiteilig; sonst alles ungeteilt und gesteckt, keine Bolzen
-• Magnete (Standard Ø 5 × 2 mm) in die Taschen der Kopfträger und von innen in die Taschen des Containerdachs kleben (oder Stahlscheiben); Polung vor dem Aushärten prüfen; soll der Container am Spreader hängen, Wände und Dach am Boden festkleben
-• Passung: spiel (Innenbeine, Federn), tele_spiel (Teleskoparme), zapfen_spiel (Schwalbenschwanz, Koni, Drehzapfen), einsatz_spiel (Felge, Glas, Gitter, Leuchtenleiste) und magnet_spiel im Customizer anpassen
+• Magnete (Standard Ø 5 × 2 mm) in die Taschen der Kopfträger und von innen in die Taschen des Containerdachs kleben (oder Stahlscheiben); Polung vor dem Aushärten prüfen
+• Passung: spiel (Innenbeine, Federn), tele_spiel (Teleskoparme), zapfen_spiel (Schwalbenschwanz, Koni, Drehzapfen), einsatz_spiel (Felge, Glas, Gitter, Leuchtenleiste, Container-Zapfen und -Wände) und magnet_spiel im Customizer anpassen
 • Druckzeit (Slicer-Schätzung bei 100 % Füllung): 1:43 Fahrzeug ca. 38 h, Container 20′ ca. 10 h, 40′ ca. 20 h; 1:87 Fahrzeug ca. 7 h, Container 20′ ca. 2 h, 40′ ca. 4 h – mit 15 % Füllung deutlich weniger
 
 --- English ---
 • Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
 • Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
 • Print every part exactly as oriented in the files – the orientation is ready to print
-• No supports needed: chassis and upper frames lie on their inner side, the leg sockets have a chamfered roof with a short bridge, the spreader channels are short bridges; container floor and roof print upside down, the walls flat
-• Multicolour: print the colour parts together from the 3MF with AMS/MMU – or each STL on its own in one colour, all colour parts plug together. Container roof and end walls are single-colour (option container_zweifarbig adds grey castings, then AMS/MMU only)
+• No supports needed: chassis and upper frames lie on their inner side, the leg sockets have a chamfered roof with a short bridge, the spreader channels are short bridges; container floor prints upright (floor plate bridges the ribs), the roof upside down, frames and walls flat
+• Multicolour: print the colour parts together from the 3MF with AMS/MMU – or each STL on its own in one colour, all colour parts plug together.
 • Splitting only for the 40 ft container in 1:43: floor and roof in 2 pieces each with 6 clips, side walls in two parts; everything else is one piece and plugs together, no pins
-• Glue the magnets (default Ø 5 × 2 mm) into the end beam pockets and from the inside into the container roof pockets (or use steel discs); check polarity before the glue sets; glue the container walls and roof to the floor if the container should hang from the spreader
-• Fit: adjust spiel (inner legs, tongues), tele_spiel (telescopic arms), zapfen_spiel (dovetail, locating pins, pivot), einsatz_spiel (rim, glazing, grille, light bar) and magnet_spiel in the Customizer
+• Glue the magnets (default Ø 5 × 2 mm) into the end beam pockets and from the inside into the container roof pockets (or use steel discs); check polarity before the glue sets
+• Fit: adjust spiel (inner legs, tongues), tele_spiel (telescopic arms), zapfen_spiel (dovetail, locating pins, pivot), einsatz_spiel (rim, glazing, grille, light bar, container pins and walls) and magnet_spiel in the Customizer
 • Print time (slicer estimate at 100 % infill): 1:43 vehicle approx. 38 h, container 20′ approx. 10 h, 40′ approx. 20 h; 1:87 vehicle approx. 7 h, container 20′ approx. 2 h, 40′ approx. 4 h – much less with 15 % infill
 
 TAGS

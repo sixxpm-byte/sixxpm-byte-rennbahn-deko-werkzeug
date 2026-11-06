@@ -33,24 +33,33 @@ module oberteil(s) {
     }
 }
 // Container-Bausatz (lokal): Schritt 1 Boden + Stirnseiten, 2 Seitenwände + Dach
+// Steck-Container: Schritt 1 Boden + Rahmen mit Wänden (Wand von innen in den Rahmen), 2 Seitenwände + Dach
 module container_c(s, Lc = L_c20) {
     color(fhex(farbe_beschlag)) render() ct_boden(Lc);
-    rein([-ad, 0, 0], X(1), [-2, W_ct / 2, H_ct / 2], pd_) c2(farbe_container, farbe_beschlag) { ct_stirn(Lc, "A"); ct_stirn(Lc, "B"); }
-    rein([ad, 0, 0], X(1), [Lc + 2, W_ct / 2, H_ct / 2], pd_) c2(farbe_container, farbe_beschlag) { ct_stirn(Lc, "A", true); ct_stirn(Lc, "B", true); }
+    rein([0, 0, ad], X(1), [-2, W_ct / 2, H_ct + 2], pd_) {
+        translate([-X(1) * ad * 0.9, 0, 0]) color(fhex(farbe_beschlag)) render() ct_rahmen(Lc, false);
+        color(fhex(farbe_container)) render() ct_wand_steck(Lc, false);
+    }
+    rein([0, 0, ad], X(1), [Lc + 2, W_ct / 2, H_ct + 2], pd_) {
+        translate([X(1) * ad * 0.9, 0, 0]) color(fhex(farbe_beschlag)) render() ct_rahmen(Lc, true);
+        color(fhex(farbe_container)) render() ct_wand_steck(Lc, true);
+    }
     if (s >= 2) {
-        rein([0, -ad, 0], X(2), [Lc / 2, -2, H_ct / 2], pd_) color(fhex(farbe_container)) render() ct_seite(Lc);
-        rein([0, ad, 0], X(2), [Lc / 2, W_ct + 2, H_ct / 2], pd_) translate([Lc, W_ct, 0]) rotate([0, 0, 180]) color(fhex(farbe_container)) render() ct_seite(Lc);
-        rein([0, 0, ad], X(2), [Lc / 2, W_ct / 2, H_ct + 2], pd_) c2(farbe_container, farbe_beschlag) { ct_dach(Lc, "A"); ct_dach(Lc, "B"); }
+        rein([0, 0, ad], X(2), [Lc / 2, -2, H_ct + 2], pd_) color(fhex(farbe_container)) render() ct_seite(Lc);
+        rein([0, 0, ad], X(2), [Lc / 2, W_ct + 2, H_ct + 2], pd_) translate([Lc, W_ct, 0]) rotate([0, 0, 180]) color(fhex(farbe_container)) render() ct_seite(Lc);
+        rein([0, 0, ad * 2], X(2), [Lc / 2, W_ct / 2, H_ct + ad + 2], pd_) color(fhex(farbe_container)) render() ct_dach_steck(Lc);
     }
 }
 if (ansicht == 1) container_c(schritt);
 else if (ansicht == 2) {   // 40 Fuß: Boden und Dach in Druckorientierung (Teile mit Clip-Taschen)
     for (nm = ["boden", "dach"]) translate([0, nm == "boden" ? 0 : W_ct + 20, 0])
-        color(fhex(nm == "boden" ? farbe_beschlag : farbe_container)) render() ct_druck(L_c40, nm, "alle", 0);
+        color(fhex(nm == "boden" ? farbe_beschlag : farbe_container)) render()
+            if (nm == "boden") translate([0, W_ct, z_f]) rotate([180, 0, 0]) ct_druck(L_c40, nm, "alle", 0);   // Boden mit der Unterseite (Clip-Taschen) nach oben
+            else ct_druck(L_c40, nm, "alle", 0);
 }
 else if (detail == 2) {
     // Containerdach kopfüber (Innenseite oben), Magnete schweben über den Taschen
-    c2(farbe_container, farbe_beschlag) { ct_druck(L_c20, "dach", "A", 0); ct_druck(L_c20, "dach", "B", 0); }
+    color(fhex(farbe_container)) render() ct_druck(L_c20, "dach", "alle", 0);
     if (magnete) for (p = ct_mag_pos(L_c20)) translate([p[0], W_ct - p[1], H_ct - ct_mag_z0 + ad * 0.7]) {
         color("#9aa0a6") cylinder(d = magnet_d, h = magnet_h, $fn = 48);
         pfeil([0, 0, magnet_h + ad * 0.9], [0, 0, magnet_h + ad * 0.15], pd_);

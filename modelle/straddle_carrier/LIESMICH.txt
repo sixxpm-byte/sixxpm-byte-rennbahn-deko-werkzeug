@@ -9,11 +9,12 @@ STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__far
   Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
   *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
   Alle Farbteile werden gesteckt (Felge, Glaskern, Lüftergitter, Leuchten-
-  leiste, Kolbenstange, Teleskoparm/Kopfträger) – du kannst also auch ohne
-  AMS jede STL einzeln in ihrer Farbe drucken.
+  leiste, Kolbenstange, Teleskoparm/Kopfträger, Container-Rahmen und -Wände)
+  – du kannst also auch ohne AMS jede STL einzeln in ihrer Farbe drucken.
   straddle_carrier_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
-  c20_… / c40_…   = Container 20 bzw. 40 Fuß: Boden, Dach, Seitenwand (2x),
-                    Stirnwand, Türseite; verbinder = Clips (nur 1:43, für 40 Fuß)
+  c20_… / c40_…   = Container 20 bzw. 40 Fuß: Boden, Stirnrahmen, Türrahmen
+                    (grau), Stirnwand, Türen, Seitenwand (2x), Dach (rot);
+                    verbinder = Clips (nur 1:43, für 40 Fuß)
   bilder/         = Ansichten (Aufbau, hinten, Explosion, Kopfträger-Steckung,
                     Containerdach mit Magneten, Container), Druckteile
                     und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
@@ -29,10 +30,15 @@ Maßstab / andere Farben / Optionen:
   Optionen u. a.: Hubhöhe (hubhoehe_m, starr – ändert nur die Innenbeine),
   Container High Cube (container_hoehe_m = 2.896), Passung (spiel, tele_spiel,
   zapfen_spiel, einsatz_spiel), alle Farben. Die Datei ist eigenständig.
-  Containerdach, Stirnwand und Türseite sind einfarbig (rot). Mit
-  container_zweifarbig = true bekommen sie wieder graue Eckbeschläge und
-  Riegel – diese Farbteile sind dann eingelegt und halten nur, wenn beide
-  Farben in einem Druck (AMS/MMU) entstehen.
+
+CONTAINER – GESTECKT, OHNE KLEBER
+  Grau: Boden und die beiden Rahmen (Eckpfosten mit Eckbeschlägen und
+  Koni-Bohrung, Obergurt). Rot: Stirnwand, Türen, Seitenwände, Dach.
+  Stirnwand und Türen werden von innen in den Falz ihres Rahmens gedrückt.
+  Rauten-Zapfen halten alles im Presssitz: Boden -> Eckpfosten und
+  Dach -> Obergurte. Hebt der Spreader den Container am Dach an, trägt das
+  Dach über die Rahmen den Boden mit. Sitzen die Zapfen zu stramm oder zu
+  locker: einsatz_spiel im Customizer anpassen (Standard 0,05 mm).
 
 CONTAINER-HALTERUNG (Customizer-Abschnitt „Container-Halterung")
   Unter jedem Kopfträger sitzt eine Tasche für einen Neodym-Magnet.
@@ -50,10 +56,6 @@ CONTAINER-HALTERUNG (Customizer-Abschnitt „Container-Halterung")
   (ISO-Lochabstand, passt auch zum Container-Bausatz des Reach Stackers –
   dessen Dach hat aber keine Magnettaschen).
 
-  Die Magnete heben das Dach an. Soll der Container am Spreader hängen,
-  Seitenwände, Stirnseiten und Dach mit etwas Kleber am Boden fixieren –
-  gesteckt allein bleibt der Boden sonst stehen.
-
 DAZU BRAUCHST DU
   Neodym-Magnete (Standard Ø 5 × 2 mm): 2 für den Spreader und 2 je Container
   (oder Stahlscheiben gleicher Größe), Sekundenkleber. Sonst kein Zubehör.
@@ -68,8 +70,9 @@ DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
   - Reifen liegend (Innenrand unten), Felge flach
   - Kabine aufrecht (unten offen), Glaskern als Block, Motormodul aufrecht,
     Lüftergitter flach (Stäbe oben)
-  - Container: Boden und Dach kopfüber (Magnettaschen oben offen), Seitenwände
-    innen unten, Stirnwand und Türseite außen unten
+  - Container: Boden aufrecht (Zapfen oben, Bodenplatte als Brücke über den
+    Rippen), Dach kopfüber (Zapfen und Magnettaschen oben), Seitenwände innen
+    unten, Rahmen, Stirnwand und Türen außen unten
   Geteilt wird nur der 40-Fuß-Container in 1:43: Boden und Dach aus je 2 Teilen
   mit 6 Clips, Seitenwände zweiteilig. In 1:87 ist nichts geteilt.
   Farbteile mit AMS/MMU gemeinsam aus der 3MF – oder einfarbig jede STL
@@ -95,8 +98,10 @@ MONTAGE
      Spreader mit dem Drehzapfen von unten in den Mittelträger stecken.
   6. Oberteil mit den Oberbein-Schächten über die Innenbeine schieben.
   7. Container: Magnete von innen ins Dach kleben; 40 Fuß in 1:43 erst Boden
-     und Dach verclipsen. Stirnwand und Türseite in die Quernuten des Bodens,
-     Seitenwände (Sicken außen) in die Längsnuten, Dach aufsetzen.
+     und Dach verclipsen. Stirnwand und Türen von innen in ihre Rahmen
+     drücken, Rahmen auf die Zapfen des Bodens drücken (Wand in der Quernut),
+     Seitenwände (Sicken außen) zwischen die Pfosten in die Längsnuten
+     stellen, Dach aufdrücken – seine Zapfen greifen in die Obergurte.
 
 BEWEGLICH
   Räder drehen sich. Teleskoparme von 20 auf 40 Fuß ausziehbar. Der Spreader

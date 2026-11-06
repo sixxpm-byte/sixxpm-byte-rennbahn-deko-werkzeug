@@ -30,9 +30,11 @@ def model(mst=43):
              "innenbein": "Innenbein mit Stange", "oberrahmen": "Oberrahmen", "quertraeger": "Querträger", "mitteltraeger": "Mittelträger",
              "spreader_rahmen": "Spreader-Rahmen", "spreader_arm": "Teleskoparm", "kopftraeger": "Kopfträger", "motor_gitter": "Lüftergitter",
              "c20_boden": "Container 20′ Boden", "c20_dach": "Container 20′ Dach", "c20_seite": "Container 20′ Seitenwand",
-             "c20_stirn": "Container 20′ Stirnwand", "c20_tuer": "Container 20′ Türseite",
+             "c20_stirnrahmen": "Container 20′ Stirnrahmen", "c20_tuerrahmen": "Container 20′ Türrahmen",
+             "c20_stirn": "Container 20′ Stirnwand", "c20_tuer": "Container 20′ Türen",
              "c40_boden": "Container 40′ Boden", "c40_dach": "Container 40′ Dach", "c40_seite": "Container 40′ Seitenwand",
-             "c40_stirn": "Container 40′ Stirnwand", "c40_tuer": "Container 40′ Türseite", "verbinder": "Clips"}
+             "c40_stirnrahmen": "Container 40′ Stirnrahmen", "c40_tuerrahmen": "Container 40′ Türrahmen",
+             "c40_stirn": "Container 40′ Stirnwand", "c40_tuer": "Container 40′ Türen", "verbinder": "Clips"}
     parts, _ = druck_parts(scad, D, names)
     order = list(names)
     parts.sort(key=lambda p: order.index(p["id"]) if p["id"] in order else 99)
@@ -42,8 +44,9 @@ def model(mst=43):
             "oberrahmen": "liegt auf der Innenseite", "quertraeger": "liegt auf der Rückseite", "mitteltraeger": "liegt auf der Seite",
             "spreader_rahmen": "aufrecht, Drehzapfen oben", "spreader_arm": "kopfüber", "kopftraeger": "kopfüber, Magnettasche oben"}
     for c in ("c20", "c40"):
-        lage.update({f"{c}_boden": "kopfüber", f"{c}_dach": "kopfüber, Magnettaschen oben", f"{c}_seite": "Innenseite unten",
-                     f"{c}_stirn": "Außenseite unten", f"{c}_tuer": "Außenseite unten"})
+        lage.update({f"{c}_boden": "aufrecht, Zapfen oben", f"{c}_dach": "kopfüber, Zapfen und Magnettaschen oben", f"{c}_seite": "Innenseite unten",
+                     f"{c}_stirn": "Außenseite unten", f"{c}_tuer": "Außenseite unten",
+                     f"{c}_stirnrahmen": "Außenseite unten", f"{c}_tuerrahmen": "Außenseite unten"})
     for p in parts:
         if p["id"] in lage: p["info"] = lage[p["id"]]
     pc = {p["id"]: p["count"] for p in parts}
@@ -87,10 +90,13 @@ def model(mst=43):
                    "Die zweiteiligen Seitenwände Stoß an Stoß in die Nuten stellen."],
              render=dict(scad=A, cam="0,0,0,40,0,20,0", defs=dd + ["ansicht=2"], size=(1500, 1000), auto=True)))
     steps += [
-        dict(title="Container: Boden und Stirnseiten", parts=P("c20_boden", "c20_stirn", "c20_tuer", "c40_boden", "c40_stirn", "c40_tuer"),
-             text=["Stirnwand und Türseite mit der Feder in die Quernuten des Bodens stellen (40 Fuß genauso)."], render=S(1, VC, extra=["ansicht=1"])),
+        dict(title="Container: Boden und Stirnseiten", parts=P("c20_boden", "c20_stirnrahmen", "c20_stirn", "c20_tuerrahmen", "c20_tuer",
+                                                               "c40_boden", "c40_stirnrahmen", "c40_stirn", "c40_tuerrahmen", "c40_tuer"),
+             text=["Stirnwand und Türen von innen in ihre grauen Rahmen drücken.",
+                   "Rahmen auf die Zapfen des Bodens drücken, die Wand steht in der Quernut."], render=S(1, VC, extra=["ansicht=1"])),
         dict(title="Container: Seitenwände und Dach", parts=P("c20_seite", "c20_dach", "c40_seite", "c40_dach"),
-             text=["Seitenwände in die Längsnuten stellen, Sicken außen.", "Dach aufsetzen – die Nuten greifen über die Wände."], render=S(2, VC, extra=["ansicht=1"])),
+             text=["Seitenwände zwischen die Pfosten in die Längsnuten stellen, Sicken außen.",
+                   "Dach aufdrücken – seine Zapfen greifen in die Obergurte, die Nuten über die Wände."], render=S(2, VC, extra=["ansicht=1"])),
         dict(title="Container aufnehmen", parts=[],
              text=["Den Straddle Carrier über den Container fahren: die Koni finden die Eckbeschläge, die Magnete halten ihn.",
                    "Für 40 Fuß beide Teleskoparme ganz ausziehen."], render=S(7)),
@@ -100,12 +106,11 @@ def model(mst=43):
     sys_txt = [(f"In 1:{mst} wird nur der 40-Fuß-Container geteilt: Boden und Dach aus je {v['c40']} Teilen mit {v['clips']} Clips, Seitenwände zweiteilig."
                 if geteilt else f"In 1:{mst} passen alle Teile ungeteilt aufs Druckbett – Clips brauchst du nicht."),
                "Alles ist gesteckt – auch die Farbteile: Felge, Glaskern, Lüftergitter, Leuchtenleiste und Kolbenstange sitzen in Taschen oder Schächten, der Teleskoparm hängt mit einem Schwalbenschwanz im Kopfträger. Einfarbig druckst du jede STL einzeln.",
-               "Containerdach, Stirnwand und Türseite sind einfarbig; mit container_zweifarbig = true bekommen sie graue Beschläge (dann nur mit AMS/MMU druckbar).",
+               "Container ohne Kleber: Boden, Rahmen und Dach sind mit Rauten-Zapfen gepresst – so trägt das Dach mit den Magneten den ganzen Container. Grau sind Boden und die beiden Rahmen mit Eckpfosten und Eckbeschlägen, rot Wände und Dach.",
                f"Die Hubhöhe ({v['hub']} m) steckt in der Länge der Innenbeine – für eine andere Höhe nur die vier Innenbeine neu drucken."]
     if mg and cm:
         sys_txt.append(f"Container-Halterung: je ein Magnet Ø {mg[2]} × {mg[3]} mm im Kopfträger und – unsichtbar unter {k(cm[1])} mm Dachhaut – "
-                       f"im Containerdach, {k(cm[0])} mm von jeder Stirnseite. Statt der Container-Magnete gehen auch Stahlscheiben. "
-                       "Die Magnete heben das Dach – soll der Container am Spreader hängen, Wände und Dach am Boden festkleben.")
+                       f"im Containerdach, {k(cm[0])} mm von jeder Stirnseite. Statt der Container-Magnete gehen auch Stahlscheiben.")
     mat = [f"Länge in 1:{mst} ca. {v['laenge'] / 10:.0f} cm, Höhe ca. {v['hoehe'] / 10:.0f} cm; Container 20′ und 40′ im Bausatz"]
     if mg: mat.insert(0, f"Neodym-Magnete Ø {mg[2]} × {mg[3]} mm: 2 für den Spreader und 2 je Container (oder Stahlscheiben), Sekundenkleber")
     extra = f"In 1:{andere} sind die Bauschritte gleich; Magnetgröße und -taschen stellst du im Customizer ein (Abschnitt Container-Halterung)."
@@ -118,7 +123,7 @@ def model(mst=43):
         material=material(mat),
         druck=druck(["Alle Teile genau in der exportierten Lage drucken (siehe Druckliste)",
                      "Farbteile mit AMS/MMU gemeinsam aus der 3MF drucken – oder einfarbig jede STL einzeln, sie werden gesteckt",
-                     "Passung im Customizer: spiel (Innenbeine, Federn), zapfen_spiel (Schwalbenschwanz, Koni, Drehzapfen), einsatz_spiel (Felge, Glaskern, Gitter, Leuchtenleiste)"],
+                     "Passung im Customizer: spiel (Innenbeine, Federn), zapfen_spiel (Schwalbenschwanz, Koni, Drehzapfen), einsatz_spiel (Felge, Glaskern, Gitter, Leuchtenleiste, Container-Zapfen und -Wände)"],
                     stuetzen="Alle Teile drucken stützfrei. Die Schächte in Fahrwerk und Oberrahmen haben ein gefastes Dach mit kurzer Brücke."),
         system=sys_txt,
         clip_png=CLIP_PNG,

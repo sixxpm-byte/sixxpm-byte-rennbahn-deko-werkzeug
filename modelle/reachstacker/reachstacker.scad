@@ -297,7 +297,7 @@ r_dz  = max(M(0.15), 1.6);                // Drehzapfen Spreader
 h_dz  = max(M(0.3), 3);
 
 // Container-Bausatz aus der Bibliothek (ohne Magnettaschen)
-ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = true;
+ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = true; ct_steck = false;
 // =====================================================================
 //  deko_container.scad – Container-Bausatz 20/40 Fuß (ISO) für die Rennbahn-Deko-Reihe
 //  Teile: boden, dach (A Dachblech, B Obergurte + Eckbeschläge), seite 2x, stirn, tuer;
@@ -311,8 +311,17 @@ ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_
 //    ct_mag_n (1 = mittig, 2 = bei 1/4 und 3/4 der Breite), ct_mag_haut (Dachhaut über dem Magnet),
 //    ct_zweifarbig (true: Dach, Stirn und Tür mit Farbteil B = Dachrahmen/Eckpfosten/Obergurte in
 //    farbe_beschlag – nur für Mehrfarbdruck in einem Durchgang, B ist nicht gesteckt;
-//    false: diese Teile einfarbig, dann druck(..., "alle", farbe_container, ...))
+//    false: diese Teile einfarbig, dann druck(..., "alle", farbe_container, ...)),
+//    ct_steck (true: Steck-Bausatz, ersetzt ct_zweifarbig – siehe unten; braucht einsatz_spiel)
 //  Die Magnettaschen sitzen von innen im Dachblech, ct_mag_x von jeder Stirnseite.
+//
+//  STECK-BAUSATZ (ct_steck = true) – jede Farbe ein eigenes Teil, alles hält ohne Kleber:
+//    boden (Beschlagfarbe, aufrecht, Rauten-Zapfen oben auf den Eckbeschlägen),
+//    stirnrahmen / tuerrahmen (Beschlagfarbe: zwei Eckpfosten mit oberen Eckbeschlägen und
+//      Koni-Bohrung, Obergurt; außen unten gedruckt), stirn / tuer (Containerfarbe, von innen
+//      in den Falz des Rahmens gedrückt), seite 2x, dach (Containerfarbe, an den Ecken
+//      ausgespart, Rauten-Zapfen unten).  Lastweg beim Anheben am Dach: Dach -> Zapfen ->
+//      Obergurte -> Pfosten -> Zapfen -> Boden (Presssitz mit einsatz_spiel).
 // =====================================================================
 // Container (lokal: x längs ab Stirnwand, y quer, z = 0 Unterkante)
 L_c20 = M(container_20_m); L_c40 = M(container_40_m);
@@ -339,6 +348,13 @@ ct_mag_z0 = H_ct - ct_mag_haut - ct_mag_h;          // Unterkante Magnet (= Boss
 function ct_mag_ys() = ct_mag_n == 2 ? [W_ct / 4, 3 * W_ct / 4] : [W_ct / 2];
 function ct_mag_pos(Lc) = [for (x = [ct_mag_x, Lc - ct_mag_x], y = ct_mag_ys()) [x, y]];
 ct_p_r = 12; ct_t_r = 1.2;                           // Rippen im Boden
+// Steck-Bausatz: Rahmenlippe außen, Falz, Rauten-Zapfen
+ct_es  = ct_steck ? einsatz_spiel : 0;
+ct_lip = ct_steck ? max(M(0.05), 0.8) : 0;           // Wand liegt um ct_lip hinter der Außenkante des Rahmens
+ct_rb  = max(M(0.03), 0.6);                          // Falz: Wand greift so weit hinter Pfosten und Obergurt
+ct_dp  = min(max(M(0.12), 2.2), cx_e - 1.2, cy_e - ct_rb - 1.2);   // Rauten-Zapfen (Diagonale)
+ct_yp  = (cy_e - ct_rb) / 2;                         // Zapfenmitte im Pfosten (quer)
+ct_lp  = max(M(0.15), 2.5);                          // Zapfen Boden -> Pfosten
 
 // =====================================================================
 //  Container-Bausatz (lokal: x 0..Lc, y 0..W_ct, z 0..H_ct; Türen bei x = Lc)
@@ -358,6 +374,13 @@ rib_h = b_cl;                             // Schott unter dem Dach (Clips)
 y_s0 = cd + t_cw - t_tg;                  // Feder der Seitenwand (innen)
 y_cs = cd + t_cw + spiel + 1;             // Clip-Bereich ab hier
 bw_t = max(M(0.05), 0.8);
+ct_lr = min(max(M(0.1), 1.5), H_ct - tr - (z_e1 + ct_rb) - 0.4);   // Zapfen Dach -> Obergurt
+function ct_xp(Lc, tuer) = tuer ? Lc - cx_e / 2 : cx_e / 2;
+module raute_2d(d) rotate(45) square(d / sqrt(2), center = true);     // Ecken in x und y (liegend druckbar)
+module ct_stift(h) let(c = min(0.4, ct_dp * 0.2)) {
+    linear_extrude(h - c) offset(delta = -ct_es) raute_2d(ct_dp);
+    translate([0, 0, h - c - 0.01]) linear_extrude(c + 0.01, scale = 0.6) offset(delta = -ct_es) raute_2d(ct_dp);
+}
 function ct_xs(Lc) = Lc > usable ? seams_at(Lc, [], mw) : [];
 function ct_S(xs) = [for (sx = xs) [sx - spw / 2, y_cs, sx + spw / 2, W_ct - y_cs]];
 function info_boden(Lc) = [Lc, W_ct, ct_xs(Lc), [], [], false, z_f, ct_S(ct_xs(Lc))];
@@ -376,9 +399,13 @@ module eck_oval(Lc, zc, h) if (h >= 2) for (x = [0, Lc - cx_e], y = [0, W_ct - c
 // Nuten (Welt), z von zn - tiefe .. zn + 1 (oben offen) bzw. umgekehrt
 module ct_nuten(Lc, zn, unten) let(z0 = unten ? zn - g_n - 0.2 : zn - 1, h = g_n + 1.2) {
     for (sy = [0, 1]) translate([cx_e, sy == 0 ? y_s0 - spiel : W_ct - cd - t_cw - spiel, z0]) cube([Lc - 2 * cx_e, t_tg + 2 * spiel, h]);
-    if (unten) {
+    if (unten && !ct_steck) {
         translate([-1, cy_e, z0]) cube([cd + t_cw + spiel + 1, W_ct - 2 * cy_e, h]);
         translate([Lc - dt - t_cw - spiel, cy_e, z0]) cube([dt + t_cw + spiel + 1, W_ct - 2 * cy_e, h]);
+    }
+    if (unten && ct_steck) {   // Quernuten hinter der Rahmenlippe
+        translate([ct_lip - spiel, cy_e, z0]) cube([cd + t_cw + 2 * spiel, W_ct - 2 * cy_e, h]);
+        translate([Lc - ct_lip - dt - t_cw - spiel, cy_e, z0]) cube([dt + t_cw + 2 * spiel, W_ct - 2 * cy_e, h]);
     }
 }
 // ---- Boden (einfarbig: Rahmen) ----
@@ -389,6 +416,7 @@ module ct_boden(Lc, xs = []) difference() {
         for (x = [0, Lc - cx_e], y = [0, W_ct - cy_e]) translate([x, y, 0]) cube([cx_e, cy_e, z_f]);
         for (xx = [ct_p_r : ct_p_r : Lc - ct_p_r / 2]) translate([xx - ct_t_r / 2, rb - 0.01, 0]) cube([ct_t_r, W_ct - 2 * rb + 0.02, z_f]);
         for (sx = xs) translate([sx - spw / 2 - 1, rb - 0.01, 0]) cube([spw + 2, W_ct - 2 * rb + 0.02, z_f]);
+        if (ct_steck) for (t = [false, true], y = [ct_yp, W_ct - ct_yp]) translate([ct_xp(Lc, t), y, z_f - 0.01]) ct_stift(ct_lp - 0.3 + 0.01);
     }
     ct_nuten(Lc, z_f, true);
 }
@@ -416,6 +444,42 @@ module ct_dach(Lc, fp, xs = []) {
         if (ct_mag) for (p = ct_mag_pos(Lc)) translate([p[0], p[1], ct_mag_z0 - 1]) cylinder(d = ct_mag_d, h = ct_mag_h + 1, $fn = 48);
     }
     if (ct_zweifarbig && inc(fp, "B")) difference() { ct_dach_b(Lc); loecher(); }
+}
+// ---- Steck-Dach: Containerfarbe, Ecken für die Beschläge der Rahmen ausgespart, Zapfen in die Obergurte ----
+module ct_dach_steck(Lc, xs = []) difference() {
+    union() {
+        translate([0, 0, H_ct - tr]) cube([Lc, W_ct, tr]);
+        for (sx = xs) translate([sx - spw / 2 - 1, y_cs - 1, H_ct - tr - rib_h]) cube([spw + 2, W_ct - 2 * y_cs + 2, rib_h + 0.01]);
+        if (ct_mag && ct_mag_z0 < H_ct - tr) for (p = ct_mag_pos(Lc)) translate([p[0], p[1], ct_mag_z0]) cylinder(d = ct_mag_d + 2 * min_wand, h = H_ct - tr - ct_mag_z0 + 0.01, $fn = 48);
+        for (t = [false, true], y = [W_ct / 4, 3 * W_ct / 4]) translate([ct_xp(Lc, t), y, H_ct - tr + 0.01]) mirror([0, 0, 1]) ct_stift(ct_lr - 0.3 + 0.01);
+    }
+    for (x = [-1, Lc - cx_e - spiel], y = [-1, W_ct - cy_e - spiel]) translate([x, y, H_ct - tr - 1]) cube([cx_e + spiel + 1, cy_e + spiel + 1, tr + 2]);
+    ct_nuten(Lc, H_ct - tr, false);
+    if (ct_mag) for (p = ct_mag_pos(Lc)) translate([p[0], p[1], ct_mag_z0 - 1]) cylinder(d = ct_mag_d, h = ct_mag_h + 1, $fn = 48);
+}
+// ---- Steck-Rahmen (Beschlagfarbe): Eckpfosten mit oberen Eckbeschlägen + Obergurt, Falz von innen ----
+module ct_rahmen(Lc, tuer) let(xo = tuer ? Lc - cx_e : 0, px0 = tuer ? xo - 1 : ct_lip, px1 = tuer ? Lc - ct_lip : cx_e + 1) difference() {
+    union() {
+        for (y = [0, W_ct - cy_e]) translate([xo, y, z_f]) cube([cx_e, cy_e, H_ct - z_f]);
+        translate([xo, cy_e - 0.01, z_e1]) cube([cx_e, W_ct - 2 * cy_e + 0.02, H_ct - tr - z_e1]);
+    }
+    translate([px0, cy_e - ct_rb, z_f - 1]) cube([px1 - px0, W_ct - 2 * cy_e + 2 * ct_rb, z_e1 + ct_rb - z_f + 1]);   // Falz
+    for (y = [in_y, W_ct - in_y]) translate([tuer ? Lc - in_x : in_x, y, H_ct - h_tw - 0.4])                       // Koni-Bohrung (liegend: Tropfen)
+        linear_extrude(h_tw + 1) mirror([tuer ? 1 : 0, 0]) teardrop(r_zl, $fn = 24);
+    for (y = [ct_yp, W_ct - ct_yp]) translate([ct_xp(Lc, tuer), y, z_f - 1]) linear_extrude(ct_lp + 1) raute_2d(ct_dp);
+    for (y = [W_ct / 4, 3 * W_ct / 4]) translate([ct_xp(Lc, tuer), y, H_ct - tr - ct_lr]) linear_extrude(ct_lr + 1) raute_2d(ct_dp);
+}
+// ---- Steck-Wände: Stirnwand / Türen um ct_lip nach innen, Ränder im Falz ----
+module ct_wand_steck(Lc, tuer) let(es = ct_es) {
+    if (!tuer) {
+        translate([ct_lip, 0, 0]) ct_stirn_a();
+        for (y = [cy_e - ct_rb + es, W_ct - cy_e - 0.01]) translate([ct_lip, y, z_f]) cube([cd + t_cw, ct_rb - es + 0.01, z_e1 + ct_rb - es - z_f]);
+        translate([ct_lip, cy_e - ct_rb + es, z_e1 - 0.01]) cube([cd + t_cw, W_ct - 2 * cy_e + 2 * ct_rb - 2 * es, ct_rb - es + 0.01]);
+    } else {
+        translate([-ct_lip, 0, 0]) ct_tuer_a(Lc);
+        for (y = [cy_e - ct_rb + es, W_ct - cy_e - 0.01]) translate([Lc - ct_lip - dt - t_cw, y, z_f]) cube([dt + t_cw, ct_rb - es + 0.01, z_e1 + ct_rb - es - z_f]);
+        translate([Lc - ct_lip - dt - t_cw, cy_e - ct_rb + es, z_e1 - 0.01]) cube([dt + t_cw, W_ct - 2 * cy_e + 2 * ct_rb - 2 * es, ct_rb - es + 0.01]);
+    }
 }
 // ---- Seitenwand (y = 0; die zweite ist um 180° gedreht) ----
 module ct_seite(Lc) {
@@ -462,7 +526,13 @@ module ct_stirn(Lc, fp, tuer = false) {
 }
 // ---- Druck ----
 module ct_druck(Lc, nm, fp, stk) {
-    if (nm == "boden") split_out(info_boden(Lc), stk) translate([0, W_ct, z_f]) rotate([180, 0, 0]) ct_boden(Lc, ct_xs(Lc));
+    if (ct_steck && nm == "boden") split_out(info_boden(Lc), stk) ct_boden(Lc, ct_xs(Lc));   // aufrecht, Zapfen oben
+    else if (ct_steck && nm == "dach") split_out(info_dach(Lc), stk) translate([0, W_ct, H_ct]) rotate([180, 0, 0]) ct_dach_steck(Lc, ct_xs(Lc));
+    else if (ct_steck && nm == "stirn") multmatrix([[0, 1, 0, 0], [0, 0, 1, -(z_f - g_n)], [1, 0, 0, -ct_lip], [0, 0, 0, 1]]) ct_wand_steck(Lc, false);
+    else if (ct_steck && nm == "tuer") multmatrix([[0, -1, 0, W_ct], [0, 0, 1, -(z_f - g_n)], [-1, 0, 0, Lc - ct_lip], [0, 0, 0, 1]]) ct_wand_steck(Lc, true);
+    else if (nm == "stirnrahmen") multmatrix([[0, 1, 0, 0], [0, 0, 1, -z_f], [1, 0, 0, 0], [0, 0, 0, 1]]) ct_rahmen(Lc, false);
+    else if (nm == "tuerrahmen") multmatrix([[0, -1, 0, W_ct], [0, 0, 1, -z_f], [-1, 0, 0, Lc], [0, 0, 0, 1]]) ct_rahmen(Lc, true);
+    else if (nm == "boden") split_out(info_boden(Lc), stk) translate([0, W_ct, z_f]) rotate([180, 0, 0]) ct_boden(Lc, ct_xs(Lc));
     else if (nm == "dach") split_out(info_dach(Lc), stk) translate([0, W_ct, H_ct]) rotate([180, 0, 0]) ct_dach(Lc, fp, ct_xs(Lc));
     else if (nm == "seite") split_out(info_seite(Lc), stk)
         multmatrix([[1, 0, 0, -(cx_e + spiel)], [0, 0, 1, -(z_f - g_n)], [0, -1, 0, cd + t_cw], [0, 0, 0, 1]]) ct_seite(Lc);
@@ -470,7 +540,16 @@ module ct_druck(Lc, nm, fp, stk) {
     else if (nm == "tuer") multmatrix([[0, -1, 0, W_ct], [0, 0, 1, -(z_f - g_n)], [-1, 0, 0, Lc], [0, 0, 0, 1]]) ct_stirn(Lc, fp, true);
 }
 // ---- Zusammenbau (lokal) ----
-module ct_welt(Lc, ex = 0) {
+module ct_welt(Lc, ex = 0) if (ct_steck) {
+    translate([0, 0, -ex]) vorschau_farbe(farbe_beschlag) ct_boden(Lc);
+    translate([0, 0, ex]) vorschau_farbe(farbe_container) ct_dach_steck(Lc);
+    translate([0, -ex, 0]) vorschau_farbe(farbe_container) ct_seite(Lc);
+    translate([Lc, W_ct + ex, 0]) rotate([0, 0, 180]) vorschau_farbe(farbe_container) ct_seite(Lc);
+    translate([-1.6 * ex, 0, 0]) vorschau_farbe(farbe_beschlag) ct_rahmen(Lc, false);
+    translate([-0.6 * ex, 0, 0]) vorschau_farbe(farbe_container) ct_wand_steck(Lc, false);
+    translate([1.6 * ex, 0, 0]) vorschau_farbe(farbe_beschlag) ct_rahmen(Lc, true);
+    translate([0.6 * ex, 0, 0]) vorschau_farbe(farbe_container) ct_wand_steck(Lc, true);
+} else {
     translate([0, 0, -ex]) vorschau_farbe(farbe_beschlag) ct_boden(Lc);
     translate([0, 0, ex]) { vorschau_farbe(farbe_container) ct_dach(Lc, "A"); vorschau_farbe(farbe_beschlag) ct_dach(Lc, "B"); }
     translate([0, -ex, 0]) vorschau_farbe(farbe_container) ct_seite(Lc);
