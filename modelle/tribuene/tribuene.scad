@@ -19,6 +19,11 @@
 //    Beispiele: "BTBTB", "BTBKKBTB", "KKBTBKK"
 //    Nachrüsten: einfach Buchstaben ergänzen und die neuen Teile drucken.
 //
+//  FARBTEILE
+//    Das Glas der Geländer steckt im Falz des Rahmens (von unten eingedrückt, einzeln
+//    druckbar). Schrift, Treppenkanten, Banden-Text und Fahne sind Inlays:
+//    mit AMS/MMU oder die 3MF einfarbig drucken.
+//
 //  TEILE  (teil = ...)
 //    block / treppe / kurve_aussen / kurve_innen   Tribünenkörper: hohl,
 //                       Unterseite offen mit Rippen (stützfrei), bei Bedarf
@@ -135,6 +140,8 @@ rand = 5;
 druckhoehe = 250;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Geländer-Glas; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 // Fahnenstift (1.75 = Filament)
 stift_d = 1.75;
 stift_spiel = 0.2;
@@ -674,8 +681,22 @@ module panel2d(L, fp) {   // x = Länge, y = Höhe über dem Boden (Zapfen < 0)
         for (sx = PO(L)) translate([sx - w_po / 2, -1]) square([w_po, h_g + 2]);
     }
 }
-module panel_print(L, fp) translate([0, p_l, 0]) linear_extrude(t_g) panel2d(L, fp);
-module panel_world(L, fp) translate([0, t_g / 2, 0]) rotate([90, 0, 0]) linear_extrude(t_g, convexity = cvx) panel2d(L, fp);
+// Glas steckt im Falz: unten (Druckbett) ist die Öffnung um rb_g größer, oben hält eine Lippe des Rahmens;
+// die Scheibe hat oben einen Bund in Öffnungsgröße (bündig) und wird von unten eingedrückt (Presssitz einsatz_spiel)
+rb_g = min(0.6, w_po * 0.25); lp_g = min(0.6, t_g * 0.4);
+module glas2d(L, o) intersection() { offset(delta = o) panel2d(L, "B"); translate([0, -p_l]) square([L, h_g + p_l]); }
+module panel3d(L, fp) {
+    if (inc(fp, "A")) {
+        linear_extrude(t_g - lp_g + e, convexity = cvx) difference() { panel2d(L, "A"); offset(delta = rb_g) panel2d(L, "B"); }
+        translate([0, 0, t_g - lp_g]) linear_extrude(lp_g, convexity = cvx) panel2d(L, "A");
+    }
+    if (inc(fp, "B")) {
+        linear_extrude(t_g - lp_g, convexity = cvx) glas2d(L, rb_g - einsatz_spiel);
+        translate([0, 0, t_g - lp_g - e]) linear_extrude(lp_g + e, convexity = cvx) glas2d(L, -einsatz_spiel);
+    }
+}
+module panel_print(L, fp) translate([0, p_l, 0]) panel3d(L, fp);
+module panel_world(L, fp) translate([0, t_g / 2, 0]) rotate([90, 0, 0]) panel3d(L, fp);
 module rails_world(k, yg, ztop) {
     if (k[0] == "S") translate([c_e, yg, ztop]) { color(fhex(farbe_gelaender)) panel_world(k[1] - 2 * c_e, "A"); color(fhex(farbe_glas)) panel_world(k[1] - 2 * c_e, "B"); }
     else for (c = chords(k, yg)) let(L = norm(c[1] - c[0]), a = atan2(c[1][1] - c[0][1], c[1][0] - c[0][0]))
