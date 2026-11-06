@@ -22,6 +22,9 @@
 //    haus_*        Verkaufshäuschen wie beim Riesenrad
 //    verbinder     Clips für alle geteilten Teile
 //
+//  FARBTEILE
+//    Der Wimpel jeder Laterne steckt mit einer Hülse auf dem Fahnenmast (einzeln
+//    druckbar). Schild-Schrift ist ein Inlay: mit AMS/MMU oder die 3MF einfarbig.
 //  BEWEGLICH
 //    * Stern + Dach + Laterne drehen sich auf dem Lagerzapfen des Masts.
 //    * Jeder Sitz pendelt an einem Stift (Filament) in der Auslegerspitze –
@@ -122,6 +125,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Wimpel-Hülse; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 // Stift für die Sitzlager (1.75 = Filament, ab 1:24 besser 3 mm Draht)
 stift_d = 1.75;
 stift_spiel = 0.2;
@@ -243,6 +248,7 @@ H_in  = th_roof(r_top) + 0.5;
 d_fp  = max(sc(80), 1.6);
 h_pen = max(sc(500), 4);
 t_pen = max(sc(40), 1.0);
+d_fs  = d_fp + 2 * einsatz_spiel + 2 * max(sc(25), 0.6);   // Fahnenmast unten = Außenmaß der Wimpel-Hülse
 h_pole = max(sc(900), 8);
 
 // ---- Mastfuß, Treppen ----
@@ -732,6 +738,7 @@ module laterne(fp) {   // z = 0 auf der Sternnabe
                 linear_extrude(Hb) oct(2 * r_lt * cos(22.5));
                 translate([0, 0, Hb - e]) linear_extrude(hc, scale = 0.08) oct(2 * r_lt * cos(22.5) * 1.12);
                 translate([0, 0, Hb + hc - 1]) { cylinder(d1 = d_fp * 2.2, d2 = d_fp * 2.2, h = d_fp * 0.6); translate([0, 0, d_fp * 0.6 - e]) cylinder(d1 = d_fp * 2.2, d2 = d_fp, h = d_fp * 0.6 + e); }
+                cylinder(d = d_fs, h = Hb + hc + h_pole - h_pen + e);                // Fahnenmast unten (Schulter für die Wimpel-Hülse)
                 cylinder(d = d_fp, h = Hb + hc + h_pole);
             }
             // Spitzbogenfenster (Relief)
@@ -741,8 +748,11 @@ module laterne(fp) {   // z = 0 auf der Sternnabe
         }
     }
     // Wimpel (45°-Unterkante, stützfrei)
-    if (inc(fp, "B")) translate([d_fp / 2 - 0.2, -t_pen / 2, Hb + hc + h_pole - h_pen])
-        rotate([90, 0, 0]) translate([0, 0, -t_pen]) linear_extrude(t_pen) polygon([[0, 0], [h_pen * 0.95, h_pen], [0, h_pen]]);
+    // Wimpel mit Hülse: von oben über den dünnen Mast geschoben, sitzt auf der Schulter
+    if (inc(fp, "B")) translate([0, 0, Hb + hc + h_pole - h_pen]) {
+        difference() { cylinder(d = d_fs, h = h_pen, $fn = 16); translate([0, 0, -1]) cylinder(d = d_fp + 2 * einsatz_spiel, h = h_pen + 2, $fn = 12); }
+        translate([d_fs / 2 - 0.2, -t_pen / 2, 0]) rotate([90, 0, 0]) translate([0, 0, -t_pen]) linear_extrude(t_pen) polygon([[0, 0], [h_pen * 0.95, h_pen], [0, h_pen]]);
+    }
 }
 module laterne_welt(fp = "alle") translate([0, 0, z_rb]) laterne(fp);
 
