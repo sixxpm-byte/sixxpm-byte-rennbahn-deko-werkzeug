@@ -24,7 +24,11 @@ DRUCK – alles ohne Stützen, Ausrichtung ist druckfertig
   Deck oben = oben; die Lippen neben den Blenden-Nuten sind 1 mm breit.
   Kugeln stehen auf ihrer 45°-Fase, Kopfhörer-Hälften liegen flach,
   Rückwand-Paneele, Masten, Zäune und Schild liegen flach (Schauseite oben).
-  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
+  Gesteckt und einzeln in ihrer Farbe druckbar: Vinylscheiben im Zaun (von
+  unten in den Falz gedrückt), Kopfhörer-Schalen (Vierkant-Zapfen) und
+  -Gelenke (Bolzen) – Passung: einsatz_spiel, Standard 0,05 mm. Rückwand-EQ,
+  Labels, LEDs, Schrift, Polster und Zierscheiben sind Inlays: mit AMS/MMU –
+  oder die 3MF einfarbig drucken.
 
 MONTAGE
   1. Bodenkreuz (1:43 zusammenclipsen), Innen- und Außenblenden in die Nuten
@@ -32,7 +36,8 @@ MONTAGE
   2. Treppenblöcke vorne an das Podest schieben.
   3. Plattenteller (1:43 geclipst) auf die schräge Achse, Kreuze auf die
      Zapfen, Gondeln auf die Kreuzzapfen.
-  4. Kugelturm stecken, Kopfhörer-Hälften kleben und aufsetzen, Turm auf das
+  4. Kugelturm stecken, Schalen und Gelenke in die Kopfhörer-Hälften drücken,
+     Hälften kleben und aufsetzen, Turm auf das
      Achsende drücken (Abflachung = Kopfhörer schaut nach vorn).
   5. Rückwand-Paneele 1–7 in die Nuten, Stützen dahinter, Markisen in die
      Schlitze, Schild auf Paneel 6.

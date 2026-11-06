@@ -60,7 +60,8 @@ def model(mst=43):
                        dict(scad=scad, cam="0,0,0,40,0,200,0", defs=D + ["kassenhaus_zeigen=false"], size=(1400, 1100), auto=True)],
         material=material([f"Filament-Stück Ø 1,75 mm für den Tonarm (ca. {st} mm)"]),
         druck=druck(["Kugeln stehen auf ihrer 45°-Fase, Kopfhörer-Hälften liegen flach – keine Stützen",
-                     "Mehrfarbige Teile (Rückwand, Teller, Gondeln …) mit AMS/MMU oder einfarbig mit farbteil = alle",
+                     "Gesteckt und einzeln druckbar: Vinylscheiben im Zaun (von unten in den Falz), Kopfhörer-Schalen und -Gelenke – Passung: einsatz_spiel",
+                     "Inlays (Rückwand-EQ, Labels, LEDs, Schrift, Polster, Zierscheiben) mit AMS/MMU – oder die 3MF einfarbig drucken",
                      "Clip-Taschen auf der Unterseite der geteilten Teile werden kurz überbrückt – keine Stützen einschalten"]),
         system=(SYSTEM_CLIP if n_cl > 0 else SYSTEM_CLIP[:1] + ["In diesem Maßstab ist kein Teil geteilt – Clips brauchst du nur für die Rennbahn-Taschen."]) +
                ["Beweglich: Der Plattenteller dreht sich auf der schrägen Achse, die Kreuze auf ihren Zapfen und jede Gondel einzeln. Der Turm steht fest."],

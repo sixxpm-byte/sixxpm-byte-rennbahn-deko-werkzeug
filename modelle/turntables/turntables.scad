@@ -30,6 +30,11 @@
 //    haus_*          Kasse im Flightcase-Look
 //    verbinder       Clips für alle geteilten Teile
 //
+//  FARBTEILE
+//    Gesteckt (einzeln druckbar): Vinylscheiben im Zaun (Falz, von unten eingedrückt),
+//    Kopfhörer-Schalen (Vierkant-Zapfen) und -Gelenke (Bolzen). Labels, LEDs,
+//    EQ-Felder, Schrift, Polster und Zierscheiben sind Inlays: mit AMS/MMU oder
+//    die 3MF einfarbig drucken.
 //  BEWEGLICH
 //    * Der Plattenteller dreht sich auf der schrägen Achse des Lagerbocks
 //      (Neigung einstellbar), der Kugelturm sitzt fest oben auf der Achse.
@@ -131,6 +136,8 @@ druckbett = 220;
 rand = 5;
 min_wand = 1.2;
 spiel = 0.15;
+// Luft je Seite für eingepresste Farbteile (Vinylscheiben im Zaun, Kopfhörer-Schalen und -Gelenke; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 stift_d = 1.75;
 stift_spiel = 0.2;
 verbinder_anzahl = 0;
@@ -233,6 +240,7 @@ l_ts = min(h_c * 0.5, max(sc(400), 5));
 b_r  = max(sc(110), 1.4);
 cup_r = 0.58 * r_k; cup_h = 0.38 * r_k;
 x_in = r_k + 0.6; pad_t = cup_h * 0.45;
+zp_s = max(cup_r * 0.35, 1.6); zp_l = max(cup_h * 0.3, 1.5);   // Vierkant-Zapfen der Kopfhörer-Schalen
 hp_r = x_in + pad_t + cup_h * 0.4;
 ZB  = [for (i = [0 : 2]) h_c + h_kr + i * (hb_k + h_rg)];   // Kugel-Unterkanten
 zc3 = ZB[2] + 0.707 * r_k; zt3 = ZB[2] + hb_k;
@@ -701,6 +709,7 @@ module kopfhoerer_voll(fp) {   // Ursprung = Mitte der oberen Kugel
     module polster() rotate([0, -60, 0]) rotate([90, 0, 0]) rotate_extrude(angle = 60, $fn = 24) translate([hp_r, 0]) scale([1.25, 1.75]) circle(r = b_r, $fn = 16);
     module schalen() for (sg = [-1, 1]) translate([sg * (x_in + pad_t), 0, 0]) rotate([0, sg * 90, 0]) cylinder(r1 = cup_r, r2 = cup_r * 0.72, h = cup_h * 0.75 - 0.6, $fn = 32);
     module zier() for (sg = [-1, 1]) translate([sg * (x_in + pad_t + cup_h * 0.75 - 0.6 - e), 0, 0]) rotate([0, sg * 90, 0]) cylinder(r = cup_r * 0.45, h = 0.6, $fn = 24);
+    module offset_gelenke() for (sg = [-1, 1]) translate([sg * (hp_r - b_r * 0.2), 0, cup_r * 0.85]) rotate([90, 0, 0]) cylinder(r = b_r * 1.3 - einsatz_spiel, h = 2 * b_r * 1.3, center = true, $fn = 24);
     module gelenke() for (sg = [-1, 1]) translate([sg * (hp_r - b_r * 0.2), 0, cup_r * 0.85]) rotate([90, 0, 0]) cylinder(r = b_r * 1.3, h = 2 * b_r * 1.3, center = true, $fn = 16);
     module stiel() translate([-p_t / 2 - spiel, -p_t / 2 - spiel, hp_r - 1.5 * b_r - 1]) cube([p_t + 2 * spiel, p_t + 2 * spiel, d_hb + 1]);
     if (inc(fp, "A")) {
@@ -709,9 +718,13 @@ module kopfhoerer_voll(fp) {   // Ursprung = Mitte der oberen Kugel
             schalen(); polster(); gelenke(); stiel(); zier();
         }
     }
-    if (inc(fp, "B")) difference() { schalen(); zier(); gelenke(); }
+    // Schalen stecken mit einem Vierkant-Zapfen am Polsterring, Gelenke als Bolzen in der Bohrung des Bügels
+    module schalen_zapfen(o) for (sg = [-1, 1]) translate([sg * (x_in + pad_t - e), 0, 0]) rotate([0, sg * 90, 0])
+        translate([-(zp_s / 2 + o), -(zp_s / 2 + o), (sg > 0 ? 0 : 0) - (o > 0 ? 0.3 : 0)]) cube([zp_s + 2 * o, zp_s + 2 * o, zp_l + e + (o > 0 ? 0.6 : 0)]);
+    if (inc(fp, "B")) difference() { schalen(); zier(); gelenke(); schalen_zapfen(einsatz_spiel); }
     if (inc(fp, "C")) { zier(); difference() { polster(); stiel(); } }
-    if (inc(fp, "D")) gelenke();
+    if (inc(fp, "D")) offset_gelenke();
+    if (inc(fp, "A")) schalen_zapfen(0);
 }
 module kopfhoerer_halb(fp) difference() {
     intersection() { kopfhoerer_voll(fp); translate([-5 * hp_r, 0, -5 * hp_r]) cube([10 * hp_r, 5 * hp_r, 10 * hp_r]); }
@@ -921,8 +934,19 @@ module zaun(fp) {   // x Länge zentriert, y hoch, z Dicke
         for (sg = [-1, 1]) translate([sg * (L_z / 2 - st_z / 2) - st_z * 0.4, -(t_d - 0.6)]) square([st_z * 0.8, t_d - 0.6 + e]);
     }
     module scheiben() for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) difference() { circle(r = rd, $fn = 32); circle(r = rd * 0.22, $fn = 16); }
-    if (inc(fp, "A")) linear_extrude(t_z) difference() { rahmen(); for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) circle(r = rd, $fn = 32); }
-    if (inc(fp, "B")) linear_extrude(t_z) scheiben();
+    // Vinylscheiben stecken im Falz: unten (Druckbett) ist die Öffnung um rb_z größer, oben hält eine Lippe;
+    // die Scheibe hat oben einen Bund in Öffnungsgröße (bündig) und wird von unten eingedrückt
+    rb_z = min(0.6, rd * 0.1); lp_z = min(0.6, t_z * 0.4);
+    module loecher(r) for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) circle(r = r, $fn = 32);
+    module scheiben_r(r) for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2]) difference() { circle(r = r, $fn = 32); circle(r = rd * 0.22, $fn = 16); }
+    if (inc(fp, "A")) {
+        linear_extrude(t_z - lp_z + e) difference() { rahmen(); loecher(rd + rb_z); }
+        translate([0, 0, t_z - lp_z]) linear_extrude(lp_z) difference() { rahmen(); loecher(rd); }
+    }
+    if (inc(fp, "B")) {
+        linear_extrude(t_z - lp_z) scheiben_r(rd + rb_z - einsatz_spiel);
+        translate([0, 0, t_z - lp_z - e]) linear_extrude(lp_z + e) scheiben_r(rd - einsatz_spiel);
+    }
     if (inc(fp, "C")) for (i = [0 : nd - 1]) translate([-L_z / 2 + st_z + (i + 0.5) * pitch, h_z / 2, t_z - e]) difference() { cylinder(r = rd * 0.45, h = dmr * 2 + e, $fn = 24); translate([0, 0, -1]) cylinder(r = rd * 0.22, h = 5, $fn = 16); }
 }
 module zaun_welt(k) side_frame(k, r_z) translate([t_z / 2, 0, H_p]) rotate([90, 0, -90]) {
