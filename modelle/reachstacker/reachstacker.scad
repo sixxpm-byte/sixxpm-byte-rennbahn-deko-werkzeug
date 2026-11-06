@@ -8,24 +8,27 @@
 //  TEILE  (teil = ...)
 //    fahrgestell      Fahrgestell mit Gegengewicht, Ausleger-Lagerböcken,
 //                     Zylinderbock, Radzapfen (gelb/schwarz/silber)          1x
-//    kabine           Fahrerkabine (Rahmen + Glas)                           1x
-//    rad_vorne        Zwillingsrad vorne (zwei Reifen, eine Felge)           2x
-//    rad_hinten       Rad hinten mit Profil und Felge                        2x
+//    kabine           Fahrerkabine (unten offen) + Glaskern, von unten eingeschoben 1x
+//    rad_vorne        Zwillingsrad vorne (zwei Reifen, Felge von außen gedrückt) 2x
+//    rad_hinten       Rad hinten mit Profil, Felge von außen gedrückt        2x
 //    kotfluegel_links / kotfluegel_rechts  geschwungener Kotflügel über dem
 //                     Zwillingsrad mit Podest und Aufstiegstreppe        je 1x
 //    ausleger_aussen  Ausleger-Grundrohr mit Lager und Zylinderkonsole       1x
 //    ausleger_innen   Teleskop-Innenrohr mit Kopf (ausziehbar)               1x
-//    zylinder         Hubzylinder, feste Länge für ausleger_winkel           2x
+//    zylinder         Hubzylinder, feste Länge für ausleger_winkel; die
+//                     Kolbenstange steckt in der Bohrung des Rohrs           2x
 //    haenger          Spreader-Aufhängung (pendelt am Kopfbolzen)            1x
 //    spreader_rahmen  Spreader-Hauptrahmen mit Drehzapfen und Warnstreifen   1x
 //    spreader_arm     Teleskoparm mit Kopfträger und Twistlocks              2x
 //    gelaender        Geländer vorne links/rechts (flach gedruckt)           2x
-//    c20_... / c40_...  Container-Bausatz 20 bzw. 40 Fuß:
-//      boden          Boden mit Längs-/Querträgern und Eckbeschlägen, Nuten  1x
-//      dach           Dach mit Obergurten, Eckbeschlägen (Zapfenlöcher)      1x
+//    c20_... / c40_...  Container-Bausatz 20 bzw. 40 Fuß (Steck-Bausatz, ohne Kleber):
+//      boden          Boden mit Eckbeschlägen und Rauten-Zapfen (grau)       1x
+//      stirnrahmen / tuerrahmen  Eckpfosten mit Eckbeschlägen und
+//                     Zapfenlöchern, Obergurt (grau)                     je 1x
+//      stirn / tuer   Stirnwand / Türen mit Verriegelungsstangen (rot),
+//                     von innen in den Rahmen gedrückt                   je 1x
 //      seite          Seitenwand mit Trapezsicken                            2x
-//      stirn          Stirnwand mit Eckpfosten                               1x
-//      tuer           Türseite mit Pfosten, Verriegelungsstangen, Scharnieren 1x
+//      dach           Dach mit Zapfen in die Obergurte                       1x
 //      (40 Fuß bei 1:43: Boden/Dach mit Clips geteilt, Seitenwände zweiteilig)
 //    verbinder        Clips für geteilte Container-Teile
 //
@@ -40,6 +43,11 @@
 //    * Räder drehen sich auf den Rautenzapfen.
 //    * Container: vier Zapfen unter den Kopfträgern stecken stramm in den
 //      oberen Eckbeschlägen (statt Twistlocks) – der Spreader liegt auf.
+//  FARBTEILE
+//    Alle eigenen Farbbauteile sind gesteckt (Glaskern, Felgen, Kolbenstangen,
+//    Auspuff, Container-Rahmen und -Wände) – einfarbig druckbar Teil für Teil.
+//    Schwarze Zonen von Fahrgestell und Innenrohr und die Spreader-Streifen
+//    sind Farbzonen: mit AMS/MMU oder einfarbig.
 //  DRUCK
 //    Fahrgestell aufrecht; die Flügel des Gegengewichts über den Hinterrädern
 //    mit Stützmaterial drucken (Stützen nur vom Druckbett). Alle anderen
@@ -48,6 +56,8 @@
 //    Der Ausleger-Winkel wird vor dem Druck gewählt (ausleger_winkel); die
 //    Hubzylinder und die Aufhängung werden passend dazu berechnet.
 //  MONTAGE (Kurzfassung)
+//    0. Felgen in die Reifen, Glaskern in die Kabine, Kolbenstangen in die
+//       Zylinderrohre, Auspuff in die Haube drücken.
 //    1. Räder auf die Rautenzapfen schieben, Kotflügel mit Treppe seitlich an
 //       die Front stecken, Kabine aufsetzen, Geländer ins Podest stecken.
 //    2. Grundrohr mit Bolzen in die Lagerböcke, Innenrohr einschieben.
@@ -55,8 +65,8 @@
 //       die Konsole) anbauen.
 //    4. Aufhängung mit Bolzen in den Kopf, Spreader auf den Drehzapfen,
 //       Teleskoparme in den Rahmen schieben.
-//    5. Container: Stirnwand und Türseite in den Boden, Seitenwände in die
-//       Nuten, Dach aufsetzen. Spreader aufsetzen – die Zapfen greifen in
+//    5. Container: Stirnwand und Türen in die Rahmen, Rahmen auf die Zapfen
+//       des Bodens, Seitenwände in die Nuten, Dach aufdrücken. Spreader aufsetzen – die Zapfen greifen in
 //       die oberen Eckbeschläge.
 // =====================================================================
 
@@ -65,7 +75,7 @@ massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
-teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, fahrgestell:Fahrgestell, kabine:Fahrerkabine, rad_vorne:Zwillingsrad vorne (2x), rad_hinten:Rad hinten (2x), kotfluegel_links:Kotflügel mit Treppe links, kotfluegel_rechts:Kotflügel mit Treppe rechts, ausleger_aussen:Ausleger Grundrohr, ausleger_innen:Ausleger Innenrohr, zylinder:Hubzylinder (2x), haenger:Spreader-Aufhängung, spreader_rahmen:Spreader-Rahmen, spreader_arm:Spreader-Teleskoparm (2x), gelaender:Geländer (2x), c20_boden:Container 20' Boden, c20_dach:Container 20' Dach, c20_seite:Container 20' Seitenwand (2x), c20_stirn:Container 20' Stirnwand, c20_tuer:Container 20' Türseite, c40_boden:Container 40' Boden, c40_dach:Container 40' Dach, c40_seite:Container 40' Seitenwand (2x), c40_stirn:Container 40' Stirnwand, c40_tuer:Container 40' Türseite, verbinder:Verbinder-Clips]
+teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, fahrgestell:Fahrgestell, kabine:Fahrerkabine, rad_vorne:Zwillingsrad vorne (2x), rad_hinten:Rad hinten (2x), kotfluegel_links:Kotflügel mit Treppe links, kotfluegel_rechts:Kotflügel mit Treppe rechts, ausleger_aussen:Ausleger Grundrohr, ausleger_innen:Ausleger Innenrohr, zylinder:Hubzylinder (2x), haenger:Spreader-Aufhängung, spreader_rahmen:Spreader-Rahmen, spreader_arm:Spreader-Teleskoparm (2x), gelaender:Geländer (2x), c20_boden:Container 20' Boden, c20_dach:Container 20' Dach, c20_seite:Container 20' Seitenwand (2x), c20_stirn:Container 20' Stirnwand, c20_tuer:Container 20' Türen, c20_stirnrahmen:Container 20' Stirnrahmen, c20_tuerrahmen:Container 20' Türrahmen, c40_boden:Container 40' Boden, c40_dach:Container 40' Dach, c40_seite:Container 40' Seitenwand (2x), c40_stirn:Container 40' Stirnwand, c40_tuer:Container 40' Türen, c40_stirnrahmen:Container 40' Stirnrahmen, c40_tuerrahmen:Container 40' Türrahmen, verbinder:Verbinder-Clips]
 stueck = 0;
 farbteil = "alle"; // [alle, A, B, C]
 
@@ -140,6 +150,8 @@ stift_d = 1.75;
 tele_spiel = 0.2;
 // Luft je Seite: Container-Zapfen in den Eckbeschlägen (klein = stramm)
 zapfen_spiel = 0.05;
+// Luft je Seite für eingepresste Farbteile (Felge, Glaskern, Kolbenstange, Auspuff, Container-Zapfen; 0 = sehr stramm)
+einsatz_spiel = 0.05;
 
 // =====================================================================
 //  deko_grundlagen.scad  –  Bibliothek der Rennbahn-Deko-Reihe
@@ -297,7 +309,7 @@ r_dz  = max(M(0.15), 1.6);                // Drehzapfen Spreader
 h_dz  = max(M(0.3), 3);
 
 // Container-Bausatz aus der Bibliothek (ohne Magnettaschen)
-ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = true; ct_steck = false;
+ct_mag = false; ct_mag_d = 5; ct_mag_h = 2; ct_mag_n = 1; ct_mag_haut = 0.6; ct_zweifarbig = false; ct_steck = true;
 // =====================================================================
 //  deko_container.scad – Container-Bausatz 20/40 Fuß (ISO) für die Rennbahn-Deko-Reihe
 //  Teile: boden, dach (A Dachblech, B Obergurte + Eckbeschläge), seite 2x, stirn, tuer;
@@ -465,7 +477,7 @@ module ct_rahmen(Lc, tuer) let(xo = tuer ? Lc - cx_e : 0, px0 = tuer ? xo - 1 : 
     }
     translate([px0, cy_e - ct_rb, z_f - 1]) cube([px1 - px0, W_ct - 2 * cy_e + 2 * ct_rb, z_e1 + ct_rb - z_f + 1]);   // Falz
     for (y = [in_y, W_ct - in_y]) translate([tuer ? Lc - in_x : in_x, y, H_ct - h_tw - 0.4])                       // Koni-Bohrung (liegend: Tropfen)
-        linear_extrude(h_tw + 1) mirror([tuer ? 1 : 0, 0]) teardrop(r_zl, $fn = 24);
+        linear_extrude(h_tw + 1) rotate(tuer ? 180 : 0) teardrop(r_zl, $fn = 24);
     for (y = [ct_yp, W_ct - ct_yp]) translate([ct_xp(Lc, tuer), y, z_f - 1]) linear_extrude(ct_lp + 1) raute_2d(ct_dp);
     for (y = [W_ct / 4, 3 * W_ct / 4]) translate([ct_xp(Lc, tuer), y, H_ct - tr - ct_lr]) linear_extrude(ct_lr + 1) raute_2d(ct_dp);
 }
@@ -931,10 +943,12 @@ module fahrgestell_koerper() {
         for (sy = [-1, 1], q = KZ2) mirror([0, sy > 0 ? 0 : 1, 0]) raute_y(q[0], q[1], M(FRONT[2]) - l_kz - 0.3, l_kz + 1, d_kz + 2 * spiel);
     }
 }
-module auspuff() translate([M(2.0), -M(1.2), M(HAUBE[3]) - 0.01]) cylinder(d = max(M(0.18), 1.6), h = M(1.0), $fn = 24);
+d_ap = max(M(0.18), 1.6); l_ap = max(M(0.12), 2);   // Auspuff steckt l_ap tief in der Haube
+module auspuff() translate([M(2.0), -M(1.2), M(HAUBE[3]) - l_ap]) cylinder(d = d_ap - 2 * einsatz_spiel, h = M(1.0) + l_ap, $fn = 24);
+module auspuff_loch() translate([M(2.0), -M(1.2), M(HAUBE[3]) - l_ap - 0.3]) cylinder(d = d_ap, h = l_ap + 1, $fn = 24);
 module b_zone() { translate([M(HECK[1]), -M(3), -1]) cube([M(laenge_m), M(6), M(1.05) + 1]); translate([-1, -M(3), -1]) cube([M(HECK[1]) + 1.01, M(6), Z_cw + 1 - 0.3]); }
 module fahrgestell_welt(fp) {
-    if (inc(fp, "A")) difference() { fahrgestell_koerper(); b_zone(); }
+    if (inc(fp, "A")) difference() { fahrgestell_koerper(); b_zone(); auspuff_loch(); }
     if (inc(fp, "B")) intersection() { fahrgestell_koerper(); b_zone(); }
     if (inc(fp, "C")) auspuff();
 }
@@ -959,26 +973,32 @@ module kab_fenster(r, o) {
     for (sy = [-1, 1]) translate([K_X[0] + pw - o, sy > 0 ? K_Y - r - M(0.5) : -K_Y + r, zw0 - o]) cube([K_X[1] - K_X[0] - 2 * pw + 2 * o, M(0.5), zw1 - zw0 + 2 * o]);
 }
 module kabine_welt(fp) {
+    // Kabine unten offen; der Glaskern wird von unten eingeschoben und sitzt auf den Kabinenzapfen
     if (inc(fp, "A")) difference() {
         kab_aussen();
-        kab_kern(0.02); kab_fenster(-1, 0.02);
+        kab_kern_steck(0, 1); kab_fenster(-1, 0.02);
+    }
+    if (inc(fp, "B")) difference() {
+        kab_kern_steck(-einsatz_spiel);
         for (x = KZ_X) translate([x, 0, K_Z[0] - 0.01]) linear_extrude(h_kz + 0.3, scale = 0.6) offset(delta = spiel) raute2(d_kz);
     }
-    if (inc(fp, "B")) intersection() { kab_aussen(); union() { kab_kern(0); kab_fenster(r_g, 0); } }
 }
-module kabine_druck(fp) translate([0, 0, -K_Z[0]]) kabine_welt(fp);
+module kab_kern_steck(o, ext = 0) translate([K_X[0] + t_k - o, -K_Y + t_k - o, K_Z[0] - ext]) cube([K_X[1] - K_X[0] - 2 * t_k + 2 * o, 2 * (K_Y - t_k + o), zw1 + M(0.05) - K_Z[0] + ext + min(o, 0)]);
+module kabine_druck(fp) translate([0, 0, K_Z[1]]) rotate([180, 0, 0]) kabine_welt(fp);   // kopfüber: Dach auf dem Bett, Fensterstürze sind Brücken, unten offen
 
 // =====================================================================
 //  Rad (gedruckt: Achse senkrecht, Außenseite oben)
 // =====================================================================
 R_fe = M(0.45);
+lip_h = max(M(0.05), 0.6); lip_w = max(M(0.06), 0.8);   // Innenrand im Reifen
 // Rad (gedruckt: Achse senkrecht, Außenseite oben); zw = Zwillingsrad mit V-Rille zwischen den Reifen
 module rad(fp, zw = false) {
     c_t = max(M(0.07), 0.6); n_p = 26; g_d = max(M(0.05), 0.6); c_v = M(0.12);
     H2 = zw ? B_zw : B_w;
-    prof = zw ? [[R_fe, 0], [R_w - c_t, 0], [R_w, c_t], [R_w, B_w - c_v], [R_w - c_v, B_w], [R_w - c_v, B_w + g_zw],
-                 [R_w, B_w + g_zw + c_v], [R_w, H2 - c_t], [R_w - c_t, H2], [R_fe, H2]]
-              : [[R_fe, 0], [R_w - c_t, 0], [R_w, c_t], [R_w, B_w - c_t], [R_w - c_t, B_w], [R_fe, B_w]];
+    // Innenrand (Druckbett-Seite): die Felge wird von außen eingedrückt und liegt darauf
+    prof = zw ? [[R_fe - lip_w, 0], [R_w - c_t, 0], [R_w, c_t], [R_w, B_w - c_v], [R_w - c_v, B_w], [R_w - c_v, B_w + g_zw],
+                 [R_w, B_w + g_zw + c_v], [R_w, H2 - c_t], [R_w - c_t, H2], [R_fe, H2], [R_fe, lip_h], [R_fe - lip_w, lip_h]]
+              : [[R_fe - lip_w, 0], [R_w - c_t, 0], [R_w, c_t], [R_w, B_w - c_t], [R_w - c_t, B_w], [R_fe, B_w], [R_fe, lip_h], [R_fe - lip_w, lip_h]];
     if (inc(fp, "A")) difference() {
         intersection() {
             rotate_extrude($fn = 96) polygon(prof);
@@ -989,15 +1009,14 @@ module rad(fp, zw = false) {
                 cylinder(r = R_w - g_d + 0.01, h = H2, $fn = 96);
             }
         }
-        translate([0, 0, -1]) cylinder(r = R_fe, h = H2 + 2, $fn = 96);
     }
-    if (inc(fp, "B")) difference() {
-        union() {
-            cylinder(r = R_fe, h = H2 - M(0.1), $fn = 96);
-            difference() { cylinder(r = R_fe, h = H2 - M(0.02), $fn = 96); translate([0, 0, -1]) cylinder(r = R_fe - max(M(0.06), 0.8), h = H2 + 2, $fn = 96); }
-            cylinder(r = max(M(0.2), d_rz / 2 + 1.2), h = H2 - M(0.03), $fn = 48);
+    if (inc(fp, "B")) let(r_f = R_fe - einsatz_spiel) difference() {
+        translate([0, 0, lip_h]) union() {
+            cylinder(r = r_f, h = H2 - M(0.1) - lip_h, $fn = 96);
+            difference() { cylinder(r = r_f, h = H2 - M(0.02) - lip_h, $fn = 96); translate([0, 0, -1]) cylinder(r = R_fe - max(M(0.06), 0.8), h = H2 + 2, $fn = 96); }
+            cylinder(r = max(M(0.2), d_rz / 2 + 1.2), h = H2 - M(0.03) - lip_h, $fn = 48);
         }
-        translate([0, 0, -1]) cylinder(d = d_rz + spiel, h = h_hub(zw) + 1, $fn = 32);
+        translate([0, 0, lip_h - 1]) cylinder(d = d_rz + spiel, h = h_hub(zw) - lip_h + 1, $fn = 32);
         for (k = [0 : 7]) rotate(k * 45 + 22.5) translate([M(0.3), 0, H2 - M(0.1) - max(M(0.03), 0.4)]) cylinder(r = max(M(0.04), 0.5), h = 2, $fn = 12);
     }
 }
@@ -1070,6 +1089,8 @@ function kopf_welt(az) = rot_aw([u_ir + az * HUB + v_p, w_p]);
 // =====================================================================
 //  Hubzylinder (gedruckt liegend: Achse x, Augen unten flach)
 // =====================================================================
+l_st = min(max(M(0.3), 3), L_tb - 2 * r_e);   // Kolbenstange steckt so tief im Rohr
+module st_prof_2d(r, hs) intersection() { translate([0, hs]) rotate(90) teardrop(r, $fn = 24); translate([-r - 1, -1]) square([2 * r + 2, hs + 2 * r + 1]); }
 module zylinder(fp) {
     hz = r_tb * 0.7071; hs = r_st * 0.7071;
     if (inc(fp, "A")) difference() {
@@ -1081,12 +1102,13 @@ module zylinder(fp) {
             }
         }
         translate([0, 0, -1]) cylinder(r = r_h, h = t_e + 2, $fn = 24);
+        translate([L_tb - l_st, 0, 0]) rotate([90, 0, 90]) linear_extrude(l_st + 1) st_prof_2d(r_st + einsatz_spiel, hs);   // Bohrung (liegend: Tropfen)
     }
     if (inc(fp, "B")) difference() {
         union() {
             translate([L_c, 0, 0]) cylinder(r = r_e, h = t_e, $fn = 32);
             intersection() {
-                translate([L_tb, 0, hs]) rotate([0, 90, 0]) cylinder(r = r_st, h = L_c - r_e - L_tb + 0.3, $fn = 24);
+                translate([L_tb - l_st + 0.2, 0, hs]) rotate([0, 90, 0]) cylinder(r = r_st, h = L_c - r_e - L_tb + l_st + 0.1, $fn = 24);
                 translate([0, -r_st - 1, 0]) cube([L_c, 2 * r_st + 2, 2 * r_st + 1]);
             }
         }
@@ -1219,6 +1241,8 @@ echo(str("Grundrohr ", r2(L_o), " mm, Innenrohr ", r2(L_i), " mm, Hub ", r2(HUB)
 echo(str("Twistlock-Unterkante: eingefahren ", zm(z_tw0), " m, ausgefahren ", zm(z_tw1), " m (Vorbild) | Spreader 20'/40': ",
          r2(M(spreader_20_m)), " / ", r2(M(spreader_40_m)), " mm"));
 echo(str("Filament-Bolzen Ø ", stift_d, ": Lager ", r2(L_stift[0]), " mm, Zylinder unten ", r2(L_stift[1]), " mm, oben ", r2(L_stift[2]), " mm, Kopf ", r2(L_stift[3]), " mm"));
+echo(str("Steckteile: Felge auf Innenrand ", r2(lip_h), " x ", r2(lip_w), " mm | Kolbenstange ", r2(l_st), " mm tief | Auspuff ", r2(l_ap), " mm tief | Container-Zapfen ◇ ", r2(ct_dp), " mm, Boden ", r2(ct_lp), " / Dach ", r2(ct_lr), " mm | Einsatz-Spiel ", einsatz_spiel, " mm"));
+if (ct_lr < 1.0 || ct_dp < 1.6 || l_st < 2) echo("WARNUNG: Steckzapfen zu klein");
 echo(str("Mindestmaße: Rohrwand ", r2(t_o), " | Teleskoparm ", r2(ARM[1] - ARM[0]), " x ", r2(ARM[3] - ARM[2]), " | Geländer ", r2(b_g), " | Laschenspalt ", r2(T_t), " mm"));
 echo(str("Container 20'/40': ", r2(L_c20), " / ", r2(L_c40), " x ", r2(W_ct), " x ", r2(H_ct), " mm | Zapfen Ø ", r2(d_tw), " x ", r2(h_tw),
          " mm, Bohrung Ø ", r2(2 * r_zl), " | 40' Boden/Dach ", n_pieces(info_boden(L_c40)), " Stück(e), Seitenwand ", n_pieces(info_seite(L_c40)),
@@ -1247,10 +1271,10 @@ druck("spreader_arm", 1, "alle", farbe_arm, 2);
 druck("gelaender", 1, "alle", farbe_gelaender, 2);
 for (c = [[20, L_c20], [40, L_c40]]) let(n = str("c", c[0], "_"), Lc = c[1]) {
     druck(str(n, "boden"), n_pieces(info_boden(Lc)), "alle", farbe_beschlag, 1);
-    druck(str(n, "dach"), n_pieces(info_dach(Lc)), "A", farbe_container, 1); druck(str(n, "dach"), n_pieces(info_dach(Lc)), "B", farbe_beschlag, 1);
+    druck(str(n, "dach"), n_pieces(info_dach(Lc)), "alle", farbe_container, 1);
     druck(str(n, "seite"), n_pieces(info_seite(Lc)), "alle", farbe_container, 2);
-    druck(str(n, "stirn"), 1, "A", farbe_container, 1); druck(str(n, "stirn"), 1, "B", farbe_beschlag, 1);
-    druck(str(n, "tuer"), 1, "A", farbe_container, 1); druck(str(n, "tuer"), 1, "B", farbe_beschlag, 1);
+    druck(str(n, "stirn"), 1, "alle", farbe_container, 1); druck(str(n, "tuer"), 1, "alle", farbe_container, 1);
+    druck(str(n, "stirnrahmen"), 1, "alle", farbe_beschlag, 1); druck(str(n, "tuerrahmen"), 1, "alle", farbe_beschlag, 1);
 }
 if (CLIPS > 0) druck("verbinder", 1, "alle", farbe_clips, 1);
 farben_echo();

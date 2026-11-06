@@ -24,31 +24,33 @@ def model(mst=43):
     v = werte(echo(scad, mst))
     andere = 87 if mst == 43 else 43
     va = werte(echo(scad, andere))
-    names = {"fahrgestell": "Fahrgestell", "kabine": "Fahrerkabine", "rad_vorne": "Zwillingsrad vorne", "rad_hinten": "Rad hinten",
+    names = {"fahrgestell": "Fahrgestell + Auspuff", "kabine": "Kabine + Glaskern", "rad_vorne": "Zwillingsrad vorne (Reifen + Felge)", "rad_hinten": "Rad hinten (Reifen + Felge)",
              "kotfluegel_links": "Kotflügel links", "kotfluegel_rechts": "Kotflügel rechts", "gelaender": "Geländer",
-             "ausleger_aussen": "Ausleger Grundrohr", "ausleger_innen": "Ausleger Innenrohr", "zylinder": "Hubzylinder",
+             "ausleger_aussen": "Ausleger Grundrohr", "ausleger_innen": "Ausleger Innenrohr", "zylinder": "Hubzylinder + Stange",
              "haenger": "Spreader-Aufhängung", "spreader_rahmen": "Spreader-Rahmen", "spreader_arm": "Teleskoparm",
              "c20_boden": "Container 20′ Boden", "c20_dach": "Container 20′ Dach", "c20_seite": "Container 20′ Seitenwand",
-             "c20_stirn": "Container 20′ Stirnwand", "c20_tuer": "Container 20′ Türseite",
+             "c20_stirnrahmen": "Container 20′ Stirnrahmen", "c20_tuerrahmen": "Container 20′ Türrahmen",
+             "c20_stirn": "Container 20′ Stirnwand", "c20_tuer": "Container 20′ Türen",
              "c40_boden": "Container 40′ Boden", "c40_dach": "Container 40′ Dach", "c40_seite": "Container 40′ Seitenwand",
-             "c40_stirn": "Container 40′ Stirnwand", "c40_tuer": "Container 40′ Türseite", "verbinder": "Clips"}
+             "c40_stirnrahmen": "Container 40′ Stirnrahmen", "c40_tuerrahmen": "Container 40′ Türrahmen",
+             "c40_stirn": "Container 40′ Stirnwand", "c40_tuer": "Container 40′ Türen", "verbinder": "Clips"}
     parts, _ = druck_parts(scad, D, names)
     order = list(names)
     parts.sort(key=lambda p: order.index(p["id"]) if p["id"] in order else 99)
     geteilt = v["clips"] > 0
-    lage = {"fahrgestell": "aufrecht – Stützen unter den Gegengewicht-Flügeln", "kabine": "aufrecht", "rad_vorne": "liegend, Außenseite oben",
-            "rad_hinten": "liegend, Außenseite oben", "kotfluegel_links": "liegt auf der Außenseite", "kotfluegel_rechts": "liegt auf der Außenseite",
-            "gelaender": "liegt flach", "ausleger_aussen": "kopfüber", "ausleger_innen": "aufrecht", "zylinder": "liegend",
+    lage = {"fahrgestell": "aufrecht – Stützen unter den Gegengewicht-Flügeln; Auspuff stehend", "kabine": "kopfüber (Dach unten); Glaskern als Block",
+            "rad_vorne": "liegend, Innenrand unten; Felge flach", "rad_hinten": "liegend, Innenrand unten; Felge flach", "kotfluegel_links": "liegt auf der Außenseite", "kotfluegel_rechts": "liegt auf der Außenseite",
+            "gelaender": "liegt flach", "ausleger_aussen": "kopfüber", "ausleger_innen": "aufrecht", "zylinder": "Rohr und Stange liegend",
             "haenger": "aufrecht", "spreader_rahmen": "aufrecht", "spreader_arm": "kopfüber, Zapfen oben",
             "verbinder": f"{max(v['clips'], 4)} Clips auf einer Platte"}
     for p in parts:
         i = p["id"]
         if i in lage: p["info"] = lage[i]
         elif i.endswith("_boden") or i.endswith("_dach"):
-            p["info"] = "kopfüber" + (f", {p['pieces']} Teile + Clips" if p["pieces"] > 1 else "")
+            p["info"] = ("aufrecht, Zapfen oben" if i.endswith("_boden") else "kopfüber, Zapfen oben") + (f", {p['pieces']} Teile + Clips" if p["pieces"] > 1 else "")
         elif i.endswith("_seite"):
             p["info"] = "Innenseite unten" + (f", {p['pieces']} Teile" if p["pieces"] > 1 else "")
-        elif i.endswith("_stirn") or i.endswith("_tuer"):
+        elif i.endswith("_stirn") or i.endswith("_tuer") or i.endswith("rahmen"):
             p["info"] = "Außenseite unten"
     pc = {p["id"]: p["count"] for p in parts}
     def P(*ids): return [(i, pc[i]) for i in ids if i in pc]
@@ -59,10 +61,12 @@ def model(mst=43):
     st = v["stifte"]
     steps = [
         dict(title="Räder", parts=P("fahrgestell", "rad_vorne", "rad_hinten"),
-             text=["Zwillingsräder vorne und Einzelräder hinten mit der Innenseite auf die Rautenzapfen schieben – sie drehen sich."], render=S(1)),
+             text=["Felgen von außen in die Reifen drücken, Auspuff in die Haube stecken.",
+                   "Räder mit dem Innenrand zum Fahrzeug auf die Rautenzapfen schieben – sie drehen sich."], render=S(1)),
         dict(title="Kotflügel mit Treppe", parts=P("kotfluegel_links", "kotfluegel_rechts", "gelaender"),
              text=["Kotflügel mit den Rautenzapfen seitlich in die Front stecken, Treppe nach hinten.", "Geländer in die Schlitze im Podest stecken."], render=S(2)),
-        dict(title="Fahrerkabine", parts=P("kabine"), text=["Die Kabine auf die zwei Zapfen hinter dem Zylinderbock setzen, Frontscheibe nach vorn."], render=S(3)),
+        dict(title="Fahrerkabine", parts=P("kabine"), text=["Glaskern auf die zwei Zapfen hinter dem Zylinderbock setzen.",
+                   "Kabine von oben darüberschieben, Frontscheibe nach vorn."], render=S(3)),
         dict(title="Ausleger-Grundrohr", parts=P("ausleger_aussen"),
              text=["Das Grundrohr zwischen die beiden Lagerböcke hinten halten.",
                    f"Filament-Bolzen Ø 1,75 mm ({st[0]} mm) durch Lagerböcke und Rohr schieben."],
@@ -71,7 +75,7 @@ def model(mst=43):
              text=["Das Innenrohr mit dem schwarzen Kopf nach vorne in das Grundrohr schieben.",
                    "Es gleitet stufenlos – vom eingefahrenen Zustand bis zum vollen Hub."], render=S(5)),
         dict(title="Hubzylinder", parts=P("zylinder"),
-             text=[f"Unten mit einem Bolzen ({st[1]} mm) am Zylinderbock anbauen, Stange nach oben.",
+             text=[f"Stange ins Rohr drücken. Unten mit Bolzen ({st[1]} mm) am Zylinderbock anbauen.",
                    f"Oben Bolzen ({st[2]} mm) durch beide Augen und die Konsole – der Ausleger steht starr auf {v['winkel']}°."], render=S(6)),
         dict(title="Spreader-Aufhängung", parts=P("haenger"),
              text=[f"Aufhängung zwischen die Laschen am Kopf halten, Bolzen ({st[3]} mm) durchstecken – sie pendelt frei."], render=S(7)),
@@ -85,10 +89,13 @@ def model(mst=43):
                    "Die zweiteiligen Seitenwände Stoß an Stoß in die Nuten stellen."],
              render=dict(scad=A, cam="0,0,0,40,0,20,0", defs=dd + ["ansicht=2"], size=(1500, 1000), auto=True)))
     steps += [
-        dict(title="Container: Boden und Stirnseiten", parts=P("c20_boden", "c20_stirn", "c20_tuer", "c40_boden", "c40_stirn", "c40_tuer"),
-             text=["Stirnwand und Türseite mit der Feder in die Quernuten des Bodens stellen (40 Fuß genauso)."], render=S(9, VC, extra=["ansicht=1"])),
+        dict(title="Container: Boden und Stirnseiten", parts=P("c20_boden", "c20_stirnrahmen", "c20_stirn", "c20_tuerrahmen", "c20_tuer",
+                                                               "c40_boden", "c40_stirnrahmen", "c40_stirn", "c40_tuerrahmen", "c40_tuer"),
+             text=["Stirnwand und Türen von innen in ihre grauen Rahmen drücken.",
+                   "Rahmen auf die Zapfen des Bodens drücken, die Wand steht in der Quernut."], render=S(9, VC, extra=["ansicht=1"])),
         dict(title="Container: Seitenwände und Dach", parts=P("c20_seite", "c20_dach", "c40_seite", "c40_dach"),
-             text=["Seitenwände in die Längsnuten stellen, Sicken außen.", "Dach aufsetzen – die Nuten greifen über die Wände."], render=S(10, VC, extra=["ansicht=1"])),
+             text=["Seitenwände zwischen die Pfosten in die Längsnuten stellen, Sicken außen.",
+                   "Dach aufdrücken – seine Zapfen greifen in die Obergurte."], render=S(10, VC, extra=["ansicht=1"])),
         dict(title="Container aufnehmen", parts=[],
              text=["Spreader aufsetzen: die vier Zapfen greifen in die oberen Eckbeschläge.", "Für 40 Fuß beide Teleskoparme ganz ausziehen."], render=S(11)),
     ]
@@ -105,12 +112,13 @@ def model(mst=43):
         material=material([f"Filament 1,75 mm für 4 Bolzen ({st[0]}, {st[1]}, {st[2]} und {st[3]} mm)",
                            f"Länge in 1:{mst} ca. {v['laenge'] / 10:.0f} cm, Höhe ca. {v['hoehe'] / 10:.0f} cm"]),
         druck=druck(["Alle Teile genau in der exportierten Lage drucken (siehe Druckliste)",
-                     "Mehrfarbige Teile (Fahrgestell, Kabine, Räder, Innenrohr, Zylinder, Spreader-Rahmen, Container) mit AMS/MMU – oder einfarbig mit farbteil = alle",
-                     "Bohrungen der Eckbeschläge stramm: zapfen_spiel im Customizer anpassen, falls der Container zu fest oder zu locker sitzt"],
+                     "Farbbauteile (Felgen, Glaskern, Kolbenstangen, Auspuff, Container-Rahmen und -Wände) werden gesteckt: mit AMS/MMU aus der 3MF oder einfarbig jede STL einzeln",
+                     "Farbzonen (schwarze Zonen an Fahrgestell und Innenrohr, Spreader-Streifen) brauchen AMS/MMU – einfarbig die 3MF mit einem Filament drucken",
+                     "Passung im Customizer: zapfen_spiel (Eckbeschläge), einsatz_spiel (Felgen, Glaskern, Stangen, Auspuff, Container-Zapfen)"],
                     stuetzen="Stützen NUR beim Fahrgestell: unter den Flügeln des Gegengewichts über den Hinterrädern (Stützen nur vom Druckbett). Alle anderen Teile drucken stützfrei."),
         system=(SYSTEM_CLIP if geteilt else SYSTEM_CLIP[:1] + [f"In 1:{mst} passen alle Teile ungeteilt aufs Druckbett – Clips brauchst du hier nicht."]) +
                ["Räder, Kabine und Kotflügel stecken auf Rautenzapfen – die Raute druckt in jeder Lage stützfrei.",
-                "Der Container ist ein Bausatz: die Wände stecken mit Federn in Nuten von Boden und Dach.",
+                "Der Container ist ein Steck-Bausatz ohne Kleber: graue Rahmen mit Eckpfosten und Eckbeschlägen, Rauten-Zapfen halten Boden, Rahmen und Dach im Presssitz.",
                 f"Statt Twistlocks greifen vier Zapfen (Ø {v['zapfen']} mm) in die oberen Eckbeschläge – der Container sieht verriegelt aus und hält."],
         clip_png=CLIP_PNG,
         massstab_hinweis=hinweis("Reach Stacker", "reachstacker.scad", extra, mst, bereich="1:43 und 1:87"),

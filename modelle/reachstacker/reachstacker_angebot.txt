@@ -13,7 +13,8 @@ Ausstattung
 • Geschwungene Kotflügel mit Aufstiegstreppe, Podest und Geländern, Fahrerkabine mit Glas
 • Teleskop-Ausleger: starr im gewählten Winkel, das Innenrohr lässt sich stufenlos ausziehen
 • Spreader pendelt immer waagerecht, ist drehbar und von 20 auf 40 Fuß ausziehbar
-• Container-Bausatz 20′ und 40′ (Boden, Dach, Seitenwände mit Sicken, Stirnwand, Türseite)
+• Container-Bausatz 20′ und 40′ als Steck-Bausatz ohne Kleber: grauer Boden und graue Rahmen mit Eckpfosten und Eckbeschlägen, rote Seitenwände mit Sicken, Stirnwand, Türen und Dach – Rauten-Zapfen halten alles im Presssitz
+• Alle Farbbauteile gesteckt (Felgen, Glaskern, Kolbenstangen, Auspuff) – auch ohne AMS einfarbig Teil für Teil druckbar
 • Statt filigraner Twistlocks greifen vier Zapfen in die Eckbeschläge – der Container sieht verriegelt aus und hält sicher
 • Räder drehen sich, Hubzylinder und Aufhängung sind mit Filament-Bolzen gelagert
 
@@ -33,7 +34,8 @@ Features
 • Curved fenders with access stairs, platform and railings, cab with glazing
 • Telescopic boom: fixed at the chosen angle, the inner section slides out smoothly
 • Spreader always hangs level, rotates and extends from 20 to 40 feet
-• Container kit 20′ and 40′ (floor, roof, corrugated side walls, front wall, door end)
+• Container kit 20′ and 40′ as a glue-free plug kit: grey floor and grey end frames with corner posts and castings, red corrugated side walls, front wall, doors and roof – press-fit diamond pins hold everything
+• All colour parts plug together (rims, glazing, piston rods, exhaust) – printable part by part in single colours without an AMS
 • Instead of delicate twistlocks, four pegs engage the corner castings – the container looks locked and holds securely
 • Rotating wheels; lift cylinders and hanger pivot on filament pins
 
@@ -50,10 +52,10 @@ DRUCKANWEISUNG
 • Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
 • Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig
 • Stützmaterial NUR beim Fahrgestell: unter den Flügeln des Gegengewichts über den Hinterrädern („Stützen nur vom Druckbett“). Alle anderen Teile drucken ohne Stützen
-• Mehrfarbige Teile mit AMS/MMU aus der 3MF drucken – oder einfarbig, die STL sind je Farbe getrennt
+• Mehrfarbig: mit AMS/MMU aus der 3MF drucken – oder einfarbig jede STL einzeln, die Farbbauteile werden gesteckt; nur die Farbzonen (schwarze Zonen, Spreader-Streifen) brauchen AMS, sonst die 3MF einfarbig drucken
 • 1:43: der 40-Fuß-Container ist geteilt; Boden und Dach mit den beiliegenden Clips verbinden
 • Für die Lager 4 Stücke Filament 1,75 mm als Bolzen zuschneiden (Längen in der Anleitung)
-• Container sitzt zu fest oder zu locker? Im Customizer zapfen_spiel anpassen und das Dach neu drucken
+• Container sitzt zu fest oder zu locker am Spreader? Im Customizer zapfen_spiel anpassen und die beiden Container-Rahmen neu drucken; Presssitz der Steckteile: einsatz_spiel (Standard 0,05 mm)
 • Druckzeit (Slicer-Schätzung bei 100 % Füllung): ca. 65 h für 1:43, ca. 13 h für 1:87 – mit 15 % Füllung deutlich weniger
 
 --- English ---
@@ -61,10 +63,10 @@ DRUCKANWEISUNG
 • Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
 • Print every part exactly as oriented in the files – the orientation is ready to print
 • Supports ONLY for the chassis: under the counterweight wings above the rear wheels ("supports on build plate only"). All other parts print without supports
-• Print multicolour parts from the 3MF with AMS/MMU – or in one colour, the STL files are split by colour
+• Multicolour: print from the 3MF with AMS/MMU – or each STL on its own in one colour, the colour parts plug together; only the colour zones (black zones, spreader stripes) need an AMS, otherwise print the 3MF in one colour
 • 1:43: the 40-foot container is split; join floor and roof with the included clips
 • Cut 4 pieces of 1.75 mm filament as pivot pins (lengths in the instructions)
-• Container too tight or too loose? Adjust zapfen_spiel in the Customizer and reprint the roof
+• Container too tight or too loose on the spreader? Adjust zapfen_spiel in the Customizer and reprint the two container end frames; press fit of the plug parts: einsatz_spiel (default 0.05 mm)
 • Print time (slicer estimate at 100 % infill): approx. 65 h for 1:43, approx. 13 h for 1:87 – much less with 15 % infill
 
 TAGS

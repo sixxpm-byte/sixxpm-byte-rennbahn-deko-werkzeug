@@ -9,6 +9,14 @@ STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__far
   *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
   reachstacker_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
 
+FARBEN – GESTECKT
+  Alle eigenen Farbbauteile werden gesteckt: Felgen (von außen in den Reifen),
+  Glaskern (von unten in die Kabine), Kolbenstangen (in die Zylinderrohre),
+  Auspuff (in die Haube), Container-Rahmen und -Wände. Ohne AMS druckst du
+  sie einfach Teil für Teil in ihrer Farbe. Nur die schwarzen Zonen an
+  Fahrgestell und Innenrohr und die Spreader-Streifen sind Farbzonen: mit
+  AMS/MMU – oder die 3MF einfarbig drucken.
+
 GRÖSSE
   1:43: Fahrgestell ca. 20 × 10 cm, Höhe mit Ausleger (20°) ca. 18 cm,
         Container 20' 14 cm, 40' 28 cm lang.
@@ -19,7 +27,8 @@ Maßstab / andere Farben / Optionen:
   oder:  python3 farb_export.py reachstacker.scad 87 ausgabe -D 'farbe_container="blau"'
   Optionen u. a.: Ausleger-Winkel (starr, 0–59°), Hub des Innenrohrs,
   Container High Cube (container_hoehe_m = 2.896), Sitz der Container-
-  Zapfen (zapfen_spiel), alle Farben. Die Datei ist eigenständig.
+  Zapfen (zapfen_spiel), Presssitz der Steckteile (einsatz_spiel, Standard
+  0,05 mm), alle Farben. Die Datei ist eigenständig.
 
 DAZU BRAUCHST DU
   Filament 1,75 mm für 4 Bolzen (Längen zeigt auch die Konsole):
@@ -30,29 +39,37 @@ DRUCK – Ausrichtung ist druckfertig
   STÜTZEN nur beim Fahrgestell: die Flügel des Gegengewichts über den
   Hinterrädern hängen frei – Stützen nur vom Druckbett einschalten.
   Alle anderen Teile drucken ohne Stützen:
-  - Fahrgestell, Kabine, Innenrohr, Aufhängung, Spreader-Rahmen aufrecht
-  - Grundrohr, Teleskoparme (Zapfen oben), Container-Boden und -Dach kopfüber
-  - Räder liegend (Außenseite oben), Zylinder liegend, Geländer flach
+  - Kabine kopfüber (Dach unten, Fensterstürze als Brücken)
+  - Fahrgestell, Glaskern, Auspuff, Innenrohr,
+    Aufhängung, Spreader-Rahmen und Container-Boden (Zapfen oben) aufrecht
+  - Grundrohr, Teleskoparme (Zapfen oben), Container-Dach kopfüber
+  - Reifen liegend (Innenrand unten), Felgen flach, Zylinderrohr und
+    Kolbenstange liegend, Geländer flach
   - Kotflügel mit Treppe liegen auf der Außenseite (Bogen und Stufen sind
     reine Profile)
-  - Container-Seitenwände Innenseite unten, Stirnwand und Türseite Außenseite unten
+  - Container-Seitenwände Innenseite unten, Rahmen, Stirnwand und Türen
+    Außenseite unten
   1:43: der 40-Fuß-Container ist geteilt (Boden und Dach je 2 Teile mit Clips,
         Seitenwände zweiteilig Stoß an Stoß). 1:87: nichts geteilt.
-  Mehrfarbige Teile mit AMS/MMU – oder einfarbig mit farbteil = alle.
   Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
   1 Hinweis – die geplanten Stützen unter dem Gegengewicht; alle anderen Teile
   ohne Hinweise. Druckzeit bei 100 % Füllung ca. 65 h (1:43) bzw. 13 h (1:87),
   mit 15 % Füllung deutlich weniger.
 
 MONTAGE
+  0. Felgen in die Reifen, Kolbenstangen in die Zylinderrohre, Auspuff in
+     die Haube drücken.
   1. Räder auf die Rautenzapfen schieben, Kotflügel mit Treppe seitlich in
-     die Front stecken, Geländer ins Podest, Kabine aufsetzen.
+     die Front stecken, Geländer ins Podest. Glaskern auf die
+     Kabinenzapfen setzen, Kabine darüberschieben.
   2. Grundrohr mit Bolzen in die Lagerböcke, Innenrohr einschieben.
   3. Hubzylinder unten und oben mit je einem Bolzen anbauen.
   4. Aufhängung mit dem Kopfbolzen anbauen, Spreader auf den Drehzapfen,
      Teleskoparme in die Kanäle schieben.
-  5. Container: Stirnwand und Türseite in die Quernuten des Bodens,
-     Seitenwände in die Längsnuten, Dach aufsetzen.
+  5. Container: Stirnwand und Türen von innen in ihre Rahmen drücken,
+     Rahmen auf die Zapfen des Bodens drücken, Seitenwände in die
+     Längsnuten, Dach aufdrücken (Zapfen in die Obergurte) – hält ohne
+     Kleber, auch wenn der Spreader den Container anhebt.
   6. Spreader aufsetzen – die vier Zapfen greifen in die oberen Eckbeschläge.
 
 BEWEGLICH
@@ -63,4 +80,5 @@ BEWEGLICH
 CONTAINER-BEFESTIGUNG
   Statt Twistlocks (zu fein für FDM) sitzen unter den Kopfträgern vier kurze,
   angespitzte Zapfen. Sie stecken stramm in den Bohrungen der oberen
-  Eckbeschläge; der Spreader liegt flach auf – der Container wirkt verriegelt.
+  Eckbeschläge (sie gehören zu den grauen Rahmen); der Spreader liegt flach
+  auf – der Container wirkt verriegelt.
