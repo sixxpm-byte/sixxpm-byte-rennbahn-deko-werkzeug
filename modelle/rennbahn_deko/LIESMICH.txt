@@ -1,0 +1,37 @@
+RENNBAHN-DEKO – Leitplanke, Reifenstapel, Betonleitwand, Curb, Pylonen
+======================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0); die SCAD-Datei kann
+im Customizer auch andere Maßstäbe (1:10 bis 1:87), Längen und Radien.
+
+INHALT
+  STL_1-43 / STL_1-87: Druckteile, Farbe im Dateinamen (teil_Farbteil__farbe.stl)
+    leitplanke_gerade / _kurve      Leitplanke (2 Planken)
+    reifenstapel_gerade / _kurve    Reifenstapel, Lagen abwechselnd schwarz/weiß
+    betonwand_gerade / _kurve       Betonleitwand, Elemente rot-weiß
+    curb_gerade / _kurve            Curb rot-weiß
+    pylonen                         Pylonen (Platte, orange mit weißen Bändern)
+    verbinder                       Schwalbenschwanz-Clips (Platte)
+  Gerade = 12 m Vorbild, Kurve = 90° mit 10 m Radius. Zu lange Teile sind in
+  gleich lange Segmente geteilt – die STL ist EIN Segment (Gerade 1:43:
+  2 Segmente drucken, je Stoß 1 Verbinder).
+  Farbliste.txt   = Dateien je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  bilder/         = Ansichten und Druckteile
+  rennbahn_deko.scad = Quelldatei für den OpenSCAD-Customizer
+
+STECKSYSTEM
+  Alle Streckenteile haben an beiden Enden dieselbe Tasche unten im Sockel.
+  Verbunden wird mit dem Schwalbenschwanz-Clip – jedes Ende passt an jedes
+  Ende (Leitplanke an Reifenstapel an Betonwand). Passt auch zur Jersey
+  Barrier mit Verbindung „clip“.
+
+FARBEN
+  _A, _B und _sockel liegen deckungsgleich: im Slicer als EIN Objekt laden
+  (AMS/MMU). Einfarbig: die 3MF mit einem Filament drucken.
+
+DRUCK
+  Wie exportiert, Sockel unten; Clips flach. Betonwand, Curb, Pylonen und
+  Clips ohne Stützen. Leitplanke: Stützen unter den Planken einschalten
+  (Slicer, automatisch). Reifenstapel: die runden Reifenflanken sind flacher
+  als 45° – drucken ohne Stützen meist sauber, sonst Stützen nur am Bett.
+  Magnete in den Pylonen optional (Kleber).

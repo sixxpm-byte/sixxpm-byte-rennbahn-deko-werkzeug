@@ -1,0 +1,37 @@
+BARRIERE MIT FANGZAUN – Betonschutzwand mit Doppelpfosten und Zaunfeldern
+==========================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0); die SCAD-Datei kann
+im Customizer auch andere Maßstäbe (1:10 bis 1:87).
+
+INHALT
+  STL_1-43 / STL_1-87: alle Druckteile, Farbe im Dateinamen (teil__farbe.stl)
+    barriere    Betonelement mit Schlitzen für die Pfostenfüße
+    pfosten     Doppelpfosten für die Fuge – verbindet zwei Elemente
+    endpfosten  Pfosten für Anfang und Ende einer Reihe
+    zaunfeld    Feld mit Rautengeflecht und Spannseilen
+    verbinder   Clips (nur vorhanden, wenn ein Teil geteilt werden muss)
+  Farbliste.txt   = Stückzahlen für eine Reihe aus 4 Elementen
+                    (je weiteres Element: 1 Barriere, 1 Pfosten, 1 Zaunfeld)
+  *_farbig.3mf    = alle Teile mit Farben
+  bilder/         = Ansichten und Druckteile
+  barriere_zaun.scad = Quelldatei für den OpenSCAD-Customizer
+
+GRÖSSE (Vorbild Rennstrecke, 4 m Element, Zaun 2,6 m)
+  1:43: Element ca. 9,3 × 1,5 × 2,1 cm, Zaun ca. 6 cm über der Krone
+  1:87: halb so groß
+
+DRUCK – Ausrichtung ist druckfertig, ohne Stützen
+  Barriere aufrecht, Pfosten und Zaunfelder flach (Fahrbahnseite unten,
+  Stifte oben). Zu hohe Felder werden in Teilfelder zerlegt, zu lange Teile
+  mit Clips geteilt. Einfarbig.
+
+MONTAGE
+  1. Barrieren in einer Reihe aufstellen.
+  2. Pfosten mit den Fußzapfen in die Schlitze stecken – je ein Zapfen links
+     und rechts der Fuge; an den Enden die Endpfosten.
+  3. Zaunfelder von der Fahrbahnseite mit den Stiften in die Pfosten drücken.
+
+OPTIONEN (Customizer)
+  Profil (Rennstrecke, New Jersey, Single Slope), Höhe/Breite/Länge, Zaunhöhe,
+  Pfosten je Element (Zwischenpfosten), Seile, Maschenart und -weite,
+  Staplertaschen, Clip-Taschen für das Rennbahn-Stecksystem, Passung (spiel).

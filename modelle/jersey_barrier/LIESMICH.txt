@@ -1,0 +1,35 @@
+JERSEY BARRIER – Betonschutzwand als Baukasten
+==============================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0); die SCAD-Datei kann
+im Customizer auch andere Maßstäbe (1:10 bis 1:87).
+
+INHALT
+  STL_1-43 / STL_1-87: alle Druckteile, Farbe im Dateinamen (teil_Farbteil__farbe.stl)
+    element_beton / endstueck_*_beton       Beton einfarbig
+    element_streifen / endstueck_*_streifen Rot-Weiß-Streifen
+    verbinder   Gelenk-Verbinder (Knochen) für die Fugen
+  Farbliste.txt   = Stückzahlen für eine Reihe aus 4 Elementen + 2 Endstücken
+                    (eine Variante wählen: Beton ODER Streifen)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  bilder/         = Ansichten und Druckteile
+  jersey_barrier.scad = Quelldatei für den OpenSCAD-Customizer
+
+FARBEN
+  Streifen-Variante: _A = Beton, _B = rote Streifen – liegen deckungsgleich:
+  im Slicer als EIN Objekt laden (AMS/MMU). Ohne AMS die Beton-Variante
+  drucken oder die 3MF einfarbig.
+
+DRUCK
+  Aufrecht auf der Standfläche; alle Flächen neigen sich nach innen, die
+  Staplertaschen haben einen Spitzbogen. Verbinder flach. 1:43 ohne Stützen;
+  in 1:87 setzt der Slicer kleine Stützen in die Staplertaschen (oder
+  staplertaschen = false im Customizer).
+
+MONTAGE
+  Elemente in einer Reihe aufstellen, Gelenk-Verbinder von unten in die
+  Taschen zweier Nachbarn stecken. Die Fugen bleiben bis ±15° beweglich –
+  so entstehen Kurven aus geraden Elementen. Endstücke an Anfang und Ende.
+
+OPTIONEN (Customizer)
+  Profil, Maße, Verbindung (Gelenk, T-Lock, Clip passend zur Rennbahn-Deko,
+  keine), Knickwinkel, Bogenelemente, Staplertaschen, Reflektoren, Farbmuster.
