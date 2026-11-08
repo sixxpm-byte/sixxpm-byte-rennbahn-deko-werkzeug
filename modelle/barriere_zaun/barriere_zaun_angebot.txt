@@ -1,0 +1,67 @@
+TITEL
+Barriere mit Fangzaun für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Betonschutzwand mit Zaun / Concrete barrier with catch fence
+
+KURZBESCHREIBUNG
+Steckbare Betonschutzwand mit Doppelpfosten und Fangzaun aus Rautengeflecht und Spannseilen – beliebig verlängerbar, stützfrei druckbar in 1:43 und 1:87 (H0), passend als Streckenbegrenzung für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Plug-together concrete barrier with double posts and a catch fence of diamond mesh and tension cables – extendable to any length, support-free printable in 1:43 and 1:87 (H0), ideal track boundary for Carrera and Sturmkind DR!FT tracks.
+
+BESCHREIBUNG
+Wie an der echten Rennstrecke: Betonschutzwände mit hohem Fangzaun trennen Fahrbahn und Zuschauer. Dieser Bausatz baut genau das nach – als Reihe, die du so lang machen kannst, wie deine Strecke es braucht. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+
+Ausstattung
+• Betonelement im Rennstrecken-Profil mit Staplertaschen und Schlitzen für die Pfostenfüße
+• Doppelpfosten mit Gabelkopf, der auf der Fuge steht: seine Fußzapfen greifen in beide Nachbarelemente und verbinden so die Barriere
+• Endpfosten für Anfang und Ende einer Reihe
+• Zaunfelder mit Rautengeflecht und drei Spannseilen, werden mit Stiften von der Fahrbahnseite in die Pfosten gedrückt
+• Komplett gesteckt, kein Kleber – beliebig viele Elemente aneinander
+• Alle Teile stützfrei
+
+Größe
+• 1:43: Element ca. 9,3 × 1,5 × 2,1 cm, Zaun ca. 6 cm über der Krone, Gesamthöhe ca. 8,1 cm; Reihe aus 4 Elementen ca. 37 cm
+• 1:87: Element ca. 4,6 × 0,8 × 1,0 cm, Zaun ca. 3 cm über der Krone, Gesamthöhe ca. 4 cm; Reihe aus 4 Elementen ca. 18,5 cm
+
+Lieferumfang: STL- und farbige 3MF-Dateien (Barriere, Pfosten, Endpfosten, Zaunfeld) in 1:43 und 1:87, Farblisten mit Stückzahlen für eine Reihe aus 4 Elementen, LIESMICH und Ansichten. Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung einer Streckenbegrenzung und kein lizenziertes Produkt eines Herstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Just like at a real race track: concrete barriers with a tall catch fence separate the track from the spectators. This kit recreates exactly that – as a row you can make as long as your track needs. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+
+Features
+• Concrete element with race track profile, forklift pockets and slots for the post feet
+• Double post with forked head standing on the joint: its foot pins reach into both neighbouring elements and so connect the barrier
+• End posts for the start and end of a row
+• Fence panels with diamond mesh and three tension cables, pushed into the posts with pins from the track side
+• Fully plugged, no glue – join as many elements as you like
+• All parts print without supports
+
+Size
+• 1:43: element approx. 9.3 × 1.5 × 2.1 cm, fence approx. 6 cm above the top, total height approx. 8.1 cm; row of 4 elements approx. 37 cm
+• 1:87: element approx. 4.6 × 0.8 × 1.0 cm, fence approx. 3 cm above the top, total height approx. 4 cm; row of 4 elements approx. 18.5 cm
+
+Included: STL and coloured 3MF files (barrier, post, end post, fence panel) in 1:43 and 1:87, colour lists with quantities for a row of 4 elements, readme and renders. The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a track boundary, not a licensed product of any manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,12–0,16 mm (feines Geflecht, Drahtstärke 0,44 mm), Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Barriere aufrecht, Pfosten und Zaunfelder flach (Fahrbahnseite unten, Stifte oben)
+• Keine Stützen nötig
+• Farben: Barriere betongrau, Pfosten und Zaunfelder silber oder grau – jedes Teil einfarbig, kein AMS nötig
+• Keine Teilung, keine Clips, kein Zubehör – Pfosten und Felder werden gesteckt
+• Je weiteres Element: 1 Barriere, 1 Pfosten, 1 Zaunfeld; pro Reihe 2 Endpfosten
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung) für eine Reihe aus 4 Elementen: 1:43 ca. 10 h, 1:87 ca. 3 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.12–0.16 mm (fine mesh, wire width 0.44 mm), 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files: barrier upright, posts and fence panels flat (track side down, pins up)
+• No supports needed
+• Colours: barrier concrete grey, posts and fence panels silver or grey – every part single-colour, no AMS needed
+• No splitting, no clips, no accessories – posts and panels plug together
+• For each additional element: 1 barrier, 1 post, 1 fence panel; 2 end posts per row
+• Print time (slicer estimate at 100 % infill) for a row of 4 elements: 1:43 approx. 10 h, 1:87 approx. 3 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Rennstrecke,Streckendeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Barriere,Fangzaun,Zaun,Betonwand,Leitwand,H0,Massstab143,3DDruck,Modellbau

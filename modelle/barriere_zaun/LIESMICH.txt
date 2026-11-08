@@ -9,7 +9,6 @@ INHALT
     pfosten     Doppelpfosten für die Fuge – verbindet zwei Elemente
     endpfosten  Pfosten für Anfang und Ende einer Reihe
     zaunfeld    Feld mit Rautengeflecht und Spannseilen
-    verbinder   Clips (nur vorhanden, wenn ein Teil geteilt werden muss)
   Farbliste.txt   = Stückzahlen für eine Reihe aus 4 Elementen
                     (je weiteres Element: 1 Barriere, 1 Pfosten, 1 Zaunfeld)
   *_farbig.3mf    = alle Teile mit Farben
