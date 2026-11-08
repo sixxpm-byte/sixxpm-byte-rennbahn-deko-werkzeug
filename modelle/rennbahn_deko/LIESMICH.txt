@@ -12,8 +12,8 @@ INHALT
     pylonen                         Pylonen (Platte, orange mit weißen Bändern)
     verbinder                       Schwalbenschwanz-Clips (Platte)
   Gerade = 12 m Vorbild, Kurve = 90° mit 10 m Radius. Zu lange Teile sind in
-  gleich lange Segmente geteilt – die STL ist EIN Segment (Gerade 1:43:
-  2 Segmente drucken, je Stoß 1 Verbinder).
+  gleich lange Segmente geteilt – die STL ist EIN Segment: in 1:43 Gerade
+  und Kurve je 2× drucken (je Stoß 1 Verbinder), in 1:87 ist alles einteilig.
   Farbliste.txt   = Dateien je Farbe
   *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
   bilder/         = Ansichten und Druckteile
@@ -34,4 +34,4 @@ DRUCK
   Clips ohne Stützen. Leitplanke: Stützen unter den Planken einschalten
   (Slicer, automatisch). Reifenstapel: die runden Reifenflanken sind flacher
   als 45° – drucken ohne Stützen meist sauber, sonst Stützen nur am Bett.
-  Magnete in den Pylonen optional (Kleber).
+  Magnettaschen in den Pylonen gibt es per Customizer (magnete = true).

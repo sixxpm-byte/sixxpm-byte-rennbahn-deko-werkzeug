@@ -1,0 +1,71 @@
+TITEL
+Rennbahn-Deko für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Leitplanke, Reifenstapel, Betonwand, Curb, Pylonen / Race track decoration set
+
+KURZBESCHREIBUNG
+Streckendeko-Set mit Leitplanke, Reifenstapel, Betonleitwand und Curb als Gerade und 90°-Kurve, dazu Pylonen – alles mit einem gemeinsamen Steck-Clip verbunden, mehrfarbig druckbar in 1:43 und 1:87 (H0), passend für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Track decoration set with guardrail, tyre wall, concrete barrier and kerb as straight and 90° curve, plus traffic cones – all joined by one common dovetail clip, multicolour printable in 1:43 and 1:87 (H0), made for Carrera and Sturmkind DR!FT tracks.
+
+BESCHREIBUNG
+Mach aus deiner Rennbahn eine echte Rennstrecke: Dieses Set säumt die Fahrbahn mit allem, was an einen Rennkurs gehört – Leitplanke, Reifenstapel, rot-weiße Betonleitwand und Curbs, dazu Pylonen für Schikanen und Drift-Parcours. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+
+Ausstattung
+• Leitplanke mit zwei Planken auf Pfosten
+• Reifenstapel aus vier Lagen, abwechselnd schwarz und weiß
+• Betonleitwand, Elemente abwechselnd rot und weiß
+• Curb mit rot-weißen Streifen
+• Jedes Streckenteil als Gerade (12 m Vorbild) und als 90°-Kurve (10 m Radius)
+• Einheitliches Stecksystem: Alle Streckenteile haben an beiden Enden dieselbe Tasche im Sockel und werden mit einem Schwalbenschwanz-Clip verbunden – jedes Ende passt an jedes Ende, so lassen sich Leitplanke, Reifenstapel und Betonwand frei kombinieren
+• 12 Pylonen (orange mit weißen Bändern) und eine Platte mit 10 Clips
+• Dunkelgrauer Sockel unter allen Streckenteilen
+
+Größe
+• 1:43: Gerade ca. 28 cm (2 Segmente à 14 cm), Kurve ca. 37 cm Bogenlänge (2 Segmente à 45°), Radius 23 cm; Höhe Leitplanke 2,8 cm, Reifenstapel 2,1 cm, Betonwand 2,2 cm, Curb 2,3 cm breit; Pylone ca. 1,2 cm hoch
+• 1:87: Gerade ca. 14 cm, Kurve ca. 18 cm Bogenlänge (ein Teil), Radius 11,5 cm; Höhe Leitplanke 1,5 cm, Reifenstapel 1,2 cm, Betonwand 1,2 cm, Curb 1,5 cm breit; Pylone ca. 0,6 cm hoch
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten, LIESMICH und Ansichten. Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Set ist eine freie Nachbildung typischer Streckenausstattung und kein lizenziertes Produkt eines Herstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Turn your track into a real circuit: this set lines the road with everything a race track needs – guardrail, tyre wall, red-and-white concrete barrier and kerbs, plus traffic cones for chicanes and drift courses. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+
+Features
+• Guardrail with two rails on posts
+• Tyre wall of four layers, alternating black and white
+• Concrete barrier, elements alternating red and white
+• Kerb with red-and-white stripes
+• Every track piece as a straight (12 m real length) and a 90° curve (10 m radius)
+• One plug system: all track pieces have the same pocket at both ends of the base and are joined with a dovetail clip – any end fits any end, so guardrail, tyre wall and concrete barrier can be combined freely
+• 12 traffic cones (orange with white bands) and a plate of 10 clips
+• Dark grey base under all track pieces
+
+Size
+• 1:43: straight approx. 28 cm (2 segments of 14 cm), curve approx. 37 cm arc length (2 segments of 45°), radius 23 cm; height guardrail 2.8 cm, tyre wall 2.1 cm, concrete barrier 2.2 cm, kerb 2.3 cm wide; cone approx. 1.2 cm high
+• 1:87: straight approx. 14 cm, curve approx. 18 cm arc length (one piece), radius 11.5 cm; height guardrail 1.5 cm, tyre wall 1.2 cm, concrete barrier 1.2 cm, kerb 1.5 cm wide; cone approx. 0.6 cm high
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists, readme and renders. The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. The set is a free replica of typical track equipment, not a licensed product of any manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,12–0,2 mm (Leitplanke in 1:87 eher 0,12 mm), Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen – Sockel unten, Clips und Pylonen-Platte flach
+• Stützen: Leitplanke – automatische Stützen unter den Planken einschalten. Betonwand, Curb, Pylonen und Clips ohne Stützen. Reifenstapel ohne Stützen; die runden Reifenflanken sind flacher als 45° und drucken meist sauber, sonst Stützen nur vom Druckbett
+• Mehrfarbig: _A, _B und _sockel eines Teils liegen deckungsgleich – mit AMS/MMU aus der 3MF drucken oder im Slicer als ein Objekt laden. Ohne AMS die 3MF einfarbig drucken
+• Teilung: In 1:43 sind Gerade und Kurve zu lang fürs Druckbett – die Datei ist ein Segment, je 2× drucken und mit einem Clip verbinden. In 1:87 ist jedes Teil einteilig
+• Verbinden: Clip von unten in die Taschen zweier Nachbarteile stecken; die Clips flach drucken
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung): kompletter Satz – je Gerade und Kurve aller vier Streckenteile, Pylonen und Clips – 1:43 ca. 44 h, 1:87 ca. 9 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.12–0.2 mm (guardrail in 1:87 preferably 0.12 mm), 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files – base down, clips and cone plate flat
+• Supports: guardrail – enable automatic supports under the rails. Concrete barrier, kerb, cones and clips need no supports. Tyre wall without supports; the round tyre sides are flatter than 45° and usually print cleanly, otherwise use supports from the build plate only
+• Multicolour: _A, _B and _sockel of a part are aligned – print from the 3MF with AMS/MMU or load them as one object in the slicer. Without an AMS, print the 3MF in one colour
+• Splitting: in 1:43 the straight and curve are too long for the bed – the file is one segment, print it 2× and join with a clip. In 1:87 every part is one piece
+• Joining: push a clip from below into the pockets of two neighbouring pieces; print the clips flat
+• Print time (slicer estimate at 100 % infill): complete set – straight and curve of all four track pieces, cones and clips – 1:43 approx. 44 h, 1:87 approx. 9 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Rennstrecke,Streckendeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Leitplanke,Reifenstapel,Betonwand,Curb,Pylonen,H0,Massstab143,3DDruck,Mehrfarbig
