@@ -1,0 +1,59 @@
+BOXENMAUER MIT KOMMANDOSTAND – Mauer mit Fangzaun und Team-Kommandostand – Bausatz
+====================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Vorbild: Mauer zwischen Boxengasse und Strecke (1,2 m hoch) mit 3 m hohem Fangzaun,
+der oben zur Strecke abknickt; dahinter der überdachte Kommandostand eines Teams
+mit Pult, Monitoren, Hockern, Seitenwänden mit Glas und Teamschild.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe für 3 Mauerelemente und einen Kommandostand
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Gesteckt werden alle Bauteile, auch die Glasscheiben der Seitenwände. Farbzonen
+  (mit AMS/MMU, einfarbig fallen sie weg): Werbefläche der Mauer, Bildschirme,
+  Schrift auf dem Teamschild.
+  boxenmauer_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Ansichten (Boxengasse, Strecke, Kommandostand, Explosion),
+                    Druckteile und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten)
+
+GRÖSSE
+  Mauerelement 1:43: 14,0 cm lang, Mauer 2,8 cm hoch, mit Zaun ca. 10 cm.
+  Mauerelement 1:87: 6,9 cm lang, Mauer 1,4 cm hoch, mit Zaun ca. 5 cm.
+  Kommandostand 1:43: 14,0 × 7,9 cm, mit Schild 9,7 cm hoch;
+                1:87: 6,9 × 3,9 cm, 4,8 cm hoch.
+  Beliebig viele Mauerelemente aneinander; alle Teile ungeteilt.
+
+Maßstab / Text / Farben / Optionen:
+  boxenmauer.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py boxenmauer.scad 87 ausgabe -D 'banner_text="MEIN TEAM"'
+  Optionen u. a.: Text des Teamschilds (banner_text, Standard „Windgebohrener“),
+  Plätze am Pult (2–8), Zaunhöhe, Länge und Winkel des Zaun-Knicks (45–60°),
+  Mauer- und Podesthöhe, Clip-Taschen an/aus (rennbahn_taschen), Passung
+  (spiel, einsatz_spiel), alle Farben. Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Nichts – kein Kleber, kein Zubehör. Clips werden mitgedruckt.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Mauerelement aufrecht (Clip-Taschen unten)
+  - Fangzaun liegend, das abgeknickte Oberteil steigt schräg auf (50°);
+    feines Geflecht – Schichthöhe 0,12–0,16 mm
+  - Podest und Dach kopfüber, hohl mit Rippen
+  - Seitenwände, Glasscheiben, Geländer, Treppe, Monitorleiste und Teamschild flach;
+    das Pult liegt auf seiner Frontplatte, die Hockerreihe steht auf ihrer Schiene
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung: je Mauerelement mit Zaun 1:43 ca. 6 h, 1:87 ca. 1 h;
+  Kommandostand 1:43 ca. 13,5 h, 1:87 ca. 3 h. Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Mauerelemente Ende an Ende stellen, je einen Clip von unten in die Taschen
+     drücken. Zaunfelder mit den Zungen in die Mauerkrone stecken – der Knick zeigt
+     zur Strecke (Seite mit der Werbefläche).
+  2. Podest an die Boxenseite eines Mauerelements schieben und mit zwei Clips von
+     unten verbinden. Treppe mit der Zunge hinten ins Podest stecken.
+  3. Pult vorne ins Podest stecken, Monitorleiste in die Schlitze der Tischplatte,
+     Hockerreihe mit der Schiene in die Nut drücken.
+  4. Glasscheiben von der flachen Seite in die Seitenwände drücken. Seitenwände und
+     Geländer in die Schlitze des Podests stecken.
+  5. Dach auf die Zungen der Seitenwände drücken, Teamschild mit der Schrift zur
+     Strecke aufs Dach stecken.

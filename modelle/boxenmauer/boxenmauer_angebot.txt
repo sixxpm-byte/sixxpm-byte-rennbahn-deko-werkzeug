@@ -1,0 +1,69 @@
+TITEL
+Boxenmauer für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – mit Fangzaun und Kommandostand / Pit wall with catch fence and pit wall stand
+
+KURZBESCHREIBUNG
+Verlängerbare Boxenmauer mit abgeknicktem Fangzaun und überdachtem Team-Kommandostand mit Pult, Monitoren, Hockern, Glas-Seitenwänden und eigenem Teamschild – komplett gesteckt und stützfrei druckbar in 1:43 und 1:87 (H0), passend für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Extendable pit wall with angled catch fence and a covered team pit wall stand with desk, monitors, stools, glazed side walls and your own team sign – fully plugged and support-free printable in 1:43 and 1:87 (H0), made for Carrera and Sturmkind DR!FT tracks.
+
+BESCHREIBUNG
+Hol dir die Boxengasse an die Strecke: Diese Boxenmauer trennt Boxengasse und Fahrbahn, dahinter verfolgt dein Team das Rennen vom Kommandostand aus – als 3D-Druck-Bausatz in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+
+Ausstattung
+• Mauerelemente mit Werbefläche zur Strecke, beliebig verlängerbar: an beiden Enden dieselbe Schwalbenschwanz-Tasche, ein Clip von unten verbindet sie – passend zu den Clips des Rennbahn-Deko-Sets
+• Fangzaun mit Pfosten und Rautengeflecht, oben zur Strecke abgeknickt, mit Zungen in die Mauerkrone gesteckt
+• Kommandostand auf einem Podest mit Treppe, mit zwei Clips an der Mauer befestigt
+• Pult mit Monitorleiste (6 Bildschirme), Hockerreihe, Geländer hinten
+• Seitenwände mit eingesteckten Glasscheiben, Dach mit Blende und Teamschild auf dem Dach – Text frei wählbar (Standard „Windgebohrener“)
+• Im Customizer einstellbar: Schildtext, Anzahl der Plätze (2–8), Zaunhöhe und Knickwinkel, Höhen, alle Farben
+• Komplett gesteckt, kein Kleber; alle Teile stützfrei
+
+Größe
+• 1:43: Mauerelement 14,0 cm lang, mit Zaun ca. 10 cm hoch; Kommandostand 14,0 × 7,9 cm, mit Schild 9,7 cm hoch
+• 1:87: Mauerelement 6,9 cm lang, mit Zaun ca. 5 cm hoch; Kommandostand 6,9 × 3,9 cm, mit Schild 4,8 cm hoch
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten (3 Mauerelemente und ein Kommandostand), LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung einer Boxenmauer und kein lizenziertes Produkt einer Rennstrecke oder eines Rennteams. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Bring the pit lane to your track: this pit wall separates the pit lane from the track, and behind it your team follows the race from the pit wall stand – a 3D printing kit in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+
+Features
+• Wall elements with an advertising panel facing the track, extendable to any length: the same dovetail pocket at both ends, a clip from below joins them – compatible with the clips of the race track decoration set
+• Catch fence with posts and diamond mesh, angled towards the track at the top, plugged into the top of the wall with tabs
+• Pit wall stand on a platform with stairs, attached to the wall with two clips
+• Desk with monitor bar (6 screens), row of stools, rear railing
+• Side walls with plug-in glass panes, roof with fascia and a team sign on top – text of your choice (default "Windgebohrener")
+• Adjustable in the Customizer: sign text, number of seats (2–8), fence height and angle, heights, all colours
+• Fully plugged, no glue; all parts print without supports
+
+Size
+• 1:43: wall element 14.0 cm long, approx. 10 cm high with fence; stand 14.0 × 7.9 cm, 9.7 cm high with sign
+• 1:87: wall element 6.9 cm long, approx. 5 cm high with fence; stand 6.9 × 3.9 cm, 4.8 cm high with sign
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists (3 wall elements and one stand), readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a pit wall, not a licensed product of any race track or racing team. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm, für das Zaungeflecht 0,12–0,16 mm; Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Mauer aufrecht, Fangzaun liegend (Knickteil steigt schräg auf), Podest und Dach kopfüber, Seitenwände, Glas, Geländer, Treppe, Monitore und Schild flach, Pult auf der Frontplatte, Hockerreihe stehend
+• Keine Stützen nötig
+• Mehrfarbig: mit AMS/MMU aus der 3MF – Werbefläche, Bildschirme und Schrift sind Farbzonen; einfarbig druckbar, die Glasscheiben werden gesteckt
+• Keine Teilung; Clips verbinden die Mauerelemente und den Kommandostand mit der Mauer
+• Passung im Customizer: spiel (Clips), einsatz_spiel (Zungen, Hockerschiene, Glas)
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung): je Mauerelement mit Zaun 1:43 ca. 6 h, 1:87 ca. 1 h; Kommandostand 1:43 ca. 13,5 h, 1:87 ca. 3 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm, 0.12–0.16 mm for the fence mesh; 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files: wall upright, fence lying (the angled top rises at a slant), platform and roof upside down, side walls, glass, railing, stairs, monitors and sign flat, desk on its front panel, stools standing
+• No supports needed
+• Multicolour: print from the 3MF with AMS/MMU – advertising panel, screens and lettering are colour zones; printable in one colour, the glass panes plug in
+• No splitting; clips join the wall elements and attach the stand to the wall
+• Fit in the Customizer: spiel (clips), einsatz_spiel (tabs, stool rail, glass)
+• Print time (slicer estimate at 100 % infill): per wall element with fence 1:43 approx. 6 h, 1:87 approx. 1 h; pit wall stand 1:43 approx. 13.5 h, 1:87 approx. 3 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Rennstrecke,Streckendeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Boxenmauer,Boxengasse,Fangzaun,Kommandostand,PitWall,H0,Massstab143,3DDruck,Modellbau
