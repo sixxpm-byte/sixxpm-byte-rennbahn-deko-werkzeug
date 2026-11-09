@@ -1,0 +1,79 @@
+MULDENKIPPER – Starrrahmen-Muldenkipper der 180-t-Klasse – zerlegbarer Bausatz
+================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Vorbild: großer Starrrahmen-Muldenkipper für den Tagebau – Länge 12,65 m, Breite
+7,67 m, Radstand 5,70 m, Reifen 37.00R57 (Ø 3,58 m), hinten Zwillingsräder.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Alle Farbteile werden gesteckt (Felgen, Glaskern, Kühlergrill, Scheinwerfer,
+  Kolbenstangen, Geländer, Spiegel, Auspuff, Rückleuchten) – du kannst also auch
+  ohne AMS jede STL einzeln in ihrer Farbe drucken. Nur die dunkle Kante oben am
+  Schutzdach ist eine reine Farbzone (mit AMS/MMU, einfarbig fällt sie weg).
+  muldenkipper_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, gekippt, Explosion), Druckteile und
+                    Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
+
+GRÖSSE
+  1:43: ca. 29,4 × 17,8 cm, Höhe ca. 15,1 cm (Schutzdach), Rad Ø 8,3 cm.
+  1:87: ca. 14,5 × 8,8 cm, Höhe ca. 7,5 cm, Rad Ø 4,1 cm.
+  Alle Teile passen ungeteilt auf ein 220er-Druckbett – keine Clips nötig.
+
+Maßstab / andere Farben / Optionen:
+  muldenkipper.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py muldenkipper.scad 87 ausgabe -D 'farbe_mulde="rot"'
+  Optionen u. a.: Kippwinkel der Vorschau (mulde_winkel), Passung (spiel,
+  zylinder_spiel, einsatz_spiel), alle Farben (Standard „catgelb“). Die Datei ist
+  eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 3 Bolzen:
+    1:43: Kipplager 36 mm, Zylinder oben 44 mm, Zylinder unten 44 mm
+    1:87: Kipplager 18 mm, Zylinder oben 22 mm, Zylinder unten 22 mm
+  Sonst kein Zubehör, kein Kleber.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Rahmen, Vorbau und Mulde aufrecht (die Mulde steht auf dem Boden, das Heck
+    hat unten eine 45°-Fase)
+  - Kabine und Schutzdach kopfüber (Zapfen oben), Glaskern als Block
+  - Oberdeck flach (Zapfen für den Auspuff oben)
+  - Geländer, Treppe, Leitern, Spiegel und Muldenträger flach liegend
+  - Kippzylinder: Rohr und Kolbenstange liegend (Augen unten)
+  - Räder liegend mit der Innenseite unten, Felgen stehend; Achszapfen liegend
+    (Schichten in Längsrichtung – so sind sie stabil)
+  - Kühlergrill und Scheinwerferplatten mit der Rückseite unten, Auspuff stehend,
+    Rückleuchten auf der Unterseite
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 128 h, 1:87 ca. 21 h.
+  Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Kühlergrill und die zwei Scheinwerferplatten in die Taschen des Vorbaus
+     drücken. Vorbau von oben auf die zwei Steckzungen der Längsträger schieben.
+     Rückleuchten mit der Zunge in die Schlitze am Rahmenende stecken.
+  2. Achszapfen in die Rautenlöcher der Federbeine (vorne, kurz) und der
+     Achsbrücke (hinten, lang) stecken. Felgen von außen in die Reifen drücken,
+     Räder mit der Innenseite zum Fahrzeug aufschieben.
+  3. Oberdeck auf die Zapfen des Vorbaus drücken. Glaskern von unten in die
+     Kabine schieben, Kabine mit den vier Eckzapfen ins Deck stecken.
+  4. Geländer und Spiegel in die Schlitze im Deck, die zwei Schalldämpfer auf
+     die Zapfen hinten rechts stecken.
+  5. Treppe unten in die Stoßstange und oben in den Schlitz über dem Grill
+     stecken, Leitern von unten in die Stoßstange.
+  6. Kolbenstangen von vorne in die Rohre schieben (flache Seiten zusammen).
+     Bolzen unten durch beide unteren Zylinderaugen und den Rahmen stecken.
+  7. Muldenträger mit den Zungen in den Muldenboden drücken. Mulde aufsetzen,
+     Kipplager-Bolzen durch die Träger und das Rahmenende schieben.
+  8. Mulde anheben, Kolbenstangen herausziehen, Bolzen oben durch die Augen
+     und die Muldenträger stecken. Schutzdach auf die Stirnwand drücken.
+  Die Bolzen drehen sich lose im Rahmen bzw. in den Muldenträgern; in den
+  Zylinderaugen und den Kipplager-Augen sitzen sie stramm.
+
+BEWEGLICH
+  Alle vier Räder drehen sich (Vorderräder starr, nicht lenkbar). Die Mulde kippt
+  bis etwa 45°; die teleskopischen Kippzylinder fahren mit aus und halten sie
+  durch Reibung in jeder Stellung. Hält sie zu locker oder klemmt sie:
+  zylinder_spiel im Customizer anpassen (Standard 0,1 mm) und die Kolbenstangen
+  neu drucken.

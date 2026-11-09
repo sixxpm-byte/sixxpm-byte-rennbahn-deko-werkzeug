@@ -1,0 +1,73 @@
+TITEL
+Muldenkipper für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Mining Truck mit Kippmulde / Mining dump truck with tipping body
+
+KURZBESCHREIBUNG
+Zerlegbarer Starrrahmen-Muldenkipper der 180-t-Klasse mit kippbarer Mulde, teleskopischen Kippzylindern und drehbaren Rädern – komplett gesteckt und stützfrei druckbar in 1:43 und 1:87 (H0), passend als Tagebau- oder Baustellen-Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Take-apart rigid-frame mining dump truck of the 180-tonne class with tipping body, telescopic hoist cylinders and rotating wheels – fully plugged and support-free printable in 1:43 and 1:87 (H0), ideal mining or construction site decoration for Carrera and Sturmkind DR!FT tracks.
+
+BESCHREIBUNG
+Ein Riese für deine Rennbahn: Dieser Muldenkipper aus dem Tagebau steht mit seinen mannshohen Reifen neben der Strecke, die Mulde lässt sich anheben – als vollständiger 3D-Druck-Bausatz in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+
+Ausstattung
+• Mulde mit ausgestellten Bordwänden, Rippen, Obergurt, Stirnwand und angehobenem Heck, darüber das Schutzdach über Kabine und Deck
+• Mulde kippbar bis etwa 45°: zwei teleskopische Kippzylinder mit silbernen Kolbenstangen fahren mit aus und halten die Mulde in jeder Stellung
+• Vorbau mit Kühlerhaus, schwarzem Kühlergrill, zwei Scheinwerferkästen mit je vier Leuchten, Stoßstange und Federbeinen
+• Oberdeck mit Fahrerkabine (Glaskern), Geländern, zwei Außenspiegeln und Schalldämpfern, Diagonaltreppe vor dem Kühler und zwei Aufstiegsleitern
+• Rahmen mit Hinterachsbrücke, Kraftstoff- und Hydrauliktank und roten Rückleuchten
+• Große Reifen mit Pfeilprofil, vorne einzeln, hinten Zwillingsräder; Felgen eingepresst, alle Räder drehen sich
+• Komplett gesteckt, kein Kleber: Rautenzapfen, Steckzungen und drei Bolzen aus 1,75-mm-Filament
+• Alle Teile stützfrei; alle Farbteile werden gesteckt, daher auch ohne AMS einfarbig Teil für Teil druckbar
+
+Größe
+• 1:43: ca. 29,4 × 17,8 cm, Höhe ca. 15,1 cm, Rad Ø 8,3 cm
+• 1:87: ca. 14,5 × 8,8 cm, Höhe ca. 7,5 cm, Rad Ø 4,1 cm
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten, LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Muldenkippers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+A giant for your race track: this mining dump truck stands beside the track on its man-high tyres, and its body can be raised – a complete 3D printing kit in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+
+Features
+• Body with flared side walls, ribs, top rail, front wall and raised tail, topped by the canopy over cab and deck
+• Body tips up to about 45°: two telescopic hoist cylinders with silver piston rods extend with it and hold the body in any position
+• Front module with radiator housing, black grille, two headlight boxes with four lights each, bumper and suspension struts
+• Upper deck with cab (glass core), railings, two mirrors and mufflers, diagonal stairway in front of the radiator and two access ladders
+• Frame with rear axle housing, fuel and hydraulic tank and red tail lights
+• Large tyres with chevron tread, single at the front, dual at the rear; press-fit rims, all wheels rotate
+• Fully plugged, no glue: diamond pins, tabs and three pins made from 1.75 mm filament
+• All parts print without supports; all colour parts plug together, so you can also print part by part in single colours without an AMS
+
+Size
+• 1:43: approx. 29.4 × 17.8 cm, height approx. 15.1 cm, wheel Ø 8.3 cm
+• 1:87: approx. 14.5 × 8.8 cm, height approx. 7.5 cm, wheel Ø 4.1 cm
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists, readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a mining dump truck, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm (Geländer, Spiegel und Leitern in 1:87 eher 0,12 mm), Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Rahmen, Vorbau und Mulde aufrecht, Kabine und Schutzdach kopfüber, Oberdeck, Geländer, Treppe, Leitern, Spiegel und Muldenträger flach, Zylinder und Achszapfen liegend, Räder mit der Innenseite unten
+• Keine Stützen nötig
+• Mehrfarbig: Farbteile mit AMS/MMU gemeinsam aus der 3MF drucken – oder einfarbig jede STL einzeln, alle Farbteile werden gesteckt; nur die dunkle Kante am Schutzdach ist eine Farbzone
+• Keine Teilung, keine Clips – alle Teile passen ungeteilt aufs Druckbett
+• Bolzen aus Filament 1,75 mm: 1:43 ca. 36/44/44 mm, 1:87 ca. 18/22/22 mm (Kipplager, Zylinder oben, Zylinder unten)
+• Passung im Customizer: einsatz_spiel (Felgen, Glaskern, Grill, Leuchten, Zapfen), zylinder_spiel (Kolbenstange – kleiner hält die Mulde fester), spiel
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, alle Teile): 1:43 ca. 128 h, 1:87 ca. 21 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm (railings, mirrors and ladders in 1:87 preferably 0.12 mm), 15 % infill, 3 perimeters, keep the slicer's bridge settings on
+• Print every part exactly as oriented in the files: frame, front module and body upright, cab and canopy upside down, deck, railings, stairway, ladders, mirrors and body brackets flat, cylinders and axle pins lying, wheels with the inner side down
+• No supports needed
+• Multicolour: print the colour parts together from the 3MF with AMS/MMU – or each STL separately in one colour, all colour parts plug together; only the dark edge on the canopy is a colour zone
+• No splitting, no clips – all parts fit the print bed in one piece
+• Pins from 1.75 mm filament: 1:43 approx. 36/44/44 mm, 1:87 approx. 18/22/22 mm (body pivot, cylinder top, cylinder bottom)
+• Fit in the Customizer: einsatz_spiel (rims, glass core, grille, lights, pins), zylinder_spiel (piston rod – smaller holds the body tighter), spiel
+• Print time (slicer estimate at 100 % infill, all parts): 1:43 approx. 128 h, 1:87 approx. 21 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Muldenkipper,MiningTruck,Kipper,Tagebau,Baustelle,Baufahrzeug,Bausatz,H0,Massstab143,3DDruck,Modellbau
