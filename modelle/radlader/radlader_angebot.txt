@@ -1,0 +1,77 @@
+TITEL
+Radlader für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 H0 – beweglicher Bausatz mit Knicklenkung, Modelleisenbahn / Movable wheel loader kit
+
+KURZBESCHREIBUNG
+3D-druckbarer Steck-Bausatz eines knickgelenkten Radladers der 30-t-Klasse mit bebilderter Bauanleitung: Knicklenkung, drehende Räder, Hubgerüst und Schaufel mit Z-Kinematik und teleskopischen Hydraulikzylindern – stützfrei druckbar in 1:43 und 1:87 (H0), für Carrera- und Sturmkind-DR!FT-Rennbahnen und die Modelleisenbahn.
+3D-printable plug-together kit of a 30-tonne articulated wheel loader with illustrated building instructions: articulated steering, rolling wheels, lift arms and bucket with Z-bar linkage and telescopic hydraulic cylinders – support-free printable in 1:43 and 1:87 (H0), for Carrera and Sturmkind DR!FT tracks and your model railway.
+
+BESCHREIBUNG
+Schüttgut für deine Rennbahn oder Modelleisenbahn: Dieser Radlader lenkt, hebt und kippt – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0). Du bekommst keinen fertigen Radlader, sondern einen 3D-druckbaren Bausatz zum Stecken: Du druckst die Teile selbst und baust sie mit der bebilderten Druck- und Bauanleitung (PDF), den Farblisten und der LIESMICH ohne Kleber zusammen.
+
+Ausstattung
+• Knicklenkung ±35° um einen gesteckten Knickbolzen
+• Vier Räder mit Stollenprofil und gesteckten Felgen drehen auf Vierkant-Achsen
+• Hubgerüst mit zwei Hubarmen hebt die Schaufel vom Boden bis über die Kabine
+• Schaufel mit Z-Kinematik wie beim Vorbild: Kippzylinder, Kipphebel und Koppelstange – einkippen und oben auskippen
+• Drei teleskopische Hydraulikzylinder: die silbernen Kolbenstangen fahren mit aus und halten jede Stellung
+• Hinterwagen mit Gegengewicht, nach hinten abfallender Motorhaube, Kühlergrill, Auspuff, Kotflügeln, Leitern und Handläufen
+• Fahrerkabine mit eingestecktem Glaskern, Außenspiegeln und Arbeitsscheinwerfern
+• Vordere Kotflügel mit Scheinwerfern, Schaufel mit acht Zähnen
+• Komplett gesteckt, kein Kleber; alle Teile stützfrei und ungeteilt druckbar
+• Alle Farben sind eigene Steckteile – auch ohne AMS einfarbig Teil für Teil druckbar
+
+Größe
+• 1:43: 21,2 cm lang, Schaufel 8,0 cm breit, Kabine 8,7 cm hoch
+• 1:87: 10,5 cm lang, Schaufel 4,0 cm breit, Kabine 4,3 cm hoch
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten, LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Radladers und kein lizenziertes Produkt eines Baumaschinenherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Bulk material for your race track or model railway: this wheel loader steers, lifts and dumps – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0). You do not get a finished loader but a 3D-printable plug-together kit: you print the parts yourself and assemble them without glue using the illustrated printing and building instructions (PDF), the colour lists and the readme.
+
+Features
+• Articulated steering ±35° around a plug-in pivot pin
+• Four wheels with lug tread and plug-in rims turn on square axles
+• Lift frame with two lift arms raises the bucket from the ground to above the cab
+• Bucket with Z-bar linkage like the real thing: tilt cylinder, tilt lever and link – roll back and dump at full height
+• Three telescopic hydraulic cylinders: the silver piston rods extend with the movement and hold any position
+• Rear frame with counterweight, rearward-sloping engine hood, radiator grille, exhaust, fenders, ladders and handrails
+• Cab with plug-in glass core, mirrors and work lights
+• Front fenders with lights, bucket with eight teeth
+• Fully plugged, no glue; all parts print without supports and in one piece
+• All colours are separate plug-in parts – printable part by part in single colours without an AMS
+
+Size
+• 1:43: 21.2 cm long, bucket 8.0 cm wide, cab 8.7 cm high
+• 1:87: 10.5 cm long, bucket 4.0 cm wide, cab 4.3 cm high
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists, readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a wheel loader, not a licensed product of any construction machinery manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm (Zylinder, Gestänge und Anbauteile in 1:87 eher 0,12 mm), Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Hinterwagen, Aufbau und Vorderwagen aufrecht, Kabine kopfüber, Schaufel mit dem Boden unten, Räder mit der Innenseite unten, Knickbolzen und Distanzrohre stehend, Zylinder und Achsen liegend, Hubarme, Hebel, Koppel, Kotflügel und Anbauteile flach
+• Keine Stützen nötig; Knickbolzen und Distanzrohre in 1:87 mit Brim
+• Mehrfarbig: alle Farben sind eigene Steckteile – mit AMS/MMU gemeinsam aus der 3MF oder einfarbig jede STL einzeln; keine Farbzonen
+• Keine Teilung, keine Clips
+• 11 Bolzen aus Filament 1,75 mm, Längen in der LIESMICH und in der Anleitung (1:43: 6–36 mm, 1:87: 4–18,5 mm)
+• Passung im Customizer: zylinder_spiel (Kolbenstange – kleiner hält die Stellung fester), einsatz_spiel (Zapfen, Achsen, Grill, Glaskern), spiel
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, alle Teile): 1:43 ca. 33 h, 1:87 ca. 5,5 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm (cylinders, linkage and attachments in 1:87 preferably 0.12 mm), 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files: rear frame, body and front frame upright, cab upside down, bucket with its floor down, wheels with the inner side down, pivot pin and spacer tubes standing, cylinders and axles lying, lift arms, levers, link, fenders and attachments flat
+• No supports needed; pivot pin and spacer tubes in 1:87 with a brim
+• Multicolour: all colours are separate plug-in parts – print them together from the 3MF with AMS/MMU or each STL separately in one colour; no colour zones
+• No splitting, no clips
+• 11 pins from 1.75 mm filament, lengths in the readme and the instructions (1:43: 6–36 mm, 1:87: 4–18.5 mm)
+• Fit in the Customizer: zylinder_spiel (piston rod – smaller holds the position tighter), einsatz_spiel (pegs, axles, grille, glass core), spiel
+• Print time (slicer estimate at 100 % infill, all parts): 1:43 approx. 33 h, 1:87 approx. 5.5 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Modelleisenbahn,Bausatz,Radlader,Knicklenker,Baustelle,Baumaschine,Baufahrzeug,H0,Massstab143,3DDruck,Modellbau

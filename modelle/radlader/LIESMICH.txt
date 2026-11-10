@@ -1,0 +1,81 @@
+RADLADER – knickgelenkter Radlader der 30-t-Klasse mit Z-Kinematik – druckbarer Steck-Bausatz
+==============================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0, Modelleisenbahn).
+Vorbild: großer Radlader – Radstand 3,8 m, Reifen Ø 1,87 m, Schaufel 3,45 m breit,
+Länge mit Schaufel 9,1 m, Kabine 3,75 m hoch.
+Das ist ein 3D-druckbarer Bausatz zum Stecken (kein fertiges Modell): Du druckst die
+Teile selbst und baust sie nach der bebilderten Anleitung ohne Kleber zusammen.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Alle Farben sind eigene Bauteile, die gesteckt werden (Glaskern, Felgen, Kolbenstangen,
+  Kühlergrill, Leitern, Handläufe, Spiegel, Scheinwerfer) – du kannst also auch ohne AMS
+  jede STL einzeln in ihrer Farbe drucken. Es gibt keine Farbzonen.
+  radlader_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Bauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, Seite, gehoben, Explosion), Druckteile und
+                    Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
+
+GRÖSSE
+  1:43: 21,2 cm lang (mit Schaufel), 8,0 cm breit (Schaufel), Kabine 8,7 cm hoch,
+        Schaufelbolzen bis 9,6 cm hoch.
+  1:87: 10,5 cm lang, 4,0 cm breit, Kabine 4,3 cm hoch, Schaufelbolzen bis 4,7 cm hoch.
+  Alle Teile passen ungeteilt auf ein 220er-Druckbett – keine Clips.
+
+Maßstab / Farben / Optionen:
+  radlader.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py radlader.scad 87 ausgabe -D 'farbe_gelb="orange"'
+  Optionen u. a.: Stellung in der Vorschau (knick, hub, schaufel_winkel), Passung
+  (spiel, zylinder_spiel, einsatz_spiel), alle Farben (Standard „catgelb“, Schaufel
+  anthrazit). Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 11 Bolzen (Länge in mm, 1:43 / 1:87):
+    Hubarm-Lager am Turm 36 / 18,5        Hubzylinder-Fuß 30 / 15        Kippzylinder-Fuß 17,5 / 7
+    Hubzylinder am Hubarm (2x) 7 / 4      Kipphebel-Lager 36 / 18,5      Kipphebel oben 6 / 4,5
+    Kipphebel unten 6 / 4,5               Koppel an der Schaufel 7 / 5   Schaufelbolzen (2x) 8 / 5
+  Sonst kein Zubehör, kein Kleber.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Hinterwagen, Aufbau (Plattform mit Motorhaube) und Vorderwagen aufrecht
+  - Kabine kopfüber, Glaskern als Block
+  - Schaufel mit dem Boden unten (Zähne auf dem Bett)
+  - Räder mit der Innenseite unten, Felgen ebenso
+  - Knickbolzen auf dem Senkkopf stehend, Distanzrohre stehend (in 1:87 mit Brim)
+  - Achsen liegend; Zylinder: Rohr und Kolbenstange liegend, Augen unten
+  - Hubarme, Kipphebel, Koppel, Kotflügel, Leitern, Handläufe, Spiegel, Scheinwerfer flach
+  - Kühlergrill mit der Rückseite unten
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 33 h, 1:87 ca. 5,5 h.
+  Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Aufbau auf die vier Zapfen des Hinterwagens drücken, Kühlergrill von hinten in die
+     Tasche. Achse mittig durch den Rahmen schieben, Felgen von innen in die Reifen
+     drücken, Räder aufstecken.
+  2. Glaskern von unten in die Kabine, Kabine in die Plattform. Handläufe von oben,
+     Leitern von unten in die Schlitze; Spiegel (vorne) und zwei Scheinwerfer (hinten)
+     in das Kabinendach.
+  3. Vorderwagen: Achse durchschieben, Räder aufstecken. Kotflügel mit der Zunge von
+     beiden Seiten in das Fenster im Turm, je ein Scheinwerfer in den Schlitz.
+  4. Kolbenstangen in die Zylinderrohre schieben.
+  5. Hubzylinder: Bolzen durch den Turm, Rohr-Augen links und rechts aufstecken (beim
+     rechten Zylinder liegt die flache Seite außen). Hubarme mit dem langen Bolzen am
+     Turm lagern, die Stangen-Augen innen an die Arme bolzen.
+  6. Kipphebel: langer Bolzen durch Arm, Distanzrohr, beide Kipphebel, Distanzrohr, Arm.
+     Koppel unten zwischen die Hebel bolzen.
+  7. Schaufel: Hubarme in die Gabeln (zwei kurze Bolzen), Koppel zwischen die mittleren
+     Augen. Kippzylinder: Rohr-Auge in den Schlitz oben im Turm, Stange zwischen die
+     oberen Enden der Kipphebel.
+  8. Säule des Vorderwagens von vorne unter den Gelenkbock schieben, Knickbolzen von
+     unten durch die Säule in den Gelenkbock drücken.
+  Bolzen sitzen in den jeweils äußeren Teilen stramm und drehen sich innen lose.
+
+BEWEGLICH
+  Knicklenkung ±35°, alle vier Räder drehen. Das Hubgerüst hebt die Schaufel vom Boden
+  bis ganz nach oben; die Schaufel kippt am Boden bis ca. 23° ein, in Fahrstellung bis
+  40°, oben bis 42° aus (Z-Kinematik: Kippzylinder – Kipphebel – Koppel). Die
+  Kolbenstangen fahren mit aus und halten jede Stellung durch Reibung. Hält eine
+  Stellung nicht oder klemmt sie: zylinder_spiel im Customizer anpassen (Standard
+  0,1 mm) und die Kolbenstangen neu drucken.

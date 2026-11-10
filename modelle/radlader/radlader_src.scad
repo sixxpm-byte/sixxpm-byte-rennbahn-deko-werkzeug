@@ -27,6 +27,8 @@
 //    leiter          Aufstiegsleiter (flach), von unten in die Plattform               2x
 //    handlauf        Handlauf (flach), in Schlitze der Plattform                       2x
 //    spiegel         Außenspiegel (flach), in Schlitze im Kabinendach                  2x
+//    kotfluegel      Kotflügel vorne (flach), Zunge in das Fenster im Turm             2x
+//    leuchte         Arbeitsscheinwerfer (flach), auf Kotflügel und Kabinendach        4x
 //
 //  BOLZEN
 //    Filament-Stücke Ø stift_d (Längen siehe Echo).
@@ -45,7 +47,7 @@ massstab = 43; // [43:1/43 Drift-RC und Slotcar, 87:1/87 H0]
 eigener_massstab = 50;
 
 /* [Ausgabe] */
-teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, hinterwagen:Hinterwagen, oberbau:Aufbau mit Motorhaube, kuehlergrill:Kühlergrill, kabine:Kabine mit Glaskern, vorderwagen:Vorderwagen, knickbolzen:Knickbolzen, achse:Achse (2x), rad:Rad (4x), hubarm:Hubarm (2x), querrohr:Distanzrohr (2x), kipphebel:Kipphebel (2x), koppel:Koppelstange, zylinder_hub:Hubzylinder (2x), zylinder_kipp:Kippzylinder, schaufel:Schaufel, leiter:Leiter (2x), handlauf:Handlauf (2x), spiegel:Außenspiegel (2x)]
+teil = "aufbau"; // [aufbau:Aufbau (Vorschau), explosion:Explosionsansicht, hinterwagen:Hinterwagen, oberbau:Aufbau mit Motorhaube, kuehlergrill:Kühlergrill, kabine:Kabine mit Glaskern, vorderwagen:Vorderwagen, knickbolzen:Knickbolzen, achse:Achse (2x), rad:Rad (4x), hubarm:Hubarm (2x), querrohr:Distanzrohr (2x), kipphebel:Kipphebel (2x), koppel:Koppelstange, zylinder_hub:Hubzylinder (2x), zylinder_kipp:Kippzylinder, schaufel:Schaufel, leiter:Leiter (2x), handlauf:Handlauf (2x), spiegel:Außenspiegel (2x), kotfluegel:Kotflügel vorne (2x), leuchte:Arbeitsscheinwerfer (4x)]
 stueck = 0;
 farbteil = "alle"; // [alle, A, B]
 
@@ -55,7 +57,7 @@ knick = 0; // [-35:5:35]
 // Hubgerüst: 0 = Schaufel am Boden, 100 = ganz oben
 hub = 8; // [0:1:100]
 // Schaufel: 0 = waagerecht, positiv = eingekippt, negativ = ausgekippt
-schaufel_winkel = 15; // [-42:1:40]
+schaufel_winkel = 12; // [-42:1:40]
 
 /* [Radlader (Vorbild in Metern)] */
 radstand_m = 3.8;
@@ -81,6 +83,7 @@ farbe_schaufel  = "anthrazit"; // [rot, gelb, blau, hellblau, puderblau, gruen, 
 farbe_zylinder  = "catgelb";   // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen, catgelb, olivgrau]
 farbe_stange    = "silber";    // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen, catgelb, olivgrau]
 farbe_grill     = "schwarz";   // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen, catgelb, olivgrau]
+farbe_leuchte   = "silber";    // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen, catgelb, olivgrau]
 farbe_anbau     = "schwarz";   // [rot, gelb, blau, hellblau, puderblau, gruen, dunkelgruen, weiss, schwarz, grau, silber, gold, orange, lila, rosa, tuerkis, braun, holz, creme, anthrazit, cyan, pink, violett, neongruen, catgelb, olivgrau]
 
 /* [Druck & Passung] */
@@ -126,19 +129,23 @@ Z_b   = K(0.55);                            // Unterkante der Rahmen
 Z_pl  = K(1.95);                            // Unterkante Plattform = Oberkante Hinterwagen
 t_pl  = max(M(0.13), 1.8);
 Z_pt  = Z_pl + t_pl;
-Z_hd  = K(2.95);                            // Motorhaube
+Z_hd  = K(2.95);                            // Motorhaube vorne
+Z_hh  = K(2.6);                             // Motorhaube am Heck
 
 // Breiten-Staffelung: Turm – Hubzylinder – Hubarm
-t_sl  = 2 * hz + 2 * spiel;                 // Schlitz für den Kippzylinder
+w_z   = hz + r_o;                           // Breite eines liegenden Zylinderrohrs (Achse hz über der flachen Seite)
+t_sl  = w_z + 2 * spiel;                    // Schlitz für den Kippzylinder
 t_ch  = max(M(0.12), 1.6);                  // Wangen des Turms
 t_a   = max(M(0.12), 1.5);                  // Hubarm
-Y_t   = max(t_sl / 2 + t_ch, K(0.775) - t_a - 2 * spiel - 2 * hz);
-Y_hz  = Y_t + spiel + hz;                   // Mitte der Hubzylinder
-Y_a0  = Y_hz + hz + spiel;
+Y_t   = max(t_sl / 2 + t_ch, K(0.775) - t_a - 2 * spiel - w_z);
+Y_hz  = Y_t + spiel + hz;                   // Achse des linken Hubzylinders
+function y_hz(s) = s > 0 ? Y_hz : -(Y_t + spiel + r_o);   // rechts liegt die flache Seite außen
+y_zk  = -(r_o - hz) / 2;                    // Kippzylinder: Rohr mittig im Schlitz
+Y_a0  = Y_t + w_z + 2 * spiel;
 Y_a1  = Y_a0 + t_a;
 t_gs  = max(M(0.08), 1.4);                  // Kipphebel
 t_mi  = max(2 * hs, 1.2);                   // Koppel (zwischen den Hebeln)
-Y_hb  = t_mi / 2 + spiel;                   // Innenseite Kipphebel / Schaufelaugen
+Y_hb  = t_mi / 2 + spiel + (r_o - hz) / 2;                   // Innenseite Kipphebel / Schaufelaugen
 t_ohr = max(M(0.1), 1.6);
 
 // Kinematik (Schwenkebene x-z, Vorbild-Meter)
@@ -162,7 +169,8 @@ r1 = K(r1_m); r2 = K(r2_m); l_kp = K(l_kp_m);
 t_min = -asin((A_m[1] - BL_m[1]) / hubarm_m);
 t_max = 36;
 function bmin(t) = t < -24 ? 0 : -42;
-function bmax(t) = (t < -24 ? 32 : 40) - max(0, t) * 0.75;
+g_max = 64;                                 // größter Winkel Schaufel zu Hubarm (Rückwand vor dem Kipphebel-Lager)
+function bmax(t) = min(40 - max(0, t) * 0.75, g_max + t);
 // Gelenke im Arm-Rahmen für den Winkel g = b - t der Schaufel zum Arm
 function Q_a(g) = B_a + rot2(Qo_p, g);
 function Lb_a(g) = let(Q = Q_a(g), d = norm(Q - Lp_p), e = (Q - Lp_p) / d, a = (r1 * r1 - l_kp * l_kp + d * d) / (2 * d), h = sqrt(max(r1 * r1 - a * a, 0)))
@@ -196,9 +204,9 @@ X_hd0 = -K(4.3);  X_hd1 = -K(1.82);  Y_hd = K(1.0);
 h_pg  = t_pl;                               // Steckzapfen Hinterwagen -> Aufbau
 PG    = [[-K(3.6), K(0.5)], [-K(3.6), -K(0.5)], [-K(1.0), K(0.42)], [-K(1.0), -K(0.42)]];
 d_e   = max(M(0.08), 1.0);                  // Tiefe der Grill-Tasche
-GZ    = [K(2.2), K(2.62)];  GY = K(0.8);
+GZ    = [K(2.12), K(2.46)];  GY = K(0.8);
 // Kabine
-K_X   = [-K(1.72), -K(0.3)];
+K_X   = [X_c1 - max(M(0.03), 0.3) - K(1.36), X_c1 - max(M(0.03), 0.3)];
 K_Y   = [-K(0.8), K(0.8)];
 K_Z   = [Z_pt, K(kabine_hoehe_m)];
 t_k   = max(M(0.08), 1.2);
@@ -213,6 +221,12 @@ b_hl = max(M(0.05), 0.9);  t_hl = max(M(0.05), 1.2);  l_tb = t_pl;
 L_hl = K(1.25);  H_hl = K(1.0);
 HL = [[-K(1.7), K(1.5)], [-K(1.7), -K(1.5)]];                 // Handläufe [x0, y]
 X_le = -K(0.68);  Y_le = [K(0.92), K(1.42)];  Z_le0 = K(0.45);   // Leitern
+// Kotflügel vorne (flach, Zunge in ein Fenster im Turm) und Arbeitsscheinwerfer
+t_kf = t_pl;  Z_kf = K(2.0);
+KT_X = [K(0.56), K(0.74)];                  // Zunge / Fenster im Turm
+X_kf1 = K(1.75);  Y_kf = [y_ri, K(1.55)];
+t_le = max(M(0.12), 1.2);                   // Scheinwerfer
+LE = [[K(1.5), K(1.1), Z_kf + t_kf], [K(1.5), -K(1.1), Z_kf + t_kf], [K_X[0] + p_k / 2, K_Y[1] - p_k / 2, K_Z[1]], [K_X[0] + p_k / 2, K_Y[0] + p_k / 2, K_Z[1]]];
 r_qr = max(M(0.11), stift_d / 2 + 0.9);
 l_qr = Y_a0 - Y_hb - t_gs - 0.3;
 
@@ -273,16 +287,18 @@ module aufbau_welt() difference() {
     c = M(0.12);
     union() {
         translate([0, 0, Z_pl]) linear_extrude(t_pl, convexity = 6) plattform_2d();
-        // Motorhaube: unten senkrecht, oben eingezogen, Heck schräg
+        // Motorhaube: Oberseite fällt als ebene Fläche nach hinten ab, Kanten gefast
         hull() {
-            translate([X_hd0, -Y_hd, Z_pt - 0.01]) cube([X_hd1 - X_hd0, 2 * Y_hd, K(2.72) - Z_pt]);
-            translate([X_hd0 + K(0.22), -Y_hd + c, Z_pt]) cube([X_hd1 - X_hd0 - K(0.22), 2 * (Y_hd - c), Z_hd - Z_pt]);
+            translate([X_hd0, -Y_hd, Z_pt - 0.01]) cube([X_hd1 - X_hd0, 2 * Y_hd, Z_hh - c - Z_pt]);
+            translate([X_hd1 - 0.01, -Y_hd, Z_pt]) cube([0.01, 2 * Y_hd, Z_hd - c - Z_pt]);
+            translate([X_hd1 - 0.01, -Y_hd + c, Z_pt]) cube([0.01, 2 * (Y_hd - c), Z_hd - Z_pt]);
+            translate([X_hd0 + c, -Y_hd + c, Z_pt]) cube([0.01, 2 * (Y_hd - c), Z_hh - Z_pt]);
         }
         // Auspuff und Vorabscheider
-        translate([-K(2.5), K(0.4), Z_hd - 0.01]) cylinder(r = max(M(0.09), 1.0), h = K(0.6), $fn = 20);
-        translate([-K(2.15), -K(0.45), Z_hd - 0.01]) { cylinder(r = max(M(0.07), 0.9), h = K(0.25), $fn = 20); translate([0, 0, K(0.2)]) cylinder(r1 = max(M(0.07), 0.9), r2 = max(M(0.15), 1.5), h = max(M(0.15), 1.5) - max(M(0.07), 0.9) + 0.01, $fn = 24); translate([0, 0, K(0.2) + max(M(0.15), 1.5) - max(M(0.07), 0.9)]) cylinder(r = max(M(0.15), 1.5), h = K(0.14), $fn = 24); }
+        translate([-K(2.5), K(0.4), K(2.8)]) cylinder(r = max(M(0.09), 1.0), h = K(0.75), $fn = 20);
+        translate([-K(2.15), -K(0.45), K(2.85)]) { cylinder(r = max(M(0.07), 0.9), h = K(0.35), $fn = 20); translate([0, 0, K(0.3)]) cylinder(r1 = max(M(0.07), 0.9), r2 = max(M(0.15), 1.5), h = max(M(0.15), 1.5) - max(M(0.07), 0.9) + 0.01, $fn = 24); translate([0, 0, K(0.3) + max(M(0.15), 1.5) - max(M(0.07), 0.9)]) cylinder(r = max(M(0.15), 1.5), h = K(0.14), $fn = 24); }
         // Gelenkbock über dem Knickgelenk
-        hull() { translate([0, 0, Z_pl]) cylinder(r = r_gp, h = Z_bk - Z_pl, $fn = 48); translate([X_c1 - 1, -r_gp, Z_pl]) cube([1, 2 * r_gp, Z_bk - Z_pl]); }
+        hull() { translate([0, 0, Z_pl]) cylinder(r = r_gp, h = Z_bk - Z_pl, $fn = 48); translate([X_c1, -r_gp, Z_pl]) cube([1, 2 * r_gp, Z_bk - Z_pl]); }
     }
     // Knickbolzen (stramm)
     translate([0, 0, Z_pl - 1]) cylinder(r = r_kb + es, h = Z_bk, $fn = 40);
@@ -296,7 +312,7 @@ module aufbau_welt() difference() {
     xz(-GY, GY) gr_tasche_2d(0);
     // Lüftungsschlitze und Türfugen an der Haube
     let(n = 8, w = max(M(0.05), 0.6), dg = max(M(0.03), 0.4)) for (s = [-1, 1], i = [0 : n - 1])
-        translate([X_hd0 + K(0.5) + i * K(0.15), s > 0 ? Y_hd - dg : -Y_hd - 1, Z_pt + K(0.12)]) cube([w, dg + 1, K(0.42)]);
+        translate([X_hd0 + K(0.5) + i * K(0.15), s > 0 ? Y_hd - dg : -Y_hd - 1, Z_pt + K(0.12)]) cube([w, dg + 1, K(0.3)]);
     let(dg = max(M(0.03), 0.4)) for (s = [-1, 1], x = [X_hd0 + K(1.75), X_hd1 - K(0.12)]) translate([x, s > 0 ? Y_hd - dg : -Y_hd - 1, Z_pt + K(0.08)]) cube([max(M(0.03), 0.5), dg + 1, K(0.5)]);
 }
 module aufbau_druck() translate([0, 0, -Z_pl]) aufbau_welt();
@@ -324,10 +340,10 @@ module kab_fenster() {
         translate([xx[0], y, K_Z[0] + M(0.6)]) cube([xx[1] - xx[0], t_k + 2, z1 - K_Z[0] - M(0.6)]);
 }
 SP = [[K_X[1] - p_k / 2, K_Y[1] - p_k / 2, 1], [K_X[1] - p_k / 2, K_Y[0] + p_k / 2, -1]];   // Spiegel [x, y, Seite]
-module schlitz_kab(x, y) translate([x - t_hl / 2 - es, y - b_hl / 2 - es, K_Z[1] - l_tb - 0.3]) cube([t_hl + 2 * es, b_hl + 2 * es, l_tb + 1.3]);
+module schlitz_kab(x, y, lx = t_hl) translate([x - lx / 2 - es, y - b_hl / 2 - es, K_Z[1] - l_tb - 0.3]) cube([lx + 2 * es, b_hl + 2 * es, l_tb + 1.3]);
 module kabine_welt(fp) {
     if (inc(fp, "A")) {
-        difference() { kab_aussen(); kab_raum(0); kab_fenster(); for (q = SP) schlitz_kab(q[0], q[1]); }
+        difference() { kab_aussen(); kab_raum(0); kab_fenster(); for (q = SP) schlitz_kab(q[0], q[1]); for (i = [2, 3]) schlitz_kab(LE[i][0], LE[i][1], t_le); }
         for (p = kab_pins()) translate([p[0], p[1], K_Z[0] + 0.01]) rotate([180, 0, 0]) rstift(d_p, t_pl + 0.01);
     }
     if (inc(fp, "B")) intersection() { kab_raum(-es); translate([-K(5), -K(5), K_Z[0]]) cube([K(10), K(10), K_Z[1] - K_Z[0] - t_kr - es]); }
@@ -353,6 +369,8 @@ module vorderwagen_welt() difference() {
     hole_y(F_p, r_pr, -Y_t - 1, Y_t + 1);
     hole_y(KF_p, r_pr, -Y_t - 1, Y_t + 1);
     xz(-Y_t - 1, Y_t + 1) translate([X_va, z_ax]) raute2(d_rz + 2 * es);
+    // Fenster für die Zungen der Kotflügel (Decke = kurze Brücke)
+    translate([KT_X[0] - es, -Y_t - 1, Z_kf - es]) cube([KT_X[1] - KT_X[0] + 2 * es, 2 * Y_t + 2, t_kf + 2 * es]);
     // Knickbolzen mit Senkkopf von unten
     translate([0, 0, Z_b - 1]) cylinder(r = r_kb + spiel, h = Z_gp, $fn = 40);
     translate([0, 0, Z_b - 0.01]) cylinder(r1 = r_kb + spiel + h_kk, r2 = r_kb + spiel, h = h_kk, $fn = 40);
@@ -398,16 +416,16 @@ module gestaenge(g, ex = 0) {
 // =====================================================================
 //  Schaufel (lokal = Druck: Schneide im Ursprung, Boden auf dem Bett, Breite entlang y)
 // =====================================================================
-SH = [-1.235, 0.083];  ST = [-0.99, 1.27];   // Ferse und Oberkante der Rückwand
+SH = [-1.235, 0.083];  ST = [-0.78, 1.27];   // Ferse und Oberkante der Rückwand
 k_rw = (ST[0] - SH[0]) / (ST[1] - SH[1]);
 function x_rw(z) = K(SH[0]) + (z - K(SH[1])) * k_rw;   // Außenseite der Rückwand
-module schaufel_seite_2d() polygon([[0, 0], KP([-1.17, 0]), KP(SH), KP(ST), KP([-0.99, 1.42]), KP([-0.86, 1.42]), KP([-0.8, 1.2]), KP([-0.22, 0.28])]);
+module schaufel_seite_2d() polygon([[0, 0], KP([-1.17, 0]), KP(SH), KP(ST), KP([ST[0], 1.38]), KP([ST[0] + 0.13, 1.38]), KP([ST[0] + 0.19, 1.2]), KP([-0.22, 0.28])]);
 module schaufel_schale_2d() difference() {
-    polygon([[0, 0], KP([-1.17, 0]), KP(SH), KP(ST), KP([-0.99, 1.42]), [x_rw(K(1.42)) + K(0.19) + t_bk, K(1.42)], [K(0.01), t_bk * 0.45]]);
+    polygon([[0, 0], KP([-1.17, 0]), KP(SH), KP(ST), KP([ST[0], 1.38]), [K(ST[0]) + K(0.19) + t_bk, K(1.38)], [K(0.01), t_bk * 0.45]]);
     polygon([[K(0.2), t_bk], [x_rw(t_bk) + t_bk, t_bk], [x_rw(K(1.27)) + t_bk, K(1.27)], [x_rw(K(1.27)) + t_bk, K(1.6)], [K(0.2), K(1.6)]]);
 }
 module schaufel_auge_arm_2d() hull() { ci(BL_p, r_au); polygon([[x_rw(0) - K(0.02), 0], [BL_p[0] - K(0.08), 0], [x_rw(K(0.75)) + 0.5, K(0.75)], [x_rw(0) + 0.5, 0]]); }
-module schaufel_auge_mitte_2d() hull() { ci(QL_p, r_au); polygon([[x_rw(K(0.25)) + 0.5, K(0.25)], [x_rw(K(1.15)) + 0.5, K(1.15)], [x_rw(K(0.7)) - K(0.05), K(0.7)]]); }
+module schaufel_auge_mitte_2d() hull() { ci(QL_p, r_au); polygon([[x_rw(0) + 0.5, 0], [QL_p[0] + K(0.06), 0], [x_rw(K(1.0)) + 0.5, K(1.0)]]); }   // bis aufs Bett: stützfrei
 module schaufel_lokal() difference() {
     union() {
         xz(-W_s / 2, W_s / 2) schaufel_schale_2d();
@@ -421,6 +439,8 @@ module schaufel_lokal() difference() {
     }
     for (s = [-1, 1]) hole_y(BL_p, r_pr, s > 0 ? Y_a0 - spiel - t_ohr - 1 : -Y_a1 - spiel - t_ohr - 1, s > 0 ? Y_a1 + spiel + t_ohr + 1 : -Y_a0 + spiel + t_ohr + 1);
     hole_y(QL_p, r_pr, -Y_hb - t_ohr - 1, Y_hb + t_ohr + 1);
+    // Ausschnitt in der Oberkante der Rückwand: Platz für den Kipphebel bei eingekippter Schaufel
+    let(w = Y_hb + t_gs + max(M(0.05), 0.6)) translate([x_rw(K(1.05)) - 1, -w, K(1.05)]) cube([K(0.45) + t_bk + 2, 2 * w, K(0.5)]);
 }
 
 // =====================================================================
@@ -442,6 +462,20 @@ module spiegel_2d() {
     translate([-b_hl / 2, M(0.2)]) square([M(0.75), b_hl]);
     translate([M(0.62), -M(0.3)]) square([max(M(0.16), 1.6), M(0.5) + b_hl]);
 }
+// Kotflügel vorne: 2D (x, y) der linken Seite; rechts dasselbe Teil gewendet
+module kotfluegel_2d() difference() {
+    union() {
+        translate([KT_X[0], 0.2]) square([KT_X[1] - KT_X[0], Y_kf[0] - 0.2 + 0.01]);
+        polygon([[KT_X[0], Y_kf[0]], [X_kf1, Y_kf[0]], [X_kf1, Y_kf[1] - K(0.2)], [X_kf1 - K(0.2), Y_kf[1]], [KT_X[0] + K(0.45), Y_kf[1]], [KT_X[0], Y_kf[1] - K(0.45)]]);
+    }
+    translate([LE[0][0], LE[0][1]]) square([t_le + 2 * es, b_hl + 2 * es], center = true);
+}
+module kotfluegel_welt(sy) mirror([0, sy > 0 ? 0 : 1, 0]) translate([0, 0, Z_kf]) linear_extrude(t_kf, convexity = 4) kotfluegel_2d();
+module leuchte_2d() let(w = max(M(0.15), 1.0)) {
+    translate([-b_hl / 2, -l_tb]) square([b_hl, l_tb + M(0.1)]);
+    translate([-w, M(0.08)]) square([2 * w, max(M(0.24), 1.6)]);
+}
+module leuchte_welt(i) translate(LE[i]) translate([-t_le / 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(t_le) leuchte_2d();
 module spiegel_welt(i) translate([SP[i][0], SP[i][1], K_Z[1]]) rotate(SP[i][2] > 0 ? 0 : 180) translate([-t_hl / 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(t_hl) spiegel_2d();
 
 // =====================================================================
@@ -460,12 +494,14 @@ module hinten(ex = 0) {
         translate([-ex * 0.6, 0, 0]) bunt(farbe_grill) grill_welt();
         for (s = [-1, 1]) translate([0, 0, -ex * 0.6]) bunt(farbe_anbau) leiter_welt(s);
         for (i = [0, 1]) translate([0, 0, ex * 0.5]) bunt(farbe_anbau) handlauf_welt(i);
-        translate([0, 0, ex * 0.9]) { bunt(farbe_kabine) kabine_welt("A"); translate([0, 0, -ex * 0.45]) bunt(farbe_glas) kabine_welt("B"); for (i = [0, 1]) translate([0, 0, ex * 0.4]) bunt(farbe_anbau) spiegel_welt(i); }
+        translate([0, 0, ex * 0.9]) { bunt(farbe_kabine) kabine_welt("A"); translate([0, 0, -ex * 0.45]) bunt(farbe_glas) kabine_welt("B"); for (i = [0, 1]) translate([0, 0, ex * 0.4]) bunt(farbe_anbau) spiegel_welt(i); for (i = [2, 3]) translate([0, 0, ex * 0.4]) bunt(farbe_leuchte) leuchte_welt(i); }
     }
 }
 module vorne(t, b, ex = 0) {
     bunt(farbe_rahmen) vorderwagen_welt();
     translate([0, 0, -ex * 1.2]) bunt(farbe_achse) translate([0, 0, Z_b]) knickbolzen();
+    for (s = [-1, 1]) translate([0, s * ex * 1.3, 0]) bunt(farbe_gelb) kotfluegel_welt(s);
+    for (i = [0, 1]) translate([0, (i == 0 ? 1 : -1) * ex * 1.3, ex * 0.5]) bunt(farbe_leuchte) leuchte_welt(i);
     bunt(farbe_achse) achse_welt(X_va);
     for (s = [-1, 1]) { bunt(farbe_reifen) rad_welt(X_va, s, "A", ex); bunt(farbe_felge) rad_welt(X_va, s, "B", ex * 1.5); }
     translate([ex * 0.5, 0, ex * 0.5]) {
@@ -475,10 +511,10 @@ module vorne(t, b, ex = 0) {
             translate([ex * 1.2, 0, 0]) in_schaufel(b - t) bunt(farbe_schaufel) schaufel_lokal();
         }
         for (s = [-1, 1]) translate([0, s * ex * 0.8, 0]) {
-            bunt(farbe_zylinder) zyl_zw(F_p, P_w(t), s * Y_hz, "A", ZH, false, false);
-            bunt(farbe_stange) zyl_zw(F_p, P_w(t), s * Y_hz, "B", ZH, false, false);
+            bunt(farbe_zylinder) zyl_zw(F_p, P_w(t), y_hz(s), "A", ZH, false, false);
+            bunt(farbe_stange) zyl_zw(F_p, P_w(t), y_hz(s), "B", ZH, false, false);
         }
-        translate([0, 0, ex * 0.6]) { bunt(farbe_zylinder) zyl_zw(KF_p, Lt_w(t, b), 0, "A", ZK, false, false); bunt(farbe_stange) zyl_zw(KF_p, Lt_w(t, b), 0, "B", ZK, false, false); }
+        translate([0, 0, ex * 0.6]) { bunt(farbe_zylinder) zyl_zw(KF_p, Lt_w(t, b), y_zk, "A", ZK, false, false); bunt(farbe_stange) zyl_zw(KF_p, Lt_w(t, b), y_zk, "B", ZK, false, false); }
     }
 }
 module radlader(ex = 0) {
@@ -491,7 +527,7 @@ module radlader(ex = 0) {
 // =====================================================================
 X_lip = A_p[0] + K(hubarm_m) * cos(t_min) - BL_p[0];
 Z_top = A_p[1] + K(hubarm_m) * sin(t_max);
-BOLZ = [["Hubarm-Lager am Turm", 2 * Y_a1], ["Hubzylinder-Fuß", 2 * (Y_hz + hz)], ["Kippzylinder-Fuß", 2 * Y_t], ["Hubzylinder am Hubarm (2x)", Y_a1 - (Y_hz - hs)],
+BOLZ = [["Hubarm-Lager am Turm", 2 * Y_a1], ["Hubzylinder-Fuß", 2 * (Y_a0 - spiel)], ["Kippzylinder-Fuß", 2 * Y_t], ["Hubzylinder am Hubarm (2x)", Y_a1 - (Y_hz - hs)],
         ["Kipphebel-Lager mit Distanzrohren", 2 * Y_a1], ["Kipphebel oben", 2 * (Y_hb + t_gs)], ["Kipphebel unten", 2 * (Y_hb + t_gs)], ["Koppel an der Schaufel", 2 * (Y_hb + t_ohr)], ["Schaufelbolzen (2x)", t_a + 2 * spiel + 2 * t_ohr]];
 echo(str("Radlader 1:", den, " | Länge mit Schaufel ", r2(X_lip - X_g0), " mm, Breite ", r2(2 * Y_pl), " (Schaufel ", r2(W_s), ") mm, Höhe Kabine ", r2(K_Z[1]), " mm | Radstand ", r2(2 * X_va), ", Rad Ø ", r2(2 * R_w), " x ", r2(B_w), " mm"));
 echo(str("Hubgerüst: Arm ", r2(B_a[0]), " mm, Winkel ", r2(t_min), "° bis ", t_max, "°, Schaufelbolzen bis ", r2(Z_top), " mm hoch | Turm ±", r2(Y_t), ", Hubzylinder ±", r2(Y_hz), ", Hubarm ", r2(Y_a0), "–", r2(Y_a1), ", Reifen innen ", r2(y_ri), " mm"));
@@ -522,6 +558,8 @@ druck("schaufel", 1, "alle", farbe_schaufel, 1);
 druck("leiter", 1, "alle", farbe_anbau, 2);
 druck("handlauf", 1, "alle", farbe_anbau, 2);
 druck("spiegel", 1, "alle", farbe_anbau, 2);
+druck("kotfluegel", 1, "alle", farbe_gelb, 2);
+druck("leuchte", 1, "alle", farbe_leuchte, 4);
 farben_echo();
 
 if (teil == "aufbau") radlader();
@@ -544,3 +582,5 @@ else if (teil == "schaufel") schaufel_lokal();
 else if (teil == "leiter") linear_extrude(t_hl) leiter_2d();
 else if (teil == "handlauf") translate([0, l_tb, 0]) linear_extrude(t_hl) handlauf_2d();
 else if (teil == "spiegel") translate([b_hl, l_tb + M(0.3), 0]) linear_extrude(t_hl) spiegel_2d();
+else if (teil == "kotfluegel") translate([-KT_X[0], 0, 0]) linear_extrude(t_kf, convexity = 4) kotfluegel_2d();
+else if (teil == "leuchte") translate([0, l_tb, 0]) linear_extrude(t_le) leuchte_2d();
