@@ -1,0 +1,77 @@
+TITEL
+Kettenbagger für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 H0 – beweglicher Bagger-Bausatz, Modelleisenbahn / Movable excavator kit
+
+KURZBESCHREIBUNG
+3D-druckbarer Steck-Bausatz eines Kettenbaggers der 50-t-Klasse mit bebilderter Bauanleitung: Oberwagen dreht, Ausleger, Stiel und Löffel bewegen sich mit teleskopischen Hydraulikzylindern – stützfrei druckbar in 1:43 und 1:87 (H0), für Carrera- und Sturmkind-DR!FT-Rennbahnen und die Modelleisenbahn.
+3D-printable plug-together kit of a 50-tonne crawler excavator with illustrated building instructions: the upper structure rotates, boom, stick and bucket move with telescopic hydraulic cylinders – support-free printable in 1:43 and 1:87 (H0), for Carrera and Sturmkind DR!FT tracks and your model railway.
+
+BESCHREIBUNG
+Eine Baustelle für deine Rennbahn oder Modelleisenbahn: Dieser Kettenbagger gräbt, schwenkt und lädt – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0). Du bekommst keinen fertigen Bagger, sondern einen 3D-druckbaren Bausatz zum Stecken: Du druckst die Teile selbst und baust sie mit der bebilderten Druck- und Bauanleitung (PDF), den Farblisten und der LIESMICH ohne Kleber zusammen.
+
+Ausstattung
+• Oberwagen dreht rundum auf dem Unterwagen
+• Ausleger, Stiel und Tieflöffel schwenken an Bolzen aus 1,75-mm-Filament
+• Vier teleskopische Hydraulikzylinder (zwei Hubzylinder, Stiel- und Löffelzylinder): die silbernen Kolbenstangen fahren mit aus und halten jede Stellung
+• Löffelgestänge wie beim Vorbild mit Umlenkhebeln und Koppelstangen
+• Raupenlaufwerke mit Stollen, Laufrollen, Leit- und Turasrad
+• Oberwagen mit Motorhaus, Gegengewicht, Lüftungsgittern, Tankkasten, Auspuff, Handläufen und Außenspiegeln
+• Fahrerkabine mit eingestecktem Glaskern
+• Tieflöffel mit Zähnen und Seitenschneiden
+• Komplett gesteckt, kein Kleber; alle Teile stützfrei und ungeteilt druckbar
+• Alle Farbteile werden gesteckt – auch ohne AMS einfarbig Teil für Teil druckbar
+
+Größe
+• 1:43: Laufwerk 12,5 × 7,8 cm, Kabine 7,4 cm hoch, Ausleger 17,4 cm lang
+• 1:87: Laufwerk 6,2 × 3,8 cm, Kabine 3,7 cm hoch, Ausleger 8,6 cm lang
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten, LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Kettenbaggers und kein lizenziertes Produkt eines Baumaschinenherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+A construction site for your race track or model railway: this crawler excavator digs, swings and loads – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0). You do not get a finished excavator but a 3D-printable plug-together kit: you print the parts yourself and assemble them without glue using the illustrated printing and building instructions (PDF), the colour lists and the readme.
+
+Features
+• Upper structure rotates all the way round on the undercarriage
+• Boom, stick and bucket pivot on pins made from 1.75 mm filament
+• Four telescopic hydraulic cylinders (two boom cylinders, stick and bucket cylinder): the silver piston rods extend with the movement and hold any position
+• Bucket linkage like the real thing with idler links and connecting links
+• Crawler tracks with grousers, rollers, idler and sprocket
+• Upper structure with engine housing, counterweight, vent grilles, tank box, exhaust, handrails and mirrors
+• Cab with plug-in glass core
+• Bucket with teeth and side cutters
+• Fully plugged, no glue; all parts print without supports and in one piece
+• All colour parts plug together – printable part by part in single colours without an AMS
+
+Size
+• 1:43: undercarriage 12.5 × 7.8 cm, cab 7.4 cm high, boom 17.4 cm long
+• 1:87: undercarriage 6.2 × 3.8 cm, cab 3.7 cm high, boom 8.6 cm long
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists, readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a crawler excavator, not a licensed product of any construction machinery manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm (Zylinder, Gestänge, Handläufe und Spiegel in 1:87 eher 0,12 mm), Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Unter- und Oberwagen aufrecht, Laufwerke auf der Innenseite, Kabine kopfüber, Ausleger- und Stielhälften flach (Außenseite unten), Löffel mit der Öffnung nach unten, Zylinder liegend, Gestänge, Handläufe und Spiegel flach
+• Keine Stützen nötig
+• Mehrfarbig: Farbteile mit AMS/MMU gemeinsam aus der 3MF – oder einfarbig jede STL einzeln, alle Farbteile werden gesteckt; nur das dunkle Band am Oberwagen ist eine Farbzone
+• Keine Teilung, keine Clips
+• 11 Bolzen aus Filament 1,75 mm, Längen in der LIESMICH und in der Anleitung (1:43: 14–33 mm, 1:87: 7–19 mm)
+• Passung im Customizer: zylinder_spiel (Kolbenstange – kleiner hält die Stellung fester), einsatz_spiel (Dübel, Zungen, Glaskern), spiel
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, alle Teile): 1:43 ca. 37 h, 1:87 ca. 6 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm (cylinders, linkage, handrails and mirrors in 1:87 preferably 0.12 mm), 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files: undercarriage and upper structure upright, tracks on their inner side, cab upside down, boom and stick halves flat (outer side down), bucket with the opening down, cylinders lying, linkage, handrails and mirrors flat
+• No supports needed
+• Multicolour: print the colour parts together from the 3MF with AMS/MMU – or each STL separately in one colour, all colour parts plug together; only the dark band on the upper structure is a colour zone
+• No splitting, no clips
+• 11 pins from 1.75 mm filament, lengths in the readme and the instructions (1:43: 14–33 mm, 1:87: 7–19 mm)
+• Fit in the Customizer: zylinder_spiel (piston rod – smaller holds the position tighter), einsatz_spiel (dowels, tabs, glass core), spiel
+• Print time (slicer estimate at 100 % infill, all parts): 1:43 approx. 37 h, 1:87 approx. 6 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Modelleisenbahn,Bausatz,Kettenbagger,Bagger,Baustelle,Baumaschine,Baufahrzeug,H0,Massstab143,3DDruck,Modellbau

@@ -1,0 +1,7 @@
+#!/bin/bash
+# Kollisionsprüfung Kettenbagger (Maßstab als 1. Argument, Standard 43): feste Teile + Ausrüstung in 4 Stellungen
+cd "$(dirname "$0")/../.."; m=${1:-43}; o=ausgabe/kol/kettenbagger_$m
+python3 werkzeuge/inline.py modelle/kettenbagger/kettenbagger_src.scad modelle/kettenbagger/kettenbagger.scad > /dev/null
+bash werkzeuge/kol_export.sh modelle/kettenbagger/kol_kettenbagger.scad $o $m \
+  unterwagen=unterwagen kette0=kette,0,0 kette1=kette,0,1 oberwagen=oberwagen kabine=kabine handlauf0=handlauf,0,0 handlauf1=handlauf,0,1 spiegel0=spiegel,0,0 spiegel1=spiegel,0,1 ausl0_p0=ausl,0,0 ausl1_p0=ausl,0,1 stiel0_p0=stiel,0,0 stiel1_p0=stiel,0,1 loeffel_p0=loeffel,0 hebel0_p0=hebel,0,0 hebel1_p0=hebel,0,1 koppel0_p0=koppel,0,0 koppel1_p0=koppel,0,1 zh0_p0=zh,0,0 zh1_p0=zh,0,1 zs_p0=zs,0 zl_p0=zl,0 ausl0_p1=ausl,1,0 ausl1_p1=ausl,1,1 stiel0_p1=stiel,1,0 stiel1_p1=stiel,1,1 loeffel_p1=loeffel,1 hebel0_p1=hebel,1,0 hebel1_p1=hebel,1,1 koppel0_p1=koppel,1,0 koppel1_p1=koppel,1,1 zh0_p1=zh,1,0 zh1_p1=zh,1,1 zs_p1=zs,1 zl_p1=zl,1 ausl0_p2=ausl,2,0 ausl1_p2=ausl,2,1 stiel0_p2=stiel,2,0 stiel1_p2=stiel,2,1 loeffel_p2=loeffel,2 hebel0_p2=hebel,2,0 hebel1_p2=hebel,2,1 koppel0_p2=koppel,2,0 koppel1_p2=koppel,2,1 zh0_p2=zh,2,0 zh1_p2=zh,2,1 zs_p2=zs,2 zl_p2=zl,2 ausl0_p3=ausl,3,0 ausl1_p3=ausl,3,1 stiel0_p3=stiel,3,0 stiel1_p3=stiel,3,1 loeffel_p3=loeffel,3 hebel0_p3=hebel,3,0 hebel1_p3=hebel,3,1 koppel0_p3=koppel,3,0 koppel1_p3=koppel,3,1 zh0_p3=zh,3,0 zh1_p3=zh,3,1 zs_p3=zs,3 zl_p3=zl,3
+python3 werkzeuge/kollision.py $o modelle/kettenbagger/kol_paare.txt

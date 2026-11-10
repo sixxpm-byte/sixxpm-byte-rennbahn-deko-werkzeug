@@ -1,0 +1,73 @@
+KETTENBAGGER – Hydraulikbagger der 50-t-Klasse mit Tieflöffel – druckbarer Steck-Bausatz
+=========================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0, Modelleisenbahn).
+Vorbild: großer Kettenbagger – Laufwerk 5,36 m lang, Oberwagen 3,0 m breit, Ausleger
+6,9 m, Stiel 3,35 m, Tieflöffel 1,5 m breit.
+Das ist ein 3D-druckbarer Bausatz zum Stecken (kein fertiges Modell): Du druckst die
+Teile selbst und baust sie nach der bebilderten Anleitung ohne Kleber zusammen.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Alle Farbbauteile werden gesteckt (Glaskern, Kolbenstangen, Handläufe, Spiegel) –
+  du kannst also auch ohne AMS jede STL einzeln in ihrer Farbe drucken. Nur das dunkle
+  Band an der Plattformkante des Oberwagens ist eine Farbzone (mit AMS/MMU, einfarbig
+  fällt es weg).
+  kettenbagger_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Bauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, gestreckt, Explosion), Druckteile und
+                    Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
+
+GRÖSSE
+  1:43: Laufwerk 12,5 × 7,8 cm, Kabine 7,4 cm hoch, Ausleger 17,4 cm, Stiel 10,6 cm.
+  1:87: Laufwerk 6,2 × 3,8 cm, Kabine 3,7 cm hoch, Ausleger 8,6 cm, Stiel 5,2 cm.
+  Alle Teile passen ungeteilt auf ein 220er-Druckbett – keine Clips.
+
+Maßstab / Farben / Optionen:
+  kettenbagger.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py kettenbagger.scad 87 ausgabe -D 'farbe_gelb="orange"'
+  Optionen u. a.: Stellung in der Vorschau (drehung, ausleger_winkel, stiel_winkel,
+  loeffel_winkel), Passung (spiel, zylinder_spiel, einsatz_spiel), alle Farben
+  (Standard „catgelb“). Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 11 Bolzen (Länge in mm, 1:43 / 1:87):
+    Auslegerfuß 27 / 13            Hubzylinder unten 33 / 19     Hubzylinder oben 29 / 16
+    Stielzylinder am Ausleger 20 / 10   Stielgelenk 20 / 10      Stielzylinder am Stiel 14 / 7
+    Löffelzylinder am Stiel 14 / 7      Löffelgelenk 19 / 10     Umlenkhebel am Stiel 18 / 10
+    Gelenk Hebel/Koppel/Stange 24 / 14  Koppel am Löffel 24 / 14
+  Sonst kein Zubehör, kein Kleber.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Unterwagen und Oberwagen aufrecht
+  - Raupenlaufwerke auf der Innenseite liegend (Relief oben)
+  - Kabine kopfüber, Glaskern als Block
+  - Ausleger- und Stielhälften flach mit der Außenseite unten, Dübel liegend
+  - Tieflöffel mit der Öffnung nach unten (Zähne auf dem Bett)
+  - Zylinder: Rohr und Kolbenstange liegend, Augen unten
+  - Umlenkhebel, Koppelstangen, Handläufe und Spiegel flach
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 37 h, 1:87 ca. 6 h.
+  Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Beide Raupenlaufwerke auf die Steckzungen des Unterwagens schieben.
+  2. Glaskern von unten in die Kabine, Kabine in die Plattform stecken, Handläufe und
+     Spiegel in die Schlitze. Oberwagen auf den Königszapfen setzen.
+  3. Ausleger und Stiel: je zwei Dübel in die Taschen einer Hälfte drücken, zweite
+     Hälfte aufdrücken (die längeren Dübel gehören in den Ausleger).
+  4. Kolbenstangen in die Zylinderrohre schieben.
+  5. Auslegerfuß zwischen die Wangen des Oberwagens, Bolzen durch. Hubzylinder links
+     und rechts: Rohr-Auge an den Bock vorne, Stangen-Auge an den Ausleger.
+  6. Stiel in die Gabel am Auslegerende, Bolzen durch. Stielzylinder: Rohr in die Gabel
+     auf dem Ausleger, Stange in die Gabel am hinteren Stielende.
+  7. Löffel ans Stielende. Umlenkhebel innen neben den Stiel, Koppelstangen außen vom
+     Löffel zum Hebel. Löffelzylinder: Rohr in die Gabel auf dem Stiel, Stange zwischen
+     die Hebel – ein Bolzen geht durch Koppeln, Hebel und Stange.
+  Bolzen sitzen in den jeweils äußeren Teilen stramm und drehen sich innen lose.
+
+BEWEGLICH
+  Der Oberwagen dreht rundum. Ausleger (0–50°), Stiel und Löffel schwenken, die
+  Kolbenstangen fahren mit aus und halten jede Stellung durch Reibung. Hält eine
+  Stellung nicht oder klemmt sie: zylinder_spiel im Customizer anpassen (Standard
+  0,1 mm) und die Kolbenstangen neu drucken. Die Ketten sind starr.
