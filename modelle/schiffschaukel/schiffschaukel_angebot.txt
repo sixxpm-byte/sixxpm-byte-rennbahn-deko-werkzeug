@@ -1,0 +1,75 @@
+TITEL
+Schiffschaukel für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Piratenschiff mit Kasse / Swinging pirate ship ride with ticket booth
+
+KURZBESCHREIBUNG
+Kirmes-Schiffschaukel mit pendelndem Piratenschiff, fünf Raststellungen, Einstiegsrampen auf beiden Seiten, Zaun, Laterne und Kassenhäuschen – komplett gesteckt und stützfrei druckbar in 1:43 und 1:87 (H0), passend als Rummelplatz-Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen.
+Fairground swinging ship with a pendulum pirate ship, five lock positions, boarding ramps on both sides, fence, lantern and ticket booth – fully plugged and support-free printable in 1:43 and 1:87 (H0), ideal fairground decoration for Carrera and Sturmkind DR!FT tracks.
+
+BESCHREIBUNG
+Leinen los neben der Rennstrecke: Das Piratenschiff hängt an zwei Schwingarmen zwischen den A-Böcken und pendelt wirklich – und mit einem Stück Filament bleibt es in jeder von fünf Stellungen stehen. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0).
+
+Ausstattung
+• Piratenschiff mit 8 Sitzreihen, Bordwänden mit Planken, Zierleiste und Sitzfeldern, Steven mit Schnecken, Bugspriet mit Galionsfigur
+• Großmast mit Mastkorb und Flagge, Fock- und Besanmast mit Rahen, Wanten und Segeln
+• Pendelt auf Achszapfen; der Kiel ist ein Bogen um die Drehachse – das Schiff streift nie den Boden
+• Raststellungen: Rastbogen am Schwingarm, ein Filament-Stück durch das Knotenblech des A-Bocks sichert das Schiff bei −40°, −20°, 0°, +20° oder +40° (im Customizer auch 3 Stellungen)
+• Zwei A-Böcke mit Leiter und Wartungsplattform, Schwingarme als Fachwerk
+• Einstiegsrampen auf beiden Seiten mit Podest, Geländer und Steg bis an die Bordwand
+• Bodenplatte mit rotem Lattenzaun und Ausgangstor, Laternensäule mit Steinsockel und fünf Leuchten
+• Kassenhäuschen mit Schild „PIRATENSCHIFF“ (Text im Customizer änderbar)
+• Komplett gesteckt, kein Kleber – lange Dübel halten das Schiff zusammen; alle Teile stützfrei
+
+Größe
+• 1:43: Bodenplatte ca. 21,9 × 16,7 cm, Höhe ca. 23 cm, Schiff 23,3 × 6,7 cm
+• 1:87: Bodenplatte ca. 10,8 × 8,3 cm, Höhe ca. 11,4 cm, Schiff 11,5 × 3,3 cm
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien aller Teile in 1:43 und 1:87, Farblisten, LIESMICH, Ansichten und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung einer Schiffschaukel und kein lizenziertes Produkt eines Herstellers oder Freizeitparks. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Cast off next to the race track: the pirate ship hangs from two swing arms between the A-frames and really swings – and with a piece of filament it stays put in any of five positions. In 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0).
+
+Features
+• Pirate ship with 8 rows of seats, side walls with planks, trim strip and seat panels, scrolled stems, bowsprit with figurehead
+• Main mast with crow's nest and flag, fore and mizzen mast with yards, shrouds and sails
+• Swings on axle pins; the keel is an arc around the pivot – the ship never touches the ground
+• Lock positions: index arc on the swing arm, a piece of filament through the gusset plate of the A-frame holds the ship at −40°, −20°, 0°, +20° or +40° (3 positions selectable in the Customizer)
+• Two A-frames with ladder and maintenance platform, truss swing arms
+• Boarding ramps on both sides with landing, railing and walkway up to the hull
+• Base plate with red picket fence and exit gate, lantern pillar with stone base and five lamps
+• Ticket booth with "PIRATENSCHIFF" sign (text changeable in the Customizer)
+• Fully plugged, no glue – long dowels hold the ship together; all parts print without supports
+
+Size
+• 1:43: base plate approx. 21.9 × 16.7 cm, height approx. 23 cm, ship 23.3 × 6.7 cm
+• 1:87: base plate approx. 10.8 × 8.3 cm, height approx. 11.4 cm, ship 11.5 × 3.3 cm
+
+Included: STL and multicolour 3MF files of all parts in 1:43 and 1:87, colour lists, readme, renders and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a swinging ship ride, not a licensed product of any manufacturer or amusement park. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,12–0,2 mm (Masten, Zaun und Laternenkopf in 1:87 eher 0,12 mm), Füllung 15 %, 3 Wandlinien
+• Alle Teile genau so drucken, wie sie in den Dateien liegen: Rumpfkern auf der Seite stehend, A-Böcke, Arme, Bordwände, Masten, Bugspriet, Zaun flach, Dübel und Achszapfen liegend, Rampen auf der Seite, Bodenplatte, Plattformen, Laterne und Kasse aufrecht
+• Keine Stützen nötig
+• Mehrfarbig: mit AMS/MMU aus der 3MF – Segel, Flagge, Zierleiste und Kassen-Schrift sind Farbzonen; einfarbig druckbar, alle Bauteile werden gesteckt
+• Teilung: in 1:43 Bodenplatte (3 Clips), Rumpfkern (2 Mitteldübel) und Bordwände zweiteilig; in 1:87 einteilig
+• Arretier-Stifte aus Filament 1,75 mm: 1:43 ca. 13 mm, 1:87 ca. 7 mm (je Seite einer)
+• Passung im Customizer: einsatz_spiel (Dübel, Zungen, Achszapfen), spiel (Achse der Arme, Clips)
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, alle Teile): Anlage 1:43 ca. 90 h, 1:87 ca. 18 h; Kasse 1:43 ca. 7 h, 1:87 ca. 1,5 h; mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.12–0.2 mm (masts, fence and lantern head in 1:87 preferably 0.12 mm), 15 % infill, 3 perimeters
+• Print every part exactly as oriented in the files: hull core standing on its side, A-frames, arms, side walls, masts, bowsprit, fence flat, dowels and axle pins lying, ramps on their side, base plate, platforms, lantern and booth upright
+• No supports needed
+• Multicolour: print from the 3MF with AMS/MMU – sails, flag, trim strip and booth lettering are colour zones; printable in one colour, all parts plug together
+• Splitting: in 1:43 base plate (3 clips), hull core (2 centre dowels) and side walls in two parts; one piece each in 1:87
+• Lock pins from 1.75 mm filament: 1:43 approx. 13 mm, 1:87 approx. 7 mm (one per side)
+• Fit in the Customizer: einsatz_spiel (dowels, tabs, axle pins), spiel (arm axle, clips)
+• Print time (slicer estimate at 100 % infill, all parts): ride 1:43 approx. 90 h, 1:87 approx. 18 h; booth 1:43 approx. 7 h, 1:87 approx. 1.5 h; much less with 15 % infill
+
+TAGS
+Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,DriftRC,Slotcar,Schiffschaukel,Piratenschiff,Kirmes,Rummel,Jahrmarkt,Fahrgeschaeft,Freizeitpark,H0,Massstab143,3DDruck,Modellbau

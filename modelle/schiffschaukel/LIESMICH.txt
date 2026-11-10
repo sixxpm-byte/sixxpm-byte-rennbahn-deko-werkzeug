@@ -1,0 +1,67 @@
+SCHIFFSCHAUKEL – Piratenschiff zum Pendeln – Bausatz mit Kassenhäuschen
+=========================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Vorbild: Schiffschaukel (Pendelfahrgeschäft) mit zwei A-Böcken, Drehachse in 8 m
+Höhe, Piratenschiff 10 m lang mit 8 Sitzreihen, drei Masten und Galionsfigur.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Gesteckt werden alle Bauteile. Farbzonen (mit AMS/MMU, einfarbig fallen sie weg):
+  Segel und Flagge, rote Zierleiste der Bordwand, Kanten und Schrift der Kasse.
+  schiffschaukel_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, Raststellung, Arretierung, Explosion),
+                    Druckteile und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten)
+
+GRÖSSE
+  1:43: Bodenplatte ca. 21,9 × 16,7 cm, Höhe ca. 23 cm; Schiff 23,3 × 6,7 cm.
+  1:87: Bodenplatte ca. 10,8 × 8,3 cm, Höhe ca. 11,4 cm; Schiff 11,5 × 3,3 cm.
+  In 1:43 sind Bodenplatte (3 Clips), Rumpfkern (2 Mitteldübel) und Bordwände
+  zweiteilig, in 1:87 ist nichts geteilt.
+
+Maßstab / Farben / Optionen:
+  schiffschaukel.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py schiffschaukel.scad 87 ausgabe -D 'farbe_rumpf="rot"'
+  Optionen u. a.: 3 oder 5 Raststellungen und der Winkel je Stufe, Höhe und Breite
+  der Rampen, Sitzreihen, Schildtext der Kasse, Passung (spiel, einsatz_spiel),
+  alle Farben. Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für die Arretier-Stifte: je Seite ein Stück
+  (1:43 ca. 13 mm, 1:87 ca. 7 mm). Sonst kein Zubehör, kein Kleber.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Rumpfkern auf der Seite stehend (alle Formen senkrecht, die Spanten-Öffnungen
+    verdecken später die Bordwände)
+  - A-Böcke, Schwingarme, Bordwände (Außenseite oben), Masten (Segel unten),
+    Bugspriet, Zaun und Tor flach; Dübel und Achszapfen liegend
+  - Einstiegsrampen auf der Seite liegend, Geländer unten
+  - Bodenplatte, Plattformen, Laternensäule und -kopf aufrecht
+  - Kassenhäuschen: Boden und Dach aufrecht, Wände und Schild flach
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung (alle Stücke): Anlage 1:43 ca. 90 h, 1:87 ca. 18 h;
+  Kassenhäuschen 1:43 ca. 7 h, 1:87 ca. 1,5 h. Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Bodenplatte (1:43: Hälften mit 3 Clips von unten verbinden). Zaun und Tor mit
+     den Zungen in die Schlitze am Rand stecken.
+  2. A-Böcke in die Schlitze stecken, Plattformen oben aufsetzen. Achszapfen von
+     innen in die Rautenlöcher der Lagerköpfe drücken.
+  3. Rumpf: (1:43 Kernhälften mit den 2 Mitteldübeln verbinden.) Bordwände links und
+     rechts anlegen, die Löcher liegen deckungsgleich.
+  4. Großmast in die Mitte, Fock- und Besanmast auf die Lehnen, Bugspriet vorne ins
+     Backdeck stecken.
+  5. Schwingarme auf die Achszapfen schieben, Schiff dazwischen halten. Lange Dübel
+     durch Arm, Bordwand, Rumpfkern, Bordwand und Arm schieben, kurze Dübel an den
+     Enden.
+  6. Einstiegsrampen auf beiden Seiten in die Schlitze stecken – der Steg führt unter
+     dem Schwingarm bis an die Bordwand.
+  7. Laternensäule aufstellen, Kopf aufstecken. Kassenhäuschen: Wände in den Boden,
+     Dach auf, Schild in die Löcher des Dachs.
+
+BEWEGLICH
+  Das Schiff pendelt auf den Achszapfen. Raststellungen: Schiff schwenken, bis ein
+  Loch im Rastbogen unter der Nabe hinter dem Loch im Knotenblech des A-Bocks liegt,
+  dann ein Filament-Stück durch beide stecken. 5 Stellungen (−40°, −20°, 0°, +20°,
+  +40°), im Customizer auch 3. Ohne Stift pendelt das Schiff frei.

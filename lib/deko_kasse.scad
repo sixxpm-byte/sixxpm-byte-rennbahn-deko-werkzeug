@@ -167,9 +167,9 @@ module haus_dach(fp = "alle") {   // aufrecht gedruckt (Unterseite auf dem Bett)
             cube([pw_h + 2 * spiel, st_h + 2 * spiel, pl_h + 1]);
         // Traufkante
         tk = max(sc(40), 0.4);
-        translate([-ov_h - 1, -ov_h - 1, z_rh + rt_h * 0.5]) difference() {
+        translate([-ov_h - 1, -ov_h - 1, z_rh + rt_h * 0.5]) difference() {   // Kerbe mit 45°-Oberseite (stützfrei)
             cube([RXh + 2, RYh + 2, tk]);
-            translate([1 + tk, 1 + tk, -1]) cube([RXh - 2 * tk, RYh - 2 * tk, tk + 2]);
+            hull() { translate([1 + tk, 1 + tk, -0.01]) cube([RXh - 2 * tk, RYh - 2 * tk, 0.02]); translate([1, 1, tk]) cube([RXh, RYh, 0.01]); }
         }
     }
 }
