@@ -1,0 +1,79 @@
+UMSCHLAGBAGGER – Mobil-Umschlagbagger mit Mehrschalengreifer – Steck-Bausatz
+===========================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0, Modelleisenbahn).
+Vorbild: Mobil-Umschlagbagger der 24-t-Klasse (Radstand 2,75 m, Breite 2,55 m,
+Zwillingsbereifung, vier Pratzen, hebbare Kabine, gerader Ausleger 6,2 m,
+gekröpfter Stiel, 5-Schalen-Greifer).
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben
+  umschlagbagger_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Aufbau, Heckansicht, Explosion, Details, Druckteile und Kontrollbögen
+
+FARBEN – ALLES GESTECKT
+  Es gibt keine Farbzonen: Felgen (von außen in die Zwillingsreifen), Glaskern
+  (von unten in die Kabine), Kolbenstangen (in die Zylinderrohre), Handläufe
+  und Greiferschalen sind eigene Teile. Ohne AMS druckst du jede STL einfach
+  in ihrer Farbe; mit AMS/MMU die 3MF.
+
+GRÖSSE
+  1:43: Fahrgestell ca. 12 × 6 cm, Oberwagen 10 cm lang, Kabinendach 10–14 cm hoch,
+        Ausleger 16 cm, Stiel 10 cm; Reichweite bis ca. 24 cm vor der Drehachse.
+  1:87: Fahrgestell ca. 6 × 3 cm, Kabinendach 5–7 cm, Ausleger 8 cm, Stiel 5 cm.
+
+BEWEGLICH
+  - Oberwagen dreht auf dem Königszapfen, Räder drehen auf den Achsen.
+  - Kabine hängt an einem Parallelogramm aus vier Hubarmen und rastet mit einem
+    Filament-Bolzen in vier Höhen (0/25/50/75°) am Turm.
+  - Ausleger (25–70°) und Stiel schwenken an Bolzen; die Kolbenstangen halten
+    jede Stellung durch Reibung (zylinder_spiel).
+  - Der Greifer pendelt am Stiel; die fünf Schalen stehen fest geöffnet.
+
+Maßstab / andere Farben / Optionen:
+  umschlagbagger.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py umschlagbagger.scad 87 ausgabe -D 'farbe_gelb="orange"'
+  Optionen u. a.: Vorschau-Stellungen (Drehung, Ausleger, Stiel, Kabinenstufe),
+  Ausleger-Versatz, Reibung der Zylinder (zylinder_spiel, Standard 0,1 mm),
+  Presssitz der Steckteile (einsatz_spiel, Standard 0,05 mm), alle Farben.
+  Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 12 Bolzen (Längen zeigt auch die Konsole):
+  1:43: Auslegerfuß 19, Hubzylinder unten 24 (1x für beide), Hubzylinder oben 21,
+        Stielzylinder am Ausleger 14, Stielgelenk 14, Stielzylinder am Stiel 10,
+        Greifer 10, Hubarme am Turm 2x 16, Rastbolzen 16, Hubarme am Träger 2x 21 mm.
+  1:87: 11 / 16 / 14 / 8 / 8 / 6 / 6 / 2x 8 / 8 / 2x 11 mm.
+  Kein Kleber nötig.
+
+DRUCK – Ausrichtung ist druckfertig, alle Teile ohne Stützen
+  - Fahrgestell und Oberwagen aufrecht; Pratzen stehen auf der Fußplatte
+  - Zwillingsreifen liegend (Innenrand unten), Felgen flach
+  - Kabine kopfüber (Dach unten), Glaskern als Block, Kabinenträger kopfüber
+    (Lagerwangen oben)
+  - Hubarme, Ausleger- und Stielhälften (Außenseite unten), Dübel, Handläufe
+    und Greiferschalen flach
+  - Zylinderrohre und Kolbenstangen liegend, Achsen liegend
+  - Greiferkopf aufrecht (Steckschlitze unten, Decken als 45°-Dach)
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise. Druckzeit bei 100 % Füllung ca. 25 h (1:43) bzw. 4,5 h (1:87),
+  mit 15 % Füllung deutlich weniger.
+
+MONTAGE (Details in der PDF-Anleitung)
+  0. Felgen in die Reifen, Glaskern in die Kabine, Kolbenstangen in die Rohre,
+     Schalen von unten in den Greiferkopf, Handläufe in die Schlitze.
+  1. Achsen durchs Fahrgestell, Räder aufstecken, Pratzen von unten einstecken.
+  2. Oberwagen auf den Königszapfen.
+  3. Je zwei Hubarme links und rechts an den Turm (2 Bolzen), Rastbolzen durch
+     das mittlere Loch der unteren Arme in ein Rastloch.
+  4. Kabinenträger auf die Armenden (2 Bolzen), Kabine aufdrücken.
+  5. Dübel in die Hälften, Ausleger und Stiel zusammendrücken.
+  6. Ausleger zwischen die Lagerwangen, Hubzylinder unten und oben verbolzen.
+  7. Stiel in die Auslegergabel, Stielzylinder verbolzen.
+  8. Greiferöse in die Stielspitze, Bolzen – fertig.
+
+PASSUNG
+  Felgen, Zapfen, Dübel und Glaskern sitzen im Presssitz (einsatz_spiel).
+  Bolzen sitzen in den äußeren Teilen stramm und drehen sich in den inneren.
+  Hält eine Stellung nicht: zylinder_spiel verkleinern und die Kolbenstangen neu
+  drucken. Zu stramm: einsatz_spiel auf 0,1 mm.

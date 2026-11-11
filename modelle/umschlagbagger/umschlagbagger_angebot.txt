@@ -1,0 +1,73 @@
+TITEL
+Umschlagbagger für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Mobilbagger mit Greifer, hebbarer Kabine / Material handler with grapple kit
+
+KURZBESCHREIBUNG
+Mobil-Umschlagbagger mit Mehrschalengreifer, hebbarer Kabine und beweglichem Ausleger – druckbarer Steck-Bausatz mit Bauanleitung in 1:43 und 1:87 (H0), als Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen und die Modelleisenbahn.
+Wheeled material handler with orange-peel grapple, elevating cab and articulated boom – printable plug-together kit with building instructions in 1:43 and 1:87 (H0), decoration for Carrera and Sturmkind DR!FT tracks and the model railway.
+
+BESCHREIBUNG
+Schrottplatz, Hafenkai oder Holzlager neben der Strecke: Dieser Mobil-Umschlagbagger (24-t-Klasse mit Zwillingsbereifung und vier Pratzen) ist ein 3D-druckbarer Bausatz zum Stecken – für Carrera GO!!!, Carrera Hybrid, Sturmkind DR!FT und Slotcar in 1:43 sowie für die Modelleisenbahn in 1:87 (H0). Du bekommst Druckdateien, eine bebilderte Druck- und Bauanleitung als PDF, Farblisten und LIESMICH – kein fertiges Modell.
+
+Ausstattung
+• Fahrgestell mit Achsgehäusen, vier steckbaren Abstützpratzen, Zwillingsrädern mit Steck-Felgen und drehbarem Oberwagen
+• Oberwagen mit Motorhaus, rundem Gegengewicht, Tankkasten, Lüftungsgittern, Auspuff und Handläufen
+• Hebbare Kabine wie beim Vorbild: Parallelogramm aus vier Hubarmen, ein Filament-Rastbolzen hält die Kabine in vier Höhen
+• Gerader Ausleger und gekröpfter Stiel aus je zwei Hälften mit Dübeln – ohne Stützmaterial
+• Zwei Hubzylinder und ein Stielzylinder als Teleskop: die Kolbenstangen halten jede Stellung durch Reibung
+• Fünf-Schalen-Greifer mit Pendelöse und Rotator – die Schalen werden von unten in den Kopf gesteckt
+• Alle Farbbauteile gesteckt (Felgen, Glaskern, Kolbenstangen, Schalen, Handläufe) – auch ohne AMS einfarbig Teil für Teil druckbar, keine Farbzonen
+• Kein Kleber: alle Gelenke sind Bolzen aus 1,75-mm-Filament
+
+Größe
+• 1:43: Fahrgestell ca. 12 × 6 cm, Kabinendach 10–14 cm hoch, Reichweite bis ca. 24 cm
+• 1:87: Fahrgestell ca. 6 × 3 cm, Kabinendach 5–7 cm hoch, Reichweite bis ca. 12 cm
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien für 1:43 und 1:87, Farblisten, LIESMICH, Bilder und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Umschlagbaggers ohne Herstellerlizenz und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Scrap yard, quayside or timber yard next to the track: this wheeled material handler (24-tonne class with twin tyres and four outriggers) is a 3D-printable plug-together kit – for Carrera GO!!!, Carrera Hybrid, Sturmkind DR!FT and slot cars in 1:43 and for the model railway in 1:87 (H0). You get print files, illustrated printing and building instructions as PDF, colour lists and a readme – not a finished model.
+
+Features
+• Chassis with axle housings, four plug-in outrigger pads, twin wheels with plug-in rims and a rotating upper structure
+• Upper structure with engine house, rounded counterweight, tank box, vent grilles, exhaust and handrails
+• Elevating cab like the real machine: parallelogram of four lift arms, a filament locking pin holds the cab in four heights
+• Straight boom and drooped stick, each from two halves with dowels – no supports needed
+• Two lift cylinders and one stick cylinder as telescopes: the piston rods hold every position by friction
+• Five-tine orange-peel grapple with swing eye and rotator – the tines plug into the head from below
+• All colour parts plug together (rims, glazing, piston rods, tines, handrails) – printable part by part in single colours without an AMS, no colour zones
+• No glue: every joint is a pin cut from 1.75 mm filament
+
+Size
+• 1:43: chassis approx. 12 × 6 cm, cab roof 10–14 cm high, reach up to approx. 24 cm
+• 1:87: chassis approx. 6 × 3 cm, cab roof 5–7 cm high, reach up to approx. 12 cm
+
+Included: STL and multicolour 3MF files for 1:43 and 1:87, colour lists, readme, pictures and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a material handler without a manufacturer licence, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
+• Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig: Fahrgestell, Oberwagen und Greiferkopf aufrecht, Kabine und Kabinenträger kopfüber, Hälften, Hubarme, Schalen und Handläufe flach, Zylinder und Achsen liegend, Reifen auf der Innenseite
+• Kein Stützmaterial – alle Teile sind stützfrei geplant (Slicing-Probe: 0 Hinweise in beiden Maßstäben)
+• Mehrfarbig: mit AMS/MMU aus der 3MF drucken – oder einfarbig jede STL einzeln; alle Farbbauteile werden gesteckt, es gibt keine Farbzonen
+• Nichts geteilt, keine Clips: Ausleger und Stiel bestehen aus zwei Hälften, die mit Dübeln zusammengedrückt werden
+• Für die Gelenke 12 Stücke Filament 1,75 mm als Bolzen zuschneiden (Längen in Anleitung und LIESMICH)
+• Passung im Customizer: zylinder_spiel (Standard 0,1 mm – kleiner, wenn Ausleger oder Stiel nicht halten), einsatz_spiel (Standard 0,05 mm, Presssitz von Felgen, Zapfen, Dübeln und Glaskern)
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung): ca. 25 h für 1:43, ca. 4,5 h für 1:87 – mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
+• Print every part exactly as oriented in the files – the orientation is ready to print: chassis, upper structure and grapple head upright, cab and cab carrier upside down, halves, lift arms, tines and handrails flat, cylinders and axles lying, tyres on their inner side
+• No support material – every part is designed support-free (slicing check: 0 notes in both scales)
+• Multicolour: print from the 3MF with AMS/MMU – or each STL on its own in one colour; all colour parts plug together, there are no colour zones
+• Nothing split, no clips: boom and stick consist of two halves pressed together with dowels
+• Cut 12 pieces of 1.75 mm filament as pins for the joints (lengths in the instructions and readme)
+• Fit in the Customizer: zylinder_spiel (default 0.1 mm – smaller if boom or stick do not hold), einsatz_spiel (default 0.05 mm, press fit of rims, pegs, dowels and glazing)
+• Print time (slicer estimate at 100 % infill): approx. 25 h for 1:43, approx. 4.5 h for 1:87 – much less with 15 % infill
+
+TAGS
+Umschlagbagger,Mobilbagger,Bagger,Greifer,Schrottplatz,Hafen,Modelleisenbahn,Bausatz,Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,Slotcar,H0,Massstab143,3DDruck,Mehrfarbig
