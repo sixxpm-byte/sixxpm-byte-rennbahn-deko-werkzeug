@@ -22,7 +22,7 @@ Reihenfolge in der Quelle:
    - `/* [Druck & Passung] */`: `rennbahn_taschen = true; druckbett = 220; rand = 5; min_wand = 1.2; spiel = 0.15; verbinder_anzahl = 0;`
 3. `include <../../lib/deko_grundlagen.scad>`, danach die Maße des Modells.
 4. optional `include <../../lib/deko_kasse.scad>` (nach den Maßen); optional `include <../../lib/deko_container.scad>` für einen Container-Bausatz 20/40 Fuß (vorher Container-Maße, `zapfen_spiel`, `farbe_container`, `farbe_beschlag` und `ct_mag…` festlegen; `ct_steck = true` für den Steck-Bausatz mit grauen Rahmen und Presssitz-Zapfen (empfohlen, braucht `einsatz_spiel`), sonst `ct_zweifarbig` – siehe Kopf der Datei).
-5. `include <../../lib/deko_hilfen.scad>`, optional `include <../../lib/deko_ornamente.scad>`.
+5. `include <../../lib/deko_hilfen.scad>`, optional `include <../../lib/deko_ornamente.scad>`. Fahrzeuge: `include <../../lib/deko_hydraulik.scad>` (Zylinder; vorher `stift_d`, `zylinder_spiel`, `einsatz_spiel`) und `include <../../lib/deko_laufwerk.scad>` (Raupenlaufwerk; vorher `c_k`, `r_k`, `B_k`, `Y_k0`, `h_gr`, `t_sh`, `d_rf`, optional `lw_zaehne`) – Vorbild `modelle/planierraupe/planierraupe_src.scad`.
 6. Module der Bauteile, Zusammenbau `<modell>(ex)`, Info und Ausgabe (INFOS, Echo-Zeilen, `druck(...)`, `farben_echo();`, Dispatch nach `teil`).
 
 ## 2. Maße und Maßstab
@@ -57,7 +57,7 @@ Reihenfolge in der Quelle:
   Stützen werden **nicht** ins Modell eingebaut (der Slicer erzeugt sie). Solche Stellen im
   Kopfkommentar (DRUCK), in LIESMICH und Anleitung nennen; die Slicing-Probe meldet sie als
   STÜTZE – das ist dann erwartet und wird Dirk mit Begründung genannt.
-- Keine Überhänge über 45° (ohne geplante Stütze). Brücken höchstens 15–20 mm, und zwar zwischen Rippen, die quer zur Brücke stehen.
+- Keine Überhänge über 45° (ohne geplante Stütze). PrusaSlicer stützt große Flächen bei genau 45° bereits – schräge Unterseiten (Konsolen, Flanken) mit 50° planen (Faktor 1,2); runde Laschen oben spitz (First ≥ 50°), liegend gedruckte Laschen nicht tangential aufs Bett legen, sondern bis zur Auflagefläche auffüllen. Brücken höchstens 15–20 mm, und zwar zwischen Rippen, die quer zur Brücke stehen.
 - Große Körper hohl: unten offen mit Rippen (Podest kopfüber, Dach/Umgang aufrecht), Decke parallel zur Oberfläche.
 - Zapfen nur nach oben. Auf der Bettseite gibt es nur Löcher, Taschen und Rillen. Zapfenkanten 45° fasen.
 - Schauseiten mit Schrift oder Gesicht nach unten drucken (Farbeinleger in den ersten Schichten).

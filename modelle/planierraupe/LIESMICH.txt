@@ -1,0 +1,77 @@
+PLANIERRAUPE – Kettendozer der 18-t-Klasse mit 6-Wege-Schild und Heckaufreißer – druckbarer Steck-Bausatz
+==========================================================================================================
+Maßstäbe 1:43 (Drift-RC und Slotcar) und 1:87 (H0, Modelleisenbahn).
+Vorbild: mittlerer Kettendozer – Laufwerk 3,5 m lang, Spur 1,89 m, Planierschild 3,27 m
+breit und 1,13 m hoch, Kabine 3,1 m hoch, Aufreißer mit drei Zinken.
+Das ist ein 3D-druckbarer Bausatz zum Stecken (kein fertiges Modell): Du druckst die
+Teile selbst und baust sie nach der bebilderten Anleitung ohne Kleber zusammen.
+
+STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  Alle Farbbauteile werden gesteckt (Glaskern der Kabine, Kolbenstangen) – du kannst
+  also auch ohne AMS jede STL einzeln in ihrer Farbe drucken. Es gibt keine Farbzonen.
+  planierraupe_anleitung_1-43.pdf / _1-87.pdf = bebilderte Druck- und Bauanleitung
+  bilder/         = Ansichten (Aufbau, hinten, Schild angehoben, Explosion), Druckteile
+                    und Kontrollbilder (Vorschau-Bogen, Anleitungsseiten 1:43/1:87)
+
+GRÖSSE
+  1:43: Laufwerk 8,1 × 5,8 cm, Länge mit Schild und Aufreißer 12,7 cm, Schild 7,6 cm
+        breit, Höhe 7,2 cm.
+  1:87: Laufwerk 4,0 × 2,9 cm, Länge 6,3 cm, Schild 3,8 cm breit, Höhe 3,6 cm.
+  Alle Teile passen ungeteilt auf ein 220er-Druckbett – keine Clips.
+
+TEILE (12 Druckteile)
+  Unterwagen (anthrazit), 2 Raupenlaufwerke (schwarz), Aufbau mit Motorhaube, Kabine
+  mit Glaskern, 2 Kotflügel, Planierschild, Schildrahmen (C-Rahmen), Heckaufreißer
+  (catgelb), 2 Hubzylinder und 1 Ripperzylinder (Rohr schwarz, Stange silber).
+
+Maßstab / Farben / Optionen:
+  planierraupe.scad im OpenSCAD-Customizer öffnen (Maßstab 1:43 oder 1:87),
+  oder:  python3 farb_export.py planierraupe.scad 87 ausgabe -D 'farbe_gelb="orange"'
+  Optionen u. a.: Stellung in der Vorschau (schild_winkel 0–10, ripper_winkel 0–15),
+  Passung (spiel, zylinder_spiel, einsatz_spiel), alle Farben (Standard „catgelb“).
+  Die Datei ist eigenständig.
+
+DAZU BRAUCHST DU
+  Filament 1,75 mm für 7 Bolzen (Länge in mm, 1:43 / 1:87):
+    Hubzylinder oben am Lagerbock 12 / 7 (2x)   Hubzylinder unten in der Gabel 9 / 6 (2x)
+    Ripper-Schwenkachse 29 / 14                  Ripperzylinder oben im Hubbock 14 / 8
+    Ripperzylinder unten an der Lasche 6 / 4
+  Sonst kein Zubehör, kein Kleber.
+
+DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
+  - Unterwagen und Aufbau aufrecht
+  - Raupenlaufwerke auf der Innenseite liegend (Relief oben)
+  - Kabine kopfüber, Glaskern als Block
+  - Kotflügel und Schildrahmen flach (Gabeln und Zapfen nach oben bzw. liegend)
+  - Planierschild mit der Rückseite nach unten (Schneide oben)
+  - Heckaufreißer mit der Rückseite nach unten (Zinken liegen flach, Arme stehen)
+  - Zylinder: Rohr und Kolbenstange liegend, Augen unten
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
+  0 Hinweise.
+  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 18 h, 1:87 ca. 3 h.
+  Mit 15 % Füllung deutlich weniger.
+
+MONTAGE
+  1. Schildrahmen vor den Unterwagen legen (Schwenkzapfen neben den Steckzungen), dann
+     beide Ketten von außen aufschieben – sie nehmen Zungen und Zapfen zugleich auf.
+  2. Kotflügel mit den Rauten-Zapfen seitlich in den Unterwagen drücken (der zweite
+     Kotflügel ist das gleiche Teil, umgedreht).
+  3. Aufbau auf die vier Zapfen des Unterwagens. Glaskern von unten in die Kabine,
+     Kabine auf den Kabinenboden stecken.
+  4. Planierschild mit den Taschen auf dem Rücken auf die Zapfen des Querträgers.
+  5. Kolbenstangen in die Rohre. Hubzylinder: Rohr-Auge an den Lagerbock an der
+     Haubenseite (Bolzen von außen), Stangen-Auge in die Gabel am Schildrahmen.
+  6. Aufreißer mit den Armen in die Schlitze am Heck des Unterwagens, Bolzen quer durch.
+     Ripperzylinder: Rohr in den Hubbock hinter dem Tank, Stange an die Lasche auf dem
+     Balken.
+  Bolzen sitzen in den jeweils äußeren Teilen stramm und drehen sich in den Augen lose.
+
+BEWEGLICH
+  Das Schild hebt und senkt sich mit dem C-Rahmen (0–10°, Schneide am Boden bis ca.
+  0,4 m Vorbild angehoben), der Aufreißer schwenkt (0–15°). Die Kolbenstangen fahren
+  mit aus und halten die Stellung durch Reibung: in 1:43 sicher, in 1:87 die Hubzylinder
+  sicher, der kurze Ripperzylinder nur bedingt (der Aufreißer ruht dann in der unteren
+  Stellung). Hält eine Stellung nicht oder klemmt sie: zylinder_spiel im Customizer
+  anpassen (Standard 0,1 mm) und die Kolbenstangen neu drucken. Die Ketten sind starr.

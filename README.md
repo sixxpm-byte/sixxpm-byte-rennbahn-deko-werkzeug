@@ -7,7 +7,7 @@ Deko-Bausätze (Sturmkind DR!FT, neue Modelle in 1:43 und 1:87, ältere zusätzl
 
 | Ordner | Inhalt |
 |---|---|
-| `lib/` | `deko_grundlagen.scad` (Maßstab, Clips, Farben), `deko_hilfen.scad` (Teilung, Polar-Teilung, Ausgabe), `deko_ornamente.scad`, `deko_kasse.scad`, `deko_zubehoer.scad`, `deko_container.scad` (Container-Bausatz 20/40 Fuß, Steck-Bausatz ohne Kleber, optional mit Magnettaschen) |
+| `lib/` | `deko_grundlagen.scad` (Maßstab, Clips, Farben), `deko_hilfen.scad` (Teilung, Polar-Teilung, Ausgabe), `deko_ornamente.scad`, `deko_kasse.scad`, `deko_zubehoer.scad`, `deko_container.scad` (Container-Bausatz 20/40 Fuß, Steck-Bausatz ohne Kleber, optional mit Magnettaschen), `deko_hydraulik.scad` (teleskopische Zylinder), `deko_laufwerk.scad` (Raupenlaufwerk, liegend auf der Innenseite gedruckt) |
 | `modelle/<name>/` | `<name>.scad` = Einzeldatei für Customizer/Verkauf; neue Modelle zusätzlich `<name>_src.scad` (mit `include`), `LIESMICH.txt`, Kollisions-Szene |
 | `werkzeuge/` | `inline.py`, `farb_export.py`, `pruefen.py`, `kol_export.sh`, `kollision.py`, `kontaktbogen.py`, `packen.py` |
 | `anleitung/` | Lego-Anleitungen: `bauen.py`, `m_<name>.py` (Texte/Schritte), `scad/anl_<name>.scad` (Bauschritt-Szenen) |

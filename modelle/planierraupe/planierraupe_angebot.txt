@@ -1,0 +1,73 @@
+TITEL
+Planierraupe für Carrera GO!!! & Sturmkind DR!FT 1:43/1:87 – Kettendozer mit Schild und Aufreißer / Crawler dozer with blade and ripper
+
+KURZBESCHREIBUNG
+Kettendozer der 18-t-Klasse mit hebbarem 6-Wege-Schild und schwenkbarem Heckaufreißer – druckbarer Steck-Bausatz mit Bauanleitung in 1:43 und 1:87 (H0), als Baustellen-Deko für Carrera- und Sturmkind-DR!FT-Rennbahnen und die Modelleisenbahn.
+Crawler dozer of the 18-tonne class with lifting blade and pivoting rear ripper – printable plug-together kit with building instructions in 1:43 and 1:87 (H0), construction-site decoration for Carrera and Sturmkind DR!FT tracks and the model railway.
+
+BESCHREIBUNG
+Baustelle neben der Strecke: Diese Planierraupe (Kettendozer der 18-t-Klasse mit 6-Wege-Schild) ist ein vollständiger 3D-druckbarer Bausatz zum Stecken – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0) für die Modelleisenbahn. Du bekommst kein fertiges Modell, sondern druckst die Teile selbst und baust sie nach der bebilderten Druck- und Bauanleitung (PDF) ohne Kleber zusammen; Farblisten und LIESMICH liegen bei.
+
+Ausstattung
+• Raupenlaufwerk mit Bodenplatten, gezahntem Turas, Leitrad, Lauf- und Stützrollen als Relief
+• Aufbau mit abfallender Motorhaube, Kühlergrill, Lüftungsschlitzen, Auspuff und Vorfilter, Tank und Hubbock am Heck
+• Kabine mit großen Scheiben (Glaskern wird von unten eingesteckt), Kotflügel über den Ketten
+• Planierschild mit gewölbtem Blatt auf einem C-Rahmen: der Rahmen schwenkt auf Zapfen in den Ketten, das Schild hebt und senkt sich (0–10°)
+• Heckaufreißer mit drei Zinken, schwenkbar am Bolzen (0–15°)
+• Drei Hydraulikzylinder (zwei Hub-, ein Ripperzylinder) mit gleitenden Kolbenstangen – sie fahren mit aus und halten die Stellung durch Reibung
+• Alle Farbbauteile gesteckt (Glaskern, Kolbenstangen) – auch ohne AMS einfarbig Teil für Teil druckbar, keine Farbzonen
+• Alle Gelenke mit Bolzen aus 1,75-mm-Filament, 12 Druckteile, kein Kleber
+
+Größe
+• 1:43: Laufwerk ca. 8 × 6 cm, Länge mit Schild und Aufreißer ca. 13 cm, Schild 7,6 cm breit, Höhe 7,2 cm
+• 1:87: Laufwerk ca. 4 × 3 cm, Länge ca. 6 cm, Schild 3,8 cm breit, Höhe 3,6 cm
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien für 1:43 und 1:87, Farblisten, LIESMICH, Bilder und zwei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines Kettendozers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+A construction site next to the track: this crawler dozer (18-tonne class with six-way blade) is a complete 3D-printable plug-together kit – in 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0) for the model railway. You do not get a finished model: you print the parts yourself and assemble them without glue following the illustrated printing and building instructions (PDF); colour lists and a readme are included.
+
+Features
+• Crawler undercarriage with track shoes, toothed sprocket, idler, track and carrier rollers in relief
+• Body with sloping hood, radiator grille, vent slots, exhaust stack and precleaner, tank and ripper mount at the rear
+• Cab with large windows (glazing core plugs in from below), fenders above the tracks
+• Curved blade on a C-frame: the frame pivots on pegs in the tracks, the blade lifts and lowers (0–10°)
+• Rear ripper with three shanks, pivoting on a pin (0–15°)
+• Three hydraulic cylinders (two lift, one ripper) with sliding piston rods – they extend with the movement and hold the position by friction
+• All colour parts plug together (glazing core, piston rods) – printable part by part in single colours without an AMS, no colour zones
+• All joints use 1.75 mm filament pins, 12 printed parts, no glue
+
+Size
+• 1:43: undercarriage approx. 8 × 6 cm, length with blade and ripper approx. 13 cm, blade 7.6 cm wide, height 7.2 cm
+• 1:87: undercarriage approx. 4 × 3 cm, length approx. 6 cm, blade 3.8 cm wide, height 3.6 cm
+
+Included: STL and multicolour 3MF files for 1:43 and 1:87, colour lists, readme, images and two illustrated PDF instructions (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a crawler dozer, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG
+• Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
+• Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig: Unterwagen und Aufbau aufrecht, Ketten auf der Innenseite liegend, Kabine kopfüber, Kotflügel und Schildrahmen flach, Schild und Aufreißer mit der Rückseite nach unten, Zylinder liegend
+• Kein Stützmaterial – alle Teile drucken stützfrei (Slicing-Probe mit PrusaSlicer: 0 Hinweise in 1:43 und 1:87)
+• Mehrfarbig: mit AMS/MMU aus der 3MF drucken – oder einfarbig jede STL einzeln, die Farbbauteile (Glaskern, Kolbenstangen) werden gesteckt; es gibt keine Farbzonen
+• Keine Teilung, keine Clips – alle Teile passen ungeteilt auf das Druckbett
+• Für die Gelenke 7 Stücke Filament 1,75 mm als Bolzen zuschneiden (Längen in Anleitung und LIESMICH)
+• Passung: Presssitz der Steckteile einsatz_spiel (Standard 0,05 mm), Reibung der Kolbenstangen zylinder_spiel (Standard 0,1 mm; kleiner = hält besser), Bolzen und Schwenkzapfen spiel (0,15 mm) – im Customizer anpassen und nur das betroffene Teil neu drucken
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, alle Stücke): ca. 18 h für 1:43, ca. 3 h für 1:87 – mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG
+• Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
+• Print every part exactly as oriented in the files – the orientation is ready to print: undercarriage and body upright, tracks lying on their inner side, cab upside down, fenders and C-frame flat, blade and ripper on their backs, cylinders lying
+• No support material – all parts print support-free (PrusaSlicer slicing check: 0 warnings in 1:43 and 1:87)
+• Multicolour: print from the 3MF with AMS/MMU – or each STL on its own in one colour, the colour parts (glazing core, piston rods) plug together; there are no colour zones
+• No splitting, no clips – all parts fit the bed in one piece
+• Cut 7 pieces of 1.75 mm filament as pivot pins (lengths in the instructions and readme)
+• Fit: press fit of plug parts einsatz_spiel (default 0.05 mm), friction of the piston rods zylinder_spiel (default 0.1 mm; smaller = holds better), pins and pivot pegs spiel (0.15 mm) – adjust in the Customizer and reprint only the affected part
+• Print time (slicer estimate at 100 % infill, all pieces): approx. 18 h for 1:43, approx. 3 h for 1:87 – much less with 15 % infill
+
+TAGS
+Planierraupe,Bulldozer,Kettendozer,Raupe,Baustelle,Baumaschine,Rennbahn,Rennbahndeko,Carrera,CarreraGO,CarreraHybrid,Sturmkind,SturmkindDRIFT,Slotcar,H0,Massstab143,Modelleisenbahn,Bausatz,3DDruck,Mehrfarbig
