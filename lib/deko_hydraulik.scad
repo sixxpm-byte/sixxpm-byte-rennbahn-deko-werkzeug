@@ -3,12 +3,14 @@
 //  Teleskopische Hydraulikzylinder (Rohr + Kolbenstange), liegend stützfrei gedruckt,
 //  und Bolzen-Maße.  Erwartet im Modell: stift_d, zylinder_spiel, einsatz_spiel und
 //  (nach deko_grundlagen) M().  Optional vorab: zyl_r_s_m, zyl_r_o_m (Vorbild-Radien in m),
-//  zyl_r_s_min (kleinster Stangenradius, mm) und zyl_wand_min (kleinste Rohrwand, mm).
+//  zyl_r_s_min (kleinster Stangenradius, mm), zyl_wand_min (kleinste Rohrwand, mm),
+//  bolzen_frei (Luft am Durchmesser fuer lose Bolzenloecher, mm; Standard 0.25) und
+//  bolzen_press (Luft je Seite fuer stramme Bolzenloecher, mm; Standard einsatz_spiel).
 //  Ein Zylinder wird durch Z = [L_min, L_max] (Augenabstand eingefahren/ausgefahren)
 //  beschrieben; ov(Z) ist die Überdeckung der Stange im Rohr bei L_max (>= ov_min halten).
 // =====================================================================
-r_h   = (stift_d + 0.25) / 2;               // Bolzenloch lose
-r_pr  = stift_d / 2 + einsatz_spiel;        // Bolzenloch stramm
+r_h   = (stift_d + (is_undef(bolzen_frei) ? 0.25 : bolzen_frei)) / 2;   // Bolzenloch lose
+r_pr  = stift_d / 2 + (is_undef(bolzen_press) ? einsatz_spiel : bolzen_press);   // Bolzenloch stramm
 r_e   = max(M(0.17), r_h + 1.0);            // Augenradius
 r_s   = max(M(is_undef(zyl_r_s_m) ? 0.065 : zyl_r_s_m), is_undef(zyl_r_s_min) ? 1.2 : zyl_r_s_min);   // Kolbenstange
 hs    = 0.62 * r_s;                         // Stange: oben und unten abgeflacht

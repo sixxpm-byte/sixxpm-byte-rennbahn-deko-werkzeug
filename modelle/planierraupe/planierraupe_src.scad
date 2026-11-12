@@ -91,8 +91,12 @@ function K(m) = m * 1000 / den;
 function KP(p) = [K(p[0]), K(p[1])];
 function rot2(p, a) = [p[0] * cos(a) - p[1] * sin(a), p[0] * sin(a) + p[1] * cos(a)];
 es    = einsatz_spiel;
+r_fuss = max(M(0.01), 0.3);   // kleiner Fuß-Radius an freistehenden Halterungen gegen Abbrechen
 zyl_r_s_min  = max(1.0, 0);                 // schlankere Zylinder als Standard (kurze Hübe)
 zyl_wand_min = max(0.9, 0);
+// Bolzenlöcher mit etwas mehr Luft (Dirks Drucker druckt Löcher eng; sonst Nacharbeit nötig)
+bolzen_frei  = 0.4;                         // lose Löcher: Ø Stift + 0,4 mm (statt 0,25)
+bolzen_press = 0.15;                        // stramme Löcher: Ø Stift + 0,3 mm je Seite 0,15 (statt 0,05)
 include <../../lib/deko_hydraulik.scad>
 d_p   = max(M(0.16), 2.0);                  // Steckzapfen (Raute) Unterwagen/Kabine
 
@@ -206,6 +210,15 @@ module yz_druck0(x0) rotate([0, -90, 0]) translate([-x0, 0, 0]) children();
 // spitze Lasche (First 52°, stützfrei): r = halbe Breite in Lochhöhe; dir 0 = Spitze nach +z, 90 = nach +x
 module spitz2(p, r, dir = 0) translate(p) rotate(dir) scale([1, 1.3]) raute2(2 * r);
 module fase_box(p, s, c) hull() { translate([p[0], p[1], p[2]]) cube([s[0], s[1], s[2] - c]); translate([p[0] + c, p[1] + c, p[2]]) cube([s[0] - 2 * c, s[1] - 2 * c, s[2]]); }
+// wie fase_box, zusätzlich am Fuß (z = p[2]) um fr breiter – kleiner Radius gegen Abbrechen an freistehenden Halterungen
+module fase_box_fuss(p, s, c, fr) {
+    // kurzer Konus am Fuß (Breite s+2fr auf s über Höhe fr), darüber die normale Fase-Box
+    hull() {
+        translate([p[0] - fr, p[1] - fr, p[2]]) cube([s[0] + 2 * fr, s[1] + 2 * fr, 0.01]);
+        translate([p[0], p[1], p[2] + fr]) cube([s[0], s[1], 0.01]);
+    }
+    fase_box([p[0], p[1], p[2] + fr], [s[0], s[1], s[2] - fr], c);
+}
 
 // =====================================================================
 //  Laufwerk und Unterwagen
@@ -259,9 +272,15 @@ module rahmen_koerper() {
     }
     // Tank hinter der Kabine und Lagerbock des Aufreißers
     fase_box([X_t[0], -Y_b, Z_b1 - 0.01], [X_t[1] - X_t[0] - 0.3, 2 * Y_b, Z_t - Z_b1 + 0.01], c);   // 0,3 mm Fuge zur Kabine
-    translate([X_rb[0], -Y_rb, Z_b0]) cube([X_rb[1] - X_rb[0] + 0.02, 2 * Y_rb, Z_t - Z_b0]);
-    // Hubbock des Ripperzylinders (zwei Wangen)
-    for (s = [-1, 1]) translate([X_fk[0], s > 0 ? g_fk : -g_fk - t_pl, Z_b0]) cube([X_fk[1] - X_fk[0], t_pl, Z_fk - Z_b0]);
+    fase_box_fuss([X_rb[0], -Y_rb, Z_b0], [X_rb[1] - X_rb[0] + 0.02, 2 * Y_rb, Z_t - Z_b0], c, r_fuss);
+    // Hubbock des Ripperzylinders (zwei Wangen); kurzer Fuß-Konus nur in X (außen), Innenseite zum Rohr-Spalt unverändert
+    for (s = [-1, 1]) {
+        hull() {
+            translate([X_fk[0] - r_fuss, s > 0 ? g_fk : -g_fk - t_pl, Z_b0]) cube([X_fk[1] - X_fk[0] + 2 * r_fuss, t_pl, 0.01]);
+            translate([X_fk[0], s > 0 ? g_fk : -g_fk - t_pl, Z_b0 + r_fuss]) cube([X_fk[1] - X_fk[0], t_pl, 0.01]);
+        }
+        translate([X_fk[0], s > 0 ? g_fk : -g_fk - t_pl, Z_b0 + r_fuss]) cube([X_fk[1] - X_fk[0], t_pl, Z_fk - Z_b0 - r_fuss]);
+    }
     // Lagerböcke der Hubzylinder: Rippe an der Haubenseite, spitz nach oben
     for (s = [-1, 1]) hull() {
         xz(s > 0 ? Y_b - 0.01 : -Y_b - 0.01, s > 0 ? Y_b + 0.01 : -Y_b + 0.01) bock_2d(0);

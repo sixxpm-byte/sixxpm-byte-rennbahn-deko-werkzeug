@@ -39,6 +39,9 @@ DAZU BRAUCHST DU
     Ripper-Schwenkachse 29 / 14                  Ripperzylinder oben im Hubbock 14 / 8
     Ripperzylinder unten an der Lasche 6 / 4
   Sonst kein Zubehör, kein Kleber.
+  Bolzenlöcher mit etwas mehr Luft als sonst üblich (lose Löcher Ø Stift + 0,4 mm,
+  stramme Löcher Ø Stift + 0,3 mm) – falls dein Drucker enger druckt, Löcher ggf.
+  trotzdem kurz nachbohren.
 
 DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
   - Unterwagen und Aufbau aufrecht
@@ -50,8 +53,10 @@ DRUCK – Ausrichtung ist druckfertig, alles ohne Stützen
   - Zylinder: Rohr und Kolbenstange liegend, Augen unten
   Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): 1:43 und 1:87 je
   0 Hinweise.
-  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 18 h, 1:87 ca. 3 h.
+  Druckzeit bei 100 % Füllung (alle Stücke): 1:43 ca. 16 h, 1:87 ca. 2 h 45 min.
   Mit 15 % Füllung deutlich weniger.
+  Ripper-Lagerbock am Unterwagen und die Wangen des Ripperzylinder-Hubbocks (beide
+  am Aufbau) haben jetzt einen kleinen Fuß-Radius gegen Abbrechen an der Kante.
 
 MONTAGE
   1. Schildrahmen vor den Unterwagen legen (Schwenkzapfen neben den Steckzungen), dann
