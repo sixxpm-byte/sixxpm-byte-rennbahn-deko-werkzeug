@@ -1,0 +1,75 @@
+TITEL
+Gabelstapler für Carrera & Sturmkind DR!FT 1:24/1:43/1:87 – 8-t-Diesel-Stapler mit Vollkabine, Bausatz / Forklift kit
+
+KURZBESCHREIBUNG
+Schwerer 8-t-Gabelstapler mit Vollkabine, Hubmast und Zwillingsreifen als druckbarer Steck-Bausatz mit Bauanleitung – in 1:24, 1:43 und 1:87 (H0), passend für Carrera- und Sturmkind-DR!FT-Rennbahnen, Dioramen und die Modelleisenbahn.
+Heavy 8-tonne forklift with full cab, lift mast and twin tyres as a printable plug-together kit with building instructions – in 1:24, 1:43 and 1:87 (H0), ideal for Carrera and Sturmkind DR!FT tracks, dioramas and your model railway.
+
+BESCHREIBUNG
+Bring Werks- und Hafenatmosphäre an die Rennbahn oder die Modelleisenbahn: Dieser schwere Diesel-Gabelstapler der 8-Tonnen-Klasse ist ein 3D-druckbarer Bausatz zum Stecken – kein fertiges Modell. Du bekommst eine bebilderte Druck- und Bauanleitung als PDF für jeden Maßstab, Farblisten und eine LIESMICH-Datei. Maßstäbe: 1:24 (Carrera Digital 124, Slotcar), 1:43 (Carrera GO!!!, Sturmkind DR!FT, Slotcar) und 1:87 (H0, Modelleisenbahn).
+
+Ausstattung
+• Typische Form schwerer Stapler: großes, gerundetes Heckteil mit Heckgrill, Leuchtengehäusen und Kupplung
+• Vollkabine mit nach hinten geneigten A-Säulen, dicken, nach vorn geneigten Überrollsäulen mit runden Aussparungen, Tür mit Querholm, Dreiecksfenster, Dach mit Arbeitsscheinwerfern und Lamellen-Blende
+• Glaskern aus transparentem Filament, darunter Fahrersitz, Lenkrad und Armaturen
+• Neigezylinder auf dem Kabinendach wie beim Vorbild – sie halten den Mast zusätzlich oben
+• Trittnische mit zwei Stufen, C-förmige Kotflügel mit Spritzlappen, Zwillingsreifen vorne
+• Gabelträger in vier Hubstufen umsteckbar, Gabelzinken seitlich verschiebbar, Räder drehen sich
+• Ansaugrohr mit Luftfilter und Rundumleuchte als Steckteile
+• 3 Farben + transparent; alle Farbbauteile gesteckt – auch ohne AMS Teil für Teil druckbar
+• Kein Kleber nötig: Rauten-Zapfen und Presssitz
+
+Größe (mit Gabeln, Breite, Höhe)
+• 1:24: ca. 19,7 × 9,5 × 11,4 cm
+• 1:43: ca. 11,0 × 5,3 × 6,4 cm
+• 1:87: ca. 5,7 × 2,7 × 3,2 cm
+
+Lieferumfang: STL- und mehrfarbige 3MF-Dateien für 1:24, 1:43 und 1:87, Farblisten, LIESMICH, Bilder und drei bebilderte PDF-Anleitungen (Druck und Aufbau). Die OpenSCAD-Quelldatei ist nicht enthalten.
+
+Hinweis / Disclaimer: Carrera, Carrera GO!!!, Carrera Digital 124, Carrera Hybrid und Sturmkind DR!FT sind Marken ihrer jeweiligen Inhaber. Dieses Modell ist unabhängiges Deko-Zubehör und steht in keiner Verbindung zu den Markeninhabern; die Namen beschreiben nur den passenden Maßstab und Einsatzzweck. Das Modell ist eine freie Nachbildung eines schweren Gabelstaplers und kein lizenziertes Produkt eines Fahrzeugherstellers. Kein Spielzeug – enthält Kleinteile, nicht für Kinder unter 3 Jahren. Lizenz: nur für den privaten Gebrauch; Weiterverkauf oder Weitergabe der Dateien sowie Verkauf gedruckter Teile ist nicht gestattet.
+
+--- English ---
+Bring factory and harbour atmosphere to your race track or model railway: this heavy 8-tonne diesel forklift is a printable plug-together kit with building instructions for 3D printing – not a finished model. You get an illustrated printing and building guide as a PDF for every scale, colour lists and a readme. Scales: 1:24 (Carrera Digital 124, slot cars), 1:43 (Carrera GO!!!, Sturmkind DR!FT, slot cars) and 1:87 (H0, model railway).
+
+Features
+• Typical heavy-forklift shape: large rounded rear body with grille, light housings and towing coupling
+• Full cab with rearward-leaning A-pillars, thick forward-leaning roll-over pillars with round cut-outs, door with cross bar, triangular side window, roof with work lights and louvred visor
+• Glazing core in transparent filament, with driver's seat, steering wheel and dashboard underneath
+• Tilt cylinders on the cab roof like the real machine – they also hold the mast at the top
+• Step recess with two steps, C-shaped fenders with mud flaps, twin front tyres
+• Fork carriage pluggable in four lift positions, forks slide sideways, wheels turn
+• Air intake with filter and beacon as plug-in parts
+• 3 colours + transparent; all colour parts plug together – printable part by part without an AMS
+• No glue needed: diamond pins and press fits
+
+Size (with forks, width, height)
+• 1:24: approx. 19.7 × 9.5 × 11.4 cm
+• 1:43: approx. 11.0 × 5.3 × 6.4 cm
+• 1:87: approx. 5.7 × 2.7 × 3.2 cm
+
+Included: STL and multicolour 3MF files for 1:24, 1:43 and 1:87, colour lists, readme, pictures and three illustrated PDF guides (printing and assembly). The OpenSCAD source file is not included.
+
+Disclaimer: Carrera, Carrera GO!!!, Carrera Digital 124, Carrera Hybrid and Sturmkind DR!FT are trademarks of their respective owners. This model is independent decoration and has no connection to the trademark owners; the names only describe the matching scale and purpose. It is a free replica of a heavy forklift, not a licensed product of any vehicle manufacturer. Not a toy – contains small parts, not for children under 3. Licence: private use only; reselling or sharing the files and selling printed parts is not permitted.
+
+DRUCKANWEISUNG
+• Drucker: FDM mit 0,4-mm-Düse und mindestens 220 × 220 mm Druckbett; PLA oder PETG, für den Glaskern transparentes Filament
+• Schichthöhe 0,16–0,2 mm, Füllung 15 %, 3 Wandlinien, Brücken-Einstellungen des Slicers aktiv lassen
+• Alle Teile genau so drucken, wie sie in den Dateien liegen – die Ausrichtung ist druckfertig
+• Stützmaterial (nur vom Druckbett) bei zwei Teilen: Fahrgestell (Bögen der hinteren Radkästen, Leuchtengehäuse und Kupplungsmaul am Heck) und Kabine (kopfüber gedruckt: Dachüberstand, Lamellen-Blende, schräge Überrollsäulen). Alle anderen Teile drucken ohne Stützen
+• Mehrfarbig: mit AMS/MMU aus der 3MF drucken – oder einfarbig jede STL einzeln, die Farbbauteile werden gesteckt; nur die Farbzonen am Fahrgestell und der Spritzlappen am Kotflügel brauchen AMS, sonst die 3MF einfarbig drucken
+• Nichts ist geteilt – keine Clips nötig; alle Teile passen in allen drei Maßstäben aufs Druckbett
+• Passung im Customizer: einsatz_spiel (Felgen, Glaskern, Kabine; Standard 0,05 mm) und spiel (Zapfen)
+• Druckzeit (Slicer-Schätzung bei 100 % Füllung, 1 Stück je Teil): ca. 39 h für 1:24, ca. 9 h für 1:43, ca. 1,8 h für 1:87 – mit 15 % Füllung deutlich weniger
+
+--- English ---
+• Printer: FDM with 0.4 mm nozzle and a print bed of at least 220 × 220 mm; PLA or PETG, transparent filament for the glazing core
+• Layer height 0.16–0.2 mm, 15 % infill, 3 perimeters, keep the slicer's bridging settings enabled
+• Print every part exactly as oriented in the files – the orientation is ready to print
+• Supports (on build plate only) for two parts: chassis (rear wheel arches, light housings and coupling recess at the rear) and cab (printed upside down: roof overhang, louvred visor, slanted roll-over pillars). All other parts print without supports
+• Multicolour: print from the 3MF with AMS/MMU – or each STL on its own in one colour, the colour parts plug together; only the colour zones on the chassis and the mud flap on the fender need an AMS, otherwise print the 3MF in one colour
+• Nothing is split – no clips needed; all parts fit on the bed in all three scales
+• Fit in the Customizer: einsatz_spiel (rims, glazing core, cab; default 0.05 mm) and spiel (pins)
+• Print time (slicer estimate at 100 % infill, one of each part): approx. 39 h for 1:24, approx. 9 h for 1:43, approx. 1.8 h for 1:87 – much less with 15 % infill
+
+TAGS
+Gabelstapler,Stapler,Forklift,Diesel,Lager,Hafen,Industrie,Rennbahndeko,Carrera,CarreraGO,CarreraDigital124,Sturmkind,SturmkindDRIFT,Slotcar,H0,Massstab124,Massstab143,Modelleisenbahn,Bausatz,3DDruck

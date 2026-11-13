@@ -1,0 +1,81 @@
+GABELSTAPLER 8 t – schwerer Diesel-Stapler mit Vollkabine – zerlegbarer Steck-Bausatz
+=====================================================================================
+Maßstäbe 1:24 (Slotcar, z. B. Carrera Digital 124), 1:43 (Drift-RC und Slotcar) und 1:87 (H0).
+Vorbild: 8-t-Diesel-Gabelstapler der Baureihe Linde H80D / H80 EVO (freie Nachbildung):
+Radstand 2,20 m, Länge bis Gabelrücken 3,53 m, Höhe über Kabine 2,75 m,
+Zwillingsreifen vorne, Neigezylinder auf dem Kabinendach.
+
+STL_1-24 / STL_1-43 / STL_1-87: alle Druckteile mit Farbe im Dateinamen (teil_Farbteil__farbe.stl).
+  Farbliste.txt   = Stückzahlen je Farbe (gleiche Stücke sind zusammengefasst)
+  *_farbig.3mf    = alle Teile mit Farben (mehrfarbige Teile als ein Objekt)
+  gabelstapler_anleitung_1-24.pdf / _1-43.pdf / _1-87.pdf = bebilderte Druck- und Aufbauanleitung
+  bilder/         = Ansichten (Aufbau, Heck, Explosion, Detail, Druckteile) und Kontrollbilder
+
+TEILE (Stückzahl)
+  Fahrgestell (1) – großes, gerundetes Heckteil mit Grill, Leuchten und Kupplung,
+                    Trittnische mit 2 Stufen, Sitz, Lenkrad, Armaturen, alle Zapfen
+  Kabine (1), Glaskern (1, transparent), Hubmast (1), Gabelträger (1),
+  Kotflügel links / rechts (je 1, mit schwarzem Spritzlappen), Gabelzinken (2),
+  Zwillingsreifen vorne (2), Reifen hinten (2), Felgen vorne / hinten (je 2),
+  Neigezylinder (2), Ansaugrohr mit Luftfilter (1), Rundumleuchte (1)
+
+FARBEN – 3 Farben + transparent
+  A rot (Fahrgestell, Kotflügel, Felgen), B schwarz (Kabine, Mast, Gabeln,
+  Reifen, Zylinder, Trittnische), C orange (Rundumleuchte, Rückleuchten),
+  D glas = transparentes Filament (Glaskern).
+  Alle eigenen Farbbauteile werden gesteckt – ohne AMS druckst du sie Teil für
+  Teil in ihrer Farbe. Farbzonen (AMS/MMU, sonst die 3MF einfarbig drucken):
+  am Fahrgestell Schürze, Trittnische, Vorderteil, Grill, Leuchtengehäuse,
+  Kupplung, Sitz/Armaturen (schwarz) und die Rückleuchten (orange), am Kotflügel
+  der Spritzlappen (schwarz). Jedes Farbteil ist ein zusammenhängender Körper.
+
+GRÖSSE (mit Gabeln / bis Gabelrücken × Breite × Höhe)
+  1:24: ca. 19,7 / 14,7 × 9,5 × 11,4 cm
+  1:43: ca. 11,0 /  8,2 × 5,3 × 6,4 cm
+  1:87: ca.  5,7 /  4,3 × 2,7 × 3,2 cm
+
+Maßstab / andere Farben / Optionen:
+  gabelstapler.scad im OpenSCAD-Customizer öffnen (Maßstab 1:24, 1:43 oder 1:87),
+  oder:  python3 farb_export.py gabelstapler.scad 87 ausgabe -D 'farbe_lack="gelb"'
+  Optionen u. a.: Hubstufe des Gabelträgers (Vorschau), Gabelabstand, alle
+  Vorbild-Maße (Neigung der Kabinensäulen, Kabinenbreite, Heckteil …), Farben,
+  Presssitz der Steckteile (einsatz_spiel, Standard 0,05 mm), Zapfenspiel (spiel).
+  Zusätzlich: teil = "karte" legt alle Teile wie einen Plastik-Bausatz mit
+  Angüssen auf eine Karte (ein AMS-Druck, nur 1:43 und 1:87 passen aufs Bett).
+  Die Datei ist eigenständig.
+
+DRUCK – Ausrichtung ist druckfertig
+  STÜTZEN (nur vom Druckbett) bei zwei Teilen, bewusst geplant:
+  - Fahrgestell aufrecht: Bögen der hinteren Radkästen, Leuchtengehäuse und
+    Kupplungsmaul am Heck.
+  - Kabine kopfüber (Dach unten): Dachüberstand vorne, schräge Lamellen-Blende
+    hinten, die schräge Überrollsäule; der Türholm druckt als Brücke.
+  Alle anderen Teile drucken ohne Stützen:
+  - Glaskern kopfüber (unten offen), Rundumleuchte und Ansaugrohr kopfüber
+    (Zapfen oben)
+  - Mast auf der Rückseite, Gabelträger auf der Vorderseite (Zapfen oben)
+  - Gabeln, Kotflügel und Neigezylinder auf der Seite liegend
+  - Reifen liegend (Innenrand unten), Felgen liegend
+  Nichts ist geteilt – alle Teile passen in allen drei Maßstäben aufs Druckbett
+  (220 × 220 mm).
+  Slicing-Probe (PrusaSlicer, 0,4 mm Düse, 0,16 mm Schicht): je Maßstab nur die
+  geplanten Stützen an Fahrgestell und Kabine (je 2 Hinweise: Stütze und
+  flache Unterseite); alle anderen Teile ohne Hinweise.
+  Druckzeit (Slicer-Schätzung, 1 Stück je Teil, 100 % Füllung): ca. 39 h (1:24),
+  9 h (1:43), 1,8 h (1:87) – mit 15 % Füllung deutlich weniger.
+  1:87: Zapfen und Säulen sind auf 1,2–1,5 mm Mindestmaß verstärkt.
+
+MONTAGE
+  1. Felgen von außen in die Reifen drücken, Räder auf die Rautenzapfen schieben.
+  2. Kotflügel mit den zwei Zapfen seitlich in den schwarzen Vorderteil stecken.
+  3. Glaskern über den schwarzen Sockel auf Deck und Heckteil drücken, Kabine
+     darüberschieben, Rundumleuchte ins Dach, Ansaugrohr ins Heckteil stecken.
+  4. Mast mit den Löchern unten auf die Lagerzapfen vorne schieben.
+  5. Neigezylinder: Steckzunge hinten ins Dach, Auge vorne auf den Zapfen am
+     Mastkopf – der Mast hält oben und unten.
+  6. Gabelträger in eines der vier Lochpaare des Masts stecken, Gabeln einhängen.
+
+BEWEGLICH
+  Räder drehen sich. Gabelträger in vier Hubstufen umsteckbar (unten bis 1,8 m),
+  Gabelzinken seitlich verschiebbar. Kabine abnehmbar – darunter Sitz, Lenkrad
+  und Armaturen.
